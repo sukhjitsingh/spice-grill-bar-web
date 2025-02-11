@@ -1,101 +1,167 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { ArrowRight, Clock, MapPin, Phone } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div>
+      {/* Hero Section */}
+      <section className="relative h-[80vh] min-h-[600px]">
         <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/placeholder.svg?height=800&width=1920"
+          alt="Delicious Indian cuisine spread"
+          fill
+          className="object-cover brightness-50"
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="absolute inset-0 flex items-center justify-center text-center">
+          <div className="space-y-6 max-w-4xl px-4">
+            <h1 className="font-serif text-5xl md:text-7xl text-white mb-4 leading-tight">
+              Experience Authentic
+              <br />
+              Punjabi Cuisine
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Discover the rich flavors and aromatic spices of traditional Punjabi cooking at Spice Grill & Bar
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-lg">
+                <Link href="/menu">View Our Menu</Link>
+              </Button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Featured Section */}
+      <section className="py-20 bg-gradient-to-b from-amber-50/50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl mb-4">Popular Dishes</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Savor our most beloved dishes, crafted with care using traditional recipes and the finest ingredients
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Butter Chicken",
+                description: "Tender chicken in a rich, creamy tomato sauce",
+                image: "/placeholder.svg?height=300&width=400",
+              },
+              {
+                name: "Paneer Tikka",
+                description: "Marinated cottage cheese grilled to perfection",
+                image: "/placeholder.svg?height=300&width=400",
+              },
+              {
+                name: "Biryani",
+                description: "Aromatic basmati rice with spices and your choice of protein",
+                image: "/placeholder.svg?height=300&width=400",
+              },
+            ].map((dish, index) => (
+              <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow">
+                <div className="relative h-48">
+                  <Image src={dish.image || "/placeholder.svg"} alt={dish.name} fill className="object-cover" />
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="font-serif text-xl mb-2">{dish.name}</h3>
+                  <p className="text-gray-600 mb-4">{dish.description}</p>
+                  <Button variant="link" className="text-brand-orange hover:text-brand-orange/90 p-0">
+                    Order Now <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Preview Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative h-[500px]">
+              <Image
+                src="/placeholder.svg?height=500&width=600"
+                alt="Restaurant ambiance"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+            <div className="space-y-6">
+              <h2 className="font-serif text-4xl">Our Story</h2>
+              <p className="text-gray-600">
+                Welcome to Spice Grill & Bar, where traditional Indian flavors meet modern culinary excellence. For over a decade, we&apos;ve been serving authentic Indian cuisine made with the finest ingredients and time-honored recipes passed down through generations.
+              </p>
+              <p className="text-gray-600">
+                Our chefs bring decades of experience from various regions of India, ensuring that each dish captures
+                the essence of authentic Indian cooking while adding their own creative touch to present a unique dining
+                experience.
+              </p>
+              {/* <Button
+                asChild
+                variant="outline"
+                className="border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white"
+              >
+                <Link href="/about">Learn More About Us</Link>
+              </Button> */}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Info Cards Section */}
+      <section className="py-20 bg-gradient-to-b from-amber-50/50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="border-none shadow-lg">
+              <CardContent className="flex items-start space-x-4 p-6">
+                <MapPin className="h-6 w-6 text-brand-orange" />
+                <div>
+                  <h3 className="font-serif text-xl mb-2">Location</h3>
+                  <p className="text-gray-600">
+                    <Link href="https://www.google.com/maps/search/?api=1&query=33+Lewis+Ave,+Ash+Fork,+AZ+86320" target="_blank" rel="noopener noreferrer">
+                      33 Lewis Ave.
+                      <br />
+                      Ash Fork, AZ 86320
+                    </Link>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-none shadow-lg">
+              <CardContent className="flex items-start space-x-4 p-6">
+                <Phone className="h-6 w-6 text-brand-orange" />
+                <div>
+                  <h3 className="font-serif text-xl mb-2">Contact</h3>
+                  <p className="text-gray-600">
+                    (928) 277-1292
+                    <br />
+                    info@spicegrillbar.com
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="border-none shadow-lg">
+              <CardContent className="flex items-start space-x-4 p-6">
+                <Clock className="h-6 w-6 text-brand-orange" />
+                <div>
+                  <h3 className="font-serif text-xl mb-2">Hours</h3>
+                  <p className="text-gray-600">
+                    Mon-Fri: 7:00 AM - 10:00 PM
+                    <br />
+                    Sat-Sun: 7:00 PM - 10:00 PM
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
+

@@ -1,0 +1,304 @@
+[
+  {
+    "category": "Appetizers",
+    "items": [
+      {
+        "name": "Chicken Tikka",
+        "description": "Chicken marinated in ginger, yogurt & tandoor spices.",
+        "price": 14.99
+      },
+      {
+        "name": "Chicken Wings (5 pcs)",
+        "description": "Buffalo, BBQ, Sweet & Sour",
+        "price": 6.99
+      },
+      {
+        "name": "Tandoori Wings (5 pcs)",
+        "description": "Made with our special Tandoori spices",
+        "price": 9.99
+      },
+      {
+        "name": "Chicken Chilli",
+        "description": "Crisp fried chicken with soy-tomato sauce.",
+        "price": 14.99
+      },
+      {
+        "name": "Chicken Pakora",
+        "description": "Spiced & deep fried chicken in chickpea flour.",
+        "price": 8.99
+      },
+      {
+        "name": "Fish Pakora",
+        "description": "Marinated fish fried in our chickpea batter.",
+        "price": 10.99
+      },
+      {
+        "name": "Veggie Pakora",
+        "description": "Mixed vegetable fried in our chickpea batter.",
+        "price": 6.99
+      },
+      {
+        "name": "Paneer Pakora",
+        "description": "Marinated paneer fried in our chickpea batter.",
+        "price": 8.99
+      },
+      {
+        "name": "Chilli Paneer",
+        "description": "Fried paneer cubes tossed in a sweet, spicy, hot, and tangy chili sauce.",
+        "price": 13.99
+      },
+      {
+        "name": "Samosa (2 pcs)",
+        "description": "Indian pastry stuffed with potatoes & peas.",
+        "price": 4.99
+      },
+      {
+        "name": "Samosa Chaat",
+        "description": "Crispy samosa, chickpeas, mint & tamarind sauce.",
+        "price": 6.99
+      },
+      {
+        "name": "Papdi Chaat",
+        "description": "Lightly seasoned flour crisps topped with mint & tamarind chutney, raita, onions, and cilantro.",
+        "price": 5.99
+      },
+        {
+        "name": "Tandoori Chicken (8 pcs)",
+        "description": "Chicken marinated in yogurt and spices, cooked a tandoor.",
+        "price": 18.99
+      }
+    ]
+  },
+  {
+    "category": "Veg Dishes",
+    "items": [
+      {
+        "name": "Dal Tadka",
+        "description": "Delicious yellow lentil.",
+        "price": 12.99
+      },
+      {
+        "name": "Dal Makhani",
+        "description": "Creamy mixture of assorted lentils.",
+        "price": 13.95
+      },
+      {
+        "name": "Chana Masala",
+        "description": "Chickpeas cooked with herbs and spices.",
+        "price": 12.99
+      },
+      {
+        "name": "Mix Veg",
+        "description": "Mix veggies cooked in curry sauce.",
+        "price": 12.99
+      },
+      {
+        "name": "Aloo Gobhi",
+        "description": "Potatoes & cauliflower in dry curry sauce.",
+        "price": 12.99
+      },
+      {
+        "name": "Paneer Masala",
+        "description": "Cottage cheese & tomatoes in a special cream sauce.",
+        "price": 14.95
+      },
+      {
+        "name": "Shahi Paneer",
+        "description": "Chunks of cottage cheese in a savory rich buttery cream sauce.",
+        "price": 14.95
+      },
+      {
+        "name": "Saag Paneer",
+        "description": "Chunks of cottage cheese mixed in savory spinach sauce.",
+        "price": 14.95
+      },
+      {
+        "name": "Paneer Bhurji",
+        "description": "Scrambled cottage cheese mixed with onions, tomatoes, & herbs.",
+        "price": 14.95
+      },
+      {
+        "name": "Baingan Bharta",
+        "description": "Roasted eggplant seasoned with herbs & spices",
+        "price": 12.99
+      },
+      {
+        "name": "Curry Pakora",
+        "description": "Deep fried pakoras (fritters) in a tangy yogurt based curry.",
+        "price": 12.99
+      },
+      {
+        "name": "Rajma",
+        "description": "Red kidney beans, spices, onions, tomatoes and herbs.",
+        "price": 12.49
+      },
+      {
+        "name": "Malai Kofta",
+        "description": "Mixed vegetable balls cooked in fresh tomato, onion, and saffron curry sauce.",
+        "price": 14.49
+      },
+      {
+        "name": "Mushroom Korma",
+        "description": "Mushroom in a cream-based curry sauce.",
+        "price": 14.99
+      }
+    ]
+  },
+    {
+    "category": "Non-Veg Dishes",
+    "items": [
+      {
+        "name": "Chicken Curry",
+        "description": "Chicken cooked in our traditional curry sauce.",
+        "price": 14.95
+      },
+      {
+        "name": "Chicken Korma",
+        "description": "Chicken in a cream-based curry sauce.",
+        "price": 14.95
+      },
+      {
+        "name": "Chicken Vindaloo",
+        "description": "Chicken, potatoes, and veggies in a rich gravy sauce.",
+        "price": 14.95
+      },
+      {
+        "name": "Chicken Saag",
+        "description": "Chicken, cooked with freshly chopped spinach.",
+        "price": 14.95
+      },
+      {
+        "name": "Chicken Tikka Masala",
+        "description": "Cooked in a creamy spiced tomato sauce.",
+        "price": 15.95
+      },
+      {
+        "name": "Butter Chicken",
+        "description": "Rich butter-cream, tomatoes, onion sauce cooked with chicken thighs.",
+        "price": 15.95
+      },
+      {
+        "name": "Karahi Chicken",
+        "description": "Dark meat sauteed with bell pepper, onions & tomatoes.",
+        "price": 14.95
+      },
+      {
+        "name": "Goat Curry",
+        "description": "Goat cooked in our traditional curry sauce.",
+        "price": 15.95
+      },
+      {
+        "name": "Goat Korma",
+        "description": "Goat in a cream-based curry sauce.",
+        "price": 15.95
+      },
+      {
+        "name": "Goat Vindaloo",
+        "description": "Goat, potatoes, and veggies in a rich gravy sauce.",
+        "price": 15.95
+      },
+      {
+        "name": "Goat Saag",
+        "description": "Goat, cooked with freshly chopped spinach.",
+        "price": 15.95
+      },
+      {
+        "name": "Lamb Curry",
+        "description": "Lamb cooked in our traditional curry sauce.",
+        "price": 16.49
+      },
+      {
+        "name": "Lamb Korma",
+        "description": "Lamb in a cream-based curry sauce.",
+        "price": 16.49
+      },
+      {
+        "name": "Lamb Vindaloo",
+        "description": "Lamb, potatoes, and veggies in a rich gravy sauce.",
+        "price": 16.49
+      }
+    ]
+  },
+  {
+    "category": "Rice",
+    "items": [
+      {
+        "name": "Plain Rice",
+        "description": "Basmati rice with a dash of butter.",
+        "price": 3.99
+      },
+      {
+        "name": "Jeera Rice",
+        "description": "Basmati rice lightly seasoned with cumin.",
+        "price": 8.99
+      },
+      {
+        "name": "Mushroom Rice",
+        "description": "Basmati rice sauteed with Mushrooms",
+        "price": 8.99
+      },
+      {
+        "name": "Matar Pulao",
+        "description": "Basmati rice seasoned with cumin, peas, and onions.",
+        "price": 9.99
+      },
+      {
+        "name": "Veg Biryani",
+        "description": "Basmati rice sauteed with veggies and spices.",
+        "price": 15.99
+      },
+      {
+        "name": "Chicken Biryani",
+        "description": "Basmati rice sauteed with chicken and spices.",
+        "price": 16.99
+      },
+      {
+        "name": "Goat Biryani",
+        "description": "Basmati rice sauteed with goat and spices.",
+        "price": 18.99
+      },
+      {
+        "name": "Lamb Biryani",
+        "description": "Basmati rice sauteed with lamb and spices.",
+        "price": 18.99
+      }
+    ]
+  },
+  {
+    "category": "Egg Dishes",
+    "items": [
+      {
+        "name": "Egg Bhurji",
+        "description": "Scrambled eggs with onions, green peppers, chilis and herbs.",
+        "price": 13.99
+      },
+      {
+        "name": "Egg Curry",
+        "description": "Boiled eggs sauteed in onion sauce, green peppers, chilis and herbs.",
+        "price": 13.99
+      }
+    ]
+  },
+  {
+    "category": "Sides",
+    "items": [
+      {
+        "name": "Raita (Yogurt)",
+        "price": 3.00
+      },
+      {
+        "name": "Plain Yogurt",
+        "price": 2.00
+      },
+      {
+        "name": "Mint Chutney",
+        "price": 1.00
+      },
+      {
+        "name": "Mixed Pickle",
+        "price": 1.00
+      }
+    ]
+  }
+]
+

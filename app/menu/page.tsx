@@ -19,7 +19,7 @@ export default function MenuPage() {
               <TabsTrigger
                 key={category.category}
                 value={category.category}
-                className="data-[state=active]:bg-brand-orange data-[state=active]:text-white"
+                className="text-xl data-[state=active]:bg-brand-orange data-[state=active]:text-white"
               >
                 {category.category}
               </TabsTrigger>

@@ -1,5 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import type { MenuItem } from "@/types/menu"
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import type { MenuItem } from "@/types/menu";
+import Image from "next/image";
 
 interface MenuCardProps {
   item: MenuItem
@@ -15,13 +16,19 @@ export function MenuCard({ item, categoryName, index }: MenuCardProps) {
           <CardTitle className="font-serif text-xl">{item.name}</CardTitle>
           <span className="text-lg font-semibold text-brand-orange whitespace-nowrap">${item.price.toFixed(2)}</span>
         </div>
+        {item.description && (
+          <p className="text-gray-600 text-sm mt-2">{item.description}</p>
+        )}
       </CardHeader>
-      {item.description && (
-        <CardContent className="pt-0">
-          <p className="text-gray-600 text-sm">{item.description}</p>
-        </CardContent>
-      )}
+      <div className="relative h-48 w-full overflow-hidden rounded-t-lg mt-4">
+        <Image
+          src={item.image || "/placeholder.svg?height=300&width=400"}
+          alt={item.name}
+          fill
+          className="object-cover"
+        />
+      </div>
     </Card>
-  )
+  );
 }
 

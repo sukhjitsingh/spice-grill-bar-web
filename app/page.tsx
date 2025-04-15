@@ -10,7 +10,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px]">
         <Image
-          src="/placeholder.svg?height=800&width=1920"
+          src="/HomePageBackground.jpg?height=800&width=1920"
           alt="Delicious Indian cuisine spread"
           fill
           className="object-cover brightness-50"
@@ -52,9 +52,9 @@ export default function Home() {
                 image: "/placeholder.svg?height=300&width=400",
               },
               {
-                name: "Paneer Tikka",
-                description: "Marinated cottage cheese grilled to perfection",
-                image: "/placeholder.svg?height=300&width=400",
+                name: "Shahi Paneer",
+                description: "Chunks of cottage cheese in a savory rich buttery cream sauce.",
+                image: "/ShahiPaneer.jpg?height=300&width=400",
               },
               {
                 name: "Biryani",

@@ -27,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${openSans.variable} ${playfairDisplay.variable}`}>
-      <body className="min-h-screen flex flex-col font-sans">
+    <html lang="en" className={`${openSans.variable} ${playfairDisplay.variable} `}>
+      <body className="min-h-screen flex flex-col font-sans transition-all duration-300">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

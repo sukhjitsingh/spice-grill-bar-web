@@ -2,10 +2,12 @@
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { cn } from "@/lib/utils"
 import { Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { usePathname } from "next/navigation"
+import { useState} from "react"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -17,6 +19,7 @@ const navigation = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const pathname = usePathname();
   return (
     <header className="bg-[#f5f5dc] shadow-sm sticky top-0 z-50">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -32,7 +35,11 @@ export function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-base font-medium text-gray-700 hover:text-brand-orange"
+                className={cn(
+                  "text-base font-medium text-gray-700 hover:text-brand-orange",
+                  pathname === link.href && "text-brand-orange font-bold"
+                )
+                }
               >
                 {link.name}
               </Link>
@@ -53,7 +60,11 @@ export function Header() {
                     <Link
                       key={link.name}
                       href={link.href}
-                      className="text-base font-medium text-gray-700 hover:text-brand-orange"
+                      className={cn(
+                        "text-base font-medium text-gray-700 hover:text-brand-orange",
+                        pathname === link.href && "text-brand-orange font-bold"
+                      )
+                      }
                       onClick={() => setIsOpen(false)}
                     >
                       {link.name}

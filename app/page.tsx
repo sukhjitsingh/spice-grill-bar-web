@@ -1,12 +1,18 @@
+'use client'
+import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Clock, MapPin, Phone } from "lucide-react"
+import { motion } from 'framer-motion'
 import Image from "next/image"
 import Link from "next/link"
+import menu from "@/data/menu.json"
+import { MenuData } from "@/types/menu"
 
 export default function Home() {
   return (
-    <div>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <div>
       {/* Hero Section */}
       <section className="relative h-[80vh] min-h-[600px]">
         <Image
@@ -44,31 +50,27 @@ export default function Home() {
               Savor our most beloved dishes, crafted with care using traditional recipes and the finest ingredients
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: "Butter Chicken",
-                description: "Tender chicken in a rich, creamy tomato sauce",
-                image: "/placeholder.svg?height=300&width=400",
-              },
-              {
-                name: "Shahi Paneer",
-                description: "Chunks of cottage cheese in a savory rich buttery cream sauce.",
-                image: "/ShahiPaneer.jpg?height=300&width=400",
-              },
-              {
-                name: "Biryani",
-                description: "Aromatic basmati rice with spices and your choice of protein",
-                image: "/placeholder.svg?height=300&width=400",
-              },
-            ].map((dish, index) => (
-              <Card key={index} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {(menu as MenuData)
+              .flatMap((category) => category.items)
+              .sort((a, b) => (b.popularity || 0) - (a.popularity || 0))
+              .slice(0, 6)
+              .map((item, index) => (
+                <Card 
+                  key={index}
+                  className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow"
+                >
                 <div className="relative h-48">
-                  <Image src={dish.image || "/placeholder.svg"} alt={dish.name} fill className="object-cover" />
-                </div>
+                  <Image
+                    src={item.imageUrl || "/placeholder.svg"}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                 </div>
                 <CardContent className="p-6">
-                  <h3 className="font-serif text-xl mb-2">{dish.name}</h3>
-                  <p className="text-gray-600 mb-4">{dish.description}</p>
+                  <h3 className="font-serif text-xl mb-2">{item.name.toString()}</h3>
+                  <p className="text-gray-600 mb-4">{item.description}</p>
                   <Button variant="link" className="text-brand-orange hover:text-brand-orange/90 p-0">
                     Order Now <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -162,6 +164,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </motion.div>
   )
 }
-

@@ -14,7 +14,7 @@ export default function MenuPage() {
         </p>
 
         <Tabs defaultValue={menuData[0].category} className="w-full">
-          <TabsList className="w-full justify-start mb-8 overflow-x-auto flex-wrap h-auto gap-2 bg-transparent">
+          <TabsList className="w-full justify-start mb-8 overflow-x-auto flex-row h-auto gap-2 bg-transparent md:flex-nowrap">
             {menuData.map((category) => (
               <TabsTrigger
                 key={category.category}

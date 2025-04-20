@@ -2,14 +2,20 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Metadata } from "next"
 import { ArrowRight, Clock, MapPin, Phone } from "lucide-react"
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import menu from "@/data/menu.json"
 import { MenuData } from "@/types/menu"
 
 export default function Home() {
+  const metadata: Metadata = {
+    title: "Spice Grill & Bar: Authentic Punjabi Cuisine in Ash Fork, AZ",
+    description: "Experience the rich flavors of traditional Punjabi cuisine at Spice Grill & Bar. We offer a unique dining experience in Ash Fork, AZ.",
+  };
+  
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <div>
@@ -30,7 +36,7 @@ export default function Home() {
               Punjabi Cuisine
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Discover the rich flavors and aromatic spices of traditional Punjabi cooking at Spice Grill & Bar
+            Discover the rich flavors and aromatic spices of traditional Punjabi cooking at Spice Grill & Bar
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-lg">

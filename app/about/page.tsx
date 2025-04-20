@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-16">
+    <div className="container mx-auto px-4 py-16 py-12">
       <h1 className="font-serif text-4xl text-center mb-12">About Spice Grill & Bar</h1>
       <h1 className="font-serif text-3xl text-center mb-12">Our Story</h1>
 
@@ -26,7 +26,7 @@ export default function AboutPage() {
         </div>
         <div>
           <p className="text-gray-600 mb-4">
-            Welcome to Spice Grill & Bar, where traditional Punjabi flavors meet modern culinary excellence. Established
+            Welcome to Spice Grill & Bar, your destination for authentic Punjabi cuisine in Ash Fork. Established
             in 2024, we have been serving authentic Punjabi cuisine made with the finest ingredients and time-honored
             recipes passed down through generations.
           </p>
@@ -36,18 +36,18 @@ export default function AboutPage() {
             experience.
           </p>        
           <p className="text-gray-600">
-            Our head chef, has over 10 years of experience crafting authentic Punjabi dishes. He's passionate about sharing the flavors of our heritage with the community.
+            Our head chef, has over 10 years of experience crafting authentic Punjabi dishes. He&apos;s passionate about sharing the flavors of our heritage with the community.
           </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 py-12">
         <Card>
           <CardContent className="p-6 text-center">
             <h2 className="font-serif text-xl mb-4">Our Mission</h2>
             <p className="text-gray-600">
-              To serve authentic Indian cuisine while providing an exceptional dining experience that celebrates the
-              rich culinary heritage of India.
+              To serve authentic Punjabi Indian cuisine while providing an exceptional dining experience that celebrates the
+              rich culinary heritage of Punjab.
             </p>
           </CardContent>
         </Card>
@@ -55,7 +55,7 @@ export default function AboutPage() {
           <CardContent className="p-6 text-center">
             <h2 className="font-serif text-xl mb-4">Our Vision</h2>
             <p className="text-gray-600">
-              To be the premier destination for Indian cuisine, known for our exceptional food, warm hospitality, and
+              To be the premier destination in Ash Fork for Punjabi cuisine, known for our exceptional food, warm hospitality, and
               inviting atmosphere.
             </p>
           </CardContent>
@@ -64,14 +64,14 @@ export default function AboutPage() {
           <CardContent className="p-6 text-center">
             <h2 className="font-serif text-xl mb-4">Our Values</h2>
             <p className="text-gray-600">
-              Quality, authenticity, and customer satisfaction are at the heart of everything we do, from ingredient
+              Quality, authenticity, and customer satisfaction are at the heart of everything we do at our Indian Restaurant, from ingredient
               selection to service delivery.
             </p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="text-center">
+      {/* <div className="text-center">
         <h2 className="font-serif text-3xl mb-8">Our Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[1, 2, 3].map((member) => (
@@ -92,11 +92,11 @@ export default function AboutPage() {
           ))}
         </div>
       <div className='mt-8 flex justify-center'>
-        <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-lg">
+        <Button asChild size="lg" className="bg-brand-orange hover:bg-brand-orange/90 text-lg sm:text-lg">
           <Link href="/menu">View Our Menu</Link>
         </Button>
       </div>
-      </div>
+      </div> */}
     </div>
   )
 }

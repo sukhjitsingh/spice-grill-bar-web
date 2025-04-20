@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { Metadata } from "next"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+// import { Button } from "@/components/ui/button"
+// import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "About Spice Grill & Bar: Authentic Punjabi Restaurant in Ash Fork",

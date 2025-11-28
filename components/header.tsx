@@ -7,7 +7,7 @@ import { Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState} from "react"
+import { useState } from "react"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -21,7 +21,7 @@ export function Header() {
 
   const pathname = usePathname();
   return (
-    <header className="bg-[#f5f5dc] shadow-sm sticky top-0 z-50">
+    <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
@@ -36,7 +36,7 @@ export function Header() {
                 key={link.name}
                 href={link.href}
                 className={cn(
-                  "text-base font-medium text-gray-700 hover:text-brand-orange",
+                  "text-base font-medium text-gray-700 hover:text-brand-orange transition-colors",
                   pathname === link.href && "text-brand-orange font-bold"
                 )
                 }
@@ -44,7 +44,7 @@ export function Header() {
                 {link.name}
               </Link>
             ))}
-            <Button className="bg-brand-orange hover:bg-brand-orange/90">Order Online</Button>
+            <Button className="bg-brand-orange hover:bg-brand-orange/90 transition-colors">Order Online</Button>
           </div>
           <div className="lg:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -61,7 +61,7 @@ export function Header() {
                       key={link.name}
                       href={link.href}
                       className={cn(
-                        "text-base font-medium text-gray-700 hover:text-brand-orange",
+                        "text-base font-medium text-gray-700 hover:text-brand-orange transition-colors",
                         pathname === link.href && "text-brand-orange font-bold"
                       )
                       }
@@ -70,7 +70,7 @@ export function Header() {
                       {link.name}
                     </Link>
                   ))}
-                  <Button className="bg-brand-orange hover:bg-brand-orange/90 w-full">Order Online</Button>
+                  <Button className="bg-brand-orange hover:bg-brand-orange/90 w-full transition-colors">Order Online</Button>
                 </div>
               </SheetContent>
             </Sheet>

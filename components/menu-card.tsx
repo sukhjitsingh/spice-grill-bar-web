@@ -22,7 +22,7 @@ export function MenuCard({ item, categoryName, index }: MenuCardProps) {
       </CardHeader>
       <div className="relative h-48 w-full overflow-hidden rounded-t-lg mt-4">
         <Image
-          src={item.imageUrl || "/placeholder.svg?height=300&width=400"}
+          src={item.imageUrl || "/placeholder.svg"}
           alt={item.name}
           fill
           className="object-cover"

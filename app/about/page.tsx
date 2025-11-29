@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
-import Image from "next/image"
 import { Metadata } from "next"
+import Image from "next/image"
 // import { Button } from "@/components/ui/button"
 // import Link from "next/link"
 
@@ -18,7 +18,7 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
         <div className="relative h-[400px]">
           <Image
-            src="/placeholder.svg?height=400&width=600"
+            src="/placeholder.svg"
             alt="Restaurant interior"
             fill
             className="object-cover rounded-lg"
@@ -34,7 +34,7 @@ export default function AboutPage() {
             Our chefs bring decades of experience from various regions of India, ensuring that each dish captures the
             essence of authentic Punjabi cooking while adding their own creative touch to present a unique dining
             experience.
-          </p>        
+          </p>
           <p className="text-gray-600">
             Our head chef, has over 10 years of experience crafting authentic Punjabi dishes. He&apos;s passionate about sharing the flavors of our heritage with the community.
           </p>

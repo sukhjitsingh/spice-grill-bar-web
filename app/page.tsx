@@ -1,16 +1,14 @@
 'use client'
-import React from 'react'
-import { Card, CardContent } from '@/components/ui/card'
-import { ArrowRight, Clock, MapPin, Phone } from "lucide-react"
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
-import menu from '@/data/menu.json'
-import { MenuData } from '@/types/menu'
 import { RestaurantSchema } from '@/components/schema/restaurant-schema'
 import { WebSiteSchema } from '@/components/schema/website-schema'
-import { MyLink } from '@/components/ui'
-import { MyButton } from '@/components/ui'
+import { MyButton, MyLink } from '@/components/ui'
+import { Card, CardContent } from '@/components/ui/card'
+import menu from '@/data/menu.json'
+import { MenuData } from '@/types/menu'
+import { motion } from 'framer-motion'
+import { ArrowRight, Clock, MapPin, Phone } from "lucide-react"
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -26,7 +24,7 @@ export default function Home() {
           {/* Hero Section */}
           <section className='relative h-[80vh] min-h-[600px] py-12'>
             <Image
-              src='/HomePageBackground.jpg?height=800&width=1920'
+              src='/HomePageBackground.jpg'
               alt='Delicious Indian cuisine spread'
               fill
               className='object-cover brightness-50'
@@ -98,7 +96,7 @@ export default function Home() {
               <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
                 <div className='relative h-[500px]'>
                   <Image
-                    src='/placeholder.svg?height=500&width=600'
+                    src='/placeholder.svg'
                     alt='Restaurant ambiance'
                     fill
                     className='object-cover rounded-lg'
@@ -112,8 +110,8 @@ export default function Home() {
                   <p className='text-gray-600'>
                     Our chefs bring decades of experience from various regions of India, ensuring that each dish captures the essence of authentic Indian cooking while adding their own creative touch to present a unique dining experience.
                   </p>
-                  <MyButton                    
-                    variant='outline'                    
+                  <MyButton
+                    variant='outline'
                     className='border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white'
                   >
                     <Link href='/about'>Learn More About Us</Link>

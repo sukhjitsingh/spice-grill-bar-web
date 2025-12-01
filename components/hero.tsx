@@ -10,7 +10,7 @@ export function Hero() {
       {/* Background Image with dynamic overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/homePageBackground.jpg"
+          src="/HomePageBackground.jpg"
           alt="Restaurant Ambience"
           className="w-full h-full object-cover opacity-40 dark:opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]"
           style={{ animationPlayState: "paused" }}

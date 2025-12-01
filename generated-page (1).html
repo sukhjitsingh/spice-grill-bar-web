@@ -1,0 +1,409 @@
+<html lang="en" class="scroll-smooth dark"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spice Grill &amp; Bar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .fade-enter {
+            animation: fadeIn 1.2s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glass effect changes based on mode */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .dark .glass-nav {
+            background: rgba(0, 0, 0, 0.75);
+        }
+    </style>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style></head>
+<body class="bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-orange-500 selection:text-white transition-colors duration-500">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-zinc-200 dark:border-white/5 glass-nav transition-all duration-300">
+        <div class="flex h-14 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <a href="#" class="text-lg tracking-tighter font-semibold text-zinc-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
+                SPICE GRILL &amp; BAR
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-wide text-zinc-500 dark:text-zinc-400">
+                <a href="#philosophy" class="hover:text-zinc-900 dark:hover:text-white transition-colors">PHILOSOPHY</a>
+                <a href="#menu" class="hover:text-zinc-900 dark:hover:text-white transition-colors">MENU</a>
+                <a href="#order" class="hover:text-zinc-900 dark:hover:text-white transition-colors">ORDER ONLINE</a>
+                
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-white/10 text-zinc-900 dark:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sun" class="lucide lucide-sun w-4 h-4 hidden dark:block"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="moon" class="lucide lucide-moon w-4 h-4 block dark:hidden"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+                </button>
+            </div>
+
+            <div class="flex items-center gap-4 md:hidden">
+                <button id="mobile-theme-toggle" class="text-zinc-900 dark:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sun" class="lucide lucide-sun w-5 h-5 hidden dark:block"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="moon" class="lucide lucide-moon w-5 h-5 block dark:hidden"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+                </button>
+                <button class="text-zinc-900 dark:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu w-5 h-5"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-zinc-50 dark:bg-black">
+        <!-- Background Image with dynamic overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" alt="Restaurant Ambience" class="w-full h-full object-cover opacity-10 dark:opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]" style="animation-play-state: paused;">
+            <!-- Gradient Overlay: White for light mode, Black for dark mode -->
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/40 dark:to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl px-6 fade-enter">
+            <span class="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-600 dark:text-orange-400 mb-6 backdrop-blur-md">
+                EST. 2024
+            </span>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-zinc-900 dark:text-white leading-tight mb-6">
+                The Soul of Punjab.
+            </h1>
+            <p class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-normal max-w-2xl mx-auto leading-relaxed mb-10">
+                An immersive culinary journey through the vibrant streets of Northern India. 
+                Authentic spices, charcoal grills, and modern elegance.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                <a href="#order" class="w-full md:w-auto px-8 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black text-sm font-medium rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors shadow-lg shadow-zinc-200/50 dark:shadow-none">
+                    Order Online
+                </a>
+                <a href="#menu" class="w-full md:w-auto px-8 py-3 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white text-sm font-medium rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors group flex items-center justify-center gap-2">
+                    View Menu <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-0.5 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Philosophy / About -->
+    <section id="philosophy" class="py-24 md:py-32 bg-white dark:bg-black relative transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8">
+                <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white">
+                    Mastery over fire.
+                </h2>
+                <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
+                    At Spice Grill &amp; Bar, we believe that the essence of Punjabi cuisine lies in the tandoor. 
+                    Our chefs masterfully control the intense heat of the clay oven to produce succulent kebabs, 
+                    smoky breads, and robust curries that define the region's palate.
+                </p>
+                <div class="grid grid-cols-2 gap-8 border-t border-zinc-200 dark:border-zinc-800 pt-8 mt-8">
+                    <div>
+                        <span class="block text-2xl font-semibold text-zinc-900 dark:text-white tracking-tight">25+</span>
+                        <span class="text-xs text-zinc-500 uppercase tracking-widest mt-1">Signature Spices</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-semibold text-zinc-900 dark:text-white tracking-tight">100%</span>
+                        <span class="text-xs text-zinc-500 uppercase tracking-widest mt-1">Halal Certified</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group cursor-pointer overflow-hidden rounded-2xl">
+                <img src="https://images.unsplash.com/photo-1606471191009-63994c53433b?q=80&amp;w=2000&amp;auto=format&amp;fit=crop" alt="Tandoori Preparation" class="w-full aspect-[4/5] object-cover rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105">
+                <div class="absolute bottom-6 left-6 right-6">
+                    <div class="bg-white/80 dark:bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 dark:border-white/10 shadow-lg dark:shadow-none">
+                        <p class="text-sm text-zinc-900 dark:text-white font-semibold">Traditional Tandoor</p>
+                        <p class="text-xs text-zinc-600 dark:text-zinc-300">Clay oven cooking at 900°F</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section (Split Layout) -->
+    <section id="menu" class="bg-zinc-50 dark:bg-zinc-950 py-24 border-t border-zinc-200 dark:border-white/5 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-4">Culinary Selection</h2>
+                <p class="text-zinc-500 dark:text-zinc-400">Curated by our head chef from Amritsar.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-12 relative">
+                
+                <!-- Sidebar Navigation (Sticky) -->
+                <aside class="md:w-64 shrink-0 md:h-[calc(100vh-100px)] md:sticky md:top-24 w-full z-20">
+                    <nav class="flex md:flex-col overflow-x-auto md:overflow-hidden gap-2 pb-4 md:pb-0 hide-scroll">
+                        
+                        <a href="#starters" class="menu-link whitespace-nowrap md:w-full transition-all text-sm font-medium text-left border rounded-lg pt-2 pr-4 pb-2 pl-4">
+                            Small Plates
+                        </a><a href="#tandoor" class="menu-link whitespace-nowrap md:w-full hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-zinc-900/50 transition-colors dark:text-zinc-400 text-sm font-medium text-zinc-500 text-left border-transparent border rounded-lg pt-2 pr-4 pb-2 pl-4">
+                            Tandoor &amp; Grill
+                        </a>
+                        <a href="#curries" class="menu-link px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap md:w-full text-left hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-zinc-900/50 transition-colors border text-zinc-500 border-transparent dark:text-zinc-400">
+                            Heritage Curries
+                        </a>
+                        <a href="#drinks" class="menu-link px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap md:w-full text-left hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/50 dark:hover:bg-zinc-900/50 transition-colors border">
+                            Cocktails
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Menu Content -->
+                <div class="flex-1 space-y-20">
+                    
+                    <!-- Starters -->
+                    <div id="starters" class="space-y-8 scroll-mt-32">
+                        <h3 class="text-2xl font-medium text-zinc-900 dark:text-white tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-4">Small Plates</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            <!-- Item -->
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Samosa Chaat</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$12</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Crushed samosa, spiced chickpeas, yogurt, tamarind &amp; mint chutney, pomegranate.</p>
+                            </div>
+                            <!-- Item -->
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Amritsari Fish Fry</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$16</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Crispy battered cod fillets, carom seeds, ginger, garlic, spicy tartar dip.</p>
+                            </div>
+                            <!-- Item -->
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Papdi Chaat Sphere</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$14</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Crispy wafers, potatoes, yogurt mousse, molecular tamarind pearls.</p>
+                            </div>
+                            <!-- Item -->
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Chilli Paneer</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$15</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Cottage cheese cubes, bell peppers, onions, spicy soy glaze.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tandoor -->
+                    <div id="tandoor" class="space-y-8 scroll-mt-32">
+                        <h3 class="text-2xl font-medium text-zinc-900 dark:text-white tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-4">Tandoor &amp; Grill</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Classic Tandoori Chicken</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$22</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Half chicken marinated in yogurt and traditional spices, roasted to perfection.</p>
+                            </div>
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Lamb Seekh Kebab</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$24</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Minced lamb, cilantro, mint, green chili, skewered and charcoal grilled.</p>
+                            </div>
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Paneer Tikka Shashlik</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$20</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Char-grilled cottage cheese, bell peppers, onions, mustard oil marinade.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Curries -->
+                    <div id="curries" class="space-y-8 scroll-mt-32">
+                        <h3 class="text-2xl font-medium text-zinc-900 dark:text-white tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-4">Heritage Curries</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Butter Chicken (Makhani)</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$24</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Tandoori chicken strips, rich tomato and fenugreek gravy, swirl of cream.</p>
+                            </div>
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Lamb Rogan Josh</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$26</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Slow-cooked lamb, kashmiri spices, yogurt, saffron infusion.</p>
+                            </div>
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Dal Makhani</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$18</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Black lentils simmered overnight on charcoal, butter, cream.</p>
+                            </div>
+                            <div class="group">
+                                <div class="flex justify-between items-baseline mb-2">
+                                    <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Saag Paneer</h4>
+                                    <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$19</span>
+                                </div>
+                                <p class="text-sm text-zinc-500 leading-relaxed">Fresh spinach puree, mustard greens, cottage cheese, garlic temper.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drinks -->
+                    <div id="drinks" class="space-y-8 scroll-mt-32">
+                        <h3 class="text-2xl font-medium text-zinc-900 dark:text-white tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-4">Signature Cocktails</h3>
+                        <div class="grid grid-cols-1 gap-6">
+                            <div class="flex gap-6 items-center group bg-white dark:bg-zinc-900/40 p-4 rounded-2xl border border-zinc-200 dark:border-white/5 hover:border-zinc-300 dark:hover:border-white/10 shadow-sm dark:shadow-none transition-all">
+                                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Drink" class="w-20 h-20 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200">The Spice Route</h4>
+                                        <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$16</span>
+                                    </div>
+                                    <p class="text-sm text-zinc-500">Bourbon, cardamom syrup, angostura bitters, orange peel.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-6 items-center group bg-white dark:bg-zinc-900/40 p-4 rounded-2xl border border-zinc-200 dark:border-white/5 hover:border-zinc-300 dark:hover:border-white/10 shadow-sm dark:shadow-none transition-all">
+                                <img src="https://images.unsplash.com/photo-1595981267035-7b04ca84a82d?q=80&amp;w=200&amp;auto=format&amp;fit=crop" alt="Drink" class="w-20 h-20 rounded-lg object-cover grayscale group-hover:grayscale-0 transition-all">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <h4 class="text-lg font-medium text-zinc-800 dark:text-zinc-200">Mumbai Mule</h4>
+                                        <span class="text-sm font-medium text-zinc-500 dark:text-zinc-400">$15</span>
+                                    </div>
+                                    <p class="text-sm text-zinc-500">Vodka, fresh lime, ginger beer, cumin infusion.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Online / CTA -->
+    <section id="order" class="py-24 bg-zinc-100 dark:bg-zinc-900 relative overflow-hidden transition-colors duration-500">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&amp;w=2000&amp;auto=format&amp;fit=crop')] opacity-5 dark:opacity-10 bg-cover bg-center"></div>
+        <div class="relative max-w-md mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-6">Bring it Home</h2>
+            <p class="text-zinc-600 dark:text-zinc-400 mb-8">Authentic flavors available for pickup or delivery.</p>
+            
+            <form class="space-y-6">
+                <!-- Custom Segmented Control -->
+                <div class="flex justify-center w-full">
+                    <div class="bg-white dark:bg-zinc-800 p-1 rounded-xl border border-zinc-200 dark:border-zinc-700 inline-flex w-full shadow-sm">
+                        <button type="button" class="flex-1 py-2.5 rounded-lg bg-zinc-100 dark:bg-zinc-600 text-zinc-900 dark:text-white text-sm font-semibold shadow-sm transition-all border border-zinc-200 dark:border-zinc-500">Pickup</button>
+                        <button type="button" class="flex-1 py-2.5 rounded-lg text-zinc-500 dark:text-zinc-400 text-sm font-medium hover:text-zinc-900 dark:hover:text-white transition-all">Delivery</button>
+                    </div>
+                </div>
+
+                <div class="relative group">
+                    <input type="text" placeholder="Enter your location (for delivery estimate)" class="w-full bg-white dark:bg-black/50 border border-zinc-200 dark:border-zinc-700 rounded-lg px-4 py-3 text-sm text-zinc-900 dark:text-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all shadow-sm dark:shadow-none placeholder-zinc-400">
+                    <div class="absolute right-3 top-3 text-zinc-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin w-4 h-4"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                </div>
+                
+                <button type="button" class="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-medium py-3 rounded-lg hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors shadow-lg shadow-zinc-200/50 dark:shadow-none flex justify-center items-center gap-2 group">
+                    Start Order <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shopping-bag" class="lucide lucide-shopping-bag w-4 h-4 group-hover:-translate-y-0.5 transition-transform"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+                </button>
+            </form>
+            <p class="mt-6 text-xs text-zinc-500 dark:text-zinc-600">Powered by our secure online ordering partner.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-black py-16 border-t border-zinc-200 dark:border-white/5 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <a href="#" class="text-lg tracking-tighter font-semibold text-zinc-900 dark:text-white block mb-6">SPICE GRILL &amp; BAR</a>
+                <p class="text-zinc-500 text-sm leading-relaxed max-w-xs">
+                    Elevating Punjabi cuisine with modern techniques and a commitment to authentic flavors.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-zinc-900 dark:text-white text-xs font-semibold tracking-wider uppercase mb-4">Visit Us</h4>
+                
+            </div>
+
+            <div>
+                <h4 class="text-zinc-900 dark:text-white text-xs font-semibold tracking-wider uppercase mb-4">Hours</h4>
+                <ul class="text-zinc-500 text-sm space-y-2">
+                    <li class="flex justify-between"><span>Mon - Thu</span> <span class="text-zinc-400">5pm - 10pm</span></li>
+                    <li class="flex justify-between"><span>Fri - Sat</span> <span class="text-zinc-400">5pm - 11pm</span></li>
+                    <li class="flex justify-between"><span>Sun</span> <span class="text-zinc-400">4pm - 9pm</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-zinc-100 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500 dark:text-zinc-600">
+            <p>© 2024 Spice Grill &amp; Bar. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Instagram</a>
+                <a href="#" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Facebook</a>
+                <a href="#" class="hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        // --- Sidebar Logic ---
+        const sections = document.querySelectorAll('div[id]');
+        const navLinks = document.querySelectorAll('aside nav a');
+
+        function updateSidebar() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 250) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                // Reset to default
+                link.classList.remove('bg-white', 'text-zinc-900', 'border-zinc-200', 'shadow-sm', 'dark:bg-zinc-900', 'dark:text-white', 'dark:border-zinc-800', 'dark:shadow-none');
+                link.classList.add('text-zinc-500', 'border-transparent', 'dark:text-zinc-400');
+                
+                if (link.getAttribute('href').includes(current)) {
+                    // Active State
+                    link.classList.remove('text-zinc-500', 'border-transparent', 'dark:text-zinc-400');
+                    link.classList.add('bg-white', 'text-zinc-900', 'border-zinc-200', 'shadow-sm', 'dark:bg-zinc-900', 'dark:text-white', 'dark:border-zinc-800', 'dark:shadow-none');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateSidebar);
+        updateSidebar();
+
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+        const htmlElement = document.documentElement;
+
+        function toggleTheme() {
+            htmlElement.classList.toggle('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+    </script>
+
+</body></html>

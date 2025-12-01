@@ -1,12 +1,13 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { Open_Sans, Playfair_Display } from "next/font/google";
-import type React from "react"; // Import React
+import { ThemeProvider } from "@/components/theme-provider";
+import { Inter, Playfair_Display } from "next/font/google";
+import type React from "react";
 import "./globals.css";
 
-const openSans = Open_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-open-sans",
+  variable: "--font-inter",
   display: "swap",
 })
 
@@ -27,11 +28,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${openSans.variable} ${playfairDisplay.variable} `}>
-      <body className="min-h-screen flex flex-col font-sans transition-all duration-300">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${playfairDisplay.variable} font-sans antialiased transition-colors duration-300`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )

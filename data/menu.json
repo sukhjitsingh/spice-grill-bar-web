@@ -5,21 +5,21 @@
       {
         "name": "Chicken Tikka",
         "description": "Chicken marinated in ginger, yogurt & tandoor spices.",
-        "price": 14.99,
+        "price": 16.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chicken Wings (5 pcs)",
         "description": "Buffalo, BBQ, Sweet & Sour",
-        "price": 6.99,
+        "price": 7.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
-        "name": "Tandoori Wings (5 pcs)",
+        "name": "Tandoori Wings (6 pcs)",
         "description": "Made with our special Tandoori spices",
-        "price": 9.99,
+        "price": 12.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -33,7 +33,7 @@
       {
         "name": "Chicken Pakora",
         "description": "Spiced & deep fried chicken in chickpea flour.",
-        "price": 8.99,
+        "price": 9.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -47,21 +47,21 @@
       {
         "name": "Veggie Pakora",
         "description": "Mixed vegetable fried in our chickpea batter.",
-        "price": 6.99,
+        "price": 7.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Paneer Pakora",
         "description": "Marinated paneer fried in our chickpea batter.",
-        "price": 8.99,
+        "price": 9.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chilli Paneer",
         "description": "Fried paneer cubes tossed in a sweet, spicy, hot, and tangy chili sauce.",
-        "price": 13.99,
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -75,21 +75,28 @@
       {
         "name": "Samosa Chaat",
         "description": "Crispy samosa, chickpeas, mint & tamarind sauce.",
-        "price": 6.99,
+        "price": 9.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Papdi Chaat",
-        "description": "Lightly seasoned flour crisps topped with mint & tamarind chutney, raita, onions, and cilantro.",
-        "price": 5.99,
+        "description": "Lightly seasoned flour crisps topped with mint & tamarind chutney, yogurt, onions, and cilantro.",
+        "price": 7.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Tandoori Chicken (8 pcs)",
-        "description": "Chicken marinated in yogurt and spices, cooked a tandoor.",
-        "price": 18.99,
+        "description": "Chicken marinated in yogurt and spices, cooked in the tandoor.",
+        "price": 19.99,
+        "imageUrl": "",
+        "popularity": 0
+      },
+      {
+        "name": "Paneer Tikka",
+        "description": "Marinated paneer & veggies cooked in the tandoor.",
+        "price": 16.99,
         "imageUrl": "",
         "popularity": 0
       }
@@ -101,97 +108,111 @@
       {
         "name": "Dal Tadka",
         "description": "Delicious yellow lentil.",
-        "price": 12.99,        
+        "price": 13.99,        
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Dal Makhani",
         "description": "Creamy mixture of assorted lentils.",
-        "price": 13.95,
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chana Masala",
         "description": "Chickpeas cooked with herbs and spices.",
-        "price": 12.99,
+        "price": 13.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Mix Veg",
         "description": "Mix veggies cooked in curry sauce.",
-        "price": 12.99,
+        "price": 13.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Aloo Gobhi",
         "description": "Potatoes & cauliflower in dry curry sauce.",
-        "price": 12.99,
+        "price": 13.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Paneer Masala",
         "description": "Cottage cheese & tomatoes in a special cream sauce.",
-        "price": 14.95,
+        "price": 15.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Shahi Paneer",
         "description": "Chunks of cottage cheese in a savory rich buttery cream sauce.",
-        "price": 14.95,
+        "price": 15.99,
         "imageUrl": "/ShahiPaneer.jpg",
         "popularity": 90
       },
       {
         "name": "Saag Paneer",
         "description": "Chunks of cottage cheese mixed in savory spinach sauce.",
-        "price": 14.95,
+        "price": 14.99,
+        "imageUrl": "",
+        "popularity": 0
+      },
+      {
+        "name": "Matar Paneer",
+        "description": "Chunks of cottage cheese mixed with green peas.",
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Paneer Bhurji",
         "description": "Scrambled cottage cheese mixed with onions, tomatoes, & herbs.",
-        "price": 14.95,
+        "price": 15.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Baingan Bharta",
         "description": "Roasted eggplant seasoned with herbs & spices",
-        "price": 12.99,
+        "price": 13.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Curry Pakora",
         "description": "Deep fried pakoras (fritters) in a tangy yogurt based curry.",
-        "price": 12.99,
+        "price": 13.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Rajma",
         "description": "Red kidney beans, spices, onions, tomatoes and herbs.",
-        "price": 12.49,
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Malai Kofta",
         "description": "Mixed vegetable balls cooked in fresh tomato, onion, and saffron curry sauce.",
-        "price": 14.49,
+        "price": 15.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Mushroom Korma",
         "description": "Mushroom in a cream-based curry sauce.",
+        "price": 15.99,
+        "imageUrl": "",
+        "popularity": 0
+      },
+      {
+        "name": "Bhendi (Okra)",
+        "description": "Okra in a dry curry sauce.",
         "price": 14.99,
         "imageUrl": "",
         "popularity": 0
@@ -204,106 +225,106 @@
       {
         "name": "Chicken Curry",
         "description": "Chicken cooked in our traditional curry sauce.",
-        "price": 14.95,
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chicken Korma",
         "description": "Chicken in a cream-based curry sauce.",
-        "price": 14.95,
+        "price": 15.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chicken Vindaloo",
         "description": "Chicken, and potatoes in a rich gravy sauce.",
-        "price": 14.95,
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chicken Saag",
         "description": "Chicken, cooked with freshly chopped spinach.",
-        "price": 14.95,
+        "price": 14.99,
         "imageUrl": "/ChickenSaag.jpg",
         "popularity": 0
       },
       {
         "name": "Butter Chicken",
         "description": "Rich butter-cream, tomatoes, onion sauce cooked with chicken thighs.",
-        "price": 15.95,
+        "price": 15.99,
         "imageUrl": "",
         "popularity": 100
       },
       {
         "name": "Chicken Tikka Masala",
         "description": "Cooked in a creamy spiced tomato sauce.",
-        "price": 15.95,
+        "price": 15.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Karahi Chicken",
-        "description": "Dark meat sauteed with bell pepper, onions & tomatoes.",
-        "price": 14.95,
+        "description": "Chicken sauteed with bell pepper, onions & tomatoes.",
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Goat Curry",
         "description": "Goat cooked in our traditional curry sauce.",
-        "price": 15.95,
+        "price": 16.49,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Goat Korma",
         "description": "Goat in a cream-based curry sauce.",
-        "price": 15.95,
+        "price": 16.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Goat Vindaloo",
         "description": "Goat, and potatoes in a rich gravy sauce.",
-        "price": 15.95,
+        "price": 16.49,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Goat Saag",
         "description": "Goat, cooked with freshly chopped spinach.",
-        "price": 15.95,
+        "price": 16.49,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Lamb Curry",
         "description": "Lamb cooked in our traditional curry sauce.",
-        "price": 16.49,
+        "price": 16.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Lamb Korma",
         "description": "Lamb in a cream-based curry sauce.",
-        "price": 16.49,
+        "price": 16.99, 
         "imageUrl": "",
         "popularity": 0
       },
 
       {
         "name": "Lamb Vindaloo",
-        "description": "Lamb, and potatoes in a rich gravy sauce.",
-        "price": 16.49,
+        "description": "Lamb and potatoes in a rich gravy sauce.",
+        "price": 16.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Lamb Saag",
-        "description": "Lamb, cooked with freshly chopped spinach.",
-        "price": 15.95,
+        "description": "Lamb cooked with freshly chopped spinach.",
+        "price": 16.49,
         "imageUrl": "",
         "popularity": 0
       }
@@ -329,7 +350,7 @@
       {
         "name": "Mushroom Rice",
         "description": "Basmati rice sauteed with Mushrooms",
-        "price": 8.99,
+        "price": 9.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -343,14 +364,14 @@
       {
         "name": "Veg Biryani",
         "description": "Basmati rice sauteed with veggies and spices.",
-        "price": 15.99,
+        "price": 16.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chicken Biryani",
         "description": "Basmati rice sauteed with chicken and spices.",
-        "price": 16.99,
+        "price": 17.99,
         "imageUrl": "",
         "popularity": 80
       },
@@ -376,7 +397,7 @@
       {
         "name": "Egg Bhurji",
         "description": "Scrambled eggs with onions, green peppers, chilis and herbs.",
-        "price": 13.99,
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -388,9 +409,9 @@
         "popularity": 0
       },
       {
-        "name": "Omelette",
-        "description": "Eggs with onions, green peppers, chilis and herbs.",
-        "price": 11.99,
+        "name": "Egg Korma",
+        "description": "Boiled eggs sauteed in buttery cream gravy.",
+        "price": 14.99,
         "imageUrl": "",
         "popularity": 0
       }
@@ -423,7 +444,7 @@
       {
         "name": "Butter Naan",
         "description": "Drizzled with butter on top",
-        "price": 3.49,
+        "price": 3.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -435,30 +456,9 @@
         "popularity": 70
       },
       {
-        "name": "Methi Naan",
-        "description": "Drizzled with butter and methi on top",
-        "price": 3.99,
-        "imageUrl": "",
-        "popularity": 0
-      },
-      {
-        "name": "Onion Naan",
-        "description": "Stuffed with onions and spices. Drizzled with butter on top.",
-        "price": 4.99,
-        "imageUrl": "",
-        "popularity": 0
-      },
-      {
         "name": "Bullet Naan",
         "description": "Drizzled with green chili, butter and garlic on top.",
         "price": 4.99,
-        "imageUrl": "",
-        "popularity": 0
-      },
-      {
-        "name": "Peshwari Naan",
-        "description": "",
-        "price": 6.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -470,15 +470,36 @@
         "popularity": 0
       },
       {
-        "name": "Paneer Naan",
-        "description": "Stuffed with paneer and spices. Drizzled with butter on top.",
-        "price": 6.99,
+        "name": "Onion Naan",
+        "description": "Stuffed with onions and spices. Drizzled with butter on top.",
+        "price": 4.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Chicken Naan",
         "description": "Stuffed with chicken and spices. Drizzled with butter on top.",
+        "price": 6.99,
+        "imageUrl": "",
+        "popularity": 0
+      },
+      {
+        "name": "Methi Naan",
+        "description": "Drizzled with butter and methi on top",
+        "price": 3.99,
+        "imageUrl": "",
+        "popularity": 0
+      },
+      {
+        "name": "Peshwari Naan",
+        "description": "",
+        "price": 6.99,
+        "imageUrl": "",
+        "popularity": 0
+      },
+      {
+        "name": "Paneer Naan",
+        "description": "Stuffed with paneer and spices. Drizzled with butter on top.",
         "price": 6.99,
         "imageUrl": "",
         "popularity": 0
@@ -503,14 +524,14 @@
         "popularity": 0
       },
       {
-        "name": "Mint Chutney",
+        "name": "Mint Chutney (Green Sauce)",
         "description": "",
         "price": 1.00,
         "imageUrl": "",
         "popularity": 0
       },
       {
-        "name": "Tamarind Chutney",
+        "name": "Tamarind Chutney (Red Sauce)",
         "description": "",
         "price": 1.00,
         "imageUrl": "",
@@ -522,13 +543,6 @@
         "price": 1.00,
         "imageUrl": "",
         "popularity": 0
-      },
-      {
-        "name": "Mango Chutney",
-        "description": "",
-        "price": 3.99,
-        "imageUrl": "",
-        "popularity": 0
       }
     ]
   },
@@ -537,68 +551,35 @@
     "items": [
       {
         "name": "Gulab Jamun (2Pcs)",
-        "description": "",
+        "description": "Deep fried dough soaked in cardamom flavored sugar syrup.",
         "price": 2.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Kheer (Rice Pudding)",
-        "description": "",        
+        "description": "Basmati rice slowly cooked with milk and nuts.",        
         "price": 4.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Mango Malai",
-        "description": "",
+        "description": "Creamy mango ice cream with shredded mango.",
         "price": 7.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Pistachio Ice Cream",
-        "description": "",
-        "price": 4.99,
-        "imageUrl": "",
-        "popularity": 0
-      },
-      {
-        "name": "Mango Kulfi",
-        "description": "",
-        "price": 4.99,
-        "imageUrl": "",
-        "popularity": 0
-      }
-    ]
-  },
-  {
-    "category": "Soups",
-    "items": [
-      {
-        "name": "Chicken Soup",
-        "description": "",
-        "price": 6.99,
-        "imageUrl": "",
-        "popularity": 0
-      },
-      {
-        "name": "Multani Soup",
-        "description": "",        
-        "price": 6.99,
-        "imageUrl": "",
-        "popularity": 0
-      },
-      {
-        "name": "Veggi Soup",
-        "description": "",
+        "description": "Creamy pistachio ice cream.",
         "price": 5.99,
         "imageUrl": "",
         "popularity": 0
       },
       {
-        "name": "Lentil Soup",
-        "description": "",
+        "name": "Mango Kulfi",
+        "description": "Creamy mango ice cream.",
         "price": 5.99,
         "imageUrl": "",
         "popularity": 0

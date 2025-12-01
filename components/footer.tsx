@@ -20,7 +20,7 @@ export function Footer() {
             Visit Us
           </h4>
           <a
-            href="https://www.google.com/maps/search/?api=1&query=33+Lewis+Ave+Ash+Fork+AZ+86320"
+            href="https://www.google.com/maps/search/?api=1&query=Spice+Grill+%26+Bar+33+Lewis+Ave+Ash+Fork+AZ+86320"
             target="_blank"
             rel="noopener noreferrer"
             className="text-zinc-500 text-sm leading-relaxed hover:text-zinc-900 dark:hover:text-white transition-colors block"

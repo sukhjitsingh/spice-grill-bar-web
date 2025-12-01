@@ -43,6 +43,28 @@ export function OurStorySection() {
           </div>
         </div>
       </div>
+
+      {/* Mission, Vision, Values */}
+      <div className="max-w-7xl mx-auto px-6 mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="glass-card p-8 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+          <h3 className="text-xl font-semibold text-orange-600 dark:text-orange-500 mb-4">Our Mission</h3>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+            To serve authentic Punjabi Indian cuisine while providing an exceptional dining experience that celebrates the rich culinary heritage of Punjab.
+          </p>
+        </div>
+        <div className="glass-card p-8 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+          <h3 className="text-xl font-semibold text-orange-600 dark:text-orange-500 mb-4">Our Vision</h3>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+            To be the premier destination in Ash Fork for Punjabi cuisine, known for our exceptional food, warm hospitality, and inviting atmosphere.
+          </p>
+        </div>
+        <div className="glass-card p-8 rounded-2xl hover:-translate-y-1 transition-transform duration-300">
+          <h3 className="text-xl font-semibold text-orange-600 dark:text-orange-500 mb-4">Our Values</h3>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+            Quality, authenticity, and customer satisfaction are at the heart of everything we do at our Indian Restaurant, from ingredient selection to service delivery.
+          </p>
+        </div>
+      </div>
     </section>
   )
 }

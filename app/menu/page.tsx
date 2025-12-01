@@ -36,7 +36,7 @@ export default function MenuPage() {
           </TabsList>
 
           {menuData.map((category) => (
-            <MenuSection key={category.category} category={category}/>
+            <MenuSection key={category.category} />
           ))}
         </Tabs>
       </div>

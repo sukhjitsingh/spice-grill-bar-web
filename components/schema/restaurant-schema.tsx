@@ -6,7 +6,7 @@ export function RestaurantSchema() {
           "@context": "https://schema.org",
           "@type": "Restaurant",
           "name": "Spice Grill & Bar",
-          "url": "https://www.spicegrillbar.com",
+          "url": "https://www.spicegrillbar66.com",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "33 Lewis Ave",

@@ -1,5 +1,7 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { RestaurantSchema } from "@/components/schema/restaurant-schema";
+import { WebSiteSchema } from "@/components/schema/website-schema";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter, Playfair_Display } from "next/font/google";
 import type React from "react";
@@ -40,6 +42,8 @@ export default function RootLayout({
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <RestaurantSchema />
+            <WebSiteSchema />
           </div>
         </ThemeProvider>
       </body>

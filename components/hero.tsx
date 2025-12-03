@@ -37,14 +37,14 @@ export function Hero() {
         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
           <Button
             asChild
-            className="w-full md:w-auto px-8 py-6 bg-zinc-900 dark:bg-white text-white dark:text-black text-sm font-medium rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors shadow-lg shadow-zinc-200/50 dark:shadow-none"
+            className="w-full md:w-auto px-8 py-6 bg-zinc-900 dark:bg-white text-white dark:text-black text-sm font-medium rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors shadow-lg shadow-zinc-200/50 dark:shadow-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             <Link href="#order">Order Online</Link>
           </Button>
           <Button
             asChild
             variant="outline"
-            className="w-full md:w-auto px-8 py-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white text-sm font-medium rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors group flex items-center justify-center gap-2"
+            className="w-full md:w-auto px-8 py-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white text-sm font-medium rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors group flex items-center justify-center gap-2 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             <Link href="#menu">
               View Menu{" "}

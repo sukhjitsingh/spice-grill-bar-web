@@ -20,6 +20,7 @@ export function LocationSection() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="Google Map showing Spice Grill & Bar location"
             className="w-full h-[400px] md:h-[500px] rounded-xl grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
           />
         </div>

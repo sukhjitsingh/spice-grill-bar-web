@@ -22,7 +22,7 @@ export function OrderSection() {
           <div className="space-y-6">
             <Button
               asChild
-              className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-medium py-7 text-lg rounded-full hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 group"
+              className="w-full bg-zinc-900 dark:bg-white text-white dark:text-black font-medium py-7 text-lg rounded-full hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 group focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
             >
               <a href="https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave">
                 Start Order <ShoppingBag className="w-5 h-5 ml-2 group-hover:-translate-y-0.5 transition-transform" />

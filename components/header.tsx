@@ -40,7 +40,7 @@ export function Header() {
       <nav className="container mx-auto px-6 h-14 flex items-center justify-between">
         <Link
           href="#"
-          className="text-lg tracking-tighter font-semibold text-zinc-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+          className="text-lg tracking-tighter font-semibold text-zinc-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
         >
           SPICE GRILL & BAR
         </Link>
@@ -50,7 +50,7 @@ export function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="hover:text-orange-600 dark:hover:text-orange-400 transition-colors relative group"
+              className="hover:text-orange-600 dark:hover:text-orange-400 transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm px-1"
             >
               {link.name.toUpperCase()}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 dark:bg-orange-400 transition-all group-hover:w-full" />
@@ -74,7 +74,7 @@ export function Header() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="text-lg font-medium text-zinc-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                    className="text-lg font-medium text-zinc-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}

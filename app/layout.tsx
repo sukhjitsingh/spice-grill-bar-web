@@ -20,8 +20,12 @@ const playfairDisplay = Playfair_Display({
 })
 
 export const metadata = {
+  metadataBase: new URL('https://spicegrillbar66.com'),
   title: "Spice Grill & Bar - Punjabi Cuisine",
   description: "Authentic Punjabi cuisine in a warm and inviting atmosphere",
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default function RootLayout({

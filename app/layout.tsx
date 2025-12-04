@@ -3,6 +3,7 @@ import { Header } from "@/components/header";
 import { RestaurantSchema } from "@/components/schema/restaurant-schema";
 import { WebSiteSchema } from "@/components/schema/website-schema";
 import { ThemeProvider } from "@/components/theme-provider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter, Playfair_Display } from "next/font/google";
 import type React from "react";
 import "./globals.css";
@@ -51,6 +52,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
       </body>
+      <GoogleAnalytics gaId="G-Y5QJYGQBL6" />
     </html>
   )
 }

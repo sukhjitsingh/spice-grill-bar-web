@@ -1,0 +1,58 @@
+[
+  {
+    "id": "google-1",
+    "author": "Reva McNicol",
+    "rating": 5,
+    "text": "This place was very good. Spice level was perfect for me and my husband who love spicy food. We got the mixed Parantha, goat vindaloo, garlic naan, butter chicken, and mango lassi.",
+    "source": "Google",
+    "date": "November 28, 2025"
+  },
+  {
+    "id": "google-2",
+    "author": "Leah Beck",
+    "rating": 5,
+    "text": "I love to find authentic food and this place is it! Everything is amazing! Homemade real Indian food. Can't wait to go back and have more. Large portions so bring your appetite. They do a mild medium hot scale to make it easy, mild has a great flavor and medium has perfect heat. Bring your friends family!",
+    "source": "Google",
+    "date": "November 28, 2025"
+  },
+  {
+    "id": "google-3",
+    "author": "Anurag Rastogi",
+    "rating": 5,
+    "text": "A true little “taste of home” tucked away on Route 66. The food feels fresh, vibrant, and surprisingly authentic—especially for a small town spot. The curries have that comforting, home-style richness without being too heavy, and the garlic.",
+    "source": "Google",
+    "date": "November 28, 2025"
+  },
+  {
+    "id": "google-4",
+    "author": "Jon Ritch",
+    "rating": 5,
+    "text": "Dude..This place is a hidden gem! I never would have known about it without someone taking me here, so believe me when I say it was a real find! The people that own it and run it are great, friendly and are perfect consultants for those.",
+    "source": "Google",
+    "date": "November 21, 2025"
+  },
+  {
+    "id": "yelp-1",
+    "author": "Mark B.",
+    "rating": 5,
+    "text": "Drove up from prescott valley again yesterday. Food is still worth the drive. Ordered extra meals to bring home with us for today. Good food, Clean place, nice staff",
+    "source": "Yelp",
+    "date": "2025-11-09"
+  },
+  {
+    "id": "yelp-2",
+    "author": "Sharon C.",
+    "rating": 5,
+    "text": "We ordered butter chicken, baingan bartha, basmati rice, and a mango soda. Everything was amazing! Honestly, it was one of the best Indian meals we've had. The service was very good, the waiter came back several times to see if we needed or wanted anything else. If we're ever back in Ash Fork, we're going back.",
+    "source": "Yelp",
+    "date": "2025-11-05"
+  },
+  {
+    "id": "yelp-3",
+    "author": "Alba M.",
+    "rating": 5,
+    "text": "I called in an order was so fast and easy . I tried the chicken masala Tikka. Delicious! This is the chicken Masala Tikka with garlic nanbrea",
+    "source": "Yelp",
+    "date": "2025-10-24"
+  }
+]

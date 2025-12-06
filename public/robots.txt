@@ -1,3 +1,17 @@
+# Robots.txt for Spice Grill & Bar
+# https://spicegrillbar66.com
+
 User-agent: *
 Allow: /
+
+# Sitemap location
 Sitemap: https://spicegrillbar66.com/sitemap.xml
+
+# Block crawlers from Next.js internals
+Disallow: /_next/static/
+Disallow: /api/
+
+# Allow images for Google Image Search
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$

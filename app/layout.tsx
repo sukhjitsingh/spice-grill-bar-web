@@ -22,8 +22,17 @@ const playfairDisplay = Playfair_Display({
 
 export const metadata = {
   metadataBase: new URL('https://spicegrillbar66.com'),
-  title: "Spice Grill & Bar - Punjabi Cuisine",
-  description: "Authentic Punjabi cuisine in a warm and inviting atmosphere",
+  title: "Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)",
+  description: "Authentic Punjabi cuisine on historic Route 66 in Ash Fork, AZ. The perfect pit stop for Grand Canyon travelers and riders. Enjoy fresh naan, curry, and tandoori specials. Dine-in & Takeout.",
+  openGraph: {
+    title: "Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66 & the perfect pit stop for Grand Canyon travelers and riders.",
+    description: "Best Indian food in Ash Fork, AZ. Biker-friendly stop on Route 66 near the Grand Canyon. Try our famous butter chicken and garlic naan.",
+    url: 'https://spicegrillbar66.com',
+    siteName: 'Spice Grill & Bar',
+    locale: 'en_US',
+    type: 'website',
+  },
+  keywords: ["Indian Restaurant Ash Fork", "Punjabi Food Route 66", "Best Indian Food AZ", "Spice Grill and Bar", "Ash Fork Dining", "Route 66 Restaurants", "Grand Canyon Food Stop", "Biker Friendly Restaurant AZ"],
   alternates: {
     canonical: '/',
   },

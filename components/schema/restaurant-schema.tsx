@@ -39,10 +39,12 @@ export function RestaurantSchema() {
               "closes": "22:00"
             }
           ],
-          "servesCuisine": "Punjabi",
+          "servesCuisine": ["Indian", "Punjabi", "Vegetarian Friendly", "Vegan Friendly", "Beer", "Wine", "Soft Drinks", "Alcoholic Beverages"],
           "priceRange": "$$",
-          "image": "/HomePageBackground.jpg",
-          "menu": "/menu"
+          "image": "/HomePageBackground.webp",
+          "menu": "https://spicegrillbar66.com/#menu",
+          "description": "Authentic Indian Restaurant in Ash Fork, AZ. Located on Historic Route 66, perfect stop for Grand Canyon travelers.",
+          "areaServed": "Ash Fork"
         }
       `}
     </script>

@@ -31,7 +31,7 @@ export function OurStorySection() {
         </div>
         <div className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-2xl">
           <img
-            src="/GarlicNaan.jpg"
+            src="/GarlicNaan.webp"
             alt="Tandoori Preparation"
             className="w-full aspect-[4/5] object-cover rounded-2xl lg:grayscale lg:group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
           />

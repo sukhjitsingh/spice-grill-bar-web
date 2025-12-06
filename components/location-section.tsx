@@ -8,9 +8,13 @@ export function LocationSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-12 text-center">
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-4">
-            Find Us
+            Find Us on Historic Route 66
           </h2>
-          <p className="text-zinc-500 dark:text-zinc-400">Visit us in the heart of Ash Fork.</p>
+          <p className="text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">
+            Located in the heart of Ash Fork, AZ. The perfect pitstop for hungry travelers heading to the Grand Canyon or riding historic Route 66.
+            <br />
+            <span className="text-orange-600 font-medium">Biker and Family Friendly!</span>
+          </p>
         </div>
 
         <div className="glass-card p-2 rounded-2xl overflow-hidden shadow-xl">

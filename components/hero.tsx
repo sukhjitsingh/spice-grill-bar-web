@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export function Hero() {
@@ -9,10 +10,14 @@ export function Hero() {
     <header className="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-zinc-50 dark:bg-black">
       {/* Background Image with dynamic overlay */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="/HomePageBackground.webp"
-          alt="Restaurant Ambience"
-          className="w-full h-full object-cover opacity-40 dark:opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]"
+          alt="Authentic Punjabi cuisine restaurant interior"
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover opacity-40 dark:opacity-40 scale-105"
           style={{ animationPlayState: "paused" }}
         />
         {/* Gradient Overlay: White for light mode, Black for dark mode */}

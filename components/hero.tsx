@@ -17,8 +17,7 @@ export function Hero() {
           priority
           quality={85}
           sizes="100vw"
-          className="object-cover opacity-40 dark:opacity-40 scale-105"
-          style={{ animationPlayState: "paused" }}
+          className="object-cover opacity-40 dark:opacity-40 scale-105 animation-paused"
         />
         {/* Gradient Overlay: White for light mode, Black for dark mode */}
         {/* Gradient Overlay: White for light mode, Black for dark mode, with Orange hint */}

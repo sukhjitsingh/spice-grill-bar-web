@@ -76,13 +76,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Resource Hints for Performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-      </head>
       <body className={`${inter.variable} ${playfairDisplay.variable} font-sans antialiased transition-colors duration-300`}>
         <ThemeProvider
           attribute="class"

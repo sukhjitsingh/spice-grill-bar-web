@@ -25,7 +25,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent pointer-events-none" />
       </div>
 
-      <div className="relative z-10 max-w-4xl px-6 animate-fade-in">
+      <div className="relative z-10 max-w-4xl px-6">
         <span className="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-600 dark:text-orange-400 mb-6 backdrop-blur-md">
           EST. 2024
         </span>

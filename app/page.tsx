@@ -1,12 +1,21 @@
 "use client"
 
 import { Hero } from "@/components/hero"
-import { MenuSection } from "@/components/menu-section"
-import { OrderSection } from "@/components/order-section"
-import { OurStorySection } from "@/components/our-story-section"
 import dynamic from "next/dynamic"
 
-// Lazy load below-the-fold components for better initial page load
+// Lazy load below-the-fold components to prioritize Hero LCP
+const OurStorySection = dynamic(() => import("@/components/our-story-section").then(mod => ({ default: mod.OurStorySection })), {
+  loading: () => <div className="py-24 text-center text-zinc-400">Loading story...</div>,
+})
+
+const MenuSection = dynamic(() => import("@/components/menu-section").then(mod => ({ default: mod.MenuSection })), {
+  loading: () => <div className="py-24 text-center text-zinc-400">Loading menu...</div>,
+})
+
+const OrderSection = dynamic(() => import("@/components/order-section").then(mod => ({ default: mod.OrderSection })), {
+  loading: () => <div className="py-24 text-center text-zinc-400">Loading order...</div>,
+})
+
 const ReviewsSection = dynamic(() => import("@/components/reviews-section").then(mod => ({ default: mod.ReviewsSection })), {
   loading: () => <div className="py-24 text-center text-zinc-400">Loading reviews...</div>,
 })

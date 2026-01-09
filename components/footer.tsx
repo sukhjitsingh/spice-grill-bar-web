@@ -14,20 +14,20 @@ export function Footer() {
           >
             SPICE GRILL & BAR
           </Link>
-          <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">
+          <p className="text-zinc-600 dark:text-zinc-300 text-sm leading-relaxed max-w-xs">
             Elevating Punjabi cuisine with modern techniques and a commitment to authentic flavors.
           </p>
         </div>
 
         <div>
-          <h4 className="text-zinc-900 dark:text-white text-xs font-semibold tracking-wider uppercase mb-4">
+          <p className="text-zinc-900 dark:text-white text-xs font-semibold tracking-wider uppercase mb-4">
             Visit Us
-          </h4>
+          </p>
           <a
             href="https://www.google.com/maps/search/?api=1&query=Spice+Grill+%26+Bar+33+Lewis+Ave+Ash+Fork+AZ+86320"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-zinc-500 text-sm leading-relaxed hover:text-zinc-900 dark:hover:text-white transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-sm flex items-start gap-3"
+            className="text-zinc-600 dark:text-zinc-300 text-sm leading-relaxed hover:text-zinc-900 dark:hover:text-white transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-sm flex items-start gap-3"
             aria-label="Get directions to Spice Grill & Bar at 33 Lewis Ave, Ash Fork, AZ 86320"
           >
             <MapPin className="w-4 h-4 mt-0.5 shrink-0" aria-hidden="true" />
@@ -39,7 +39,7 @@ export function Footer() {
           </a>
           <a
             href="tel:9282771292"
-            className="text-zinc-500 text-sm mt-4 hover:text-zinc-900 dark:hover:text-white transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-sm w-fit flex items-center gap-3"
+            className="text-zinc-600 dark:text-zinc-300 text-sm mt-4 hover:text-zinc-900 dark:hover:text-white transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-sm w-fit flex items-center gap-3"
             aria-label="Call us at (928) 277-1292"
           >
             <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -48,21 +48,21 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-zinc-900 dark:text-white text-xs font-semibold tracking-wider uppercase mb-4 flex items-center gap-2">
+          <p className="text-zinc-900 dark:text-white text-xs font-semibold tracking-wider uppercase mb-4 flex items-center gap-2">
             <Clock className="w-4 h-4" aria-hidden="true" />
             Hours
-          </h4>
-          <ul className="text-zinc-500 text-sm space-y-2">
+          </p>
+          <ul className="text-zinc-600 dark:text-zinc-300 text-sm space-y-2">
             <li className="flex justify-between">
-              <span>Mon - Thurs</span> <span className="text-zinc-600 dark:text-zinc-400">8AM - 9PM</span>
+              <span>Mon - Thurs</span> <span className="text-zinc-700 dark:text-zinc-300">8AM - 9PM</span>
             </li>
             <li className="flex justify-between">
-              <span>Fri - Sun</span> <span className="text-zinc-600 dark:text-zinc-400">8AM - 10PM</span>
+              <span>Fri - Sun</span> <span className="text-zinc-700 dark:text-zinc-300">8AM - 10PM</span>
             </li>
           </ul>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-zinc-100 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500 dark:text-zinc-600">
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-zinc-100 dark:border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-600 dark:text-zinc-400">
         <p>© 2024 Spice Grill & Bar. All rights reserved.</p>
         <div className="flex items-center space-x-6 mt-4 md:mt-0">
           <a

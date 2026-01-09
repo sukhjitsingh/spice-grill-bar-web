@@ -29,7 +29,7 @@ export function OrderSection() {
               </a>
             </Button>
 
-            <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium tracking-wide opacity-80">
+            <p className="text-xs text-zinc-700 dark:text-zinc-300 font-medium tracking-wide opacity-80">
               Powered by our secure online ordering partner.
             </p>
           </div>

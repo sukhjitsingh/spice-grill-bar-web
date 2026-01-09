@@ -10,7 +10,7 @@ export function LocationSection() {
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-4">
             Find Us on Historic Route 66
           </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
             Located in the heart of Ash Fork, AZ. The perfect pitstop for hungry travelers heading to the Grand Canyon or riding historic Route 66.
             <br />
             <span className="text-orange-600 font-medium">Biker and Family Friendly!</span>

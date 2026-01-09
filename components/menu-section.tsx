@@ -50,7 +50,7 @@ export function MenuSection() {
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-4">
             Culinary Selection
           </h2>
-          <p className="text-zinc-500 dark:text-zinc-400">Crafted with care using traditional Punjabi recipes and the finest ingredients.</p>
+          <p className="text-zinc-600 dark:text-zinc-300">Crafted with care using traditional Punjabi recipes and the finest ingredients.</p>
         </div>
 
         <div className="flex flex-col md:flex-row gap-12 relative">
@@ -92,7 +92,7 @@ export function MenuSection() {
                           ${item.price.toFixed(2)}
                         </span>
                       </div>
-                      <p className="text-base text-zinc-500 leading-relaxed">{item.description}</p>
+                      <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.description}</p>
                     </div>
                   ))}
                 </div>

@@ -99,9 +99,9 @@ const ReviewCard = ({ review }: { review: Review }) => {
               </div>
             </div>
             <div className="min-w-0">
-              <h4 className="font-semibold text-zinc-900 dark:text-zinc-100 leading-tight truncate">
+              <p className="font-semibold text-zinc-900 dark:text-zinc-100 leading-tight truncate">
                 {review.author}
-              </h4>
+              </p>
               <span className="text-xs text-zinc-500 dark:text-zinc-400">{review.date}</span>
             </div>
           </div>
@@ -131,7 +131,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
 
         {/* Text - Fixed height with improved contrast */}
         <div className="flex-1 relative z-10 overflow-hidden">
-          <p className="text-zinc-600 dark:text-zinc-300 text-sm leading-relaxed line-clamp-4">
+          <p className="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed line-clamp-4">
             &ldquo;{review.text}&rdquo;
           </p>
         </div>

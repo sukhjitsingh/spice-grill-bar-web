@@ -65,7 +65,7 @@ export function MenuSection() {
                     "whitespace-nowrap md:w-full text-sm font-medium text-left rounded-lg py-2.5 px-4 transition-all",
                     activeCategory === category.category
                       ? "bg-orange-600 text-white shadow-md dark:bg-orange-600 dark:text-white"
-                      : "text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white"
+                      : "text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white"
                   )}
                 >
                   {category.category}

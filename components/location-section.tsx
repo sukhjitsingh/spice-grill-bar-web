@@ -1,6 +1,5 @@
 "use client"
 
-import { GoogleMapsEmbed } from "@next/third-parties/google"
 
 export function LocationSection() {
   return (
@@ -18,14 +17,14 @@ export function LocationSection() {
         </div>
 
         <div className="glass-card p-2 rounded-2xl overflow-hidden shadow-xl">
-          <div className="w-full h-[400px] md:h-[500px] rounded-xl grayscale-[0.2] hover:grayscale-0 transition-all duration-500 overflow-hidden [&>div[data-ntpc='GoogleMapsEmbed']]:!h-full [&>div[data-ntpc='GoogleMapsEmbed']]:!w-full">
-            <GoogleMapsEmbed
-              apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}
-              mode="place"
-              q="Spice Grill & Bar, Ash Fork, AZ"
-              style="border:0; width:100%; height:100%;"
-              allowfullscreen={true}
+          <div className="w-full h-[400px] md:h-[500px] rounded-xl grayscale-[0.2] hover:grayscale-0 transition-all duration-500 overflow-hidden">
+            <iframe
+              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&q=Spice+Grill+%26+Bar,+Ash+Fork,+AZ`}
+              title="Spice Grill & Bar location on Google Maps - 33 Lewis Ave, Ash Fork, AZ 86320"
+              style={{ border: 0, width: '100%', height: '100%' }}
+              allowFullScreen
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             />
           </div>
         </div>

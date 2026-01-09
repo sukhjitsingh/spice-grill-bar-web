@@ -26,7 +26,7 @@ export const ReviewsSection = () => {
 
       <div className="container mx-auto px-6 mb-12 text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-          What Our <span className="text-orange-500">Guests Say</span>
+          What Our <span className="text-orange-700 dark:text-orange-400">Guests Say</span>
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           We love hearing from our community. Here are some of the latest reviews from Google and Yelp.

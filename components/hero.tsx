@@ -26,12 +26,12 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 max-w-4xl px-6">
-        <span className="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-600 dark:text-orange-400 mb-6 backdrop-blur-md">
+        <span className="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-700 dark:text-orange-300 mb-6 backdrop-blur-md">
           EST. 2024
         </span>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-zinc-900 dark:text-white leading-tight mb-6">
           The Soul of{" "}
-          <span className="text-orange-600 dark:text-orange-500">Punjab</span>
+          <span className="text-orange-700 dark:text-orange-400">Punjab</span>
         </h1>
         <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-normal max-w-2xl mx-auto leading-relaxed mb-10">
           Where the rich traditions of Punjabi cooking meet the history of Route 66 right here in Ash Fork, AZ.

@@ -16,7 +16,7 @@ export function OrderSection() {
             Bring it Home
           </h2>
           <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-8 font-medium">
-            Authentic flavors available for <span className="text-orange-600 dark:text-orange-400">Pickup</span> & <span className="text-orange-600 dark:text-orange-400">Curbside</span>.
+            Authentic flavors available for <span className="text-orange-700 dark:text-orange-300">Pickup</span> & <span className="text-orange-700 dark:text-orange-300">Curbside</span>.
           </p>
 
           <div className="space-y-6">

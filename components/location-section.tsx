@@ -13,7 +13,7 @@ export function LocationSection() {
           <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
             Located in the heart of Ash Fork, AZ. The perfect pitstop for hungry travelers heading to the Grand Canyon or riding historic Route 66.
             <br />
-            <span className="text-orange-600 font-medium">Biker and Family Friendly!</span>
+            <span className="text-orange-700 dark:text-orange-400 font-medium">Biker and Family Friendly!</span>
           </p>
         </div>
 

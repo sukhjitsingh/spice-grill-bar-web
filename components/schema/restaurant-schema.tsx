@@ -43,8 +43,12 @@ export function RestaurantSchema() {
           "priceRange": "$$",
           "image": "/HomePageBackground.webp",
           "menu": "https://spicegrillbar66.com/#menu",
-          "description": "Authentic Indian Restaurant in Ash Fork, AZ. Located on Historic Route 66, perfect stop for Grand Canyon travelers.",
-          "areaServed": "Ash Fork"
+          "description": "Authentic Indian Restaurant in Ash Fork, AZ. Located on Historic Route 66, the perfect pitstop for Grand Canyon travelers.",
+          "areaServed": "Ash Fork",
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["#hero-title", "#hero-description", "#philosophy-title"]
+          }
         }
       `}
     </script>

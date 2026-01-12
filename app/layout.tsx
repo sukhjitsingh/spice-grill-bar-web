@@ -1,5 +1,8 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { BreadcrumbSchema } from "@/components/schema/breadcrumb-schema";
+import { MenuSchema } from "@/components/schema/menu-schema";
+import { OrganizationSchema } from "@/components/schema/organization-schema";
 import { RestaurantSchema } from "@/components/schema/restaurant-schema";
 import { WebSiteSchema } from "@/components/schema/website-schema";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -89,6 +92,9 @@ export default function RootLayout({
             <Footer />
             <RestaurantSchema />
             <WebSiteSchema />
+            <MenuSchema />
+            <OrganizationSchema />
+            <BreadcrumbSchema items={[{ name: "Home", item: "/" }]} />
           </div>
         </ThemeProvider>
       </body>

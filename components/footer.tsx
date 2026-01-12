@@ -84,6 +84,12 @@ export function Footer() {
             <Facebook className="w-4 h-4" />
           </a>
           <Link
+            href="/faq"
+            className="hover:text-zinc-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-sm"
+          >
+            FAQ
+          </Link>
+          <Link
             href="#"
             className="hover:text-zinc-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded-sm"
           >

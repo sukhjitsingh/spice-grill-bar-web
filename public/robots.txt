@@ -4,6 +4,19 @@
 User-agent: *
 Allow: /
 
+# GEO/AEO: Explicitly allow AI Search Bots
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 # Sitemap location
 Sitemap: https://spicegrillbar66.com/sitemap.xml
 

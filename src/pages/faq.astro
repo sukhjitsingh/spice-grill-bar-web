@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import faqData from "../data/faq.json";
+---
+
+<Layout
+  title="FAQ | Spice Grill & Bar"
+  description="Frequently asked questions about Spice Grill & Bar. Information on hours, location, and vegetarian options."
+>
+  <main class="pt-32 pb-24 px-6 bg-zinc-50 dark:bg-black min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-serif font-bold text-center mb-16 text-zinc-900 dark:text-white">
+        Frequently Asked <span class="text-brand-orange">Questions</span>
+      </h1>
+
+      <div class="space-y-8">
+        {
+          faqData.map((item) => (
+            <div class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm">
+              <h3 class="text-xl font-serif font-semibold text-zinc-900 dark:text-zinc-100 mb-3">
+                {item.question}
+              </h3>
+              <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+                {item.answer}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>

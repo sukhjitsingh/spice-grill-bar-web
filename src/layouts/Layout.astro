@@ -1,0 +1,56 @@
+---
+import "@fontsource/open-sans";
+import "@fontsource/playfair-display";
+import "../styles/globals.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { ClientRouter } from "astro:transitions";
+import RestaurantSchema from "@/components/schema/RestaurantSchema.astro";
+import FAQSchema from "@/components/schema/FAQSchema.astro";
+
+const {
+  title = "Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)",
+  description = "Authentic Indian Punjabi cuisine on historic Route 66 in Ash Fork, AZ. The perfect pit stop for Grand Canyon travelers and riders. Enjoy fresh naan, curry, and tandoori specials. Dine-in & Takeout.",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar66.com"); // Fallback if site not in config
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:;" />
+		<title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+		<ClientRouter />
+		<script is:inline>
+			// Prevent FOUC
+			(function() {
+				const theme = localStorage.getItem("theme");
+				const isDark = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+				document.documentElement.classList.toggle("dark", isDark);
+			})();
+		</script>
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-Y5QJYGQBL6"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Y5QJYGQBL6');
+    </script>
+	</head>
+	<body class="min-h-screen bg-background font-sans antialiased">
+		<Header client:visible currentPath={currentPath} />
+		<slot />
+		<Footer />
+		<RestaurantSchema />
+		<FAQSchema />
+	</body>
+</html>

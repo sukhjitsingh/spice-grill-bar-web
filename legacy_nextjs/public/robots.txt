@@ -1,0 +1,30 @@
+# Robots.txt for Spice Grill & Bar
+# https://spicegrillbar66.com
+
+User-agent: *
+Allow: /
+
+# GEO/AEO: Explicitly allow AI Search Bots
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://spicegrillbar66.com/sitemap.xml
+
+# Block crawlers from Next.js internals
+Disallow: /_next/static/
+Disallow: /api/
+
+# Allow images for Google Image Search
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$

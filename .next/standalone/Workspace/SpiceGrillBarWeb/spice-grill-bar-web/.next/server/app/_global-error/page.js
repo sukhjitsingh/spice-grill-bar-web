@@ -1,0 +1,11 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_global-error/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__74e30481._.js")
+R.c("server/chunks/ssr/Workspace_SpiceGrillBarWeb_spice-grill-bar-web_573b5c2f._.js")
+R.c("server/chunks/ssr/27934_next_dist_2f39db88._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__96fa6c13._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__a9e3822c._.js")
+R.c("server/chunks/ssr/27934_next_dist_560aa85d._.js")
+R.c("server/chunks/ssr/Workspace_SpiceGrillBarWeb_spice-grill-bar-web_app_a52b48a3._.js")
+R.c("server/chunks/ssr/a0911__next-internal_server_app__global-error_page_actions_8078cf8c.js")
+R.m(71637)
+module.exports=R.m(71637).exports

@@ -1,6 +1,9 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   
+  # Sitemap Redirect
+  RewriteRule ^sitemap\.xml$ dist/sitemap-index.xml [L]
+
   # 1. Serve root URL from dist/index.html
   RewriteRule ^$ dist/index.html [L]
 

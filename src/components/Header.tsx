@@ -9,6 +9,7 @@ const navigation = [
   { name: "Menu", href: "#menu" },
   { name: "Philosophy", href: "#philosophy" },
   { name: "Order Online", href: "#order" },
+  { name: "FAQ", href: "/faq" },
 ]
 
 export function Header({ currentPath = "/" }: { currentPath?: string }) {
@@ -22,6 +23,13 @@ export function Header({ currentPath = "/" }: { currentPath?: string }) {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const getHref = (href: string) => {
+    if (href.startsWith("#") && currentPath !== "/") {
+      return `/${href}`
+    }
+    return href
+  }
 
   return (
     <header
@@ -44,7 +52,7 @@ export function Header({ currentPath = "/" }: { currentPath?: string }) {
           {navigation.map((link) => (
             <a
               key={link.name}
-              href={link.href}
+              href={getHref(link.href)}
               className="hover:text-brand-orange transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm px-1"
             >
               {link.name.toUpperCase()}
@@ -68,7 +76,7 @@ export function Header({ currentPath = "/" }: { currentPath?: string }) {
                 {navigation.map((link) => (
                   <a
                     key={link.name}
-                    href={link.href}
+                    href={getHref(link.href)}
                     className="text-lg font-medium font-serif text-zinc-900 dark:text-white hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
                     onClick={() => setIsOpen(false)}
                   >

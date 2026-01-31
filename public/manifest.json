@@ -1,0 +1,21 @@
+{
+  "name": "Spice Grill & Bar",
+  "short_name": "Spice Grill & Bar",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ea580c",
+  "description": "Authentic Punjabi Indian Cuisine on Route 66",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}

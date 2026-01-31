@@ -1,0 +1,34 @@
+---
+import menuData from "../../data/menu.json";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Menu",
+  "name": "Spice Grill & Bar Menu",
+  "mainEntityOfPage": "https://spicegrillbar66.com/#menu",
+  "hasMenuSection": menuData.map((category) => ({
+    "@type": "MenuSection",
+    "name": category.category,
+    "hasMenuItem": category.items.map((item) => {
+      const menuItem = {
+        "@type": "MenuItem",
+        "name": item.name,
+        "description": item.description,
+        "offers": {
+          "@type": "Offer",
+          "price": item.price.toString(),
+          "priceCurrency": "USD",
+        }
+      };
+      
+      if (item.image) {
+        menuItem.image = item.image;
+      }
+      
+      return menuItem;
+    })
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

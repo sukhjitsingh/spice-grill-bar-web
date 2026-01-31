@@ -18,7 +18,7 @@ User-agent: ClaudeBot
 Allow: /
 
 # Sitemap location
-Sitemap: https://spicegrillbar66.com/sitemap.xml
+Sitemap: https://spicegrillbar66.com/sitemap-index.xml
 
 # Block crawlers from Next.js internals
 Disallow: /_next/static/

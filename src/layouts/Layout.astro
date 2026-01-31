@@ -7,6 +7,10 @@ import { Footer } from "@/components/Footer";
 import { ClientRouter } from "astro:transitions";
 import RestaurantSchema from "@/components/schema/RestaurantSchema.astro";
 import FAQSchema from "@/components/schema/FAQSchema.astro";
+import MenuSchema from "@/components/schema/MenuSchema.astro";
+import OrganizationSchema from "@/components/schema/OrganizationSchema.astro";
+import WebSiteSchema from "@/components/schema/WebSiteSchema.astro";
+import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema.astro";
 
 const {
   title = "Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)",
@@ -24,12 +28,42 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
+    <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; frame-src 'self' https://www.google.com https://maps.google.com;" />
-		<title>{title}</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content="Indian Restaurant Ash Fork, Punjabi Food Route 66, Best Indian Food AZ, Spice Grill and Bar, Ash Fork Dining, Route 66 Restaurants, Grand Canyon Food Stop, Biker Friendly Restaurant AZ" />
+    <meta name="author" content="Spice Grill & Bar" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href={canonicalURL} />
-		<ClientRouter />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="help" href="/llms.txt" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://spicegrillbar66.com" />
+    <meta property="og:title" content="Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66" />
+    <meta property="og:description" content="Best Indian food in Ash Fork, AZ. Biker-friendly stop on Route 66 near the Grand Canyon. Try our famous butter chicken and garlic naan." />
+    <meta property="og:image" content="https://spicegrillbar66.com/opengraph-image.png" />
+    <meta property="og:site_name" content="Spice Grill & Bar" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://spicegrillbar66.com" />
+    <meta property="twitter:title" content="Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66" />
+    <meta property="twitter:description" content="Best Indian food in Ash Fork, AZ. Perfect pit stop for Grand Canyon travelers." />
+    <meta property="twitter:image" content="https://spicegrillbar66.com/opengraph-image.png" />
+
+    <!-- Geo Tags -->
+    <meta name="geo.position" content="35.2241;-112.4829" />
+    <meta name="geo.placename" content="Ash Fork, Arizona" />
+    <meta name="geo.region" content="US-AZ" />
+
+    <ClientRouter />
 		<script is:inline>
 			// Prevent FOUC
 			(function() {
@@ -38,8 +72,8 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
 				document.documentElement.classList.toggle("dark", isDark);
 			})();
 		</script>
-    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-Y5QJYGQBL6"></script>
-    <script type="text/partytown">
+    <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-Y5QJYGQBL6"></script>
+    <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -52,5 +86,9 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
 		<Footer />
 		<RestaurantSchema />
 		<FAQSchema />
+        <MenuSchema />
+        <OrganizationSchema />
+        <WebSiteSchema />
+        <BreadcrumbSchema items={[{ name: "Home", item: "/" }]} />
 	</body>
 </html>

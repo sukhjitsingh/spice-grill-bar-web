@@ -1,0 +1,14 @@
+---
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://spicegrillbar66.com",
+  "name": "Spice Grill & Bar",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://spicegrillbar66.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

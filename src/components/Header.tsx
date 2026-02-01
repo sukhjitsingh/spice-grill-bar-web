@@ -2,14 +2,13 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
-import { Menu } from "lucide-react"
+import { Menu, Phone, ShoppingBag } from "lucide-react"
 import * as React from "react"
 
 const navigation = [
   { name: "Menu", href: "#menu" },
   { name: "Philosophy", href: "#philosophy" },
-  { name: "Order Online", href: "#order" },
-  { name: "FAQ", href: "/faq" },
+  { name: "FAQ", href: "/faq/" },
 ]
 
 export function Header({ currentPath = "/" }: { currentPath?: string }) {
@@ -59,6 +58,32 @@ export function Header({ currentPath = "/" }: { currentPath?: string }) {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-orange transition-all group-hover:w-full" />
             </a>
           ))}
+
+          <div className="flex items-center gap-4 border-l border-zinc-200 dark:border-zinc-800 pl-6 ml-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              asChild
+              className="text-zinc-700 dark:text-zinc-200 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-white/5 font-serif hidden lg:flex"
+            >
+              <a href="tel:9282771292" aria-label="Call us">
+                <Phone className="w-4 h-4 mr-2" />
+                928-277-1292
+              </a>
+            </Button>
+
+            <Button
+              asChild
+              className="bg-brand-orange hover:bg-orange-700 text-white font-serif tracking-wide shadow-md shadow-orange-500/20"
+              size="sm"
+            >
+              <a href="https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave" target="_blank" rel="noopener noreferrer">
+                <ShoppingBag className="w-4 h-4 mr-2" />
+                ORDER ONLINE
+              </a>
+            </Button>
+          </div>
+
           <ModeToggle />
         </div>
 

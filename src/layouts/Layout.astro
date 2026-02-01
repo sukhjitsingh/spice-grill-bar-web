@@ -11,6 +11,7 @@ import MenuSchema from "@/components/schema/MenuSchema.astro";
 import OrganizationSchema from "@/components/schema/OrganizationSchema.astro";
 import WebSiteSchema from "@/components/schema/WebSiteSchema.astro";
 import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema.astro";
+import MobileActionButtons from "@/components/MobileActionButtons.astro";
 
 const {
   title = "Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)",
@@ -84,6 +85,7 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
 		<Header client:visible currentPath={currentPath} />
 		<slot />
 		<Footer />
+		<MobileActionButtons />
 		<RestaurantSchema />
 		<FAQSchema />
         <MenuSchema />

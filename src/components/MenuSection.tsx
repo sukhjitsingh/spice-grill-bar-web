@@ -20,7 +20,7 @@ export function MenuSection() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const sections = document.querySelectorAll(".menu-category")
-          const scrollPosition = window.scrollY + 150 // Offset for header
+          const scrollPosition = window.scrollY + 250 // Offset for sticky headers
 
           let current = ""
 
@@ -51,7 +51,7 @@ export function MenuSection() {
   const scrollToCategory = (categoryId: string) => {
     const element = document.getElementById(categoryId)
     if (element) {
-      const offset = 100 // Header height + padding
+      const offset = 220 // Header height + sticky section header + padding
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.scrollY - offset
 
@@ -68,7 +68,7 @@ export function MenuSection() {
   return (
     <section id="menu" className="bg-zinc-50 dark:bg-zinc-950 py-24 border-t border-zinc-200 dark:border-white/5 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16">
+        <div className="sticky top-14 z-30 bg-zinc-50 dark:bg-zinc-950 py-4 mb-10 transition-colors duration-500">
           <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-4">
             Culinary Selection
           </h2>
@@ -77,8 +77,8 @@ export function MenuSection() {
 
         <div className="flex flex-col md:flex-row gap-12 relative">
           {/* Sidebar Navigation (Sticky) */}
-          <aside className="md:w-64 shrink-0 md:h-[calc(100vh-100px)] md:sticky md:top-24 w-full z-20">
-            <nav className="flex md:flex-col overflow-x-auto md:overflow-hidden gap-2 pb-4 md:pb-0 hide-scroll p-2 glass rounded-xl">
+          <aside className="md:w-64 shrink-0 md:max-h-[calc(100vh-13rem)] h-fit md:sticky md:top-52 w-full z-20 pt-2">
+            <nav className="flex md:flex-col overflow-x-auto md:overflow-y-auto gap-2 pb-4 md:pb-0 hide-scroll p-2 glass rounded-xl max-h-full">
               {menuData.map((category: any) => {
                 const categoryId = toKebabCase(category.category)
                 return (

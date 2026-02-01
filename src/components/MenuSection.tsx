@@ -84,10 +84,10 @@ export function MenuSection() {
                     key={categoryId}
                     onClick={() => scrollToCategory(categoryId)}
                     className={cn(
-                      "whitespace-nowrap text-sm font-medium font-serif rounded-lg py-2 px-4 transition-all",
+                      "whitespace-nowrap text-sm font-medium font-serif rounded-lg py-2 px-4 transition-all border",
                       activeCategory === categoryId
-                        ? "bg-white dark:bg-zinc-800 text-brand-orange shadow-sm ring-1 ring-zinc-200 dark:ring-white/10"
-                        : "text-zinc-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200"
+                        ? "bg-white dark:bg-zinc-800 text-brand-orange shadow-sm border-zinc-200 dark:border-white/10"
+                        : "text-zinc-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200 border-transparent"
                     )}
                   >
                     {category.category}
@@ -101,7 +101,7 @@ export function MenuSection() {
         <div className="flex flex-col md:flex-row gap-12 relative">
           {/* Sidebar Navigation (Sticky Desktop) */}
           <aside className="hidden md:block md:w-64 shrink-0 md:max-h-[calc(100vh-13rem)] h-fit md:sticky md:top-52 z-20 pt-2">
-            <nav className="flex md:flex-col overflow-x-auto md:overflow-y-auto gap-2 pb-4 md:pb-0 hide-scroll p-2 glass rounded-xl max-h-full">
+            <nav className="flex md:flex-col overflow-x-auto md:overflow-y-auto gap-2 pb-4 hide-scroll p-2 glass rounded-xl max-h-full">
               {menuData.map((category: any) => {
                 const categoryId = toKebabCase(category.category)
                 return (

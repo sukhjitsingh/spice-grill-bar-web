@@ -73,11 +73,34 @@ export function MenuSection() {
             Culinary Selection
           </h2>
           <p className="text-zinc-600 dark:text-zinc-300">Crafted with care using traditional Punjabi recipes and the finest ingredients.</p>
+
+          {/* Mobile Navigation (Sticky inside header) */}
+          <div className="md:hidden mt-6 p-1.5 border border-zinc-200 dark:border-white/10 bg-zinc-100/50 dark:bg-zinc-900/50 backdrop-blur-sm rounded-xl">
+            <nav className="flex overflow-x-auto gap-2 hide-scroll">
+              {menuData.map((category: any) => {
+                const categoryId = toKebabCase(category.category)
+                return (
+                  <button
+                    key={categoryId}
+                    onClick={() => scrollToCategory(categoryId)}
+                    className={cn(
+                      "whitespace-nowrap text-sm font-medium font-serif rounded-lg py-2 px-4 transition-all",
+                      activeCategory === categoryId
+                        ? "bg-white dark:bg-zinc-800 text-brand-orange shadow-sm ring-1 ring-zinc-200 dark:ring-white/10"
+                        : "text-zinc-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200"
+                    )}
+                  >
+                    {category.category}
+                  </button>
+                )
+              })}
+            </nav>
+          </div>
         </div>
 
         <div className="flex flex-col md:flex-row gap-12 relative">
-          {/* Sidebar Navigation (Sticky) */}
-          <aside className="md:w-64 shrink-0 md:max-h-[calc(100vh-13rem)] h-fit md:sticky md:top-52 w-full z-20 pt-2">
+          {/* Sidebar Navigation (Sticky Desktop) */}
+          <aside className="hidden md:block md:w-64 shrink-0 md:max-h-[calc(100vh-13rem)] h-fit md:sticky md:top-52 z-20 pt-2">
             <nav className="flex md:flex-col overflow-x-auto md:overflow-y-auto gap-2 pb-4 md:pb-0 hide-scroll p-2 glass rounded-xl max-h-full">
               {menuData.map((category: any) => {
                 const categoryId = toKebabCase(category.category)

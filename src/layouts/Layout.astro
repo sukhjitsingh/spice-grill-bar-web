@@ -67,11 +67,13 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
     <ClientRouter />
 		<script is:inline>
 			// Prevent FOUC
-			(function() {
+			const setMode = () => {
 				const theme = localStorage.getItem("theme");
 				const isDark = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
 				document.documentElement.classList.toggle("dark", isDark);
-			})();
+			};
+			setMode();
+			document.addEventListener('astro:after-swap', setMode);
 		</script>
     <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-Y5QJYGQBL6"></script>
     <script is:inline type="text/partytown">

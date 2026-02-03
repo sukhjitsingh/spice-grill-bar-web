@@ -1,0 +1,36 @@
+---
+import type { Menu, MenuItem, WithContext } from 'schema-dts';
+
+import menuData from '../../data/menu.json';
+
+const schema: WithContext<Menu> = {
+  '@context': 'https://schema.org',
+  '@type': 'Menu',
+  name: 'Spice Grill & Bar Menu',
+  mainEntityOfPage: 'https://spicegrillbar66.com/#menu',
+  hasMenuSection: menuData.map((category) => ({
+    '@type': 'MenuSection',
+    name: category.category,
+    hasMenuItem: category.items.map((item) => {
+      const menuItem: MenuItem = {
+        '@type': 'MenuItem',
+        name: item.name,
+        description: item.description,
+        offers: {
+          '@type': 'Offer',
+          price: item.price.toString(),
+          priceCurrency: 'USD',
+        },
+      };
+
+      if (item.imageUrl) {
+        menuItem.image = item.imageUrl;
+      }
+
+      return menuItem;
+    }),
+  })),
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

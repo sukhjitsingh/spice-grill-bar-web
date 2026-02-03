@@ -1,0 +1,32 @@
+---
+import type { Organization, WithContext } from 'schema-dts';
+
+const schema: WithContext<Organization> = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Spice Grill & Bar',
+  url: 'https://spicegrillbar66.com',
+  logo: 'https://spicegrillbar66.com/favicon.svg',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+1-928-277-1292',
+    contactType: 'customer service',
+    areaServed: 'US',
+    availableLanguage: 'en',
+  },
+  sameAs: [
+    'https://www.facebook.com/profile.php?id=61566349169122',
+    'https://www.instagram.com/panjabi_dhaba_sgb',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '33 Lewis Ave',
+    addressLocality: 'Ash Fork',
+    addressRegion: 'AZ',
+    postalCode: '86320',
+    addressCountry: 'US',
+  },
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

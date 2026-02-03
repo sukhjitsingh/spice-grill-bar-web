@@ -1,0 +1,23 @@
+---
+import Hero from '../components/Hero.astro';
+import LocationSection from '../components/LocationSection.astro';
+import { MenuSection } from '../components/MenuSection';
+import OrderSection from '../components/OrderSection.astro';
+import OurStorySection from '../components/OurStorySection.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)"
+  description="Authentic Indian Punjabi cuisine on historic Route 66 in Ash Fork, AZ. The perfect pit stop for Grand Canyon travelers and riders. Enjoy fresh naan, curry, and tandoori specials. Dine-in & Takeout."
+>
+  <main>
+    <Hero />
+    <ReviewsSection />
+    <MenuSection client:visible={{ rootMargin: '200px' }} />
+    <OurStorySection />
+    <LocationSection />
+    <OrderSection />
+  </main>
+</Layout>

@@ -9,7 +9,7 @@ on:
 jobs:
   update-reviews:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -34,5 +34,5 @@ jobs:
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: update reviews data [skip ci]"
+          commit_message: 'chore: update reviews data [skip ci]'
           file_pattern: data/reviews.json

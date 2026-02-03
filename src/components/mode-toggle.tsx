@@ -1,37 +1,36 @@
-import { Moon, Sun } from "lucide-react"
-import * as React from "react"
+import { Moon, Sun } from 'lucide-react';
+import * as React from 'react';
 
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from '@/components/ui/dropdown-menu';
 
 export function ModeToggle() {
-  const [theme, setThemeState] = React.useState<"theme-light" | "dark" | "system">("theme-light")
+  const [, setThemeState] = React.useState<'theme-light' | 'dark' | 'system'>('theme-light');
 
   React.useEffect(() => {
-    const isDark = document.documentElement.classList.contains("dark")
-    setThemeState(isDark ? "dark" : "theme-light")
-  }, [])
+    const isDark = document.documentElement.classList.contains('dark');
+    setThemeState(isDark ? 'dark' : 'theme-light');
+  }, []);
 
-  const setTheme = (theme: "light" | "dark" | "system") => {
+  const setTheme = (newTheme: 'light' | 'dark' | 'system') => {
     const isDark =
-      theme === "dark" ||
-      (theme === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+      newTheme === 'dark' ||
+      (newTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
 
-    if (theme === "system") {
-      localStorage.removeItem("theme")
+    if (newTheme === 'system') {
+      localStorage.removeItem('theme');
     } else {
-      localStorage.setItem("theme", theme)
+      localStorage.setItem('theme', newTheme);
     }
-    setThemeState(theme === "light" ? "theme-light" : theme)
-  }
+    setThemeState(newTheme === 'light' ? 'theme-light' : newTheme);
+  };
 
   return (
     <DropdownMenu>
@@ -43,16 +42,10 @@ export function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

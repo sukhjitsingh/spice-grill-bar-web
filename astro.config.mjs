@@ -13,14 +13,19 @@ export default defineConfig({
   site: 'https://spicegrillbar66.com',
   trailingSlash: 'always',
   build: {
-    format: 'directory'
+    format: 'directory',
   },
-  integrations: [react(), tailwind(), sitemap(), partytown({
-    config: {
-      forward: ["dataLayer.push"],
-    },
-  })],
+  integrations: [
+    react(),
+    tailwind(),
+    sitemap(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+      },
+    }),
+  ],
   devToolbar: {
-    enabled: false
-  }
+    enabled: false,
+  },
 });

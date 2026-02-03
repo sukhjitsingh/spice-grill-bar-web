@@ -1,44 +1,55 @@
 ---
-import "@fontsource/open-sans";
-import "@fontsource/playfair-display";
-import "../styles/globals.css";
-import { Header } from "@/components/Header";
-import Footer from "@/components/Footer.astro";
-import { ClientRouter } from "astro:transitions";
-import RestaurantSchema from "@/components/schema/RestaurantSchema.astro";
-import FAQSchema from "@/components/schema/FAQSchema.astro";
-import MenuSchema from "@/components/schema/MenuSchema.astro";
-import OrganizationSchema from "@/components/schema/OrganizationSchema.astro";
-import WebSiteSchema from "@/components/schema/WebSiteSchema.astro";
-import BreadcrumbSchema from "@/components/schema/BreadcrumbSchema.astro";
-import MobileActionButtons from "@/components/MobileActionButtons.astro";
+import '@fontsource/open-sans';
+import '@fontsource/playfair-display';
+import '../styles/globals.css';
+
+import { ClientRouter } from 'astro:transitions';
+
+import Footer from '@/components/Footer.astro';
+import { Header } from '@/components/Header';
+import MobileActionButtons from '@/components/MobileActionButtons.astro';
+import BreadcrumbSchema from '@/components/schema/BreadcrumbSchema.astro';
+import FAQSchema from '@/components/schema/FAQSchema.astro';
+import MenuSchema from '@/components/schema/MenuSchema.astro';
+import OrganizationSchema from '@/components/schema/OrganizationSchema.astro';
+import RestaurantSchema from '@/components/schema/RestaurantSchema.astro';
+import WebSiteSchema from '@/components/schema/WebSiteSchema.astro';
 
 const {
-  title = "Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)",
-  description = "Authentic Indian Punjabi cuisine on historic Route 66 in Ash Fork, AZ. The perfect pit stop for Grand Canyon travelers and riders. Enjoy fresh naan, curry, and tandoori specials. Dine-in & Takeout.",
+  title = 'Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)',
+  description = 'Authentic Indian Punjabi cuisine on historic Route 66 in Ash Fork, AZ. The perfect pit stop for Grand Canyon travelers and riders. Enjoy fresh naan, curry, and tandoori specials. Dine-in & Takeout.',
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
-const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar66.com"); // Fallback if site not in config
+const canonicalURL = new URL(currentPath, Astro.site || 'https://spicegrillbar66.com'); // Fallback if site not in config
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; font-src 'self' data: https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; frame-src 'self' https://www.google.com https://maps.google.com; worker-src 'self' blob:;" />
-    
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; img-src 'self' https: data:; font-src 'self' data: https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; frame-src 'self' https://www.google.com https://maps.google.com; worker-src 'self' blob:;"
+    />
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="Indian Restaurant Ash Fork, Punjabi Food Route 66, Best Indian Food AZ, Spice Grill and Bar, Ash Fork Dining, Route 66 Restaurants, Grand Canyon Food Stop, Biker Friendly Restaurant AZ" />
+    <meta
+      name="keywords"
+      content="Indian Restaurant Ash Fork, Punjabi Food Route 66, Best Indian Food AZ, Spice Grill and Bar, Ash Fork Dining, Route 66 Restaurants, Grand Canyon Food Stop, Biker Friendly Restaurant AZ"
+    />
     <meta name="author" content="Spice Grill & Bar" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
     <link rel="canonical" href={canonicalURL} />
     <link rel="manifest" href="/manifest.json" />
     <link rel="help" href="/llms.txt" />
@@ -47,7 +58,10 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://spicegrillbar66.com" />
     <meta property="og:title" content="Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66" />
-    <meta property="og:description" content="Best Indian food in Ash Fork, AZ. Biker-friendly stop on Route 66 near the Grand Canyon. Try our famous butter chicken and garlic naan." />
+    <meta
+      property="og:description"
+      content="Best Indian food in Ash Fork, AZ. Biker-friendly stop on Route 66 near the Grand Canyon. Try our famous butter chicken and garlic naan."
+    />
     <meta property="og:image" content="https://spicegrillbar66.com/opengraph-image.png" />
     <meta property="og:site_name" content="Spice Grill & Bar" />
     <meta property="og:locale" content="en_US" />
@@ -55,8 +69,14 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://spicegrillbar66.com" />
-    <meta property="twitter:title" content="Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66" />
-    <meta property="twitter:description" content="Best Indian food in Ash Fork, AZ. Perfect pit stop for Grand Canyon travelers." />
+    <meta
+      property="twitter:title"
+      content="Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66"
+    />
+    <meta
+      property="twitter:description"
+      content="Best Indian food in Ash Fork, AZ. Perfect pit stop for Grand Canyon travelers."
+    />
     <meta property="twitter:image" content="https://spicegrillbar66.com/opengraph-image.png" />
 
     <!-- Geo Tags -->
@@ -65,42 +85,37 @@ const canonicalURL = new URL(currentPath,  Astro.site || "https://spicegrillbar6
     <meta name="geo.region" content="US-AZ" />
 
     <ClientRouter />
-		<script is:inline>
-			// Prevent FOUC
-			const setMode = () => {
-				const theme = localStorage.getItem("theme");
-				const isDark = theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
-				document.documentElement.classList.toggle("dark", isDark);
-			};
-			setMode();
-			document.addEventListener('astro:after-swap', setMode);
-		</script>
-    <script is:inline type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-Y5QJYGQBL6"></script>
-    <script is:inline type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-Y5QJYGQBL6');
-    </script>
-	</head>
-	<body class="min-h-screen bg-background font-sans antialiased">
-		<Header client:visible currentPath={currentPath} />
-		<slot />
-		<Footer />
-		<MobileActionButtons />
-		<RestaurantSchema />
-		<FAQSchema />
-        <MenuSchema />
-        <OrganizationSchema />
-        <WebSiteSchema />
-        <BreadcrumbSchema 
-          items={[
-            { name: "Home", item: "/" },
-            ...(currentPath !== "/" ? [{ 
-              name: currentPath.replace(/\//g, "").charAt(0).toUpperCase() + currentPath.replace(/\//g, "").slice(1), 
-              item: currentPath 
-            }] : [])
-          ]} 
-        />
-	</body>
+    <script is:inline src="/scripts/theme.js"></script>
+    <script
+      is:inline
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-Y5QJYGQBL6"></script>
+    <script is:inline type="text/partytown" src="/scripts/gtm.js"></script>
+  </head>
+  <body class="min-h-screen bg-background font-sans antialiased">
+    <Header client:visible currentPath={currentPath} />
+    <slot />
+    <Footer />
+    <MobileActionButtons />
+    <RestaurantSchema />
+    <FAQSchema />
+    <MenuSchema />
+    <OrganizationSchema />
+    <WebSiteSchema />
+    <BreadcrumbSchema
+      items={[
+        { name: 'Home', item: '/' },
+        ...(currentPath !== '/'
+          ? [
+              {
+                name:
+                  currentPath.replace(/\//g, '').charAt(0).toUpperCase() +
+                  currentPath.replace(/\//g, '').slice(1),
+                item: currentPath,
+              },
+            ]
+          : []),
+      ]}
+    />
+  </body>
 </html>

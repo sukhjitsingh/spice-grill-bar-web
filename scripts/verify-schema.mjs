@@ -22,23 +22,23 @@ scripts.forEach((script, index) => {
   try {
     const json = JSON.parse(script.textContent);
     console.log(`\nBlock #${index + 1} (@type: ${json['@type']}): Valid JSON`);
-    
+
     // Basic Schema Checks
     if (json['@context'] !== 'https://schema.org') {
       console.warn(`  Warning: @context is ${json['@context']}, expected https://schema.org`);
     }
-    
+
     if (json['@type'] === 'Restaurant') {
-       if (!json.name) console.error('  Error: Restaurant missing name');
-       if (!json.address) console.error('  Error: Restaurant missing address');
-       else console.log('  - Verified: Restaurant Name & Address present');
-    }
-    
-    if (json['@type'] === 'FAQPage') {
-       if (!Array.isArray(json.mainEntity)) console.error('  Error: FAQPage mainEntity is not an array');
-       else console.log(`  - Verified: FAQPage contains ${json.mainEntity.length} questions`);
+      if (!json.name) console.error('  Error: Restaurant missing name');
+      if (!json.address) console.error('  Error: Restaurant missing address');
+      else console.log('  - Verified: Restaurant Name & Address present');
     }
 
+    if (json['@type'] === 'FAQPage') {
+      if (!Array.isArray(json.mainEntity))
+        console.error('  Error: FAQPage mainEntity is not an array');
+      else console.log(`  - Verified: FAQPage contains ${json.mainEntity.length} questions`);
+    }
   } catch (e) {
     console.error(`Block #${index + 1}: Invalid JSON - ${e.message}`);
     hasErrors = true;

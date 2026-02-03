@@ -1,4 +1,3 @@
-
 import { JSDOM } from 'jsdom';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,7 +7,7 @@ const DIST_DIR = './dist';
 // Helper to find all HTML files recursively
 function getHtmlFiles(dir, fileList = []) {
   const files = fs.readdirSync(dir);
-  files.forEach(file => {
+  files.forEach((file) => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat.isDirectory()) {
@@ -28,10 +27,10 @@ let totalWarnings = 0;
 
 console.log(`\n🔍 Starting Audit on ${htmlFiles.length} files...\n`);
 
-htmlFiles.forEach(file => {
+htmlFiles.forEach((file) => {
   const relativePath = path.relative(DIST_DIR, file);
   console.log(`📄 Checking: ${relativePath}`);
-  
+
   const html = fs.readFileSync(file, 'utf8');
   const dom = new JSDOM(html);
   const doc = dom.window.document;
@@ -44,8 +43,10 @@ htmlFiles.forEach(file => {
     console.error(`  ❌ Error: Missing <title> tag`);
     fileErrors++;
   } else {
-    if (title.textContent.length < 10) console.warn(`  ⚠️  Warning: Title too short ("${title.textContent}")`);
-    if (title.textContent.length > 80) console.warn(`  ⚠️  Warning: Title too long (${title.textContent.length} chars)`);
+    if (title.textContent.length < 10)
+      console.warn(`  ⚠️  Warning: Title too short ("${title.textContent}")`);
+    if (title.textContent.length > 80)
+      console.warn(`  ⚠️  Warning: Title too long (${title.textContent.length} chars)`);
   }
 
   // Meta Description
@@ -54,8 +55,10 @@ htmlFiles.forEach(file => {
     console.error(`  ❌ Error: Missing meta description`);
     fileErrors++;
   } else {
-    if (metaDesc.content.length < 50) console.warn(`  ⚠️  Warning: Description too short (${metaDesc.content.length} chars)`);
-    if (metaDesc.content.length > 200) console.warn(`  ⚠️  Warning: Description too long (${metaDesc.content.length} chars)`);
+    if (metaDesc.content.length < 50)
+      console.warn(`  ⚠️  Warning: Description too short (${metaDesc.content.length} chars)`);
+    if (metaDesc.content.length > 200)
+      console.warn(`  ⚠️  Warning: Description too long (${metaDesc.content.length} chars)`);
   }
 
   // H1
@@ -81,7 +84,7 @@ htmlFiles.forEach(file => {
     if (!img.hasAttribute('alt') || img.getAttribute('alt').trim() === '') {
       // Ignore decorative images if marked explicitly (aria-hidden)
       if (img.getAttribute('aria-hidden') !== 'true') {
-        console.error(`  ❌ Error: Image #${i+1} missing alt text (src: ${img.src})`);
+        console.error(`  ❌ Error: Image #${i + 1} missing alt text (src: ${img.src})`);
         fileErrors++;
       }
     }
@@ -98,40 +101,44 @@ htmlFiles.forEach(file => {
       const json = JSON.parse(script.textContent);
       // Basic TYPE checking
       if (!json['@context'] || !json['@type']) {
-         console.error(`  ❌ Error: Schema Block #${i+1} missing @context or @type`);
-         fileErrors++;
+        console.error(`  ❌ Error: Schema Block #${i + 1} missing @context or @type`);
+        fileErrors++;
       }
     } catch (e) {
-      console.error(`  ❌ Error: Schema Block #${i+1} Invalid JSON`);
+      console.error(`  ❌ Error: Schema Block #${i + 1} Invalid JSON`);
       fileErrors++;
     }
   });
 
   // 4. Link Checking (Internal)
   const links = doc.querySelectorAll('a');
-  links.forEach(link => {
+  links.forEach((link) => {
     const href = link.getAttribute('href');
     if (href) {
       if (href.startsWith('/') && !href.startsWith('//')) {
-         // Internal link
-         const targetPath = path.join(DIST_DIR, href === '/' ? 'index.html' : href.replace(/\/$/, '/index.html'));
-         const targetFile = href.endsWith('.html') ? path.join(DIST_DIR, href) : targetPath;
-         
-         // Logic to try looking for directory/index.html vs file.html
-         // Simplest check: does the generated static file exist?
-         // This is a naive check; might fail on edge cases, but good for smoke testing.
-         
-         let exist = false;
-         if (fs.existsSync(targetPath)) exist = true; // folder/index.html
-         if (fs.existsSync(path.join(DIST_DIR, href + '.html'))) exist = true; // file.html
-         
-         // Special case root
-         if (href === '/') exist = true;
+        // Internal link
+        const targetPath = path.join(
+          DIST_DIR,
+          href === '/' ? 'index.html' : href.replace(/\/$/, '/index.html')
+        );
+        const targetFile = href.endsWith('.html') ? path.join(DIST_DIR, href) : targetPath;
 
-         if (!exist && href.startsWith('/#') === false) { // Ignore anchor only links if logic fails
-             // console.warn(`  ⚠️  Potential broken internal link: ${href}`);
-             // Commented out to reduce noise until refined
-         }
+        // Logic to try looking for directory/index.html vs file.html
+        // Simplest check: does the generated static file exist?
+        // This is a naive check; might fail on edge cases, but good for smoke testing.
+
+        let exist = false;
+        if (fs.existsSync(targetPath)) exist = true; // folder/index.html
+        if (fs.existsSync(path.join(DIST_DIR, href + '.html'))) exist = true; // file.html
+
+        // Special case root
+        if (href === '/') exist = true;
+
+        if (!exist && href.startsWith('/#') === false) {
+          // Ignore anchor only links if logic fails
+          // console.warn(`  ⚠️  Potential broken internal link: ${href}`);
+          // Commented out to reduce noise until refined
+        }
       }
     }
   });

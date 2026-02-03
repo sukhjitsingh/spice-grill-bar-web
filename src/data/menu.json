@@ -108,7 +108,7 @@
       {
         "name": "Dal Tadka",
         "description": "Delicious yellow lentil.",
-        "price": 13.99,        
+        "price": 13.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -309,7 +309,7 @@
       {
         "name": "Lamb Korma",
         "description": "Lamb in a cream-based curry sauce.",
-        "price": 16.99, 
+        "price": 16.99,
         "imageUrl": "",
         "popularity": 0
       },
@@ -422,7 +422,7 @@
     "items": [
       {
         "name": "Tava Roti",
-        "description": "",    
+        "description": "",
         "price": 1.25,
         "imageUrl": "",
         "popularity": 0
@@ -512,35 +512,35 @@
       {
         "name": "Plain Yogurt",
         "description": "",
-        "price": 2.00,
+        "price": 2.0,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Raita (Yogurt)",
-        "description": "",        
-        "price": 3.00,
+        "description": "",
+        "price": 3.0,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Mint Chutney (Green Sauce)",
         "description": "",
-        "price": 1.00,
+        "price": 1.0,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Tamarind Chutney (Red Sauce)",
         "description": "",
-        "price": 1.00,
+        "price": 1.0,
         "imageUrl": "",
         "popularity": 0
       },
       {
         "name": "Mixed Pickle",
         "description": "",
-        "price": 1.00,
+        "price": 1.0,
         "imageUrl": "",
         "popularity": 0
       }
@@ -558,7 +558,7 @@
       },
       {
         "name": "Kheer (Rice Pudding)",
-        "description": "Basmati rice slowly cooked with milk and nuts.",        
+        "description": "Basmati rice slowly cooked with milk and nuts.",
         "price": 4.99,
         "imageUrl": "",
         "popularity": 0
@@ -587,4 +587,3 @@
     ]
   }
 ]
-

@@ -1,11 +1,14 @@
 ---
-import { Image } from "astro:assets";
-import { ArrowRight } from "lucide-react";
-import AstroButton from "./ui/AstroButton.astro";
-import heroBg from "../assets/HomePageBackground.webp";
+import { Image } from 'astro:assets';
+import { ArrowRight } from 'lucide-react';
+
+import heroBg from '../assets/HomePageBackground.webp';
+import AstroButton from './ui/AstroButton.astro';
 ---
 
-<header class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-zinc-50 dark:bg-black">
+<header
+  class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-zinc-50 dark:bg-black"
+>
   {/* Background Image with dynamic overlay */}
   <div class="absolute inset-0 z-0">
     <Image
@@ -19,32 +22,44 @@ import heroBg from "../assets/HomePageBackground.webp";
       fetchpriority="high"
     />
     {/* Gradient Overlay */}
-    <div class="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent dark:from-black dark:via-black/40 dark:to-transparent" />
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-orange/5 to-transparent pointer-events-none" />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent dark:from-black dark:via-black/40 dark:to-transparent"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-brand-orange/5 to-transparent pointer-events-none"
+    >
+    </div>
   </div>
 
   <div class="relative z-10 max-w-4xl px-6">
-    <span class="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-700 dark:text-orange-300 mb-6 backdrop-blur-md">
+    <span
+      class="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-700 dark:text-orange-300 mb-6 backdrop-blur-md"
+    >
       EST. 2024
     </span>
-    <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-zinc-900 dark:text-white leading-tight mb-6">
-      The Soul of{" "}
+    <h1
+      class="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-zinc-900 dark:text-white leading-tight mb-6"
+    >
+      The Soul of{' '}
       <span class="text-brand-orange">Punjab</span>
     </h1>
-    <p class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-normal max-w-2xl mx-auto leading-relaxed mb-10">
-      Where the rich traditions of Punjabi cooking meet the history of Route 66 right here in Ash Fork, AZ.
+    <p
+      class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-normal max-w-2xl mx-auto leading-relaxed mb-10"
+    >
+      Where the rich traditions of Punjabi cooking meet the history of Route 66 right here in Ash
+      Fork, AZ.
       <br />
       Authentic spices, clay oven cooking, and modern elegance.
     </p>
     <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-      <AstroButton href="#order">
-        Order Online
-      </AstroButton>
-      <AstroButton href="#menu" variant="outline" class="group">
-        View Menu{" "}
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-      </AstroButton>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+        <AstroButton href="#order"> Order Online </AstroButton>
+        <AstroButton href="#menu" variant="outline" class="group">
+          View Menu{' '}
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+        </AstroButton>
+      </div>
     </div>
   </div>
 </header>

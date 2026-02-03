@@ -1,42 +1,41 @@
-import { ModeToggle } from "@/components/mode-toggle"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
-import { Menu, Phone, ShoppingBag } from "lucide-react"
-import * as React from "react"
+import { Menu, Phone, ShoppingBag } from 'lucide-react';
+import * as React from 'react';
+
+import { ModeToggle } from '@/components/mode-toggle';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 
 const navigation = [
-  { name: "Menu", href: "#menu" },
-  { name: "Philosophy", href: "#philosophy" },
-  { name: "FAQ", href: "/faq/" },
-]
+  { name: 'Menu', href: '#menu' },
+  { name: 'Philosophy', href: '#philosophy' },
+  { name: 'FAQ', href: '/faq/' },
+];
 
-export function Header({ currentPath = "/" }: { currentPath?: string }) {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [isScrolled, setIsScrolled] = React.useState(false)
+export function Header({ currentPath = '/' }: { currentPath?: string }) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const getHref = (href: string) => {
-    if (href.startsWith("#") && currentPath !== "/") {
-      return `/${href}`
+    if (href.startsWith('#') && currentPath !== '/') {
+      return `/${href}`;
     }
-    return href
-  }
+    return href;
+  };
 
   return (
     <header
       className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-500 border-b border-transparent",
-        isScrolled
-          ? "glass"
-          : "bg-gradient-to-b from-white/50 to-transparent dark:from-black/50"
+        'fixed top-0 w-full z-50 transition-all duration-500 border-b border-transparent',
+        isScrolled ? 'glass' : 'bg-gradient-to-b from-white/50 to-transparent dark:from-black/50'
       )}
     >
       <nav className="container mx-auto px-6 h-14 flex items-center justify-between">
@@ -77,7 +76,11 @@ export function Header({ currentPath = "/" }: { currentPath?: string }) {
               className="bg-brand-orange hover:bg-orange-700 text-white font-serif tracking-wide shadow-md shadow-orange-500/20"
               size="sm"
             >
-              <a href="https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <ShoppingBag className="w-4 h-4 mr-2" />
                 ORDER ONLINE
               </a>
@@ -96,7 +99,10 @@ export function Header({ currentPath = "/" }: { currentPath?: string }) {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:w-80 bg-white dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-800">
+            <SheetContent
+              side="right"
+              className="w-full sm:w-80 bg-white dark:bg-zinc-950 border-l border-zinc-200 dark:border-zinc-800"
+            >
               <div className="flex flex-col space-y-6 mt-8">
                 {navigation.map((link) => (
                   <a
@@ -114,5 +120,5 @@ export function Header({ currentPath = "/" }: { currentPath?: string }) {
         </div>
       </nav>
     </header>
-  )
+  );
 }

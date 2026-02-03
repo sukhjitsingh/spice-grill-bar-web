@@ -1,49 +1,57 @@
 ---
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Spice Grill & Bar",
-  "url": "https://www.spicegrillbar66.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "33 Lewis Ave",
-    "addressLocality": "Ash Fork",
-    "addressRegion": "AZ",
-    "postalCode": "86320",
-    "addressCountry": "US"
+import type { Restaurant, WithContext } from 'schema-dts';
+
+const schema: WithContext<Restaurant> = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: 'Spice Grill & Bar',
+  url: 'https://www.spicegrillbar66.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '33 Lewis Ave',
+    addressLocality: 'Ash Fork',
+    addressRegion: 'AZ',
+    postalCode: '86320',
+    addressCountry: 'US',
   },
-  "telephone": "(928) 277-1292",
-  "openingHoursSpecification": [
+  telephone: '(928) 277-1292',
+  openingHoursSpecification: [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "http://schema.org/Monday",
-        "http://schema.org/Tuesday",
-        "http://schema.org/Wednesday",
-        "http://schema.org/Thursday",
-        "http://schema.org/Friday",
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'https://schema.org/Monday',
+        'https://schema.org/Tuesday',
+        'https://schema.org/Wednesday',
+        'https://schema.org/Thursday',
+        'https://schema.org/Friday',
       ],
-      "opens": "07:00",
-      "closes": "22:00"
+      opens: '07:00',
+      closes: '22:00',
     },
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "http://schema.org/Saturday",
-        "http://schema.org/Sunday"
-      ],
-      "opens": "07:00",
-      "closes": "22:00"
-    }
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['https://schema.org/Saturday', 'https://schema.org/Sunday'],
+      opens: '07:00',
+      closes: '22:00',
+    },
   ],
-  "servesCuisine": ["Indian", "Punjabi", "Vegetarian Friendly", "Vegan Friendly", "Beer", "Wine", "Soft Drinks", "Alcoholic Beverages"],
-  "priceRange": "$$",
-  "image": "/HomePageBackground.webp",
-  "hasMenu": "https://spicegrillbar66.com/#menu",
-  "description": "Authentic Indian Restaurant in Ash Fork, AZ. Located on Historic Route 66, the perfect pitstop for Grand Canyon travelers.",
-  "areaServed": "Ash Fork",
-
+  servesCuisine: [
+    'Indian',
+    'Punjabi',
+    'Vegetarian Friendly',
+    'Vegan Friendly',
+    'Beer',
+    'Wine',
+    'Soft Drinks',
+    'Alcoholic Beverages',
+  ],
+  priceRange: '$$',
+  image: 'https://spicegrillbar66.com/HomePageBackground.webp',
+  hasMenu: 'https://spicegrillbar66.com/#menu',
+  description:
+    'Authentic Indian Restaurant in Ash Fork, AZ. Located on Historic Route 66, the perfect pitstop for Grand Canyon travelers.',
+  areaServed: 'Ash Fork',
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

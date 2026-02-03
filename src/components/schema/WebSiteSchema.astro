@@ -1,10 +1,12 @@
 ---
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "url": "https://spicegrillbar66.com",
-  "name": "Spice Grill & Bar",
+import type { WebSite, WithContext } from 'schema-dts';
 
+const schema: WithContext<WebSite> = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  url: 'https://spicegrillbar66.com',
+  name: 'Spice Grill & Bar',
 };
 ---
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

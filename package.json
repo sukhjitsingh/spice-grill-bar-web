@@ -7,10 +7,19 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test:aeo": "node scripts/aeo-audit.mjs",
+    "test:axe": "axe http://localhost:4321",
     "test:audit": "node scripts/audit.mjs",
     "test:report": "node scripts/generate-seo-report.mjs",
     "test:security": "node scripts/security-scan.mjs",
-    "lint": "astro check && tsc --noEmit"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
+    "prepare": "simple-git-hooks",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "typecheck": "astro check && tsc --noEmit",
+    "knip": "knip",
+    "test:quality": "npm run lint && npm run knip && npm run typecheck && npm run test:aeo",
+    "qa": "npm run build && npm run test:quality"
   },
   "dependencies": {
     "@astrojs/partytown": "^2.1.4",
@@ -37,10 +46,46 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/tailwind": "^6.0.2",
+    "@axe-core/cli": "^4.11.0",
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "astro-eslint-parser": "^1.2.2",
     "autoprefixer": "^10.4.24",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "jsdom": "^27.4.0",
+    "knip": "^5.83.0",
+    "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "schema-dts": "^1.1.5",
+    "simple-git-hooks": "^2.13.1",
     "tailwindcss": "^3.4.19",
-    "typescript": "^5.9.3"
+    "typescript": "^5.5.4"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx --no -- commitlint --edit ${1}",
+    "pre-push": "npm run qa"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,astro}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write"
+    ]
   }
 }

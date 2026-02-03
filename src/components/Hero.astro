@@ -16,8 +16,9 @@ import AstroButton from './ui/AstroButton.astro';
       alt="Authentic Punjabi cuisine restaurant interior"
       class="object-cover opacity-40 dark:opacity-40 scale-105 w-full h-full"
       itemprop="image"
-      priority={true}
-      quality={85}
+      widths={[640, 768, 1024, 1280, 1536]}
+      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
+      quality={80}
       loading="eager"
       fetchpriority="high"
     />

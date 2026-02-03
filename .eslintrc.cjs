@@ -43,23 +43,23 @@ module.exports = {
         project: './tsconfig.json',
       },
       rules: {
-         'indent': 'off',
-         '@typescript-eslint/indent': 'off',
-         'import/extensions': 'off',
-         '@typescript-eslint/comma-dangle': 'off',
-         'import/prefer-default-export': 'off',
+        indent: 'off',
+        '@typescript-eslint/indent': 'off',
+        'import/extensions': 'off',
+        '@typescript-eslint/comma-dangle': 'off',
+        'import/prefer-default-export': 'off',
         '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
         '@typescript-eslint/explicit-function-return-type': 'off', // Let inference work
       },
     },
   ],
-    'rules': {
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
-      'import/extensions': 'off', // Bundlers handle this
-      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
-      'class-methods-use-this': 'off',
-      'indent': 'off',
-      '@typescript-eslint/indent': 'off',
-    },
+  rules: {
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    'import/extensions': 'off', // Bundlers handle this
+    'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+    'class-methods-use-this': 'off',
+    indent: 'off',
+    '@typescript-eslint/indent': 'off',
+  },
 };

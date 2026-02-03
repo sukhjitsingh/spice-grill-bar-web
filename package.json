@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
     "preview": "astro preview",
     "astro": "astro",
     "test:aeo": "node scripts/aeo-audit.mjs",
@@ -20,6 +20,7 @@
     "typecheck": "astro check && tsc --noEmit",
     "knip": "knip",
     "test:quality": "npm run lint && npm run knip && npm run typecheck && npm run test:aeo",
+    "postbuild": "cp dist/sitemap-index.xml dist/sitemap.xml",
     "qa": "npm run build && npm run test:quality && npm run test:lhci"
   },
   "dependencies": {

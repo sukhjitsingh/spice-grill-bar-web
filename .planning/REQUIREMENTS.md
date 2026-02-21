@@ -49,7 +49,7 @@
 
 ### GEO Content Pages
 
-- [ ] **CONT-04**: Create `/near-grand-canyon/` page with: answer-first H1 stating distance and drive time, per-city distance facts as standalone extractable `<p>` sentences, dish recommendations for road-trippers, internal links to `/directions/` and homepage, page-specific `<title>` and meta description, and OpenGraph tags
+- [x] **CONT-04**: Create `/near-grand-canyon/` page with: answer-first H1 stating distance and drive time, per-city distance facts as standalone extractable `<p>` sentences, dish recommendations for road-trippers, internal links to `/directions/` and homepage, page-specific `<title>` and meta description, and OpenGraph tags
 - [ ] **CONT-05**: Create `/directions/` page with: per-city H2 sections (Las Vegas, Los Angeles, Flagstaff, Kingman, Phoenix, Williams, Seligman) each with turn-by-turn summary and "I-40 Exit 146" emphasized, `<address>` block with NAP data, Google Maps embed (`GoogleMap.tsx` with `client:visible`), and internal link to `/near-grand-canyon/`
 
 ---
@@ -105,7 +105,7 @@
 | CONT-01     | 4     | Complete |
 | CONT-02     | 4     | Complete |
 | CONT-03     | 4     | Complete |
-| CONT-04     | 5     | Pending  |
+| CONT-04     | 5     | Complete |
 | CONT-05     | 5     | Pending  |
 
 **Coverage:**

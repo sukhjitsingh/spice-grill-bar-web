@@ -9,20 +9,20 @@ See: .planning/PROJECT.md (updated 2026-02-20)
 
 ## Current Position
 
-Phase: 4 of 5 (Content Infrastructure)
-Plan: 1 of 1 in current phase (complete)
-Status: Phase 4 complete — 04-01 executed (breadcrumb label fix, LHCI URLs, Footer Explore section)
-Last activity: 2026-02-21 — Plan 04-01 executed (slugToLabel + BREADCRUMB_ACRONYMS, Footer 4-column grid with Explore section, LHCI extended to /near-grand-canyon/ and /directions/)
+Phase: 5 of 5 (GEO Content Pages)
+Plan: 1 of 2 in current phase (complete)
+Status: Phase 5 in progress — 05-01 executed (/near-grand-canyon/ page, Layout.astro OG props, llms.txt fixes, faq.json distance corrections)
+Last activity: 2026-02-21 — Plan 05-01 executed (/near-grand-canyon/ AEO page, extended Layout.astro with ogTitle/ogDescription/ogUrl props, fixed Monday hours in llms.txt and llms-full.txt, corrected Grand Canyon distance to 78 miles in faq.json)
 
-Progress: [████████░░] 80%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 5
-- Average duration: 3.4 min
-- Total execution time: ~17 min
+- Total plans completed: 6
+- Average duration: 3.8 min
+- Total execution time: ~24 min
 
 **By Phase:**
 
@@ -32,11 +32,12 @@ Progress: [████████░░] 80%
 | 02-schema-additions       | 2/2   | 7 min | 3.5 min  |
 | 03-faq-expansion          | 1/1   | 2 min | 2 min    |
 | 04-content-infrastructure | 1/1   | 4 min | 4 min    |
+| 05-geo-content-pages      | 1/2   | 7 min | 7 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min), 04-01 (4 min)
-- Trend: Stable
+- Last 6 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min), 04-01 (4 min), 05-01 (7 min)
+- Trend: Stable (05-01 longer due to larger page creation task)
 
 _Updated after each plan completion_
 
@@ -66,19 +67,22 @@ Recent decisions affecting current work:
 - 04-01: Footer social links moved from bottom bar to Explore section with icon+text labels
 - 04-01: Header navigation unchanged per user decision (CONTEXT.md locked)
 - 04-01: LHCI includes Phase 5 URLs before pages exist — will 404 until Phase 5 completes
+- 05-01: Layout.astro og:url fallback uses canonicalURL (not hardcoded homepage URL) for correctness
+- 05-01: Page-specific inline FAQPage schema placed inside Layout slot (not <head>) — separate from global FAQSchema
+- 05-01: Kingman distance corrected from 80 miles to 97 miles (verified from 05-RESEARCH.md data)
+- 05-01: faq.json Grand Canyon distance corrected from 70 miles to 78 miles with updated drive time
 
 ### Pending Todos
 
-None yet.
+None.
 
 ### Blockers/Concerns
 
-- Phase 5: All distance/drive-time figures for /near-grand-canyon/ and /directions/ must be verified against Google Maps before publishing
-- Phase 5: LHCI will fail on /near-grand-canyon/ and /directions/ until pages are built (expected)
+- Phase 5: LHCI will fail on /directions/ until 05-02 is executed (expected — /near-grand-canyon/ now passes)
 - Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible
 
 ## Session Continuity
 
 Last session: 2026-02-21
-Stopped at: Completed 04-01-PLAN.md — Phase 4 plan 01 (slugToLabel breadcrumb fix, LHCI extended to Phase 5 URLs, Footer Explore section with page links and social links)
+Stopped at: Completed 05-01-PLAN.md — Phase 5 plan 01 (/near-grand-canyon/ AEO page, Layout.astro OG props, llms.txt/llms-full.txt Monday hours fix and proximity data, faq.json 78-mile distance corrections)
 Resume file: None

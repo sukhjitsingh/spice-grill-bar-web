@@ -43,9 +43,9 @@
 
 ### Content Infrastructure
 
-- [ ] **CONT-01**: Fix `BreadcrumbSchema` breadcrumb label generation in `Layout.astro` to produce human-readable labels for hyphenated slugs (e.g., `/near-grand-canyon/` → "Near Grand Canyon", not "Near-grand-canyon")
-- [ ] **CONT-02**: Add `/near-grand-canyon/` and `/directions/` URLs to `.lighthouserc.json` so Lighthouse CI audits new pages on every push
-- [ ] **CONT-03**: Update `Header.tsx` navigation array and `Footer.astro` links to include `/near-grand-canyon/` and `/directions/`
+- [x] **CONT-01**: Fix `BreadcrumbSchema` breadcrumb label generation in `Layout.astro` to produce human-readable labels for hyphenated slugs (e.g., `/near-grand-canyon/` → "Near Grand Canyon", not "Near-grand-canyon")
+- [x] **CONT-02**: Add `/near-grand-canyon/` and `/directions/` URLs to `.lighthouserc.json` so Lighthouse CI audits new pages on every push
+- [x] **CONT-03**: Update `Header.tsx` navigation array and `Footer.astro` links to include `/near-grand-canyon/` and `/directions/`
 
 ### GEO Content Pages
 
@@ -102,9 +102,9 @@
 | SCHM-10     | 2     | Complete |
 | FAQ-01      | 3     | Complete |
 | FAQ-02      | 3     | Complete |
-| CONT-01     | 4     | Pending  |
-| CONT-02     | 4     | Pending  |
-| CONT-03     | 4     | Pending  |
+| CONT-01     | 4     | Complete |
+| CONT-02     | 4     | Complete |
+| CONT-03     | 4     | Complete |
 | CONT-04     | 5     | Pending  |
 | CONT-05     | 5     | Pending  |
 

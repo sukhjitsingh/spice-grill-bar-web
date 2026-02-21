@@ -5,36 +5,37 @@
 See: .planning/PROJECT.md (updated 2026-02-20)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Phase 3 — FAQ Expansion
+**Current focus:** Phase 5 — GEO Content Pages
 
 ## Current Position
 
-Phase: 3 of 5 (FAQ Expansion)
+Phase: 4 of 5 (Content Infrastructure)
 Plan: 1 of 1 in current phase (complete)
-Status: Phase 3 complete — 03-01 executed (faq.json expanded to 20 highway-targeted AEO entries)
-Last activity: 2026-02-21 — Plan 03-01 executed (faq.json 9→20 entries, all AEO-compliant, highway/route-targeted)
+Status: Phase 4 complete — 04-01 executed (breadcrumb label fix, LHCI URLs, Footer Explore section)
+Last activity: 2026-02-21 — Plan 04-01 executed (slugToLabel + BREADCRUMB_ACRONYMS, Footer 4-column grid with Explore section, LHCI extended to /near-grand-canyon/ and /directions/)
 
-Progress: [████░░░░░░] 40%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 4
-- Average duration: 3.5 min
-- Total execution time: ~14 min
+- Total plans completed: 5
+- Average duration: 3.4 min
+- Total execution time: ~17 min
 
 **By Phase:**
 
-| Phase               | Plans | Total | Avg/Plan |
-| ------------------- | ----- | ----- | -------- |
-| 01-schema-fixes     | 1/1   | 4 min | 4 min    |
-| 02-schema-additions | 2/3   | 7 min | 3.5 min  |
-| 03-faq-expansion    | 1/1   | 2 min | 2 min    |
+| Phase                     | Plans | Total | Avg/Plan |
+| ------------------------- | ----- | ----- | -------- |
+| 01-schema-fixes           | 1/1   | 4 min | 4 min    |
+| 02-schema-additions       | 2/2   | 7 min | 3.5 min  |
+| 03-faq-expansion          | 1/1   | 2 min | 2 min    |
+| 04-content-infrastructure | 1/1   | 4 min | 4 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min)
+- Last 5 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min), 04-01 (4 min)
 - Trend: Stable
 
 _Updated after each plan completion_
@@ -61,6 +62,10 @@ Recent decisions affecting current work:
 - 03-01: RV/truck parking merged into single comprehensive parking entry; freed slot for alcohol entry
 - 03-01: FAQSchema injected globally via Layout.astro — all pages emit 20 FAQ schema entries (future scope: restrict to faq.astro only)
 - 03-01: Call-ahead pickup for Williams/Seligman explicitly states no delivery, food ready at Ash Fork restaurant
+- 04-01: slugToLabel() uses BREADCRUMB_ACRONYMS map keyed on lowercase word for slug-to-label overrides
+- 04-01: Footer social links moved from bottom bar to Explore section with icon+text labels
+- 04-01: Header navigation unchanged per user decision (CONTEXT.md locked)
+- 04-01: LHCI includes Phase 5 URLs before pages exist — will 404 until Phase 5 completes
 
 ### Pending Todos
 
@@ -69,10 +74,11 @@ None yet.
 ### Blockers/Concerns
 
 - Phase 5: All distance/drive-time figures for /near-grand-canyon/ and /directions/ must be verified against Google Maps before publishing
+- Phase 5: LHCI will fail on /near-grand-canyon/ and /directions/ until pages are built (expected)
 - Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible
 
 ## Session Continuity
 
 Last session: 2026-02-21
-Stopped at: Completed 03-01-PLAN.md — Phase 3 plan 01 (faq.json expanded to 20 highway/route-targeted AEO entries, all ≤50 words, AEO audit passing)
+Stopped at: Completed 04-01-PLAN.md — Phase 4 plan 01 (slugToLabel breadcrumb fix, LHCI extended to Phase 5 URLs, Footer Explore section with page links and social links)
 Resume file: None

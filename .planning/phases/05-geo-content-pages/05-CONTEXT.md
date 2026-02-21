@@ -57,10 +57,11 @@ Additionally: fix llms.txt errors and add new page URLs to it, since llms.txt is
 - **Page-specific inline FAQ schema** — 2-3 FAQ pairs per page targeting the exact queries each page answers (separate from global FAQSchema)
 - **`speakable` schema markup** on both pages — tells voice assistants which sections to read aloud (H1, lead paragraph, city distances)
 
-### llms.txt fixes (CRITICAL)
-- Fix Monday hours: currently says "Mon - Thurs: 8:00 AM - 9:00 PM" but Monday is CLOSED. Must read "Mon: Closed" and "Tue - Thu: 8:00 AM - 9:00 PM"
-- Add new page URLs to llms.txt Pages/Links section: /near-grand-canyon/, /directions/, /faq/
-- Add proximity keywords to llms.txt so AI crawlers understand geographic relevance
+### llms.txt AND llms-full.txt fixes (CRITICAL)
+- Fix Monday hours in BOTH files: currently says "Mon - Thurs" / "Monday - Thursday" but Monday is CLOSED. Must show Monday as closed in both files.
+- Add new page URLs to both files: /near-grand-canyon/, /directions/, /faq/
+- Add proximity keywords / Location & Proximity section to both files so AI crawlers understand geographic relevance
+- Fix FAQ hours answer in llms.txt to reflect Monday closure
 
 ### Already handled (verified — no action needed)
 - Canonical URLs: Layout.astro dynamically generates canonical from `Astro.url.pathname` — new pages get correct canonicals automatically

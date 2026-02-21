@@ -108,8 +108,8 @@ Plans:
 
 Plans:
 
-- [ ] 05-01-PLAN.md — Extend Layout.astro OG props and create /near-grand-canyon/ page with AEO passage structure
-- [ ] 05-02-PLAN.md — Create /directions/ page with per-city H2 sections and Google Maps embed
+- [ ] 05-01-PLAN.md — Extend Layout.astro OG props, create /near-grand-canyon/ with AEO passage structure + inline FAQ/speakable schema, fix llms.txt + faq.json distance consistency
+- [ ] 05-02-PLAN.md — Create /directions/ with 7 per-city H2 sections + Google Maps embed + inline FAQ/speakable schema, verify cross-links and run full QA
 
 ## Progress
 

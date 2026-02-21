@@ -70,11 +70,11 @@ Plans:
 2. Every FAQ answer is written answer-first with a fact in the first sentence and is 60 words or fewer
 3. FAQSchema.astro emits structured data for all 20 entries (no hardcoded count, no index limit)
 4. npm run test:aeo passes against the FAQ page after build with no regressions
-   **Plans**: TBD
+   **Plans**: 1 plan
 
 Plans:
 
-- [ ] 03-01: Write 11 new faq.json entries and verify FAQSchema renders all entries dynamically
+- [ ] 03-01-PLAN.md — Author 20 AEO-compliant faq.json entries (11 new + 9 rewritten/reordered) and verify FAQSchema dynamic rendering
 
 ### Phase 4: Content Infrastructure
 

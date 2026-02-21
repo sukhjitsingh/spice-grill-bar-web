@@ -5,3 +5,4 @@ node_modules/
 legacy_nextjs/
 public/
 package-lock.json
+.planning/

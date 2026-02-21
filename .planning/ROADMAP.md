@@ -14,8 +14,8 @@ The Astro 5 migration is complete. This project makes the site the authoritative
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Schema Fixes** - Correct broken hours, phone, and URL data in RestaurantSchema before any other work ships
-- [ ] **Phase 2: Schema Additions** - Add the five missing local SEO signals (geo, areaServed, aggregateRating, OrderAction, sameAs) and expand WebSiteSchema
-- [ ] **Phase 3: FAQ Expansion** - Grow faq.json from 9 to 20 route/highway-targeted entries and verify FAQSchema renders them all
+- [x] **Phase 2: Schema Additions** - Add the five missing local SEO signals (geo, areaServed, aggregateRating, OrderAction, sameAs) and expand WebSiteSchema
+- [x] **Phase 3: FAQ Expansion** - Grow faq.json from 9 to 20 route/highway-targeted entries and verify FAQSchema renders them all (completed 2026-02-21)
 - [ ] **Phase 4: Content Infrastructure** - Fix breadcrumb labels, add new pages to Lighthouse CI, and update nav/footer links before any content page goes live
 - [ ] **Phase 5: GEO Content Pages** - Create /near-grand-canyon/ and /directions/ with answer-first AI-extractable passage structure
 
@@ -52,12 +52,12 @@ Plans:
 4. RestaurantSchema includes hasMap, potentialAction (OrderAction with Toast URL), and containedInPlace
 5. OrganizationSchema sameAs array contains Google Maps, Yelp, and TripAdvisor profile URLs
 6. WebSiteSchema carries a GEO-optimized description and publisher property
-   **Plans**: TBD
+   **Plans**: 2 plans
 
 Plans:
 
-- [ ] 02-01: Add geo, areaServed, aggregateRating, hasMap, potentialAction, containedInPlace to RestaurantSchema
-- [ ] 02-02: Add sameAs to OrganizationSchema and update WebSiteSchema description and publisher
+- [x] 02-01-PLAN.md — Add geo, areaServed, aggregateRating, hasMap, potentialAction, containedInPlace to RestaurantSchema
+- [x] 02-02-PLAN.md — Add sameAs to OrganizationSchema and enrich WebSiteSchema with description, publisher, inLanguage
 
 ### Phase 3: FAQ Expansion
 
@@ -70,11 +70,11 @@ Plans:
 2. Every FAQ answer is written answer-first with a fact in the first sentence and is 60 words or fewer
 3. FAQSchema.astro emits structured data for all 20 entries (no hardcoded count, no index limit)
 4. npm run test:aeo passes against the FAQ page after build with no regressions
-   **Plans**: TBD
+   **Plans**: 1 plan
 
 Plans:
 
-- [ ] 03-01: Write 11 new faq.json entries and verify FAQSchema renders all entries dynamically
+- [ ] 03-01-PLAN.md — Author 20 AEO-compliant faq.json entries (11 new + 9 rewritten/reordered) and verify FAQSchema dynamic rendering
 
 ### Phase 4: Content Infrastructure
 
@@ -85,13 +85,12 @@ Plans:
 
 1. BreadcrumbSchema generates human-readable labels for hyphenated slugs (e.g., /near-grand-canyon/ shows "Near Grand Canyon" in search results, not "Near-grand-canyon")
 2. .lighthouserc.json includes /near-grand-canyon/ and /directions/ so Lighthouse CI audits both pages on every push
-3. Header navigation includes links to /near-grand-canyon/ and /directions/
-4. Footer links include /near-grand-canyon/ and /directions/
-   **Plans**: TBD
+3. Footer links include /near-grand-canyon/ and /directions/ (via new Explore section; header unchanged per user decision)
+   **Plans**: 1 plan
 
 Plans:
 
-- [ ] 04-01: Fix BreadcrumbSchema label generation, add pages to lighthouserc.json, update Header and Footer links
+- [ ] 04-01-PLAN.md — Fix BreadcrumbSchema label generation, add pages to lighthouserc.json, restructure Footer with Explore section
 
 ### Phase 5: GEO Content Pages
 
@@ -122,7 +121,7 @@ Note: Phase 3 (FAQ Expansion) and Phase 4 (Content Infrastructure) both depend o
 | Phase                     | Plans Complete | Status      | Completed  |
 | ------------------------- | -------------- | ----------- | ---------- |
 | 1. Schema Fixes           | 1/1            | Complete    | 2026-02-21 |
-| 2. Schema Additions       | 0/2            | Not started | -          |
-| 3. FAQ Expansion          | 0/1            | Not started | -          |
+| 2. Schema Additions       | 2/2            | Complete    | 2026-02-21 |
+| 3. FAQ Expansion          | 1/1 | Complete   | 2026-02-21 |
 | 4. Content Infrastructure | 0/1            | Not started | -          |
 | 5. GEO Content Pages      | 0/2            | Not started | -          |

@@ -29,17 +29,17 @@
 
 ### Schema Integrity — Additions
 
-- [ ] **SCHM-05**: Add `geo` (`GeoCoordinates`) to `RestaurantSchema.astro` using coordinates extracted from the Google Maps pin
-- [ ] **SCHM-06**: Expand `areaServed` from single string to array of `Place` objects: Ash Fork, Williams, Seligman, Kaibab Estates, I-40 Corridor, Historic Route 66
-- [ ] **SCHM-07**: Compute `aggregateRating` at Astro build time from `reviews.json` (inspect `reviews.json` field names during task; do not hardcode values)
-- [ ] **SCHM-08**: Add `hasMap` (owner-provided Google Maps URL), `potentialAction` (`OrderAction` with Toast ordering URL), and `containedInPlace` (Historic Route 66, linked to Wikipedia) to `RestaurantSchema.astro`
-- [ ] **SCHM-09**: Add `sameAs` array to `OrganizationSchema.astro` with Google Maps, Yelp, and TripAdvisor URLs (all URLs confirmed above)
-- [ ] **SCHM-10**: Add GEO-optimized `description` and `publisher` property to `WebSiteSchema.astro`
+- [x] **SCHM-05**: Add `geo` (`GeoCoordinates`) to `RestaurantSchema.astro` using coordinates extracted from the Google Maps pin
+- [x] **SCHM-06**: Expand `areaServed` from single string to array of `Place` objects: Ash Fork, Williams, Seligman, Kaibab Estates, I-40 Corridor, Historic Route 66
+- [x] **SCHM-07**: Compute `aggregateRating` at Astro build time from `reviews.json` (inspect `reviews.json` field names during task; do not hardcode values)
+- [x] **SCHM-08**: Add `hasMap` (owner-provided Google Maps URL), `potentialAction` (`OrderAction` with Toast ordering URL), and `containedInPlace` (Historic Route 66, linked to Wikipedia) to `RestaurantSchema.astro`
+- [x] **SCHM-09**: Add `sameAs` array to `OrganizationSchema.astro` with Google Maps, Yelp, and TripAdvisor URLs (all URLs confirmed above)
+- [x] **SCHM-10**: Add GEO-optimized `description` and `publisher` property to `WebSiteSchema.astro`
 
 ### FAQ Expansion
 
-- [ ] **FAQ-01**: Expand `faq.json` from 9 to 20 questions by adding 11 highway/route-specific entries covering: I-40 exit number (Exit 146), distance and drive time from Grand Canyon South Rim (~70 mi / ~1 hr), Las Vegas, Flagstaff, Phoenix, Kingman; whether it's a good I-40 pitstop; pickup availability for Williams/Seligman; what to order for road-trippers
-- [ ] **FAQ-02**: Verify `FAQSchema.astro` renders all `faq.json` entries dynamically (no hardcoded question count or index limit)
+- [x] **FAQ-01**: Expand `faq.json` from 9 to 20 questions by adding 11 highway/route-specific entries covering: I-40 exit number (Exit 146), distance and drive time from Grand Canyon South Rim (~70 mi / ~1 hr), Las Vegas, Flagstaff, Phoenix, Kingman; whether it's a good I-40 pitstop; pickup availability for Williams/Seligman; what to order for road-trippers
+- [x] **FAQ-02**: Verify `FAQSchema.astro` renders all `faq.json` entries dynamically (no hardcoded question count or index limit)
 
 ### Content Infrastructure
 
@@ -94,14 +94,14 @@
 | SCHM-02     | 1     | Complete |
 | SCHM-03     | 1     | Complete |
 | SCHM-04     | 1     | Complete |
-| SCHM-05     | 2     | Pending  |
-| SCHM-06     | 2     | Pending  |
-| SCHM-07     | 2     | Pending  |
-| SCHM-08     | 2     | Pending  |
-| SCHM-09     | 2     | Pending  |
-| SCHM-10     | 2     | Pending  |
-| FAQ-01      | 3     | Pending  |
-| FAQ-02      | 3     | Pending  |
+| SCHM-05     | 2     | Complete |
+| SCHM-06     | 2     | Complete |
+| SCHM-07     | 2     | Complete |
+| SCHM-08     | 2     | Complete |
+| SCHM-09     | 2     | Complete |
+| SCHM-10     | 2     | Complete |
+| FAQ-01      | 3     | Complete |
+| FAQ-02      | 3     | Complete |
 | CONT-01     | 4     | Pending  |
 | CONT-02     | 4     | Pending  |
 | CONT-03     | 4     | Pending  |

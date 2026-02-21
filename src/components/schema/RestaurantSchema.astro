@@ -1,6 +1,20 @@
 ---
 import type { Restaurant, WithContext } from 'schema-dts';
 
+import reviewsData from '../../data/reviews.json';
+
+const ratedReviews = reviewsData.filter((r: { rating?: number }) => typeof r.rating === 'number');
+const ratingValue =
+  ratedReviews.length > 0
+    ? parseFloat(
+        (
+          ratedReviews.reduce((sum: number, r: { rating: number }) => sum + r.rating, 0) /
+          ratedReviews.length
+        ).toFixed(1)
+      )
+    : 0;
+const reviewCount = ratedReviews.length;
+
 const schema: WithContext<Restaurant> = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
@@ -52,7 +66,46 @@ const schema: WithContext<Restaurant> = {
   hasMenu: 'https://spicegrillbar66.com/#menu',
   description:
     'Authentic Indian Restaurant in Ash Fork, AZ. Located on Historic Route 66, the perfect pitstop for Grand Canyon travelers.',
-  areaServed: 'Ash Fork',
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 35.22291449138381,
+    longitude: -112.47815397255074,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Ash Fork', '@id': 'https://en.wikipedia.org/wiki/Ash_Fork,_Arizona' },
+    { '@type': 'City', name: 'Williams', '@id': 'https://en.wikipedia.org/wiki/Williams,_Arizona' },
+    { '@type': 'City', name: 'Kaibab Estates West' },
+    { '@type': 'City', name: 'Crookton' },
+    { '@type': 'City', name: 'Seligman', '@id': 'https://en.wikipedia.org/wiki/Seligman,_Arizona' },
+    { '@type': 'City', name: 'Paulden' },
+    { '@type': 'City', name: 'Prescott', '@id': 'https://en.wikipedia.org/wiki/Prescott,_Arizona' },
+    {
+      '@type': 'City',
+      name: 'Prescott Valley',
+      '@id': 'https://en.wikipedia.org/wiki/Prescott_Valley,_Arizona',
+    },
+    { '@type': 'City', name: 'Sedona', '@id': 'https://en.wikipedia.org/wiki/Sedona,_Arizona' },
+    { '@type': 'Place', name: 'Grand Canyon South Rim' },
+    { '@type': 'Place', name: 'I-40 Corridor, Arizona' },
+    { '@type': 'Place', name: 'Historic Route 66, Arizona' },
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue,
+    reviewCount,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  hasMap: 'https://maps.app.goo.gl/q2EJFMbMRaysU6vH8',
+  potentialAction: {
+    '@type': 'OrderAction',
+    target: 'https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave',
+  },
+  containedInPlace: {
+    '@type': 'Place',
+    name: 'Historic Route 66',
+    url: 'https://en.wikipedia.org/wiki/U.S._Route_66',
+  },
 };
 ---
 

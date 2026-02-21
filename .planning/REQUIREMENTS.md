@@ -88,35 +88,33 @@
 
 ## Traceability
 
-Populated during roadmap creation.
-
 | Requirement | Phase | Status  |
 | ----------- | ----- | ------- |
-| SCHM-01     | —     | Pending |
-| SCHM-02     | —     | Pending |
-| SCHM-03     | —     | Pending |
-| SCHM-04     | —     | Pending |
-| SCHM-05     | —     | Pending |
-| SCHM-06     | —     | Pending |
-| SCHM-07     | —     | Pending |
-| SCHM-08     | —     | Pending |
-| SCHM-09     | —     | Pending |
-| SCHM-10     | —     | Pending |
-| FAQ-01      | —     | Pending |
-| FAQ-02      | —     | Pending |
-| CONT-01     | —     | Pending |
-| CONT-02     | —     | Pending |
-| CONT-03     | —     | Pending |
-| CONT-04     | —     | Pending |
-| CONT-05     | —     | Pending |
+| SCHM-01     | 1     | Pending |
+| SCHM-02     | 1     | Pending |
+| SCHM-03     | 1     | Pending |
+| SCHM-04     | 1     | Pending |
+| SCHM-05     | 2     | Pending |
+| SCHM-06     | 2     | Pending |
+| SCHM-07     | 2     | Pending |
+| SCHM-08     | 2     | Pending |
+| SCHM-09     | 2     | Pending |
+| SCHM-10     | 2     | Pending |
+| FAQ-01      | 3     | Pending |
+| FAQ-02      | 3     | Pending |
+| CONT-01     | 4     | Pending |
+| CONT-02     | 4     | Pending |
+| CONT-03     | 4     | Pending |
+| CONT-04     | 5     | Pending |
+| CONT-05     | 5     | Pending |
 
 **Coverage:**
 
 - v1 requirements: 17 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 17 ⚠️
+- Mapped to phases: 17
+- Unmapped: 0
 
 ---
 
 _Requirements defined: 2026-02-20_
-_Last updated: 2026-02-20 after initial definition_
+_Last updated: 2026-02-20 after roadmap creation — traceability complete_

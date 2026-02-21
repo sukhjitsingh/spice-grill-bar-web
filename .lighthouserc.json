@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
-      "url": ["/"],
+      "url": ["/", "/near-grand-canyon/", "/directions/"],
       "numberOfRuns": 3
     },
     "upload": {

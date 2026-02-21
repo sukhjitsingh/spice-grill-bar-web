@@ -38,8 +38,8 @@
 
 ### FAQ Expansion
 
-- [ ] **FAQ-01**: Expand `faq.json` from 9 to 20 questions by adding 11 highway/route-specific entries covering: I-40 exit number (Exit 146), distance and drive time from Grand Canyon South Rim (~70 mi / ~1 hr), Las Vegas, Flagstaff, Phoenix, Kingman; whether it's a good I-40 pitstop; pickup availability for Williams/Seligman; what to order for road-trippers
-- [ ] **FAQ-02**: Verify `FAQSchema.astro` renders all `faq.json` entries dynamically (no hardcoded question count or index limit)
+- [x] **FAQ-01**: Expand `faq.json` from 9 to 20 questions by adding 11 highway/route-specific entries covering: I-40 exit number (Exit 146), distance and drive time from Grand Canyon South Rim (~70 mi / ~1 hr), Las Vegas, Flagstaff, Phoenix, Kingman; whether it's a good I-40 pitstop; pickup availability for Williams/Seligman; what to order for road-trippers
+- [x] **FAQ-02**: Verify `FAQSchema.astro` renders all `faq.json` entries dynamically (no hardcoded question count or index limit)
 
 ### Content Infrastructure
 
@@ -100,8 +100,8 @@
 | SCHM-08     | 2     | Complete |
 | SCHM-09     | 2     | Complete |
 | SCHM-10     | 2     | Complete |
-| FAQ-01      | 3     | Pending  |
-| FAQ-02      | 3     | Pending  |
+| FAQ-01      | 3     | Complete |
+| FAQ-02      | 3     | Complete |
 | CONT-01     | 4     | Pending  |
 | CONT-02     | 4     | Pending  |
 | CONT-03     | 4     | Pending  |

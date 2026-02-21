@@ -33,11 +33,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 3. The telephone field in structured data renders as +1-928-277-1292 (E.164 format)
 4. The url field in RestaurantSchema resolves to https://spicegrillbar66.com (no www prefix)
 5. The hours answer in faq.json matches the schema hours exactly (Monday closure is explicit)
-   **Plans**: TBD
+   **Plans**: 1 plan
 
 Plans:
 
-- [ ] 01-01: Fix RestaurantSchema (hours, telephone, url) and update faq.json hours answer
+- [ ] 01-01-PLAN.md — Fix RestaurantSchema (url, telephone, openingHoursSpecification), update faq.json hours answer and audit all entries for NAP consistency, fix Footer.astro visible hours display
 
 ### Phase 2: Schema Additions
 

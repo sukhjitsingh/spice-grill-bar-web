@@ -104,12 +104,12 @@ Plans:
 3. Both pages cross-link to each other and to the homepage with keyword-containing anchor text
 4. Lighthouse CI passes for both new page URLs (LCP < 4000ms, Accessibility >= 90, SEO >= 90)
 5. Schema in Rich Results Test shows no errors for either page
-   **Plans**: TBD
+   **Plans**: 2 plans
 
 Plans:
 
-- [ ] 05-01: Create /near-grand-canyon/ page
-- [ ] 05-02: Create /directions/ page
+- [ ] 05-01-PLAN.md — Extend Layout.astro OG props and create /near-grand-canyon/ page with AEO passage structure
+- [ ] 05-02-PLAN.md — Create /directions/ page with per-city H2 sections and Google Maps embed
 
 ## Progress
 

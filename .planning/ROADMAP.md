@@ -85,13 +85,12 @@ Plans:
 
 1. BreadcrumbSchema generates human-readable labels for hyphenated slugs (e.g., /near-grand-canyon/ shows "Near Grand Canyon" in search results, not "Near-grand-canyon")
 2. .lighthouserc.json includes /near-grand-canyon/ and /directions/ so Lighthouse CI audits both pages on every push
-3. Header navigation includes links to /near-grand-canyon/ and /directions/
-4. Footer links include /near-grand-canyon/ and /directions/
-   **Plans**: TBD
+3. Footer links include /near-grand-canyon/ and /directions/ (via new Explore section; header unchanged per user decision)
+   **Plans**: 1 plan
 
 Plans:
 
-- [ ] 04-01: Fix BreadcrumbSchema label generation, add pages to lighthouserc.json, update Header and Footer links
+- [ ] 04-01-PLAN.md — Fix BreadcrumbSchema label generation, add pages to lighthouserc.json, restructure Footer with Explore section
 
 ### Phase 5: GEO Content Pages
 

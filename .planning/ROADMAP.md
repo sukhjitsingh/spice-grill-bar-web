@@ -74,7 +74,7 @@ Plans:
 
 Plans:
 
-- [ ] 03-01-PLAN.md — Author 20 AEO-compliant faq.json entries (11 new + 9 rewritten/reordered) and verify FAQSchema dynamic rendering
+- [x] 03-01-PLAN.md — Author 20 AEO-compliant faq.json entries (11 new + 9 rewritten/reordered) and verify FAQSchema dynamic rendering
 
 ### Phase 4: Content Infrastructure
 
@@ -85,12 +85,12 @@ Plans:
 
 1. BreadcrumbSchema generates human-readable labels for hyphenated slugs (e.g., /near-grand-canyon/ shows "Near Grand Canyon" in search results, not "Near-grand-canyon")
 2. .lighthouserc.json includes /near-grand-canyon/ and /directions/ so Lighthouse CI audits both pages on every push
-3. Footer links include /near-grand-canyon/ and /directions/ (via new Explore section; header unchanged per user decision)
+3. Footer links include /near-grand-canyon/ and /directions/ (via Explore section)
    **Plans**: 1 plan
 
 Plans:
 
-- [ ] 04-01-PLAN.md — Fix BreadcrumbSchema label generation, add pages to lighthouserc.json, restructure Footer with Explore section
+- [x] 04-01-PLAN.md — Fix BreadcrumbSchema label generation, add pages to lighthouserc.json, restructure Footer with Explore section
 
 ### Phase 5: GEO Content Pages
 
@@ -123,5 +123,5 @@ Note: Phase 3 (FAQ Expansion) and Phase 4 (Content Infrastructure) both depend o
 | 1. Schema Fixes           | 1/1            | Complete    | 2026-02-21 |
 | 2. Schema Additions       | 2/2            | Complete    | 2026-02-21 |
 | 3. FAQ Expansion          | 1/1 | Complete   | 2026-02-21 |
-| 4. Content Infrastructure | 0/1            | Not started | -          |
+| 4. Content Infrastructure | 1/1            | Complete    | 2026-02-21 |
 | 5. GEO Content Pages      | 0/2            | Not started | -          |

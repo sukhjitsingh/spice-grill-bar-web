@@ -22,6 +22,9 @@ import WebSiteSchema from '@/components/schema/WebSiteSchema.astro';
 const {
   title = 'Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)',
   description = 'Authentic Indian Punjabi cuisine on historic Route 66 in Ash Fork, AZ. The perfect pit stop for Grand Canyon travelers and riders. Enjoy fresh naan, curry, and tandoori specials. Dine-in & Takeout.',
+  ogTitle,
+  ogDescription,
+  ogUrl,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -74,11 +77,15 @@ function slugToLabel(path: string): string {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://spicegrillbar66.com" />
-    <meta property="og:title" content="Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66" />
+    <meta property="og:url" content={ogUrl ?? canonicalURL} />
+    <meta
+      property="og:title"
+      content={ogTitle ?? 'Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66'}
+    />
     <meta
       property="og:description"
-      content="Best Indian food in Ash Fork, AZ. Biker-friendly stop on Route 66 near the Grand Canyon. Try our famous butter chicken and garlic naan."
+      content={ogDescription ??
+        'Best Indian food in Ash Fork, AZ. Biker-friendly stop on Route 66 near the Grand Canyon. Try our famous butter chicken and garlic naan.'}
     />
     <meta property="og:image" content="https://spicegrillbar66.com/opengraph-image.webp" />
     <meta property="og:site_name" content="Spice Grill & Bar" />
@@ -86,14 +93,15 @@ function slugToLabel(path: string): string {
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://spicegrillbar66.com" />
+    <meta property="twitter:url" content={ogUrl ?? canonicalURL} />
     <meta
       property="twitter:title"
-      content="Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66"
+      content={ogTitle ?? 'Spice Grill & Bar | Authentic Punjabi Cuisine on Route 66'}
     />
     <meta
       property="twitter:description"
-      content="Best Indian food in Ash Fork, AZ. Perfect pit stop for Grand Canyon travelers."
+      content={ogDescription ??
+        'Best Indian food in Ash Fork, AZ. Perfect pit stop for Grand Canyon travelers.'}
     />
     <meta property="twitter:image" content="https://spicegrillbar66.com/opengraph-image.webp" />
 

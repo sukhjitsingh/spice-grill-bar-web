@@ -5,39 +5,39 @@
 See: .planning/PROJECT.md (updated 2026-02-20)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Phase 5 — GEO Content Pages
+**Current focus:** Phase 5 complete — all GEO Content Pages delivered
 
 ## Current Position
 
 Phase: 5 of 5 (GEO Content Pages)
-Plan: 1 of 2 in current phase (complete)
-Status: Phase 5 in progress — 05-01 executed (/near-grand-canyon/ page, Layout.astro OG props, llms.txt fixes, faq.json distance corrections)
-Last activity: 2026-02-21 — Plan 05-01 executed (/near-grand-canyon/ AEO page, extended Layout.astro with ogTitle/ogDescription/ogUrl props, fixed Monday hours in llms.txt and llms-full.txt, corrected Grand Canyon distance to 78 miles in faq.json)
+Plan: 2 of 2 in current phase (complete)
+Status: Phase 5 complete — all plans executed (/near-grand-canyon/ page, /directions/ page, Layout.astro OG props, llms.txt fixes, faq.json distance corrections)
+Last activity: 2026-02-21 — Plan 05-02 executed (/directions/ AEO page with 7 per-city H2 sections, GoogleMap embed, inline FAQ + speakable schema, full QA passed)
 
-Progress: [█████████░] 90%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 6
-- Average duration: 3.8 min
-- Total execution time: ~24 min
+- Total plans completed: 7
+- Average duration: 4.1 min
+- Total execution time: ~30 min
 
 **By Phase:**
 
-| Phase                     | Plans | Total | Avg/Plan |
-| ------------------------- | ----- | ----- | -------- |
-| 01-schema-fixes           | 1/1   | 4 min | 4 min    |
-| 02-schema-additions       | 2/2   | 7 min | 3.5 min  |
-| 03-faq-expansion          | 1/1   | 2 min | 2 min    |
-| 04-content-infrastructure | 1/1   | 4 min | 4 min    |
-| 05-geo-content-pages      | 1/2   | 7 min | 7 min    |
+| Phase                     | Plans | Total  | Avg/Plan |
+| ------------------------- | ----- | ------ | -------- |
+| 01-schema-fixes           | 1/1   | 4 min  | 4 min    |
+| 02-schema-additions       | 2/2   | 7 min  | 3.5 min  |
+| 03-faq-expansion          | 1/1   | 2 min  | 2 min    |
+| 04-content-infrastructure | 1/1   | 4 min  | 4 min    |
+| 05-geo-content-pages      | 2/2   | 13 min | 6.5 min  |
 
 **Recent Trend:**
 
-- Last 6 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min), 04-01 (4 min), 05-01 (7 min)
-- Trend: Stable (05-01 longer due to larger page creation task)
+- Last 7 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min), 04-01 (4 min), 05-01 (7 min), 05-02 (6 min)
+- Trend: Stable
 
 _Updated after each plan completion_
 
@@ -71,6 +71,8 @@ Recent decisions affecting current work:
 - 05-01: Page-specific inline FAQPage schema placed inside Layout slot (not <head>) — separate from global FAQSchema
 - 05-01: Kingman distance corrected from 80 miles to 97 miles (verified from 05-RESEARCH.md data)
 - 05-01: faq.json Grand Canyon distance corrected from 70 miles to 78 miles with updated drive time
+- [Phase 05-geo-content-pages]: near-grand-canyon.astro cross-link to /directions/ was already keyword-rich from 05-01 — no changes needed in 05-02
+- [Phase 05-geo-content-pages]: Directions page anchor navigation uses pure HTML anchor links (no JS) — consistent with Astro static site pattern
 
 ### Pending Todos
 
@@ -78,11 +80,10 @@ None.
 
 ### Blockers/Concerns
 
-- Phase 5: LHCI will fail on /directions/ until 05-02 is executed (expected — /near-grand-canyon/ now passes)
 - Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible
 
 ## Session Continuity
 
 Last session: 2026-02-21
-Stopped at: Completed 05-01-PLAN.md — Phase 5 plan 01 (/near-grand-canyon/ AEO page, Layout.astro OG props, llms.txt/llms-full.txt Monday hours fix and proximity data, faq.json 78-mile distance corrections)
+Stopped at: Completed 05-02-PLAN.md — Phase 5 plan 02 (/directions/ AEO page, 7 per-city H2 sections, GoogleMap embed, inline FAQ + speakable schema, full QA passed — Phase 5 complete)
 Resume file: None

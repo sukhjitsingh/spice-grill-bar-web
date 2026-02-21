@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Schema Additions** - Add the five missing local SEO signals (geo, areaServed, aggregateRating, OrderAction, sameAs) and expand WebSiteSchema
 - [x] **Phase 3: FAQ Expansion** - Grow faq.json from 9 to 20 route/highway-targeted entries and verify FAQSchema renders them all (completed 2026-02-21)
 - [x] **Phase 4: Content Infrastructure** - Fix breadcrumb labels, add new pages to Lighthouse CI, and update nav/footer links before any content page goes live (completed 2026-02-21)
-- [ ] **Phase 5: GEO Content Pages** - Create /near-grand-canyon/ and /directions/ with answer-first AI-extractable passage structure
+- [x] **Phase 5: GEO Content Pages** - Create /near-grand-canyon/ and /directions/ with answer-first AI-extractable passage structure (completed 2026-02-21)
 
 ## Phase Details
 
@@ -124,4 +124,4 @@ Note: Phase 3 (FAQ Expansion) and Phase 4 (Content Infrastructure) both depend o
 | 2. Schema Additions       | 2/2            | Complete    | 2026-02-21 |
 | 3. FAQ Expansion          | 1/1 | Complete   | 2026-02-21 |
 | 4. Content Infrastructure | 1/1 | Complete   | 2026-02-21 |
-| 5. GEO Content Pages      | 1/2 | In Progress|  |
+| 5. GEO Content Pages      | 2/2 | Complete   | 2026-02-21 |

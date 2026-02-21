@@ -50,6 +50,9 @@ Recent decisions affecting current work:
 - 01-01: Monday omitted from openingHoursSpecification (schema.org convention: omission = closed)
 - 01-01: FAQ hours answer uses 12-hour format with no CTA per user decision
 - 01-01: faq.json NAP audit confirmed no other entries contain phone, URL, or hours data
+- 02-01: aggregateRating computed at build time from reviews.json (ratingValue: 5, reviewCount: 7) — not hardcoded
+- 02-01: areaServed uses @type City for municipalities, @type Place for corridors/landmarks; Wikipedia @id on 6 confirmed towns
+- 02-01: Flagstaff excluded from areaServed per user decision in CONTEXT.md
 - 02-02: CONTEXT.md is authoritative over REQUIREMENTS.md for Google Maps URL (q2EJFMbMRaysU6vH8)
 - 02-02: inLanguage added to WebSiteSchema (Claude discretion — minor signal, zero cost)
 - 02-02: publisher uses minimal inline Organization object (avoids duplicating full schema)
@@ -61,12 +64,10 @@ None yet.
 
 ### Blockers/Concerns
 
-- Phase 2 (SCHM-07): reviews.json field structure must be verified before implementing aggregateRating computation — do not assume field names
-- Phase 2 (SCHM-08): Toast ordering URL must be verified as current before adding potentialAction — tentative URL in FEATURES.md needs confirmation
 - Phase 5: All distance/drive-time figures for /near-grand-canyon/ and /directions/ must be verified against Google Maps before publishing
 
 ## Session Continuity
 
 Last session: 2026-02-21
-Stopped at: Completed 02-02-PLAN.md — Phase 2 plan 02 (entity linking and WebSiteSchema enrichment)
+Stopped at: Completed 02-01-PLAN.md — Phase 2 plan 01 (RestaurantSchema geo, areaServed, aggregateRating, hasMap, potentialAction, containedInPlace)
 Resume file: None

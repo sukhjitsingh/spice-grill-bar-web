@@ -29,10 +29,10 @@
 
 ### Schema Integrity — Additions
 
-- [ ] **SCHM-05**: Add `geo` (`GeoCoordinates`) to `RestaurantSchema.astro` using coordinates extracted from the Google Maps pin
-- [ ] **SCHM-06**: Expand `areaServed` from single string to array of `Place` objects: Ash Fork, Williams, Seligman, Kaibab Estates, I-40 Corridor, Historic Route 66
-- [ ] **SCHM-07**: Compute `aggregateRating` at Astro build time from `reviews.json` (inspect `reviews.json` field names during task; do not hardcode values)
-- [ ] **SCHM-08**: Add `hasMap` (owner-provided Google Maps URL), `potentialAction` (`OrderAction` with Toast ordering URL), and `containedInPlace` (Historic Route 66, linked to Wikipedia) to `RestaurantSchema.astro`
+- [x] **SCHM-05**: Add `geo` (`GeoCoordinates`) to `RestaurantSchema.astro` using coordinates extracted from the Google Maps pin
+- [x] **SCHM-06**: Expand `areaServed` from single string to array of `Place` objects: Ash Fork, Williams, Seligman, Kaibab Estates, I-40 Corridor, Historic Route 66
+- [x] **SCHM-07**: Compute `aggregateRating` at Astro build time from `reviews.json` (inspect `reviews.json` field names during task; do not hardcode values)
+- [x] **SCHM-08**: Add `hasMap` (owner-provided Google Maps URL), `potentialAction` (`OrderAction` with Toast ordering URL), and `containedInPlace` (Historic Route 66, linked to Wikipedia) to `RestaurantSchema.astro`
 - [x] **SCHM-09**: Add `sameAs` array to `OrganizationSchema.astro` with Google Maps, Yelp, and TripAdvisor URLs (all URLs confirmed above)
 - [x] **SCHM-10**: Add GEO-optimized `description` and `publisher` property to `WebSiteSchema.astro`
 
@@ -94,10 +94,10 @@
 | SCHM-02     | 1     | Complete |
 | SCHM-03     | 1     | Complete |
 | SCHM-04     | 1     | Complete |
-| SCHM-05     | 2     | Pending  |
-| SCHM-06     | 2     | Pending  |
-| SCHM-07     | 2     | Pending  |
-| SCHM-08     | 2     | Pending  |
+| SCHM-05     | 2     | Complete |
+| SCHM-06     | 2     | Complete |
+| SCHM-07     | 2     | Complete |
+| SCHM-08     | 2     | Complete |
 | SCHM-09     | 2     | Complete |
 | SCHM-10     | 2     | Complete |
 | FAQ-01      | 3     | Pending  |

@@ -13,7 +13,7 @@ The Astro 5 migration is complete. This project makes the site the authoritative
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Schema Fixes** - Correct broken hours, phone, and URL data in RestaurantSchema before any other work ships
+- [x] **Phase 1: Schema Fixes** - Correct broken hours, phone, and URL data in RestaurantSchema before any other work ships
 - [ ] **Phase 2: Schema Additions** - Add the five missing local SEO signals (geo, areaServed, aggregateRating, OrderAction, sameAs) and expand WebSiteSchema
 - [ ] **Phase 3: FAQ Expansion** - Grow faq.json from 9 to 20 route/highway-targeted entries and verify FAQSchema renders them all
 - [ ] **Phase 4: Content Infrastructure** - Fix breadcrumb labels, add new pages to Lighthouse CI, and update nav/footer links before any content page goes live
@@ -37,7 +37,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 
-- [ ] 01-01-PLAN.md — Fix RestaurantSchema (url, telephone, openingHoursSpecification), update faq.json hours answer and audit all entries for NAP consistency, fix Footer.astro visible hours display
+- [x] 01-01-PLAN.md — Fix RestaurantSchema (url, telephone, openingHoursSpecification), update faq.json hours answer and audit all entries for NAP consistency, fix Footer.astro visible hours display
 
 ### Phase 2: Schema Additions
 
@@ -119,10 +119,10 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 Note: Phase 3 (FAQ Expansion) and Phase 4 (Content Infrastructure) both depend only on Phase 1. They can be sequenced in any order, but Phase 4 must complete before Phase 5 begins.
 
-| Phase                     | Plans Complete | Status      | Completed |
-| ------------------------- | -------------- | ----------- | --------- |
-| 1. Schema Fixes           | 0/1            | Not started | -         |
-| 2. Schema Additions       | 0/2            | Not started | -         |
-| 3. FAQ Expansion          | 0/1            | Not started | -         |
-| 4. Content Infrastructure | 0/1            | Not started | -         |
-| 5. GEO Content Pages      | 0/2            | Not started | -         |
+| Phase                     | Plans Complete | Status      | Completed  |
+| ------------------------- | -------------- | ----------- | ---------- |
+| 1. Schema Fixes           | 1/1            | Complete    | 2026-02-21 |
+| 2. Schema Additions       | 0/2            | Not started | -          |
+| 3. FAQ Expansion          | 0/1            | Not started | -          |
+| 4. Content Infrastructure | 0/1            | Not started | -          |
+| 5. GEO Content Pages      | 0/2            | Not started | -          |

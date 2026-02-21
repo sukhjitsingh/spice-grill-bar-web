@@ -22,10 +22,10 @@
 
 ### Schema Integrity — Fixes
 
-- [ ] **SCHM-01**: Correct `openingHoursSpecification` in `RestaurantSchema.astro` to match confirmed hours (Monday closed; Tuesday–Thursday 08:00–21:00; Friday–Sunday 08:00–22:00)
-- [ ] **SCHM-02**: Update hours answer in `faq.json` to match confirmed hours (currently states 8AM–9PM weekdays / 8AM–10PM weekends, which is partially correct but omits Monday closure)
-- [ ] **SCHM-03**: Fix `telephone` property to E.164 format (`+1-928-277-1292`) in `RestaurantSchema.astro`
-- [ ] **SCHM-04**: Fix `url` property in `RestaurantSchema.astro` from `www.spicegrillbar66.com` to `spicegrillbar66.com` (without www, matching canonical in `astro.config.mjs`)
+- [x] **SCHM-01**: Correct `openingHoursSpecification` in `RestaurantSchema.astro` to match confirmed hours (Monday closed; Tuesday–Thursday 08:00–21:00; Friday–Sunday 08:00–22:00)
+- [x] **SCHM-02**: Update hours answer in `faq.json` to match confirmed hours (currently states 8AM–9PM weekdays / 8AM–10PM weekends, which is partially correct but omits Monday closure)
+- [x] **SCHM-03**: Fix `telephone` property to E.164 format (`+1-928-277-1292`) in `RestaurantSchema.astro`
+- [x] **SCHM-04**: Fix `url` property in `RestaurantSchema.astro` from `www.spicegrillbar66.com` to `spicegrillbar66.com` (without www, matching canonical in `astro.config.mjs`)
 
 ### Schema Integrity — Additions
 
@@ -88,25 +88,25 @@
 
 ## Traceability
 
-| Requirement | Phase | Status  |
-| ----------- | ----- | ------- |
-| SCHM-01     | 1     | Pending |
-| SCHM-02     | 1     | Pending |
-| SCHM-03     | 1     | Pending |
-| SCHM-04     | 1     | Pending |
-| SCHM-05     | 2     | Pending |
-| SCHM-06     | 2     | Pending |
-| SCHM-07     | 2     | Pending |
-| SCHM-08     | 2     | Pending |
-| SCHM-09     | 2     | Pending |
-| SCHM-10     | 2     | Pending |
-| FAQ-01      | 3     | Pending |
-| FAQ-02      | 3     | Pending |
-| CONT-01     | 4     | Pending |
-| CONT-02     | 4     | Pending |
-| CONT-03     | 4     | Pending |
-| CONT-04     | 5     | Pending |
-| CONT-05     | 5     | Pending |
+| Requirement | Phase | Status   |
+| ----------- | ----- | -------- |
+| SCHM-01     | 1     | Complete |
+| SCHM-02     | 1     | Complete |
+| SCHM-03     | 1     | Complete |
+| SCHM-04     | 1     | Complete |
+| SCHM-05     | 2     | Pending  |
+| SCHM-06     | 2     | Pending  |
+| SCHM-07     | 2     | Pending  |
+| SCHM-08     | 2     | Pending  |
+| SCHM-09     | 2     | Pending  |
+| SCHM-10     | 2     | Pending  |
+| FAQ-01      | 3     | Pending  |
+| FAQ-02      | 3     | Pending  |
+| CONT-01     | 4     | Pending  |
+| CONT-02     | 4     | Pending  |
+| CONT-03     | 4     | Pending  |
+| CONT-04     | 5     | Pending  |
+| CONT-05     | 5     | Pending  |
 
 **Coverage:**
 

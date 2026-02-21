@@ -10,29 +10,29 @@ See: .planning/PROJECT.md (updated 2026-02-20)
 ## Current Position
 
 Phase: 1 of 5 (Schema Fixes)
-Plan: 0 of 1 in current phase
-Status: Ready to plan
-Last activity: 2026-02-20 — Roadmap created, requirements mapped, files initialized
+Plan: 1 of 1 in current phase
+Status: Phase complete — all plans executed
+Last activity: 2026-02-21 — Plan 01-01 executed (NAP schema fixes)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: 0 hours
+- Total plans completed: 1
+- Average duration: 4 min
+- Total execution time: ~4 min
 
 **By Phase:**
 
-| Phase | Plans | Total | Avg/Plan |
-| ----- | ----- | ----- | -------- |
-| -     | -     | -     | -        |
+| Phase           | Plans | Total | Avg/Plan |
+| --------------- | ----- | ----- | -------- |
+| 01-schema-fixes | 1/1   | 4 min | 4 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: —
+- Last 5 plans: 01-01 (4 min)
 - Trend: —
 
 _Updated after each plan completion_
@@ -46,6 +46,9 @@ Recent decisions affecting current work:
 
 - Phase 1: Fix schema bugs before any additions — hours conflict between RestaurantSchema (07:00-22:00 daily) and faq.json (8AM-9PM weekday) is a blocking inconsistency
 - Phase 1: Confirmed business hours from REQUIREMENTS.md: Monday closed, Tue-Thu 08:00-21:00, Fri-Sun 08:00-22:00
+- 01-01: Monday omitted from openingHoursSpecification (schema.org convention: omission = closed)
+- 01-01: FAQ hours answer uses 12-hour format with no CTA per user decision
+- 01-01: faq.json NAP audit confirmed no other entries contain phone, URL, or hours data
 
 ### Pending Todos
 
@@ -59,6 +62,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-20
-Stopped at: Roadmap created and files written — no plans executed yet
+Last session: 2026-02-21
+Stopped at: Completed 01-01-PLAN.md — Phase 1 plan 01 (NAP schema fixes)
 Resume file: None

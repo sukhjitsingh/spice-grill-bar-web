@@ -5,35 +5,36 @@
 See: .planning/PROJECT.md (updated 2026-02-20)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Phase 1 — Schema Fixes
+**Current focus:** Phase 2 — Schema Additions
 
 ## Current Position
 
-Phase: 1 of 5 (Schema Fixes)
-Plan: 1 of 1 in current phase
-Status: Phase complete — all plans executed
-Last activity: 2026-02-21 — Plan 01-01 executed (NAP schema fixes)
+Phase: 2 of 5 (Schema Additions)
+Plan: 3 of 3 in current phase
+Status: In progress — plans 02-01, 02-02 executed (02-01 executed after 02-02 due to ordering)
+Last activity: 2026-02-21 — Plan 02-01 executed (RestaurantSchema geo, areaServed, aggregateRating, hasMap, potentialAction, containedInPlace)
 
-Progress: [██░░░░░░░░] 20%
+Progress: [███░░░░░░░] 30%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 1
+- Total plans completed: 3
 - Average duration: 4 min
-- Total execution time: ~4 min
+- Total execution time: ~12 min
 
 **By Phase:**
 
-| Phase           | Plans | Total | Avg/Plan |
-| --------------- | ----- | ----- | -------- |
-| 01-schema-fixes | 1/1   | 4 min | 4 min    |
+| Phase               | Plans | Total | Avg/Plan |
+| ------------------- | ----- | ----- | -------- |
+| 01-schema-fixes     | 1/1   | 4 min | 4 min    |
+| 02-schema-additions | 2/3   | 7 min | 3.5 min  |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (4 min)
-- Trend: —
+- Last 5 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min)
+- Trend: Stable
 
 _Updated after each plan completion_
 
@@ -49,6 +50,10 @@ Recent decisions affecting current work:
 - 01-01: Monday omitted from openingHoursSpecification (schema.org convention: omission = closed)
 - 01-01: FAQ hours answer uses 12-hour format with no CTA per user decision
 - 01-01: faq.json NAP audit confirmed no other entries contain phone, URL, or hours data
+- 02-02: CONTEXT.md is authoritative over REQUIREMENTS.md for Google Maps URL (q2EJFMbMRaysU6vH8)
+- 02-02: inLanguage added to WebSiteSchema (Claude discretion — minor signal, zero cost)
+- 02-02: publisher uses minimal inline Organization object (avoids duplicating full schema)
+- 02-02: No SearchAction on WebSiteSchema (user decision: site has no search functionality)
 
 ### Pending Todos
 
@@ -63,5 +68,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-21
-Stopped at: Completed 01-01-PLAN.md — Phase 1 plan 01 (NAP schema fixes)
+Stopped at: Completed 02-02-PLAN.md — Phase 2 plan 02 (entity linking and WebSiteSchema enrichment)
 Resume file: None

@@ -33,8 +33,8 @@
 - [ ] **SCHM-06**: Expand `areaServed` from single string to array of `Place` objects: Ash Fork, Williams, Seligman, Kaibab Estates, I-40 Corridor, Historic Route 66
 - [ ] **SCHM-07**: Compute `aggregateRating` at Astro build time from `reviews.json` (inspect `reviews.json` field names during task; do not hardcode values)
 - [ ] **SCHM-08**: Add `hasMap` (owner-provided Google Maps URL), `potentialAction` (`OrderAction` with Toast ordering URL), and `containedInPlace` (Historic Route 66, linked to Wikipedia) to `RestaurantSchema.astro`
-- [ ] **SCHM-09**: Add `sameAs` array to `OrganizationSchema.astro` with Google Maps, Yelp, and TripAdvisor URLs (all URLs confirmed above)
-- [ ] **SCHM-10**: Add GEO-optimized `description` and `publisher` property to `WebSiteSchema.astro`
+- [x] **SCHM-09**: Add `sameAs` array to `OrganizationSchema.astro` with Google Maps, Yelp, and TripAdvisor URLs (all URLs confirmed above)
+- [x] **SCHM-10**: Add GEO-optimized `description` and `publisher` property to `WebSiteSchema.astro`
 
 ### FAQ Expansion
 
@@ -98,8 +98,8 @@
 | SCHM-06     | 2     | Pending  |
 | SCHM-07     | 2     | Pending  |
 | SCHM-08     | 2     | Pending  |
-| SCHM-09     | 2     | Pending  |
-| SCHM-10     | 2     | Pending  |
+| SCHM-09     | 2     | Complete |
+| SCHM-10     | 2     | Complete |
 | FAQ-01      | 3     | Pending  |
 | FAQ-02      | 3     | Pending  |
 | CONT-01     | 4     | Pending  |

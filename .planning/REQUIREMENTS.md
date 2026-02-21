@@ -45,7 +45,7 @@
 
 - [x] **CONT-01**: Fix `BreadcrumbSchema` breadcrumb label generation in `Layout.astro` to produce human-readable labels for hyphenated slugs (e.g., `/near-grand-canyon/` → "Near Grand Canyon", not "Near-grand-canyon")
 - [x] **CONT-02**: Add `/near-grand-canyon/` and `/directions/` URLs to `.lighthouserc.json` so Lighthouse CI audits new pages on every push
-- [x] **CONT-03**: Update `Header.tsx` navigation array and `Footer.astro` links to include `/near-grand-canyon/` and `/directions/`
+- [x] **CONT-03**: Update `Footer.astro` with Explore section linking to `/near-grand-canyon/`, `/directions/`, and `/faq/` (Header.tsx excluded per user decision)
 
 ### GEO Content Pages
 

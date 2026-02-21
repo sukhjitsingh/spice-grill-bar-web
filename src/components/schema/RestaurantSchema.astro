@@ -5,7 +5,7 @@ const schema: WithContext<Restaurant> = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
   name: 'Spice Grill & Bar',
-  url: 'https://www.spicegrillbar66.com',
+  url: 'https://spicegrillbar66.com',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '33 Lewis Ave',
@@ -14,24 +14,26 @@ const schema: WithContext<Restaurant> = {
     postalCode: '86320',
     addressCountry: 'US',
   },
-  telephone: '(928) 277-1292',
+  telephone: '+1-928-277-1292',
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: [
-        'https://schema.org/Monday',
         'https://schema.org/Tuesday',
         'https://schema.org/Wednesday',
         'https://schema.org/Thursday',
-        'https://schema.org/Friday',
       ],
-      opens: '07:00',
-      closes: '22:00',
+      opens: '08:00',
+      closes: '21:00',
     },
     {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['https://schema.org/Saturday', 'https://schema.org/Sunday'],
-      opens: '07:00',
+      dayOfWeek: [
+        'https://schema.org/Friday',
+        'https://schema.org/Saturday',
+        'https://schema.org/Sunday',
+      ],
+      opens: '08:00',
       closes: '22:00',
     },
   ],

@@ -1,0 +1,333 @@
+---
+import { GoogleMap } from '@/components/GoogleMap';
+
+import Layout from '../layouts/Layout.astro';
+
+const API_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+---
+
+<Layout
+  title="Directions to Spice Grill & Bar | I-40 Exit 146, Ash Fork, AZ"
+  description="Step-by-step driving directions to Spice Grill & Bar from Las Vegas, Los Angeles, Flagstaff, Kingman, Phoenix, Williams, and Seligman. Take I-40 Exit 146 in Ash Fork, AZ."
+  ogTitle="Directions to Spice Grill & Bar — I-40 Exit 146"
+  ogDescription="Driving directions from 7 cities to Spice Grill & Bar in Ash Fork, AZ. Take I-40 Exit 146."
+  ogUrl="https://spicegrillbar66.com/directions/"
+>
+  <main class="pt-32 pb-24 px-6 bg-zinc-50 dark:bg-black min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <!-- Answer-first H1 -->
+      <h1
+        class="speakable-heading text-4xl md:text-5xl font-serif font-bold text-zinc-900 dark:text-white mb-6"
+      >
+        Directions to Spice Grill &amp; Bar
+        <span class="block text-2xl md:text-3xl text-brand-orange mt-2">
+          I-40 Exit 146, Ash Fork, AZ
+        </span>
+      </h1>
+
+      <!-- Lead paragraph -->
+      <p class="speakable-lead text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-6">
+        Spice Grill &amp; Bar is located at 33 Lewis Ave, Ash Fork, Arizona 86320, directly off I-40
+        Exit 146 on historic Route 66. Below you will find step-by-step driving directions from
+        seven cities.
+      </p>
+
+      <!-- Standalone I-40 Exit 146 sentence for voice extraction -->
+      <p class="speakable-exit text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-10">
+        Spice Grill &amp; Bar is located at I-40 Exit 146 in Ash Fork, Arizona.
+      </p>
+
+      <!-- City anchor navigation -->
+      <nav
+        aria-label="Jump to city directions"
+        class="mb-12 p-5 bg-white dark:bg-zinc-900/50 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+      >
+        <p
+          class="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wide"
+        >
+          Jump to:
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <a
+            href="#flagstaff"
+            class="inline-block px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-brand-orange hover:text-white transition-colors text-sm font-medium"
+          >
+            Flagstaff
+          </a>
+          <a
+            href="#williams"
+            class="inline-block px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-brand-orange hover:text-white transition-colors text-sm font-medium"
+          >
+            Williams
+          </a>
+          <a
+            href="#seligman"
+            class="inline-block px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-brand-orange hover:text-white transition-colors text-sm font-medium"
+          >
+            Seligman
+          </a>
+          <a
+            href="#las-vegas"
+            class="inline-block px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-brand-orange hover:text-white transition-colors text-sm font-medium"
+          >
+            Las Vegas
+          </a>
+          <a
+            href="#los-angeles"
+            class="inline-block px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-brand-orange hover:text-white transition-colors text-sm font-medium"
+          >
+            Los Angeles
+          </a>
+          <a
+            href="#kingman"
+            class="inline-block px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-brand-orange hover:text-white transition-colors text-sm font-medium"
+          >
+            Kingman
+          </a>
+          <a
+            href="#phoenix"
+            class="inline-block px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-brand-orange hover:text-white transition-colors text-sm font-medium"
+          >
+            Phoenix
+          </a>
+        </div>
+      </nav>
+
+      <!-- Per-city H2 sections -->
+      <div class="space-y-8 mb-16">
+        <!-- Flagstaff -->
+        <section
+          id="flagstaff"
+          class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+        >
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-4">
+            From Flagstaff, AZ — 51 Miles, About 46 Minutes West on I-40
+          </h2>
+          <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-4">
+            From Flagstaff, take I-40 West toward Kingman. Drive 51 miles (about 46 minutes) and
+            take <strong>Exit 146</strong> (Ash Fork / Historic Route 66). Turn right onto Lewis Ave —
+            Spice Grill &amp; Bar is at 33 Lewis Ave on your right.
+          </p>
+          <address class="text-sm text-zinc-500 dark:text-zinc-400 not-italic">
+            <strong>Spice Grill &amp; Bar</strong><br />
+            33 Lewis Ave, Ash Fork, AZ 86320<br />
+            <a href="tel:+19282771292" class="hover:text-brand-orange transition-colors"
+              >(928) 277-1292</a
+            >
+          </address>
+        </section>
+
+        <!-- Williams -->
+        <section
+          id="williams"
+          class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+        >
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-4">
+            From Williams, AZ — 18 Miles, About 18 Minutes West on I-40
+          </h2>
+          <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-4">
+            From Williams, take I-40 West. Drive 18 miles (about 18 minutes) and take
+            <strong>Exit 146</strong>. Turn right onto Lewis Ave — Spice Grill &amp; Bar is at 33
+            Lewis Ave on your right.
+          </p>
+          <address class="text-sm text-zinc-500 dark:text-zinc-400 not-italic">
+            <strong>Spice Grill &amp; Bar</strong><br />
+            33 Lewis Ave, Ash Fork, AZ 86320<br />
+            <a href="tel:+19282771292" class="hover:text-brand-orange transition-colors"
+              >(928) 277-1292</a
+            >
+          </address>
+        </section>
+
+        <!-- Seligman -->
+        <section
+          id="seligman"
+          class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+        >
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-4">
+            From Seligman, AZ — 25 Miles, About 24 Minutes East on I-40
+          </h2>
+          <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-4">
+            From Seligman, take I-40 East toward Flagstaff. Drive 25 miles (about 24 minutes) and
+            take <strong>Exit 146</strong>. Turn left onto Lewis Ave — Spice Grill &amp; Bar is at
+            33 Lewis Ave on your left.
+          </p>
+          <address class="text-sm text-zinc-500 dark:text-zinc-400 not-italic">
+            <strong>Spice Grill &amp; Bar</strong><br />
+            33 Lewis Ave, Ash Fork, AZ 86320<br />
+            <a href="tel:+19282771292" class="hover:text-brand-orange transition-colors"
+              >(928) 277-1292</a
+            >
+          </address>
+        </section>
+
+        <!-- Las Vegas -->
+        <section
+          id="las-vegas"
+          class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+        >
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-4">
+            From Las Vegas, NV — About 200 Miles, About 3 Hours via US-93 S and I-40 E
+          </h2>
+          <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-4">
+            From Las Vegas, take US-93 South to I-40 East. Drive approximately 200 miles (about 3
+            hours) and take <strong>Exit 146</strong> in Ash Fork. Turn right onto Lewis Ave — Spice Grill
+            &amp; Bar is at 33 Lewis Ave.
+          </p>
+          <address class="text-sm text-zinc-500 dark:text-zinc-400 not-italic">
+            <strong>Spice Grill &amp; Bar</strong><br />
+            33 Lewis Ave, Ash Fork, AZ 86320<br />
+            <a href="tel:+19282771292" class="hover:text-brand-orange transition-colors"
+              >(928) 277-1292</a
+            >
+          </address>
+        </section>
+
+        <!-- Los Angeles -->
+        <section
+          id="los-angeles"
+          class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+        >
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-4">
+            From Los Angeles, CA — About 414 Miles, About 6 Hours via I-40 East
+          </h2>
+          <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-4">
+            From Los Angeles, take I-15 North to I-40 East through Barstow and Needles. Drive
+            approximately 414 miles (about 6 hours) and take <strong>Exit 146</strong> in Ash Fork. Turn
+            right onto Lewis Ave — Spice Grill &amp; Bar is at 33 Lewis Ave.
+          </p>
+          <address class="text-sm text-zinc-500 dark:text-zinc-400 not-italic">
+            <strong>Spice Grill &amp; Bar</strong><br />
+            33 Lewis Ave, Ash Fork, AZ 86320<br />
+            <a href="tel:+19282771292" class="hover:text-brand-orange transition-colors"
+              >(928) 277-1292</a
+            >
+          </address>
+        </section>
+
+        <!-- Kingman -->
+        <section
+          id="kingman"
+          class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+        >
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-4">
+            From Kingman, AZ — 97 Miles, About 1 Hour 30 Minutes East on I-40
+          </h2>
+          <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-4">
+            From Kingman, take I-40 East toward Flagstaff. Drive 97 miles (about 1 hour 30 minutes)
+            and take <strong>Exit 146</strong>. Turn right onto Lewis Ave — Spice Grill &amp; Bar is
+            at 33 Lewis Ave on your right.
+          </p>
+          <address class="text-sm text-zinc-500 dark:text-zinc-400 not-italic">
+            <strong>Spice Grill &amp; Bar</strong><br />
+            33 Lewis Ave, Ash Fork, AZ 86320<br />
+            <a href="tel:+19282771292" class="hover:text-brand-orange transition-colors"
+              >(928) 277-1292</a
+            >
+          </address>
+        </section>
+
+        <!-- Phoenix -->
+        <section
+          id="phoenix"
+          class="bg-white dark:bg-zinc-900/50 p-8 rounded-2xl border border-zinc-200 dark:border-white/10 shadow-sm"
+        >
+          <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-4">
+            From Phoenix, AZ — About 144 Miles, About 2 Hours 40 Minutes via I-17 N and I-40 W
+          </h2>
+          <p class="text-lg leading-relaxed text-zinc-600 dark:text-zinc-300 mb-4">
+            From Phoenix, take I-17 North to Flagstaff, then I-40 West. Drive approximately 144
+            miles (about 2 hours 40 minutes) and take <strong>Exit 146</strong> in Ash Fork. Turn right
+            onto Lewis Ave — Spice Grill &amp; Bar is at 33 Lewis Ave.
+          </p>
+          <address class="text-sm text-zinc-500 dark:text-zinc-400 not-italic">
+            <strong>Spice Grill &amp; Bar</strong><br />
+            33 Lewis Ave, Ash Fork, AZ 86320<br />
+            <a href="tel:+19282771292" class="hover:text-brand-orange transition-colors"
+              >(928) 277-1292</a
+            >
+          </address>
+        </section>
+      </div>
+
+      <!-- Google Maps embed (below fold for LCP) -->
+      <div class="w-full h-[400px] rounded-2xl overflow-hidden mt-12 mb-16">
+        <GoogleMap apiKey={API_KEY} client:visible />
+      </div>
+
+      <!-- Cross-links section with keyword-rich anchor text -->
+      <section class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-zinc-900 dark:text-white mb-6">
+          Plan Your Visit
+        </h2>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/near-grand-canyon/"
+            class="inline-block bg-brand-orange text-white font-semibold px-6 py-3 rounded-xl hover:bg-orange-600 transition-colors text-center"
+          >
+            How far is Spice Grill &amp; Bar from the Grand Canyon?
+          </a>
+          <a
+            href="/"
+            class="inline-block border border-zinc-300 dark:border-white/20 text-zinc-900 dark:text-white font-semibold px-6 py-3 rounded-xl hover:border-brand-orange hover:text-brand-orange transition-colors text-center"
+          >
+            View the full Spice Grill &amp; Bar menu
+          </a>
+          <a
+            href="/faq/"
+            class="inline-block border border-zinc-300 dark:border-white/20 text-zinc-900 dark:text-white font-semibold px-6 py-3 rounded-xl hover:border-brand-orange hover:text-brand-orange transition-colors text-center"
+          >
+            Frequently asked questions about Spice Grill &amp; Bar
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Page-specific inline FAQ schema (separate from global FAQSchema) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I get to Spice Grill & Bar from the Grand Canyon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "From the Grand Canyon South Rim, drive south on AZ-64 to I-40 East. Take Exit 146 in Ash Fork and turn right onto Lewis Ave. The drive is about 78 miles and takes roughly 1 hour 20 minutes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What exit is Spice Grill & Bar on I-40?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spice Grill & Bar is at I-40 Exit 146 in Ash Fork, Arizona, at 33 Lewis Ave."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far is Spice Grill & Bar from Flagstaff?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Spice Grill & Bar is 51 miles west of Flagstaff on I-40, about a 46-minute drive. Take Exit 146 in Ash Fork."
+          }
+        }
+      ]
+    }
+  </script>
+
+  <!-- Speakable schema markup -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Directions to Spice Grill & Bar",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".speakable-heading", ".speakable-lead", ".speakable-exit"]
+      }
+    }
+  </script>
+</Layout>

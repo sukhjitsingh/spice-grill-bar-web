@@ -52,12 +52,12 @@ Plans:
 4. RestaurantSchema includes hasMap, potentialAction (OrderAction with Toast URL), and containedInPlace
 5. OrganizationSchema sameAs array contains Google Maps, Yelp, and TripAdvisor profile URLs
 6. WebSiteSchema carries a GEO-optimized description and publisher property
-   **Plans**: TBD
+   **Plans**: 2 plans
 
 Plans:
 
-- [ ] 02-01: Add geo, areaServed, aggregateRating, hasMap, potentialAction, containedInPlace to RestaurantSchema
-- [ ] 02-02: Add sameAs to OrganizationSchema and update WebSiteSchema description and publisher
+- [ ] 02-01-PLAN.md — Add geo, areaServed, aggregateRating, hasMap, potentialAction, containedInPlace to RestaurantSchema
+- [ ] 02-02-PLAN.md — Add sameAs to OrganizationSchema and enrich WebSiteSchema with description, publisher, inLanguage
 
 ### Phase 3: FAQ Expansion
 

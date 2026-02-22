@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: FAQ Expansion** - Grow faq.json from 9 to 20 route/highway-targeted entries and verify FAQSchema renders them all (completed 2026-02-21)
 - [x] **Phase 4: Content Infrastructure** - Fix breadcrumb labels, add new pages to Lighthouse CI, and update nav/footer links before any content page goes live (completed 2026-02-21)
 - [x] **Phase 5: GEO Content Pages** - Create /near-grand-canyon/ and /directions/ with answer-first AI-extractable passage structure (completed 2026-02-21)
-- [ ] **Phase 6: Data Consistency & Lighthouse Coverage** - Fix Flagstaff distance drift in faq.json, standardize tel: URI format, add /faq/ to Lighthouse CI
+- [x] **Phase 6: Data Consistency & Lighthouse Coverage** - Fix Flagstaff distance drift in faq.json, standardize tel: URI format, add /faq/ to Lighthouse CI (completed 2026-02-22)
 
 ## Phase Details
 
@@ -125,7 +125,7 @@ Plans:
 3. `.lighthouserc.json` includes `/faq/` URL and Lighthouse CI passes for all 4 pages
 4. `npm run qa` passes with no regressions
 
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 
@@ -145,4 +145,4 @@ Note: Phase 3 (FAQ Expansion) and Phase 4 (Content Infrastructure) both depend o
 | 3. FAQ Expansion          | 1/1 | Complete   | 2026-02-21 |
 | 4. Content Infrastructure | 1/1 | Complete   | 2026-02-21 |
 | 5. GEO Content Pages      | 2/2 | Complete    | 2026-02-21 |
-| 6. Data Consistency & LH Coverage | 0/1 | Not Started | — |
+| 6. Data Consistency & LH Coverage | 1/1 | Complete   | 2026-02-22 |

@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-02-20)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Phase 5 complete — all GEO Content Pages delivered
+**Current focus:** Phase 6 complete — all data consistency and Lighthouse coverage gaps closed
 
 ## Current Position
 
-Phase: 5 of 5 (GEO Content Pages)
-Plan: 2 of 2 in current phase (complete)
-Status: Phase 5 complete — all plans executed (/near-grand-canyon/ page, /directions/ page, Layout.astro OG props, llms.txt fixes, faq.json distance corrections)
-Last activity: 2026-02-21 — Plan 05-02 executed (/directions/ AEO page with 7 per-city H2 sections, GoogleMap embed, inline FAQ + speakable schema, full QA passed)
+Phase: 6 of 6 (Data Consistency and Lighthouse Coverage)
+Plan: 1 of 1 in current phase (complete)
+Status: Phase 6 complete — Flagstaff distance corrected in faq.json (51 miles/46 min), all tel: URIs standardized to E.164, Lighthouse CI expanded to 4 pages, npm run qa passes clean
+Last activity: 2026-02-22 — Plan 06-01 executed (faq.json Flagstaff fix, E.164 tel: URI standardization across 3 components, /faq/ added to LHCI)
 
 Progress: [██████████] 100%
 
@@ -20,23 +20,24 @@ Progress: [██████████] 100%
 
 **Velocity:**
 
-- Total plans completed: 7
-- Average duration: 4.1 min
-- Total execution time: ~30 min
+- Total plans completed: 8
+- Average duration: 3.9 min
+- Total execution time: ~35 min
 
 **By Phase:**
 
-| Phase                     | Plans | Total  | Avg/Plan |
-| ------------------------- | ----- | ------ | -------- |
-| 01-schema-fixes           | 1/1   | 4 min  | 4 min    |
-| 02-schema-additions       | 2/2   | 7 min  | 3.5 min  |
-| 03-faq-expansion          | 1/1   | 2 min  | 2 min    |
-| 04-content-infrastructure | 1/1   | 4 min  | 4 min    |
-| 05-geo-content-pages      | 2/2   | 13 min | 6.5 min  |
+| Phase                             | Plans | Total  | Avg/Plan |
+| --------------------------------- | ----- | ------ | -------- |
+| 01-schema-fixes                   | 1/1   | 4 min  | 4 min    |
+| 02-schema-additions               | 2/2   | 7 min  | 3.5 min  |
+| 03-faq-expansion                  | 1/1   | 2 min  | 2 min    |
+| 04-content-infrastructure         | 1/1   | 4 min  | 4 min    |
+| 05-geo-content-pages              | 2/2   | 13 min | 6.5 min  |
+| 06-data-consistency-lighthouse    | 1/1   | 5 min  | 5 min    |
 
 **Recent Trend:**
 
-- Last 7 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min), 04-01 (4 min), 05-01 (7 min), 05-02 (6 min)
+- Last 8 plans: 01-01 (4 min), 02-01 (4 min), 02-02 (3 min), 03-01 (2 min), 04-01 (4 min), 05-01 (7 min), 05-02 (6 min), 06-01 (5 min)
 - Trend: Stable
 
 _Updated after each plan completion_
@@ -73,6 +74,9 @@ Recent decisions affecting current work:
 - 05-01: faq.json Grand Canyon distance corrected from 70 miles to 78 miles with updated drive time
 - [Phase 05-geo-content-pages]: near-grand-canyon.astro cross-link to /directions/ was already keyword-rich from 05-01 — no changes needed in 05-02
 - [Phase 05-geo-content-pages]: Directions page anchor navigation uses pure HTML anchor links (no JS) — consistent with Astro static site pattern
+- 06-01: faq.json Flagstaff entry corrected: 50 miles → 51 miles, 40-minute → 46-minute (matches near-grand-canyon.astro and 06-RESEARCH.md)
+- 06-01: All tel: URI href attributes use E.164 format tel:+19282771292 (visible display text unchanged)
+- 06-01: /faq/ added to .lighthouserc.json url array — all 4 live pages now audited on every push
 
 ### Pending Todos
 
@@ -84,6 +88,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-21
-Stopped at: Completed 05-02-PLAN.md — Phase 5 plan 02 (/directions/ AEO page, 7 per-city H2 sections, GoogleMap embed, inline FAQ + speakable schema, full QA passed — Phase 5 complete)
+Last session: 2026-02-22
+Stopped at: Completed 06-01-PLAN.md — Phase 6 plan 01 (Flagstaff distance fix in faq.json, E.164 tel: URI standardization across 3 components, /faq/ added to LHCI — Phase 6 complete)
 Resume file: None

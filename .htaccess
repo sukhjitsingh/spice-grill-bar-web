@@ -22,3 +22,8 @@
   RewriteCond %{DOCUMENT_ROOT}/dist/$1/index.html -f
   RewriteRule ^([^/]+)$ dist/$1/index.html [L]
 </IfModule>
+
+<IfModule mod_headers.c>
+  # Disable deprecated APIs to prevent PageSpeed warnings from third-party scripts (like GTM/Partytown)
+  Header always set Permissions-Policy "attribution-reporting=(), shared-storage=()"
+</IfModule>

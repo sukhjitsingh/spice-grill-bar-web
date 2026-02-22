@@ -125,6 +125,8 @@ Plans:
 3. `.lighthouserc.json` includes `/faq/` URL and Lighthouse CI passes for all 4 pages
 4. `npm run qa` passes with no regressions
 
+**Plans:** 1 plan
+
 Plans:
 
 - [ ] 06-01-PLAN.md — Fix faq.json Flagstaff distance, standardize tel: URIs to E.164, add /faq/ to .lighthouserc.json

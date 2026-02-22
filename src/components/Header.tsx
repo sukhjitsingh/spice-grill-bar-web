@@ -65,7 +65,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
               asChild
               className="text-zinc-700 dark:text-zinc-200 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-white/5 font-serif hidden lg:flex"
             >
-              <a href="tel:9282771292" aria-label="Call us">
+              <a href="tel:+19282771292" aria-label="Call us">
                 <Phone className="w-4 h-4 mr-2" />
                 928-277-1292
               </a>

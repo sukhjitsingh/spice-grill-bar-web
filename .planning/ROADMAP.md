@@ -18,6 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: FAQ Expansion** - Grow faq.json from 9 to 20 route/highway-targeted entries and verify FAQSchema renders them all (completed 2026-02-21)
 - [x] **Phase 4: Content Infrastructure** - Fix breadcrumb labels, add new pages to Lighthouse CI, and update nav/footer links before any content page goes live (completed 2026-02-21)
 - [x] **Phase 5: GEO Content Pages** - Create /near-grand-canyon/ and /directions/ with answer-first AI-extractable passage structure (completed 2026-02-21)
+- [ ] **Phase 6: Data Consistency & Lighthouse Coverage** - Fix Flagstaff distance drift in faq.json, standardize tel: URI format, add /faq/ to Lighthouse CI
 
 ## Phase Details
 
@@ -111,6 +112,23 @@ Plans:
 - [ ] 05-01-PLAN.md — Extend Layout.astro OG props, create /near-grand-canyon/ with AEO passage structure + inline FAQ/speakable schema, fix llms.txt + faq.json distance consistency
 - [ ] 05-02-PLAN.md — Create /directions/ with 7 per-city H2 sections + Google Maps embed + inline FAQ/speakable schema, verify cross-links and run full QA
 
+### Phase 6: Data Consistency & Lighthouse Coverage
+
+**Goal:** Eliminate cross-phase data drift and close remaining Lighthouse CI coverage gap so the milestone ships with zero known inconsistencies
+**Depends on**: Phase 5
+**Requirements:** FAQ-01, CONT-02, CONT-05 (re-verified after fixes)
+**Gap Closure:** Closes INT-01 from v1.0 audit + 2 tech debt items
+**Success Criteria** (what must be TRUE):
+
+1. faq.json Flagstaff entry states "51 miles" and "46 minutes" matching /near-grand-canyon/, /directions/, llms.txt, and llms-full.txt
+2. All `tel:` URIs across the codebase use E.164 format (`tel:+19282771292`) — no bare `tel:9282771292` links
+3. `.lighthouserc.json` includes `/faq/` URL and Lighthouse CI passes for all 4 pages
+4. `npm run qa` passes with no regressions
+
+Plans:
+
+- [ ] 06-01-PLAN.md — Fix faq.json Flagstaff distance, standardize tel: URIs to E.164, add /faq/ to .lighthouserc.json
+
 ## Progress
 
 **Execution Order:**
@@ -125,3 +143,4 @@ Note: Phase 3 (FAQ Expansion) and Phase 4 (Content Infrastructure) both depend o
 | 3. FAQ Expansion          | 1/1 | Complete   | 2026-02-21 |
 | 4. Content Infrastructure | 1/1 | Complete   | 2026-02-21 |
 | 5. GEO Content Pages      | 2/2 | Complete    | 2026-02-21 |
+| 6. Data Consistency & LH Coverage | 0/1 | Not Started | — |

@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 import sitemap from '@astrojs/sitemap';
+import indexnow from 'astro-indexnow';
 
 import partytown from '@astrojs/partytown';
 
@@ -16,6 +17,9 @@ export default defineConfig({
     format: 'directory',
   },
   integrations: [
+    indexnow({
+      key: '5a973t3xfryc2gchkn1q6chy26ss2au9',
+    }),
     react(),
     tailwind(),
     sitemap(),

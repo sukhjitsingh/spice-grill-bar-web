@@ -24,3 +24,4 @@ pnpm-debug.log*
 .idea/
 
 .lighthouseci/
+\n.astro-indexnow-cache.json

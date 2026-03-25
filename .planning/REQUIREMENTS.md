@@ -53,27 +53,27 @@
 
 | REQ-ID | Phase | Plan | Status |
 | --- | --- | --- | --- |
-| INFRA-01 | — | — | Pending |
-| INFRA-02 | — | — | Pending |
-| INFRA-03 | — | — | Pending |
-| INFRA-04 | — | — | Pending |
-| INFRA-05 | — | — | Pending |
-| INFRA-06 | — | — | Pending |
-| TOKEN-01 | — | — | Pending |
-| TOKEN-02 | — | — | Pending |
-| TOKEN-03 | — | — | Pending |
-| TOKEN-04 | — | — | Pending |
-| TOKEN-05 | — | — | Pending |
-| VISUAL-01 | — | — | Pending |
-| VISUAL-02 | — | — | Pending |
-| VISUAL-03 | — | — | Pending |
-| VISUAL-04 | — | — | Pending |
-| VISUAL-05 | — | — | Pending |
-| VISUAL-06 | — | — | Pending |
-| VISUAL-07 | — | — | Pending |
-| VISUAL-08 | — | — | Pending |
-| VISUAL-09 | — | — | Pending |
-| VISUAL-10 | — | — | Pending |
-| QA-01 | — | — | Pending |
-| QA-02 | — | — | Pending |
-| QA-03 | — | — | Pending |
+| INFRA-01 | Phase 7 | — | Pending |
+| INFRA-02 | Phase 7 | — | Pending |
+| INFRA-03 | Phase 7 | — | Pending |
+| INFRA-04 | Phase 7 | — | Pending |
+| INFRA-05 | Phase 7 | — | Pending |
+| INFRA-06 | Phase 7 | — | Pending |
+| TOKEN-01 | Phase 8 | — | Pending |
+| TOKEN-02 | Phase 8 | — | Pending |
+| TOKEN-03 | Phase 8 | — | Pending |
+| TOKEN-04 | Phase 8 | — | Pending |
+| TOKEN-05 | Phase 8 | — | Pending |
+| VISUAL-01 | Phase 9 | — | Pending |
+| VISUAL-02 | Phase 9 | — | Pending |
+| VISUAL-03 | Phase 9 | — | Pending |
+| VISUAL-04 | Phase 9 | — | Pending |
+| VISUAL-05 | Phase 9 | — | Pending |
+| VISUAL-06 | Phase 9 | — | Pending |
+| VISUAL-07 | Phase 9 | — | Pending |
+| VISUAL-08 | Phase 9 | — | Pending |
+| VISUAL-09 | Phase 9 | — | Pending |
+| VISUAL-10 | Phase 9 | — | Pending |
+| QA-01 | Phase 10 | — | Pending |
+| QA-02 | Phase 10 | — | Pending |
+| QA-03 | Phase 10 | — | Pending |

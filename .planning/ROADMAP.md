@@ -49,7 +49,7 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 **Plans**: 2 plans
 Plans:
 - [x] 07-01-PLAN.md — TailwindCSS v4 migration: packages, config, CSS-first globals, utility renames, fonts
-- [ ] 07-02-PLAN.md — Visual verification checkpoint: dark mode toggle, animations, font rendering
+- [x] 07-02-PLAN.md — Visual verification checkpoint: dark mode toggle, animations, font rendering
 
 ### Phase 8: Token System
 **Goal**: Every color and font in the design system is defined as a named token in `globals.css`, with both light and dark mode values specified, so that any component can reference `bg-surface-dim` or `text-on-surface` without needing to know raw color values

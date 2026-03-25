@@ -1,6 +1,6 @@
 # Phase 7: Infrastructure - Research
 
-**Researched:** 2026-03-24
+**Researched:** 2026-03-24 (updated 2026-03-24 — Validation Architecture added)
 **Domain:** TailwindCSS v3 → v4 migration, Astro integration, animation plugin swap, variable font installation
 **Confidence:** HIGH
 
@@ -170,7 +170,7 @@ export default defineConfig({
 - `@layer base { :root {...} }` → plain `:root {}` and `.dark {}`; HSL triples get `hsl()` wrapper
 - `@theme inline` exposes CSS variables as Tailwind utilities
 - `@custom-variant dark` for class-based dark mode
-- `@layer utilities { .glass {...} }` → `@utility glass {...}`
+- `@layer utilities { .glass {...} }` → `@utility` directives in v4
 
 ```css
 /* Source: https://tailwindcss.com/docs/upgrade-guide + https://ui.shadcn.com/docs/tailwind-v4 */
@@ -385,10 +385,12 @@ This is an audit of this specific codebase's exposure to v4 breaking changes.
 
 | v3 Class | v4 Class | Affected Files |
 |----------|----------|----------------|
-| `shadow-sm` | `shadow-xs` | `button.tsx` (3×), `AstroButton.astro` (1×), `near-grand-canyon.astro` (5×), `directions.astro` (1×), `MenuSection.tsx` (1×) |
+| `shadow-sm` | `shadow-xs` | `button.tsx` (3×), `AstroButton.astro` (1×), `near-grand-canyon.astro` (6×), `directions.astro` (8×), `MenuSection.tsx` (1×), `faq.astro` (1×) |
 | `outline-none` | `outline-hidden` | `dropdown-menu.tsx` (4×), `sheet.tsx` (indirectly via `focus:outline-none`) |
 | `ring` (default 3px) | `ring-3` | `sheet.tsx` (`focus:ring-2` — already explicit, safe), `button.tsx` (`focus-visible:ring-1` — explicit, safe) |
 | `!` prefix → suffix | e.g., `!rounded-full` → `rounded-full!` | `AstroButton.astro` (1× `!rounded-full`) |
+
+**Note on actual shadow-sm count:** Codebase audit (grep confirmed) shows 19 total `shadow-sm` usages across 6 files: `button.tsx` (3×), `AstroButton.astro` (1×), `MenuSection.tsx` (1×), `near-grand-canyon.astro` (6×), `directions.astro` (8×), `faq.astro` (1×). The upgrade CLI should catch these automatically; manual verification via grep after CLI run is required.
 
 **Grep commands to find all instances before running the upgrade CLI:**
 
@@ -594,6 +596,289 @@ export default defineConfig({
 
 ---
 
+## Validation Architecture
+
+This section defines how to verify each INFRA requirement is correctly implemented. The planner MUST include these validation steps as explicit tasks or sub-tasks in the plan.
+
+### Automated Validation Commands
+
+| Command | What It Checks | When to Run |
+|---------|----------------|-------------|
+| `npm run build` | Full Astro/Vite build compiles; no CSS errors; no unknown utility class errors | After every configuration change |
+| `npm run typecheck` | TypeScript types valid after package changes | After package installs |
+| `npm run lint` | No linting errors in migrated files | After editing globals.css, astro.config.mjs |
+| `npm run test:lhci` | Lighthouse scores on all 4 pages; CLS < 0.1 confirms font install is safe | Final validation gate |
+| `npm run qa` | Full gate: build + lint + knip + typecheck + aeo + lhci | Phase complete gate |
+
+### Per-Requirement Validation
+
+#### INFRA-01: Build on TailwindCSS v4
+
+**Automated:**
+```bash
+npm run build
+# SUCCESS: exits 0, no "Cannot apply unknown utility class" errors in output
+# FAILURE: any non-zero exit, or "Cannot apply unknown utility class 'bg-background'" in stderr
+```
+
+**Verify package state:**
+```bash
+# Confirm new packages installed
+node -e "require('@tailwindcss/vite'); console.log('vite plugin OK')"
+node -e "const p = require('./package.json'); console.log('TW version:', p.dependencies.tailwindcss || p.devDependencies.tailwindcss)"
+
+# Confirm old package removed
+node -e "try { require('@astrojs/tailwind'); console.log('FAIL: still installed') } catch(e) { console.log('OK: removed') }"
+```
+
+**Verify astro.config.mjs placement (critical):**
+```bash
+grep -n "tailwindcss" astro.config.mjs
+# SUCCESS: line shows  plugins: [tailwindcss()]  under vite: {}
+# FAILURE: tailwindcss appears in integrations[] array
+```
+
+**Success criteria:** `npm run build` exits 0. `@tailwindcss/vite` appears under `vite.plugins[]` in `astro.config.mjs`. `tailwind()` does NOT appear in `integrations[]`.
+
+---
+
+#### INFRA-02: CSS-First Configuration
+
+**Automated:**
+```bash
+# tailwind.config.mjs must not exist
+ls tailwind.config.mjs 2>/dev/null && echo "FAIL: file still exists" || echo "OK: deleted"
+
+# globals.css must not contain old directives
+grep -n "@tailwind base\|@tailwind components\|@tailwind utilities" src/styles/globals.css
+# SUCCESS: no output (no matches)
+# FAILURE: any matched line
+
+# globals.css must contain new import
+grep -n "@import \"tailwindcss\"" src/styles/globals.css
+# SUCCESS: line found
+```
+
+**Manual check:** Open browser DevTools after `npm run dev`. Elements using `bg-background`, `text-foreground`, `bg-primary` must have computed CSS values (not empty/transparent). Check `body` element — it should have a non-white/non-default computed `background-color` set via the token system.
+
+**Success criteria:** `tailwind.config.mjs` deleted. `src/styles/globals.css` starts with `@import "tailwindcss"`. `@theme inline { ... }` block present with all token mappings. Build succeeds.
+
+---
+
+#### INFRA-03: Breaking Utility Renames Applied
+
+**Automated — pre-migration audit (run before CLI):**
+```bash
+# Find all shadow-sm (should be 19 instances across 6 files)
+grep -rn "shadow-sm" src/ --include="*.tsx" --include="*.astro"
+
+# Find all outline-none (dropdown-menu.tsx — 4 instances)
+grep -rn "outline-none" src/ --include="*.tsx" --include="*.astro"
+
+# Find ! prefix — AstroButton.astro has !rounded-full
+grep -rn " !\w" src/ --include="*.tsx" --include="*.astro"
+```
+
+**Automated — post-migration verification:**
+```bash
+# After migration: shadow-sm must be shadow-xs in all files
+grep -rn "shadow-sm" src/ --include="*.tsx" --include="*.astro"
+# SUCCESS: zero matches (all converted to shadow-xs)
+
+# outline-none must be outline-hidden
+grep -rn "\boutline-none\b" src/ --include="*.tsx" --include="*.astro"
+# SUCCESS: zero matches
+
+# ! prefix must be gone (suffix form instead)
+grep -rn " !\w" src/ --include="*.tsx" --include="*.astro"
+# SUCCESS: zero matches (AstroButton.astro now has rounded-full!)
+```
+
+**Visual check:** `button.tsx` destructive variant and outline variant — rendered buttons must have correct shadow depth (should be imperceptibly smaller, not missing). The visual difference between `shadow-sm` (v3) and `shadow-xs` (v4) is purely semantic; the rendered output size is equivalent.
+
+**Success criteria:** Zero grep matches for `shadow-sm`, `\boutline-none\b`, and `! `-prefixed utilities in `src/` after migration.
+
+---
+
+#### INFRA-04: Dark Mode Functional
+
+**Automated — build check:**
+```bash
+# globals.css must contain exact @custom-variant syntax
+grep -n "@custom-variant dark" src/styles/globals.css
+# SUCCESS: shows: @custom-variant dark (&:where(.dark, .dark *));
+# FAILURE: missing, or wrong selector like &.dark or &:is(.dark *)
+```
+
+**Manual verification (required — cannot be fully automated):**
+
+1. Run `npm run dev`
+2. Open `http://localhost:4321` in browser
+3. Open DevTools → Elements panel
+4. Select the `<html>` element
+5. Add class `dark` to it manually in DevTools
+6. **Pass criteria:**
+   - Header background changes from light glass (white-tinted) to dark glass (dark-tinted)
+   - Sheet panel background changes from light (`--background` light) to dark (`--background` dark)
+   - Body background shifts from near-white to near-black
+   - Text colors invert correctly
+7. Remove `dark` class — page returns to light mode
+8. Test the mode-toggle button in the Header — clicking it must toggle dark/light reliably
+
+**Success criteria:** Adding `class="dark"` to `<html>` in DevTools produces correct dark backgrounds on Header and Sheet. The mode-toggle button in `Header.tsx` toggles dark mode correctly via `document.documentElement.classList.toggle('dark')`.
+
+---
+
+#### INFRA-05: autoprefixer Removed
+
+**Automated:**
+```bash
+# postcss.config.cjs already absent — confirm
+ls postcss.config* 2>/dev/null && echo "FAIL: postcss config found" || echo "OK: no postcss config"
+
+# autoprefixer must not be in package.json
+node -e "const p = require('./package.json'); const all = {...p.dependencies,...p.devDependencies}; console.log(all.autoprefixer ? 'FAIL: autoprefixer present: ' + all.autoprefixer : 'OK: autoprefixer removed')"
+
+# tailwindcss must NOT be in devDependencies (should be in dependencies as a peer of @tailwindcss/vite)
+node -e "const p = require('./package.json'); console.log('TW in deps:', !!p.dependencies?.tailwindcss, '| TW in devDeps:', !!p.devDependencies?.tailwindcss)"
+```
+
+**Build confirmation:** `npm run build` must succeed. If autoprefixer was providing necessary vendor prefixes, removal would break specific CSS properties. Since TW v4 uses Lightning CSS internally, the build should be clean.
+
+**Success criteria:** No `postcss.config.*` file exists (already absent). `autoprefixer` not present in `package.json` dependencies or devDependencies. `npm run build` exits 0.
+
+---
+
+#### INFRA-06: Animation Plugin Swap Verified
+
+**Automated:**
+```bash
+# tw-animate-css must be in package.json dependencies
+node -e "const p = require('./package.json'); const all = {...p.dependencies,...p.devDependencies}; console.log(all['tw-animate-css'] ? 'OK: tw-animate-css ' + all['tw-animate-css'] : 'FAIL: not installed')"
+
+# tailwindcss-animate must be removed
+node -e "const p = require('./package.json'); const all = {...p.dependencies,...p.devDependencies}; console.log(all['tailwindcss-animate'] ? 'FAIL: tailwindcss-animate still present' : 'OK: removed')"
+
+# @import must be in globals.css
+grep -n "tw-animate-css" src/styles/globals.css
+# SUCCESS: shows @import "tw-animate-css";
+
+# No plugin reference in config (tailwind.config.mjs is deleted, so this is already satisfied)
+# Double-check no require() of tailwindcss-animate remains in any config
+grep -rn "tailwindcss-animate" . --include="*.mjs" --include="*.cjs" --include="*.js" --include="*.ts" --exclude-dir=node_modules
+# SUCCESS: zero matches
+```
+
+**Manual verification (required — animations cannot be confirmed by grep):**
+
+1. Run `npm run dev`
+2. Open `http://localhost:4321` in browser
+3. **Sheet animation test:** Click the hamburger menu in the header on mobile viewport (< 768px). The Sheet must slide in from the right with a transition. Close it — must slide out. If it appears/disappears instantly with no motion, INFRA-06 fails.
+4. **DropdownMenu animation test:** Click the mode-toggle or any DropdownMenu trigger. The menu must fade/zoom in. Clicking away must fade/zoom out.
+5. **MobileActionButtons animation test:** On mobile viewport, page load must show the bottom bar sliding up from below with a fade. It uses `animate-in slide-in-from-bottom-4 duration-700 fade-in` — should animate on first render.
+
+**Specific animation classes confirmed in this codebase:**
+
+| Component | File | Animation Classes Used |
+|-----------|------|----------------------|
+| SheetOverlay | `sheet.tsx:22` | `data-[state=open]:animate-in`, `data-[state=closed]:animate-out`, `fade-out-0`, `fade-in-0` |
+| SheetContent | `sheet.tsx:32` | `animate-in`, `animate-out`, `slide-out-to-right`, `slide-in-from-right` (and other sides) |
+| DropdownMenuSubContent | `dropdown-menu.tsx:49` | `animate-in`, `animate-out`, `fade-out-0`, `fade-in-0`, `zoom-out-95`, `zoom-in-95`, `slide-in-from-top-2` etc. |
+| DropdownMenuContent | `dropdown-menu.tsx:66` | Same as SubContent |
+| MobileActionButtons | `MobileActionButtons.astro:6` | `animate-in`, `slide-in-from-bottom-4`, `duration-700`, `fade-in` |
+
+**Success criteria:** Sheet slides in/out with transition. DropdownMenu fades/zooms. MobileActionButtons slides up on load. Build exits 0 with no animation-related errors.
+
+---
+
+### Font Validation (Cross-Requirement: INFRA-01 + Lighthouse)
+
+**Automated:**
+```bash
+# Variable font packages installed
+node -e "require('@fontsource-variable/manrope'); console.log('manrope OK')"
+node -e "require('@fontsource-variable/inter'); console.log('inter OK')"
+
+# Font imports present in Layout.astro
+grep -n "fontsource-variable" src/layouts/Layout.astro
+# SUCCESS: shows both manrope/wght.css and inter/wght.css import lines
+```
+
+**Lighthouse CLS test:**
+```bash
+npm run build && npm run test:lhci
+# SUCCESS: cumulative-layout-shift passes (< 0.1 on all 4 pages)
+# FAILURE: lhci reports CLS > 0.1 — indicates font swap causing layout shift
+```
+
+**Manual font rendering check:**
+1. Run `npm run build && npm run preview`
+2. Open `http://localhost:4321`
+3. Open DevTools → Network tab, filter by "Font"
+4. Reload page
+5. Verify `.woff2` files load for both `manrope` and `inter` variable fonts
+6. Check Elements → Computed styles on body — `font-family` computed value should include "Inter Variable"
+7. No visible text jump/reflow during page load
+
+**Success criteria:** CLS < 0.1 on all 4 pages via `npm run test:lhci`. Both variable font woff2 files appear in Network tab. No visible layout shift during font load.
+
+---
+
+### Full Phase Gate: npm run qa
+
+The phase is NOT complete until `npm run qa` passes cleanly. This command runs:
+
+1. `npm run build` — Astro build
+2. `npm run test:quality` → `npm run lint && npm run knip && npm run typecheck && npm run test:aeo`
+3. `npm run test:lhci` — Lighthouse CI on all 4 pages
+
+**Lighthouse thresholds (from `.lighthouserc.json`):**
+
+| Metric | Threshold | Notes |
+|--------|-----------|-------|
+| LCP | < 4000ms | Unchanged from v1.0 baseline |
+| TBT | < 600ms | Migration must not add blocking scripts |
+| CLS | < 0.1 | Critical for font swap validation |
+| Accessibility | ≥ 90 | `outline-none` → `outline-hidden` must not break focus indicators |
+| Best Practices | ≥ 80 | |
+| SEO | ≥ 90 | |
+
+**Pages tested by LHCI:** `/`, `/near-grand-canyon/`, `/directions/`, `/faq/`
+
+**Success criteria for phase complete:** `npm run qa` exits 0 with all assertions passing. No scores regressed from v1.0 baseline.
+
+---
+
+### Manual Verification Checklist
+
+This checklist is for the implementer to run before marking the phase complete:
+
+```
+[ ] npm run build exits 0
+[ ] tailwindcss appears under vite.plugins[] in astro.config.mjs (NOT integrations[])
+[ ] tailwind.config.mjs deleted (ls tailwind.config.mjs returns error)
+[ ] globals.css starts with @import "tailwindcss"
+[ ] @theme inline block present with all color token mappings
+[ ] @custom-variant dark (&:where(.dark, .dark *)) present in globals.css
+[ ] autoprefixer not in package.json (devDependencies or dependencies)
+[ ] tw-animate-css in package.json dependencies
+[ ] tailwindcss-animate not in package.json
+[ ] @fontsource-variable/manrope imported in Layout.astro
+[ ] @fontsource-variable/inter imported in Layout.astro
+[ ] Old @fontsource/open-sans and @fontsource/playfair-display still imported (D-02)
+[ ] grep for shadow-sm in src/ returns zero matches
+[ ] grep for outline-none in src/ returns zero matches
+[ ] grep for "! " prefix pattern in src/ returns zero matches
+[ ] Dark mode: adding class="dark" to <html> in DevTools changes Header + Sheet backgrounds
+[ ] Sheet animation: slides in/out with motion (not instant appear/disappear)
+[ ] DropdownMenu animation: fades/zooms in/out
+[ ] MobileActionButtons: slides up from bottom on mobile viewport
+[ ] npm run test:lhci passes all 4 pages with no score regressions
+[ ] npm run qa exits 0 (full gate)
+```
+
+---
+
 ## State of the Art
 
 | Old Approach | Current Approach | When Changed | Impact |
@@ -643,6 +928,7 @@ export default defineConfig({
 - `https://tailwindcss.com/docs/adding-custom-styles` — `@utility` directive syntax
 - `https://fontsource.org/fonts/manrope/install` — `@fontsource-variable/manrope` install and CSS import
 - `https://fontsource.org/fonts/inter/install` — `@fontsource-variable/inter` install and CSS import
+- `.lighthouserc.json` — Actual LHCI thresholds used in `npm run test:lhci`
 
 ### Secondary (MEDIUM confidence)
 - `https://ui.shadcn.com/docs/tailwind-v4` — shadcn/ui `@theme inline` pattern for token migration; HSL variable format
@@ -660,7 +946,8 @@ export default defineConfig({
 **Confidence breakdown:**
 - Standard Stack: HIGH — package names and versions verified from npm registry directly; official Tailwind docs confirm @tailwindcss/vite is the correct Astro integration
 - Architecture: HIGH — CSS patterns sourced from official Tailwind v4 docs and shadcn/ui v4 migration guide
-- Breaking Changes Inventory: HIGH — rename list sourced from official upgrade guide; grep audit of codebase confirms which files are affected
+- Breaking Changes Inventory: HIGH — rename list sourced from official upgrade guide; grep audit of codebase confirms which files are affected (19 shadow-sm instances confirmed across 6 files)
+- Validation Architecture: HIGH — commands verified against actual project scripts, package.json, and .lighthouserc.json; manual steps derived from actual component code in sheet.tsx, dropdown-menu.tsx, MobileActionButtons.astro
 - tw-animate-css compatibility: MEDIUM — package confirmed to provide all class names used in this codebase per README; not independently run against this codebase
 - @utility glass dark-mode behavior: LOW — community reports of `@apply dark:` issues inside `@utility` but no official confirmation of fix status in v4.2.2
 

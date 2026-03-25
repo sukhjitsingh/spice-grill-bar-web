@@ -2,18 +2,18 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-22)
+See: .planning/PROJECT.md (updated 2026-03-24)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** v1.0 complete — planning next milestone
+**Current focus:** v2.0 UI Facelift — The Radiant Sommelier
 
 ## Current Position
 
-Phase: v1.0 complete (6 phases, 8 plans shipped)
-Status: Milestone v1.0 archived to .planning/milestones/
-Last activity: 2026-02-22 — Milestone v1.0 completed and archived
+Phase: Not started (defining requirements)
+Status: Defining requirements
+Last activity: 2026-03-24 — Milestone v2.0 started
 
-Progress: [██████████] 100% (v1.0)
+Progress: [░░░░░░░░░░] 0% (v2.0)
 
 ## Performance Metrics
 
@@ -36,9 +36,10 @@ None.
 ### Blockers/Concerns
 
 - Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible
+- tailwindcss-animate plugin needs v4 compatibility check/migration (used in MobileActionButtons, Sheet, DropdownMenu)
 
 ## Session Continuity
 
-Last session: 2026-02-22
-Stopped at: Milestone v1.0 completed and archived
+Last session: 2026-03-24
+Stopped at: Milestone v2.0 — defining requirements
 Resume file: None

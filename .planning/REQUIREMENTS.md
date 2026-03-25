@@ -2,12 +2,12 @@
 
 ## Infrastructure
 
-- [ ] **INFRA-01**: Site builds and runs on TailwindCSS v4 with `@tailwindcss/vite` plugin replacing `@astrojs/tailwind`
-- [ ] **INFRA-02**: CSS configuration uses `@import "tailwindcss"` and `@theme` directive, `tailwind.config.mjs` deleted
-- [ ] **INFRA-03**: All v4 breaking utility renames applied (`shadow-sm`→`shadow-xs`, `outline-none`→`outline-hidden`, `ring`→`ring-3`, `!` position flipped)
-- [ ] **INFRA-04**: Dark mode works correctly with `@custom-variant dark (&:where(.dark, .dark *))` syntax
-- [ ] **INFRA-05**: `autoprefixer` removed (Tailwind v4 Lightning CSS handles prefixing)
-- [ ] **INFRA-06**: `tailwindcss-animate` replaced with `tw-animate-css`, Sheet/DropdownMenu/MobileActionButtons verified functional
+- [x] **INFRA-01**: Site builds and runs on TailwindCSS v4 with `@tailwindcss/vite` plugin replacing `@astrojs/tailwind`
+- [x] **INFRA-02**: CSS configuration uses `@import "tailwindcss"` and `@theme` directive, `tailwind.config.mjs` deleted
+- [x] **INFRA-03**: All v4 breaking utility renames applied (`shadow-sm`→`shadow-xs`, `outline-none`→`outline-hidden`, `ring`→`ring-3`, `!` position flipped)
+- [x] **INFRA-04**: Dark mode works correctly with `@custom-variant dark (&:where(.dark, .dark *))` syntax
+- [x] **INFRA-05**: `autoprefixer` removed (Tailwind v4 Lightning CSS handles prefixing)
+- [x] **INFRA-06**: `tailwindcss-animate` replaced with `tw-animate-css`, Sheet/DropdownMenu/MobileActionButtons verified functional
 
 ## Token System
 

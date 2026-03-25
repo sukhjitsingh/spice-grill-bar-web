@@ -48,7 +48,7 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
   5. Lighthouse scores on all 4 pages are unchanged from v1.0 baseline — migration introduces no regressions
 **Plans**: 2 plans
 Plans:
-- [ ] 07-01-PLAN.md — TailwindCSS v4 migration: packages, config, CSS-first globals, utility renames, fonts
+- [x] 07-01-PLAN.md — TailwindCSS v4 migration: packages, config, CSS-first globals, utility renames, fonts
 - [ ] 07-02-PLAN.md — Visual verification checkpoint: dark mode toggle, animations, font rendering
 
 ### Phase 8: Token System

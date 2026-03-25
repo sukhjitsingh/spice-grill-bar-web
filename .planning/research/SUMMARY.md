@@ -1,242 +1,236 @@
 # Project Research Summary
 
-**Project:** Spice Grill & Bar — GEO/AEO SEO Enhancement
-**Domain:** Local restaurant SEO, Geographic SEO (GEO), AI Answer Engine Optimization (AEO), Astro 5 static site
-**Researched:** 2026-02-20
+**Project:** Spice Grill & Bar — v2.0 UI Facelift ("The Radiant Sommelier")
+**Domain:** CSS framework migration + full visual design system overhaul on existing Astro 5 restaurant site
+**Researched:** 2026-03-24
 **Confidence:** HIGH
 
 ## Executive Summary
 
-Spice Grill & Bar sits in a rare competitive position: it is the only Indian restaurant within 70 miles of Grand Canyon National Park, located directly on I-40 Exit 146 in Ash Fork, Arizona, yet its web presence does not currently capture the high-commercial-intent queries that highway road-trippers and Grand Canyon visitors ask AI engines and voice assistants. The existing Astro 5 site has a strong technical foundation — correct JSON-LD injection patterns, Partytown analytics, enforced Lighthouse thresholds, and a weekly review pipeline — but the schema is incomplete and inconsistent in ways that actively suppress local pack rankings and AI citation. The highest-leverage work is not building new features; it is fixing two data integrity problems first (schema-to-FAQ hours conflict, telephone format inconsistency), then layering on schema enhancements and four targeted content pages.
+The Radiant Sommelier facelift is a tightly scoped visual redesign of an existing, working Astro 5 site. The entire effort is gated behind a single prerequisite: migrating TailwindCSS from v3 to v4. This migration is non-trivial — it requires swapping the Astro integration (`@astrojs/tailwind` out, `@tailwindcss/vite` in), deleting `tailwind.config.mjs` entirely, rewriting `globals.css` to use v4's CSS-first `@theme` directive, replacing the animation plugin (`tailwindcss-animate` out, `tw-animate-css` in), and handling 6+ documented breaking changes. Nothing in the visual redesign can begin until the build is green on v4 and dark mode is verified working.
 
-The recommended approach is a sequenced three-phase delivery: (1) fix all existing schema bugs and data conflicts before adding any new signals — a broken foundation invalidates everything built on top of it; (2) create the four GEO content pages (`/about/`, `/directions/`, `/near-grand-canyon/`, `/route-66-dining/`) using the answer-first passage structure that AI extraction systems favor, deploying one page at a time with Lighthouse CI coverage for each; (3) complete off-site profile optimization (Yelp, TripAdvisor, Google Business Profile) and `sameAs` linking only after on-site NAP is clean and profiles are verified to be consistent. All four new pages can be built without any new npm dependencies, new layout wrappers, or changes to the build system — the existing `Layout.astro` pattern and `faq.astro` structure serve as direct templates.
+Once the migration foundation is established, the redesign follows a clear dependency chain: surface hierarchy color tokens must be defined before any component re-skin can occur, and the shadcn semantic token layer (`--background`, `--card`, `--popover`, etc.) must be remapped to those surface values without breaking the existing Radix UI components (Sheet, DropdownMenu, Button). The visual changes themselves — glassmorphism overhaul, no-line rule, font swap, editorial typography, orange restraint — are individually low-complexity. Their risk comes from combined scope (12+ component files) and the hard Lighthouse CI gate: LCP < 4000ms, TBT < 600ms, CLS < 0.1, Accessibility >= 90.
 
-The primary risk is treating schema additions and content page creation as independent tracks. They are not: `RestaurantSchema.astro` currently states hours of `07:00–22:00` daily while `faq.json` states `8:00 AM–9:00 PM` weekday / `8:00 AM–10:00 PM` weekend. Publishing new pages while this conflict exists will cause Google to ignore structured data and AI engines to cite contradictory answers. This must be resolved — with confirmed hours from the restaurant owner — before any other work deploys. The mitigation is to extract all NAP data to a single `src/data/business.json` source-of-truth file, then import it everywhere.
-
----
+The primary risks are well-understood and preventable: the upgrade tool produces incorrect output for Astro-specific patterns and must be treated as a 70% solution requiring manual completion; `backdrop-filter: blur()` on too many simultaneous elements will kill TBT on mobile; font swaps without metric-adjusted fallbacks will cause CLS failures; and the DESIGN.md spec is dark-mode-first with no explicitly specified light mode tokens, requiring that gap to be filled before implementation begins. None of these risks are novel — all have documented mitigations in the pitfalls research.
 
 ## Key Findings
 
 ### Recommended Stack
 
-The existing stack requires no changes. The `schema-dts` TypeScript library (v1.1.5, already installed) provides full type coverage for all planned schema additions including `GeoCoordinates`, `AggregateRating`, `OrderAction`, and `EntryPoint`. The current `<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />` injection pattern is optimal for static Astro sites and must not be changed. No new npm packages are needed.
+The stack changes are minimal and surgical: four packages removed, five added, one config file deleted, and two integration points moved. The core Astro 5 + React islands architecture is entirely unchanged. See `.planning/research/STACK.md` for full package versions and install commands.
 
-**Core technologies:**
+**Core technology changes:**
+- `tailwindcss ^4.2.2` (devDep): replaces v3.4.19 — CSS-first, Lightning CSS built-in, no PostCSS needed
+- `@tailwindcss/vite ^4.2.2` (devDep): replaces `@astrojs/tailwind` — moves from `integrations[]` to `vite.plugins[]`
+- `tw-animate-css ^1.4.0` (dep): replaces `tailwindcss-animate` — pure CSS, v4-native, drop-in for Sheet/DropdownMenu animations
+- `@fontsource-variable/manrope ^5.2.8` (dep): replaces `@fontsource/playfair-display` — geometric display/headline font per DESIGN.md
+- `@fontsource-variable/inter ^5.2.8` (dep): replaces `@fontsource/open-sans` — clean body/label font per DESIGN.md
+- `tailwind.config.mjs` deleted — all config moves to `@theme {}` block in `globals.css`
+- `autoprefixer` removed — Lightning CSS in v4 handles vendor prefixing natively
 
-- `schema-dts` v1.1.5: TypeScript types for all schema.org properties — already installed, covers all planned additions
-- Astro 5 `Layout.astro`: universal page wrapper — new pages inherit canonical URLs, breadcrumbs, and all six schema components for free
-- `src/data/*.json` files: source-of-truth pattern — extending to `business.json` for NAP data eliminates inconsistency
-- `GoogleMap.tsx` with `client:visible`: existing lazy-loaded map component — reusable on `/directions/` with zero new code
-- `@astrojs/sitemap`: auto-generates sitemap entries for all new pages — no configuration changes needed
-
-**Do not add:**
-
-- `next-seo`, `astro-seo`, `react-schemaorg`, or any schema validation npm packages — external tools (Google Rich Results Test) cover validation at zero bundle cost
+**Critical procedural note:** The `@tailwindcss/upgrade` CLI tool handles template scanning (renamed utilities) but is documented to produce incorrect output for Astro-specific patterns (wrong `astro.config.mjs` placement, invalid `@custom-variant` syntax). Use it for the utility rename pass only; complete all Astro integration steps manually.
 
 ### Expected Features
 
-**Must have (table stakes):**
+Every feature maps to an existing component being re-skinned, not a new component being built. The site is already working — this is entirely a visual overhaul. See `.planning/research/FEATURES.md` for per-feature complexity ratings and the complete dependency map.
 
-- NAP consistency across all schema components, FAQ answers, and page copy — current inconsistency is an active suppressor
-- `RestaurantSchema` with correct `geo`, `areaServed` (expanded), `aggregateRating`, and `potentialAction` (OrderAction) — these are the missing local SEO signals
-- `OrganizationSchema` with `sameAs` links to Google Maps, Yelp, and TripAdvisor — entity disambiguation across knowledge graphs
-- FAQ expansion from 9 to 20 questions targeting distance, exit number, food type, and operational queries — FAQ schema is the highest-signal AEO property
-- Canonical `<title>` and `<meta description>` unique per page — current defaults leak onto sub-pages
-- `llms.txt` and `llms-full.txt` updated with geographic distance facts and highway exit information
+**Must have (table stakes — facelift is incomplete without these):**
+- TailwindCSS v3 to v4 migration — prerequisite gate; blocks everything else
+- Surface hierarchy token system (5 depth levels) — replaces zinc-based backgrounds with warm brown obsidian tones per DESIGN.md
+- Hybrid token migration — remap shadcn semantic tokens (`--background`, `--card`, `--popover`) to surface hierarchy without breaking Radix components
+- Font swap: Manrope Variable (display) + Inter Variable (body) — variable fonts reduce from 6 HTTP requests to 2
+- No-line rule implementation across ~8 components — border removal paired with background tonal shifts
+- Glassmorphism overhaul — warm-tinted surfaces using `color-mix()`, `backdrop-blur: 32px`, inner glow strokes
+- Light and dark mode both redesigned — class-based toggle preserved; `@custom-variant dark` replaces `darkMode: ['class']`
 
-**Should have (competitive differentiators):**
+**Should have (differentiators that complete the editorial aesthetic):**
+- Editorial typography scale — `display-lg` (3.5rem) contrasted with `label-sm` (0.625rem, tracking 0.15em) for magazine tension
+- Tinted ambient shadows — warm brown-black tint using `oklch()` instead of neutral gray/black
+- Orange restraint — reduce 15+ uses of `#FF4B12` to 3-4 high-impact moments; everything else reverts to `on_surface_variant`
+- Asymmetric editorial layout moments — small labels positioned opposite large headlines in Hero and MenuSection
 
-- `/near-grand-canyon/` page with answer-first passage structure — highest-ROI single page, zero competition
-- `/directions/` page with per-city driving distance facts — captures navigation queries from all I-40 origin cities
-- `/about/` page with full entity narrative — canonical source for AI "tell me about" queries
-- `/route-66-dining/` page with Ash Fork heritage content — captures Route 66 travel query traffic
-- Per-page `BreadcrumbSchema` with human-readable labels (fix current hyphenated label generation)
-- Schema scoping per page — FAQSchema and MenuSchema should not emit on GEO pages where they are irrelevant
+**Defer to post-facelift:**
+- Per-component micro-animations beyond existing `tw-animate-css` repertoire
+- Asymmetric layout moments if schedule is tight (nice-to-have, not required for spec compliance)
 
-**Defer (v2+):**
-
-- `SearchAction` in `WebSiteSchema` — requires actual client-side search implementation on the FAQ page
-- `founder`/`employee` entity schemas — requires chef/founder details from restaurant owner; low SEO value without confirmed data
-- Event schema for specials — only applicable if the restaurant runs ticketed events
-- Additional content pages targeting individual city names (e.g., `/indian-food-williams-az/`) — these risk doorway page penalty; the `/directions/` hub page covers the geographic spread without fragmentation
-
-**Anti-features (do not build):**
-
-- AI-generated bulk content pages — Google's Helpful Content System actively suppresses thin AI-generated pages
-- Keyword stuffing in FAQ answers — AI engines skip answers that repeat location terms rather than stating a clean fact
-- Doorway pages with near-identical content differing only by city name — explicit Google penalty
-- Schema markup describing content not visible on the page — structured data violation, risks manual action
-- Dynamic routes or SSR pages — Apache-hosted static site; Node.js runtime not available
+**Anti-features (explicitly do not do):**
+- No new npm packages beyond the Tailwind v4 migration set — Lighthouse TBT budget is non-negotiable
+- No animating `backdrop-filter` on scroll — GPU paint storms on mobile
+- No rewriting React islands (Header, MenuSection) as Astro components — they exist as islands for good reason
+- No removing the `.dark` class toggle mechanism — pre-paint `theme.js` pattern must be preserved
+- No neutral grays (`zinc-*`, `gray-*`) anywhere — always use the warm surface hierarchy token equivalent
+- No changes to JSON-LD schema components — purely functional, out of facelift scope, SEO score must not regress
 
 ### Architecture Approach
 
-All four new content pages follow the identical pattern already established by `faq.astro`: a single Astro file in `src/pages/`, wrapping content in `Layout.astro` with page-specific `title` and `description` props. No new layout wrappers, sub-layouts, or data layer files are required (except optionally `src/data/directions.json` for reuse). Every new page automatically inherits canonical URL derivation, breadcrumbs, all six schema components, Partytown analytics, and the Header/Footer/MobileActionButtons. The only structural changes to shared components are: (1) add two nav entries to `Header.tsx` navigation array; (2) add four page links to `Footer.astro`; (3) fix `BreadcrumbSchema` label derivation for hyphenated slugs; (4) add schema control props (`showFAQSchema`, `showMenuSchema`) to `Layout.astro` so GEO pages do not emit irrelevant schema.
+The v2.0 architecture is a re-skin, not a restructure. The Astro 5 + React islands split remains unchanged. Astro components handle all layout and static structure; React components (Header, MenuSection) remain islands hydrated with `client:load` and `client:visible` respectively. No new components are needed — all work is editing existing ones.
 
-**Major components:**
+The token architecture follows a two-layer model in `globals.css`: CSS custom properties in `:root` and `.dark {}` hold the raw surface values; `@theme inline` exposes both the new surface hierarchy tokens AND the existing shadcn semantic tokens as Tailwind utility classes. This dual-layer approach keeps shadcn components (Button, Sheet, DropdownMenu) working without modification while simultaneously making the new `bg-surface-dim`, `bg-surface-container`, etc. classes available for component re-skins.
 
-1. `Layout.astro` — universal page shell; needs minor extension for schema scoping and breadcrumb label prop
-2. `src/components/schema/*.astro` — JSON-LD components; `RestaurantSchema`, `OrganizationSchema`, `WebSiteSchema` need targeted property additions
-3. `src/data/business.json` (new) — single source-of-truth for NAP data; imported by all schema components and page copy
-4. `src/pages/{about,directions,near-grand-canyon,route-66-dining}.astro` (new) — four static content pages, each with answer-first passage structure
-5. `Header.tsx` + `Footer.astro` — nav array and footer links extended to include new pages
-6. `.lighthouserc.json` — must be updated to include each new page URL as it is created
+**Major components being re-skinned:**
+1. `globals.css` — rewritten in full; the v4 CSS configuration source of truth for the entire design system
+2. `Header.tsx` — glassmorphism scrolled state updated, nav borders removed, dark mode variants verified
+3. `MenuSection.tsx` — structural borders removed, category header color changed from orange to `on_surface`
+4. `Footer.astro` — all `border-t`/`border-b` removed, section background shifts applied
+5. `MobileActionButtons.astro` — glassmorphism container updated, animation dependency swapped
+6. `OurStorySection.astro` — glass-card caption updated, tinted shadows applied
+7. `OrderSection.astro` — CTA container glassmorphism updated to warm tint
+8. `ReviewsSection.astro` — card border-to-surface migration, tinted shadow replacement
 
-**Hub-and-spoke internal linking:** Homepage and `/about/` are hubs; all other pages link back to them and cross-link contextually. Anchor text must be keyword-containing, not generic.
+**Architecture note:** The ARCHITECTURE.md research file (dated 2026-02-20) documents architecture for GEO/AEO content pages from a prior milestone, not the v2.0 UI Facelift. The v2.0 architecture is derived from FEATURES.md and STACK.md. No new pages, routing changes, or data layer files are part of this milestone.
 
 ### Critical Pitfalls
 
-1. **Hours conflict between schema and FAQ (blocking)** — `RestaurantSchema.astro` says `07:00–22:00` daily; `faq.json` says `8:00 AM–9:00 PM` weekday / `8:00 AM–10:00 PM` weekend. This must be resolved with confirmed hours from the owner before any other schema work or content deploys. Extract all NAP to `src/data/business.json` to prevent recurrence.
+See `.planning/research/PITFALLS.md` for the complete catalog (14 pitfalls with mitigations). The top-priority items:
 
-2. **Schema over-engineering with unverifiable data** — `aggregateRating` must be sourced from a verifiable review count (Google Business Profile or a manually documented snapshot), not from the Gemini-summarized `reviews.json` content. `containedInPlace` must not be used for Route 66 corridor identity — it is for physical containment. `servesCuisine` must not include beverage categories (`"Beer"`, `"Wine"`).
+1. **Dark mode breaks silently after migration** — The upgrade tool generates an incorrect `@custom-variant` declaration. Manually verify `globals.css` contains exactly `@custom-variant dark (&:where(.dark, .dark *))`. Test by adding `class="dark"` to `<html>` in devtools and confirming dark backgrounds apply to Header and Sheet before touching any design tokens.
 
-3. **GEO pages shipping thin content** — each new page must contain 5+ unique facts not found elsewhere on the site and a minimum of 300 words. The failure mode is wrapping homepage content in new headings. Before writing any page, list the unique facts it will contain.
+2. **Sheet and DropdownMenu animations break without `tw-animate-css`** — `tailwindcss-animate` is officially deprecated and its v4 shim does not correctly emit the CSS variables that Radix UI's `data-[state]` patterns depend on. Remove it, install `tw-animate-css`, add `@import "tw-animate-css"` to `globals.css`. This is a Phase 1 blocker — mobile nav is broken until resolved.
 
-4. **Lighthouse CI coverage gap for new pages** — `.lighthouserc.json` currently only audits `/`. Every new page must be added to the URL list in the same commit that creates the page. Running the QA hook without this update gives a false pass while regressions ship undetected.
+3. **`@apply` in Astro `<style>` blocks causes build failure** — v4 does not auto-inject theme context into scoped styles. Migrate `.glass` and `.glass-card` from `@layer utilities { .glass { @apply ... } }` to `@utility glass { ... }` in `globals.css`. This is the v4-idiomatic approach and eliminates the `@apply` dependency entirely.
 
-5. **BreadcrumbSchema label generation for hyphenated slugs** — the current logic produces "Near-grand-canyon" and "Route-66-dining" as breadcrumb labels in search results. Fix the derivation in `Layout.astro` (add `breadcrumbLabel` prop or a proper slug-to-title converter) before creating any new page.
+4. **shadcn HSL channel tuples break in `@theme`** — The current `globals.css` uses `:root { --background: 0 0% 100%; }` (raw HSL channels). Tailwind v4 requires complete color values in `@theme`. Wrap all HSL tuples in `hsl()` as part of the migration step before defining any `@theme inline` mappings.
 
----
+5. **`container` utility loses its configuration** — `tailwind.config.mjs` configures `container` with `center: true`, `padding: '2rem'`, and `screens: { '2xl': '1400px' }`. This does not auto-migrate. After migration, add `@utility container { margin-inline: auto; padding-inline: 2rem; max-width: 1400px; }` to `globals.css` or layout breaks on 1600px+ viewports.
+
+6. **Font swap causes CLS regression** — Swapping at display sizes (3.5rem for `display-lg`) risks CLS > 0.1 without metric-adjusted fallbacks. Preload the critical Manrope weight, define `@font-face` metric override descriptors, and run `npm run test:lhci` immediately after font installation as a checkpoint.
+
+7. **`backdrop-blur` budget on mobile** — Applying `backdrop-filter: blur()` to ambient card elements simultaneously with the fixed Header will push TBT above 600ms on low-end devices. Reserve blur for: Header (scrolled state only), Sheet overlay, DropdownMenu. Cards use surface background color shifts, not blur.
+
+8. **Light mode not specified in DESIGN.md** — The spec is dark-first with no explicit light mode token values. This must be resolved as a design decision before Phase 2 begins. FEATURES.md provides working recommended values (warm cream inversions: `#fdf6f0`, `#f5ece4`, `#ede0d4`, `#e0cfc4`) pending owner sign-off.
 
 ## Implications for Roadmap
 
-### Phase 1: Schema Data Integrity and Fixes
+The FEATURES.md dependency map is unambiguous: Tailwind v4 migration gates the token system, which gates all component re-skins, which gate editorial polish. The roadmap follows this chain exactly in three phases.
 
-**Rationale:** The hours conflict and NAP inconsistencies are not a cleanup task — they are a blocking prerequisite. Any new schema additions or content pages deployed while contradictory data exists will have those contradictions amplified, not resolved. This must ship and be verified in Google Search Console before Phase 2 begins.
+### Phase 1: Infrastructure — Tailwind v4 Migration + Font Foundation
 
-**Delivers:** Clean, consistent, validated schema with no warnings in Google Rich Results Test. Correct NAP data flowing from a single source file. `RestaurantSchema` with the five missing high-impact properties added. `servesCuisine` corrected.
+**Rationale:** Every other task in this milestone is blocked until the build is green on v4 with dark mode working, animations working, fonts installed, and the container utility preserved. This phase has the most breaking-change surface area and must be fully verified before any visual work begins. Partial completion is not a valid intermediate state — a half-migrated codebase has compounding failures.
 
-**Addresses:** NAP consistency (FEATURES table stake #1), `geo`/`areaServed`/`aggregateRating`/`potentialAction` (FEATURES table stakes #2 and #7), `servesCuisine` correction (STACK audit bug #3)
+**Delivers:**
+- Green `npm run build` on `tailwindcss ^4.2.2` with `@tailwindcss/vite` in `vite.plugins[]`
+- `tailwind.config.mjs` deleted; all config in `globals.css` using `@theme`
+- Dark mode variant confirmed working (`@custom-variant dark` manually verified in devtools)
+- Sheet and DropdownMenu animations confirmed working (`tw-animate-css` installed and imported)
+- Manrope Variable + Inter Variable fonts installed, critical weight preloaded, CLS < 0.1 verified via `test:lhci`
+- `container` utility ported to `@utility container` (1400px max-width preserved)
+- All renamed utilities corrected in source files (shadow-sm, rounded-sm, outline-none, ring, etc.)
+- Existing Lighthouse scores preserved — no regressions introduced by the migration itself
 
-**Avoids:** Hours conflict pitfall (PITFALLS #1), schema over-engineering pitfall (PITFALLS #2)
+**Addresses (from FEATURES.md):** Tailwind v4 migration (table stake #1), font migration (table stake #4), `tw-animate-css` swap
 
-**Key tasks:**
+**Avoids (from PITFALLS.md):** Pitfalls 1, 2, 3, 4, 6 (integration conflict), 8 (CLS), 10, 11
 
-- Confirm canonical hours with restaurant owner
-- Extract NAP to `src/data/business.json`; update all imports
-- Fix `RestaurantSchema`: telephone format, URL consistency, remove beverages from `servesCuisine`, add `geo`, `aggregateRating` (from verified source), `areaServed` array, `potentialAction` (OrderAction with Toast URL)
-- Update `WebSiteSchema`: add `description` and `publisher`
-- Validate with Google Rich Results Test before merging
-
-### Phase 2: FAQ Expansion
-
-**Rationale:** FAQ expansion is a data-only change (`faq.json`) with zero schema code changes and zero Lighthouse risk. It delivers immediate AEO signal improvement and can deploy rapidly once Phase 1 hours data is confirmed (since FAQ hours must match schema hours). It is isolated from Phase 3 page creation and can run in parallel with early Phase 3 prep.
-
-**Delivers:** 20 FAQ entries covering the five high-value question patterns: distance/travel time, exit/navigation, food type by location, dietary accommodation, and operational queries. Each answer is 60 words or fewer, fact-first, with no repeated keyword stuffing.
-
-**Addresses:** FAQ expansion from 9 to 20 questions (FEATURES table stake #5), route-specific FAQ patterns (FEATURES differentiator patterns 1-6)
-
-**Avoids:** FAQ keyword stuffing pitfall (PITFALLS #3)
-
-**Key tasks:**
-
-- Write 11 new FAQ entries following the answer-first pattern documented in PITFALLS #3
-- Ensure hours in new FAQ answers match the canonical hours confirmed in Phase 1
-- Run `npm run test:aeo` against the FAQ page after build
-
-### Phase 3: GEO Content Pages
-
-**Rationale:** Pages build on the clean schema foundation from Phase 1. Deploy one page per commit in priority order: `/about/` first (canonical entity page that all others link to), then `/directions/` (reuses existing `GoogleMap.tsx`), then `/near-grand-canyon/` (highest-value SEO page, zero competition), then `/route-66-dining/` (contextual/editorial, benefits from other pages being live first). Each page gets its own Lighthouse CI audit entry and is validated before the next page begins.
-
-**Delivers:** Four content pages with unique, AI-extractable passage content. Hub-and-spoke internal linking structure. Breadcrumb schema fix. Schema scoping to prevent FAQ/Menu schema dilution on GEO pages. Navigation and footer updates linking all pages.
-
-**Addresses:** All four differentiator content pages (FEATURES differentiators #2-5), per-page BreadcrumbSchema (FEATURES differentiator #6), `llms.txt` update with distance facts (FEATURES table stake #4)
-
-**Avoids:** Thin content pitfall (PITFALLS #4), Lighthouse regression pitfall (PITFALLS #5), schema on wrong pages pitfall (PITFALLS #6), commit-batching QA bypass pitfall (PITFALLS #8)
-
-**Key tasks for each page (in order):**
-
-- List 5+ unique facts before writing
-- Add page URL to `.lighthouserc.json` first
-- Fix `BreadcrumbSchema` label logic before creating first page
-- Add schema control props to `Layout.astro` before creating first page
-- Write content with answer-first paragraph structure per ARCHITECTURE HTML rules
-- Run `npm run build && npm run test:lhci` locally after each page before push
-- Validate schema in Rich Results Test before merging
-
-### Phase 4: Off-Site Profile Optimization and `sameAs` Linking
-
-**Rationale:** `sameAs` links must not be added until off-site profiles (Yelp, TripAdvisor, Google Maps) are verified to have consistent NAP matching the Phase 1 canonical data. Adding `sameAs` links to inconsistent profiles weakens citation authority rather than strengthening it. This phase must be treated as a single atomic unit: profiles updated and verified, then `sameAs` added to `OrganizationSchema` in one commit.
-
-**Delivers:** Complete entity graph linking across major review platforms. Knowledge Panel enrichment. AI citation cross-referencing between site entity and review site entities.
-
-**Addresses:** `sameAs` links in OrganizationSchema (FEATURES table stake #3), off-site profile consistency (PITFALLS #7)
-
-**Avoids:** `sameAs` pointing to inconsistent or unverified profiles (PITFALLS #7)
-
-**Blocked on:** Restaurant owner providing Yelp, TripAdvisor, and Google Maps business profile URLs
-
-### Phase Ordering Rationale
-
-- Phase 1 before everything: data conflicts make all subsequent work unreliable. This is the single non-negotiable dependency.
-- Phase 2 before Phase 3: FAQ hours must match schema hours (Phase 1); FAQ content feeds into page cross-links in Phase 3.
-- Phase 3 pages in specified order: `/about/` is the entity hub that other pages link to for authority; `/near-grand-canyon/` is highest-value and should index as early as possible.
-- Phase 4 last: requires owner-provided profile URLs and external profile consistency that cannot be self-verified.
-
-### Research Flags
-
-Phases needing deeper research during planning:
-
-- **Phase 1 (aggregateRating):** Requires verification of the exact field structure in `reviews.json` (does it store a numeric `rating` per review, a pre-computed average, or a Gemini summary string?). The implementation pattern depends entirely on the actual schema. Do not assume — read the file first.
-- **Phase 3 (near-grand-canyon distances):** All distance and drive time figures must be verified against Google Maps before publishing. The research documents approximate values that are directionally correct but should not be published as facts without verification.
-- **Phase 4 (sameAs URLs):** Fully blocked on owner providing URLs. No research substitute for confirmed business profile links.
-
-Phases with standard patterns (skip `/gsd:research-phase`):
-
-- **Phase 2 (FAQ expansion):** Writing factual FAQ answers is a content task, not a technical one. The patterns are fully documented in PITFALLS #3 and FEATURES FAQ Patterns sections.
-- **Phase 3 (page architecture):** The Astro page structure is fully specified in ARCHITECTURE.md with exact file paths, HTML structure, component imports, and Layout props for each page. No ambiguity.
-- **Phase 1 (schema property formats):** All schema.org property formats are documented in STACK.md with exact JSON examples. No new research needed.
+**Research flag:** Standard, well-documented migration path. No additional research phase needed. The official Tailwind v4 upgrade guide, shadcn/ui v4 migration guide, and Astro 5.2 blog post collectively cover all steps. Treat the upgrade tool as a 70% solution and complete manually.
 
 ---
 
+### Phase 2: Token System + Light/Dark Mode
+
+**Rationale:** With the build stable on v4, the token architecture must be established in full before any component can be re-skinned. Writing component code that references token names (`bg-surface-dim`, `bg-surface-container`) before those tokens exist causes silent style failures that are hard to debug. Both light mode and dark mode values must be defined together in this phase — not iteratively — because every component must be validated in both modes before moving on.
+
+**Delivers:**
+- 5-level surface hierarchy tokens defined in `@theme` (`--color-surface-dim` through `--color-surface-container-high`)
+- Light mode warm cream token values defined in `:root {}` (fills the DESIGN.md gap)
+- Dark mode values overriding in `.dark {}` per DESIGN.md spec exactly
+- `@theme inline` hybrid mapping: all shadcn semantic tokens (`--color-background`, `--color-card`, `--color-popover`, etc.) resolve to surface hierarchy values
+- `@utility glass` and `@utility glass-card` rewritten with DESIGN.md warm-tinted spec (`color-mix()`, `backdrop-blur: 32px`, inner glow stroke)
+- All text/background color pairs verified against WCAG AA (4.5:1) contrast ratios for both modes
+
+**Addresses (from FEATURES.md):** Surface hierarchy token system (table stake #2), hybrid token migration (table stake #3), glassmorphism overhaul (table stake #6), light + dark mode redesign (table stake #7)
+
+**Avoids (from PITFALLS.md):** Pitfalls 5 (HSL format in `@theme`), 9 (accessibility contrast regression), 12 (token naming collision), 13 (light mode undefined)
+
+**Prerequisite design deliverable:** Light mode surface token values must be signed off before this phase begins. FEATURES.md recommended values provide a working starting point but require owner or designer confirmation.
+
+**Research flag:** Token architecture pattern (`:root` + `@theme inline` hybrid) is fully documented in the shadcn/ui v4 migration guide. Material Design 3 color roles documentation covers the semantic mapping model. No additional research phase needed.
+
+---
+
+### Phase 3: Visual Re-skin — Component by Component
+
+**Rationale:** With tokens established, the component re-skins are individually mechanical. Each component is an isolated set of class changes: remove structural borders, apply surface token backgrounds, update glassmorphism classes, apply editorial typography, reduce orange usage. Components can be re-skinned in any order since they share tokens but are otherwise independent. Run `npm run test:lhci` as a checkpoint after each page's components are complete — do not accumulate all re-skins and run Lighthouse once at the end.
+
+**Delivers:**
+- No-line rule implemented across all 8 affected components — borders replaced by background tonal shifts
+- Header glassmorphism updated to warm-tinted spec with correct dark mode variants
+- MenuSection borders removed; category header color changed from orange to `on_surface`
+- Footer all borders removed; section background shifts applied
+- MobileActionButtons, OurStorySection, OrderSection, ReviewsSection all updated to warm-tinted glassmorphism and tinted shadows
+- Manrope applied as display font across all headings; `display-lg`/`label-sm` scale applied in Hero and section headers
+- Orange reduced to 3-4 intentional moments site-wide (primary CTA, active state, brand gradient, logo)
+- Tinted ambient shadows replacing neutral `shadow-*` utilities site-wide
+- All 4 Lighthouse-audited pages passing CI thresholds after re-skin
+
+**Addresses (from FEATURES.md):** No-line rule (table stake #5), editorial typography scale (differentiator #1), tinted shadows (differentiator #2), orange restraint (differentiator #4); asymmetric layout moments (differentiator #3) if schedule allows
+
+**Avoids (from PITFALLS.md):** Pitfall 7 (`backdrop-blur` budget on cards), Pitfall 9 (per-component contrast checks), Pitfall 14 (per-page checkpoint builds rather than end-of-milestone Lighthouse run)
+
+**Research flag:** Pure CSS and component editing. No external APIs, no novel integrations, no dependency research needed. Standard patterns throughout.
+
+---
+
+### Phase Ordering Rationale
+
+- Phase 1 before Phase 2: `@theme` directives only exist in v4; the migration must land and build must be green before token definitions are written
+- Phase 2 before Phase 3: component class names reference token names that must be defined before those classes are valid; writing `bg-surface-dim` before the token exists causes silent transparent backgrounds
+- Phase 3 is internally parallelizable: Header, MenuSection, Footer, and content section components can be re-skinned in any order once tokens exist
+- Light mode token gap must be resolved as a design decision before Phase 2 planning tasks are written — flag it as a prerequisite deliverable
+
+### Research Flags
+
+**Phases where additional research is not needed:**
+- **Phase 1:** Migration path is fully documented. All breaking changes cataloged with specific mitigations. Execute from the research; no further research required.
+- **Phase 2:** Token architecture pattern is established art (shadcn/ui v4 guide, Material Design 3). The light mode gap is a design decision, not a research question.
+- **Phase 3:** CSS and component edits only. No unknowns.
+
+**Design gap requiring owner/designer decision before Phase 2 planning:**
+- Light mode surface token values are not specified in DESIGN.md. FEATURES.md provides recommended warm cream values (`#fdf6f0`, `#f5ece4`, `#ede0d4`, `#e0cfc4`). These need sign-off before Phase 2 tasks are scoped. The roadmapper should flag this as a blocking prerequisite with an explicit decision point before Phase 2 begins.
+
 ## Confidence Assessment
 
-| Area         | Confidence | Notes                                                                                                                                                                                                                                                                             |
-| ------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Stack        | HIGH       | schema-dts + is:inline pattern confirmed as optimal for Astro static sites; no new packages needed; all property formats documented against stable schema.org spec                                                                                                                |
-| Features     | HIGH       | Table stakes (NAP, geo, FAQPage, sameAs) are well-established local SEO signals; anti-features (doorway pages, thin content) are explicitly documented in Google guidelines; medium confidence on AI engine citation specifics (no A/B test data for single-location restaurants) |
-| Architecture | HIGH       | Based on direct codebase analysis of existing files; new page patterns are direct extensions of faq.astro with no ambiguity; component boundaries and data flow fully mapped                                                                                                      |
-| Pitfalls     | HIGH       | Pitfalls are grounded in specific codebase issues found during research (hours conflict, telephone format, servesCuisine misuse) — not generic warnings; phase mapping is concrete                                                                                                |
+| Area | Confidence | Notes |
+|------|------------|-------|
+| Stack | HIGH | All package versions verified against npm registry (March 2026). Upgrade tool limitations verified via multiple GitHub issues. Astro 5.2 blog post is the authoritative confirmation of `@tailwindcss/vite` as the v4 path. |
+| Features | HIGH | Feature list derives directly from DESIGN.md (authoritative design spec). Complexity estimates grounded in specific named component files and class names from the actual codebase. Anti-features have documented rationale. |
+| Architecture | MEDIUM | ARCHITECTURE.md is mismatched to this milestone — it documents GEO/AEO page architecture from a prior milestone. v2.0 architecture for the UI Facelift is inferred from FEATURES.md and STACK.md. The re-skin approach is correct and consistent with the existing codebase, but the dedicated architecture research file did not cover v2.0 scope. |
+| Pitfalls | HIGH | 14 pitfalls, all grounded in specific GitHub issues (issue numbers cited), official Tailwind v4 upgrade guide entries, or documented community reports. Lighthouse thresholds are from CLAUDE.md project constraints. All mitigation steps are concrete and actionable. |
 
 **Overall confidence:** HIGH
 
 ### Gaps to Address
 
-- **Canonical business hours:** The hours discrepancy (`07:00–22:00` in schema vs. `8 AM–9 PM weekday / 8 AM–10 PM weekend` in FAQ) cannot be resolved by research — it requires a direct answer from the restaurant owner. All other Phase 1 work can begin, but nothing with hours data can deploy until this is confirmed.
+- **Light mode token values (design gap, not code):** DESIGN.md does not specify light mode surface token values. FEATURES.md provides a working recommendation but owner/designer sign-off is needed before Phase 2 implementation begins. This is a blocking prerequisite for Phase 2 — it should be resolved during roadmap planning or as the first task before Phase 2 work begins.
 
-- **`reviews.json` field structure:** The exact structure of `reviews.json` determines how `aggregateRating` is computed at build time. The research assumes a numeric `rating` field per review entry but this must be verified before implementing the import in `RestaurantSchema.astro`.
+- **ARCHITECTURE.md mismatch:** The architecture research file covers a previous milestone's scope. The v2.0 facelift architecture is straightforwardly a re-skin with no new components or routing — the gap does not block the roadmap. A dedicated v2.0 architecture document would cover the `globals.css` token architecture, the `@theme inline` dual-layer pattern, and the component re-skin scope if additional documentation is desired.
 
-- **Toast ordering URL:** FEATURES.md documents the Toast URL as `https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave` — this must be verified as the correct, current direct-ordering URL before adding `potentialAction` to `RestaurantSchema`.
-
-- **Google Maps CID for `hasMap`:** Requires manually fetching the canonical CID URL from Google Maps (not the short link) — a one-time manual verification step.
-
-- **Off-site profile URLs:** Phase 4 is entirely blocked on the restaurant owner providing verified Yelp, TripAdvisor, and Google Maps profile URLs. No surrogate is available.
-
-- **`llms.txt` Halal messaging:** FEATURES.md notes the Halal certification wording (`100% Halal Certified`) may need revision, tracked as a separate concern. This should be resolved with the owner before `llms.txt` is updated with distance/exit facts.
-
----
+- **`@tailwindcss/upgrade` tool reliability (MEDIUM confidence):** Tool failure modes are documented but may vary by patch version. Treat Phase 1 as requiring manual verification after every automated step, not blind execution of tool output. Factor extra review time into Phase 1 task estimates.
 
 ## Sources
 
 ### Primary (HIGH confidence)
-
-- `schema.org` specification — all property formats and type definitions for `Restaurant`, `GeoCoordinates`, `AggregateRating`, `OrderAction`, `FAQPage`, `BreadcrumbList`
-- Google Search Central structured data documentation — `openingHoursSpecification`, `aggregateRating` eligibility, `potentialAction` patterns, NAP consistency requirements
-- Astro 5 documentation — `is:inline`, `set:html`, `build.format: 'directory'`, `trailingSlash`, `@astrojs/sitemap` behavior
-- Direct codebase analysis — `RestaurantSchema.astro`, `OrganizationSchema.astro`, `WebSiteSchema.astro`, `FAQSchema.astro`, `Layout.astro`, `BreadcrumbSchema.astro`, `faq.json`, `Header.tsx`, `Footer.astro`, `.lighthouserc.json`
+- [Tailwind CSS official install guide for Astro](https://tailwindcss.com/docs/installation/framework-guides/astro) — `@tailwindcss/vite` in `vite.plugins[]`, correct integration pattern
+- [Tailwind CSS v4 Upgrade Guide](https://tailwindcss.com/docs/upgrade-guide) — breaking changes, renamed utilities, `@custom-variant dark`, container changes
+- [Tailwind CSS v4.0 release blog](https://tailwindcss.com/blog/tailwindcss-v4) — CSS-first architecture, Lightning CSS, `@theme` directive
+- [Tailwind CSS Theme Variables docs](https://tailwindcss.com/docs/theme) — `@theme`, `@utility`, `@custom-variant` directives
+- [shadcn/ui Tailwind v4 migration guide](https://ui.shadcn.com/docs/tailwind-v4) — `@theme inline`, HSL format fix, hybrid token pattern
+- [tw-animate-css GitHub](https://github.com/Wombosvideo/tw-animate-css) + [npm](https://www.npmjs.com/package/tw-animate-css) — v4-compatible replacement for `tailwindcss-animate`, version 1.4.0
+- [@fontsource-variable/manrope npm](https://www.npmjs.com/package/@fontsource-variable/manrope) — version 5.2.8 confirmed
+- [@fontsource-variable/inter npm](https://www.npmjs.com/package/@fontsource-variable/inter) — version 5.2.8 confirmed
+- [Astro 5.2 blog post](https://astro.build/blog/astro-520/) — official confirmation of `@tailwindcss/vite` as the v4 integration path in Astro
+- [shadcn/ui Sheet animation v4 issue #6440](https://github.com/shadcn-ui/ui/issues/6440) — `tailwindcss-animate` breakage in v4 documented
+- [Tailwind dark mode `@custom-variant` incorrect syntax discussion #16517](https://github.com/tailwindlabs/tailwindcss/discussions/16517) — upgrade tool failure mode documented
+- [Font loading CLS — debugbear.com](https://www.debugbear.com/blog/web-font-layout-shift) — font swap CLS risk analysis and preload guidance
 
 ### Secondary (MEDIUM confidence)
-
-- Google AI Overviews behavior with FAQPage schema — evidenced in 2024-2025 SEO literature but not officially documented by Google
-- Perplexity and ChatGPT citation behavior for local business structured data — documented by Perplexity's published crawler documentation and SEO community research through August 2025
-- `llms.txt` standard — proposed by Answer.ai, confirmed adopted by Anthropic and Perplexity; OpenAI/Google status unconfirmed
-
-### Tertiary (LOWER confidence)
-
-- `aggregateRating` enabling Google star rich results for restaurant self-hosted ratings — Google has tightened eligibility; benefit is primarily for AI engines, not SERP star display
-- `containedInPlace` for geographic corridor identity — valid schema.org property but uncommon for restaurants; medium expected benefit
-- Specific distance figures (68 miles Grand Canyon, 185 miles Las Vegas, etc.) — approximate based on geographic knowledge; must be verified against Google Maps before publishing
+- [okaryo.log — Upgrading Astro to Tailwind v4](https://blog.okaryo.studio/en/20250201-astro-tailwindcss-v4-upgrade/) — `@reference` workaround for Astro `<style>` blocks, practical migration experience
+- [Brian Douglass — Upgrade Astro site to Tailwind v4](https://bhdouglass.com/blog/how-to-upgrade-your-astro-site-to-tailwind-v4/) — `vite.plugins` vs `integrations` practical guide
+- [tailwindlabs/tailwindcss GitHub issue #18055](https://github.com/tailwindlabs/tailwindcss/issues/18055) — upgrade tool failures specific to Astro projects
+- [Tailwind upgrade tool complex config discussion #17018](https://github.com/tailwindlabs/tailwindcss/discussions/17018) — tool fails on complex `tailwind.config.mjs` with nested objects
+- [Material Design 3 surface color roles](https://m3.material.io/styles/color/roles) — surface hierarchy conceptual model and semantic naming
+- [backdrop-filter performance — Mozilla bugzilla](https://bugzilla.mozilla.org/show_bug.cgi?id=1718471) — GPU compositing cost for concurrent `backdrop-filter` elements
+- [WCAG vs APCA contrast for dark mode](https://capellic.com/insights/accessible-colors) — contrast validation methodology
 
 ---
-
-_Research completed: 2026-02-20_
-_Ready for roadmap: yes_
+*Research completed: 2026-03-24*
+*Ready for roadmap: yes*

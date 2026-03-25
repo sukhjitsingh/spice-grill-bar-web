@@ -104,7 +104,7 @@ export function MenuSection() {
                     className={cn(
                       'whitespace-nowrap text-sm font-medium font-serif rounded-lg py-2 px-4 transition-all border',
                       activeCategory === categoryId
-                        ? 'bg-white dark:bg-zinc-800 text-orange-700 dark:text-orange-400 shadow-sm border-zinc-200 dark:border-white/10'
+                        ? 'bg-white dark:bg-zinc-800 text-orange-700 dark:text-orange-400 shadow-xs border-zinc-200 dark:border-white/10'
                         : 'text-zinc-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200 border-transparent'
                     )}
                   >

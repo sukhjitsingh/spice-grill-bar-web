@@ -1,10 +1,9 @@
 {
-  "entry": ["src/pages/**/*.astro", "src/content/config.ts", "src/env.d.ts"],
+  "entry": ["src/pages/**/*.astro"],
   "project": ["src/**/*.{ts,tsx,astro}"],
   "ignore": [
     "**/*.d.ts",
     "postcss.config.cjs",
-    "tailwind.config.mjs",
     "src/components/ui/**",
     ".github/**"
   ],
@@ -13,7 +12,6 @@
     "@astrojs/check",
     "typescript",
     "eslint-config-airbnb-typescript",
-    "autoprefixer",
     "postcss",
     "eslint-plugin-import",
     "eslint-plugin-react",
@@ -21,7 +19,8 @@
     "eslint-config-airbnb-base",
     "@radix-ui/react-label",
     "@radix-ui/react-separator",
-    "puppeteer"
+    "tailwindcss",
+    "tw-animate-css"
   ],
   "ignoreExportsUsedInFile": true
 }

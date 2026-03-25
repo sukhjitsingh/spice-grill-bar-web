@@ -46,7 +46,10 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
   3. The Sheet (mobile nav) opens and closes with its slide animation intact after `tw-animate-css` replaces `tailwindcss-animate`
   4. Manrope Variable and Inter Variable fonts render in the browser with no layout shift (CLS < 0.1 confirmed via `test:lhci`)
   5. Lighthouse scores on all 4 pages are unchanged from v1.0 baseline — migration introduces no regressions
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 07-01-PLAN.md — TailwindCSS v4 migration: packages, config, CSS-first globals, utility renames, fonts
+- [ ] 07-02-PLAN.md — Visual verification checkpoint: dark mode toggle, animations, font rendering
 
 ### Phase 8: Token System
 **Goal**: Every color and font in the design system is defined as a named token in `globals.css`, with both light and dark mode values specified, so that any component can reference `bg-surface-dim` or `text-on-surface` without needing to know raw color values
@@ -94,7 +97,7 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 4. Content Infrastructure | v1.0 | 1/1 | Complete | 2026-02-21 |
 | 5. GEO Content Pages | v1.0 | 2/2 | Complete | 2026-02-21 |
 | 6. Data Consistency & LH Coverage | v1.0 | 1/1 | Complete | 2026-02-22 |
-| 7. Infrastructure | v2.0 | 0/TBD | Not started | - |
+| 7. Infrastructure | v2.0 | 0/2 | Not started | - |
 | 8. Token System | v2.0 | 0/TBD | Not started | - |
 | 9. Visual Redesign | v2.0 | 0/TBD | Not started | - |
 | 10. Quality Assurance | v2.0 | 0/TBD | Not started | - |

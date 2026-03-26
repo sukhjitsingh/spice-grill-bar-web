@@ -121,7 +121,7 @@ function slugToLabel(path: string): string {
     <script is:inline type="text/partytown" src="/scripts/gtm.js"></script>
   </head>
   <body class="min-h-screen bg-background font-sans antialiased">
-    <Header client:visible currentPath={currentPath} />
+    <Header client:load currentPath={currentPath} />
     <slot />
     <Footer />
     <MobileActionButtons />

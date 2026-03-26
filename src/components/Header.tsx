@@ -35,7 +35,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
     <header
       className={cn(
         'fixed top-0 w-full z-50 transition-all duration-500 border-b border-transparent',
-        isScrolled ? 'glass' : 'bg-gradient-to-b from-white/50 to-transparent dark:from-black/50'
+        isScrolled ? 'glass' : 'bg-gradient-to-b from-surface/50 to-transparent'
       )}
     >
       <nav className="container mx-auto px-6 h-14 flex items-center justify-between">

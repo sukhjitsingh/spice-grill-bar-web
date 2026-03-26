@@ -81,19 +81,19 @@ export function MenuSection() {
   return (
     <section
       id="menu"
-      className="bg-zinc-50 dark:bg-zinc-950 py-24 border-t border-zinc-200 dark:border-white/5 transition-colors duration-500"
+      className="bg-surface-container-lowest py-24 border-t border-outline-variant transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto px-6">
-        <div className="sticky top-14 z-30 bg-zinc-50 dark:bg-zinc-950 py-4 mb-10 transition-colors duration-500">
-          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-4">
+        <div className="sticky top-14 z-30 bg-surface-container-lowest py-4 mb-10 transition-colors duration-500">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-on-surface mb-4">
             Culinary Selection
           </h2>
-          <p className="text-zinc-600 dark:text-zinc-300">
+          <p className="text-on-surface-variant">
             Crafted with care using traditional Punjabi recipes and the finest ingredients.
           </p>
 
           {/* Mobile Navigation (Sticky inside header) */}
-          <div className="md:hidden mt-6 p-1.5 border border-zinc-200 dark:border-white/10 bg-zinc-100/50 dark:bg-zinc-900/50 backdrop-blur-sm rounded-xl">
+          <div className="md:hidden mt-6 p-1.5 border border-outline-variant bg-surface-container/50 backdrop-blur-sm rounded-xl">
             <nav className="flex overflow-x-auto gap-2 hide-scroll">
               {data.map((category) => {
                 const categoryId = toKebabCase(category.category);
@@ -104,8 +104,8 @@ export function MenuSection() {
                     className={cn(
                       'whitespace-nowrap text-sm font-medium font-serif rounded-lg py-2 px-4 transition-all border',
                       activeCategory === categoryId
-                        ? 'bg-white dark:bg-zinc-800 text-orange-700 dark:text-orange-400 shadow-xs border-zinc-200 dark:border-white/10'
-                        : 'text-zinc-600 dark:text-zinc-400 hover:bg-white/50 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200 border-transparent'
+                        ? 'bg-surface text-primary-container shadow-xs border-outline-variant'
+                        : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface border-transparent'
                     )}
                   >
                     {category.category}
@@ -129,8 +129,8 @@ export function MenuSection() {
                     className={cn(
                       'whitespace-nowrap md:w-full text-sm font-medium font-serif text-left rounded-lg py-2.5 px-4 transition-all',
                       activeCategory === categoryId
-                        ? 'bg-orange-600 text-white shadow-md'
-                        : 'text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-white/10'
+                        ? 'bg-primary-container text-on-primary-container shadow-md'
+                        : 'text-on-surface hover:bg-surface-container'
                     )}
                   >
                     {category.category}
@@ -150,21 +150,21 @@ export function MenuSection() {
                   id={categoryId}
                   className="menu-category space-y-8 scroll-mt-32"
                 >
-                  <h3 className="text-2xl font-medium text-brand-orange tracking-tight border-b border-orange-300 dark:border-orange-700 pb-4">
+                  <h3 className="text-2xl font-medium text-primary-container tracking-tight border-b border-outline-variant pb-4">
                     {category.category}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
                     {category.items.map((item, index) => (
                       <div key={index} className="group">
                         <div className="flex justify-between items-baseline mb-2">
-                          <h4 className="text-xl font-medium font-serif text-zinc-800 dark:text-zinc-200 group-hover:text-brand-orange transition-colors">
+                          <h4 className="text-xl font-medium font-serif text-on-surface group-hover:text-primary-container transition-colors">
                             {item.name}
                           </h4>
-                          <span className="text-lg font-medium text-zinc-500 dark:text-zinc-400">
+                          <span className="text-lg font-medium text-on-surface-variant">
                             ${item.price.toFixed(2)}
                           </span>
                         </div>
-                        <p className="text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                        <p className="text-base text-on-surface-variant leading-relaxed">
                           {item.description}
                         </p>
                       </div>

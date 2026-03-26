@@ -41,12 +41,12 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
       <nav className="container mx-auto px-6 h-14 flex items-center justify-between">
         <a
           href="/"
-          className="text-lg tracking-tighter font-serif font-semibold text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
+          className="text-lg tracking-tighter font-display font-semibold text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
         >
           SPICE GRILL & BAR
         </a>
 
-        <div className="hidden md:flex items-center space-x-8 text-xs font-bold font-serif tracking-wide text-on-surface-variant">
+        <div className="hidden md:flex items-center space-x-8 text-xs font-bold font-display tracking-wide text-on-surface-variant">
           {navigation.map((link) => (
             <a
               key={link.name}
@@ -63,7 +63,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
               variant="ghost"
               size="sm"
               asChild
-              className="text-on-surface-variant hover:text-primary-container hover:bg-surface-container font-serif hidden lg:flex"
+              className="text-on-surface-variant hover:text-primary-container hover:bg-surface-container font-display hidden lg:flex"
             >
               <a href="tel:+19282771292" aria-label="Call us">
                 <Phone className="w-4 h-4 mr-2" />
@@ -73,7 +73,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
 
             <Button
               asChild
-              className="bg-primary-container hover:bg-primary-container/90 text-on-primary-container font-serif tracking-wide shadow-md"
+              className="bg-primary-container hover:bg-primary-container/90 text-on-primary-container font-display tracking-wide shadow-md"
               size="sm"
             >
               <a
@@ -108,7 +108,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
                   <a
                     key={link.name}
                     href={getHref(link.href)}
-                    className="text-lg font-medium font-serif text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
+                    className="text-lg font-medium font-display text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}

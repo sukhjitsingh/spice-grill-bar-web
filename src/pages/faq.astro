@@ -9,7 +9,7 @@ import Layout from '../layouts/Layout.astro';
 >
   <main class="pt-32 pb-24 px-6 bg-surface-container-lowest min-h-screen">
     <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl md:text-5xl font-serif font-bold text-center mb-16 text-on-surface">
+      <h1 class="text-4xl md:text-5xl font-display font-bold text-center mb-16 text-on-surface">
         Frequently Asked <span class="text-primary-container">Questions</span>
       </h1>
 
@@ -17,7 +17,7 @@ import Layout from '../layouts/Layout.astro';
         {
           faqData.map((item) => (
             <div class="bg-surface p-8 rounded-2xl border border-outline-variant shadow-xs">
-              <h3 class="text-xl font-serif font-semibold text-on-surface mb-3">{item.question}</h3>
+              <h3 class="text-xl font-display font-semibold text-on-surface mb-3">{item.question}</h3>
               <p class="text-on-surface-variant leading-relaxed font-sans">{item.answer}</p>
             </div>
           ))

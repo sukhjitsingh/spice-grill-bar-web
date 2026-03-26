@@ -102,7 +102,7 @@ export function MenuSection() {
                     key={categoryId}
                     onClick={() => scrollToCategory(categoryId)}
                     className={cn(
-                      'whitespace-nowrap text-sm font-medium font-serif rounded-lg py-2 px-4 transition-all border',
+                      'whitespace-nowrap text-sm font-medium font-display rounded-lg py-2 px-4 transition-all border',
                       activeCategory === categoryId
                         ? 'bg-surface text-primary-container shadow-xs border-outline-variant'
                         : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface border-transparent'
@@ -127,7 +127,7 @@ export function MenuSection() {
                     key={categoryId}
                     onClick={() => scrollToCategory(categoryId)}
                     className={cn(
-                      'whitespace-nowrap md:w-full text-sm font-medium font-serif text-left rounded-lg py-2.5 px-4 transition-all',
+                      'whitespace-nowrap md:w-full text-sm font-medium font-display text-left rounded-lg py-2.5 px-4 transition-all',
                       activeCategory === categoryId
                         ? 'bg-primary-container text-on-primary-container shadow-md'
                         : 'text-on-surface hover:bg-surface-container'
@@ -157,7 +157,7 @@ export function MenuSection() {
                     {category.items.map((item, index) => (
                       <div key={index} className="group">
                         <div className="flex justify-between items-baseline mb-2">
-                          <h4 className="text-xl font-medium font-serif text-on-surface group-hover:text-primary-container transition-colors">
+                          <h4 className="text-xl font-medium font-display text-on-surface group-hover:text-primary-container transition-colors">
                             {item.name}
                           </h4>
                           <span className="text-lg font-medium text-on-surface-variant">

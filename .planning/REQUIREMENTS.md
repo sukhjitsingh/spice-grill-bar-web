@@ -13,7 +13,7 @@
 
 - [x] **TOKEN-01**: Surface hierarchy tokens defined (5 depth levels: dim, container-low, container, container-high, bright) for dark mode per DESIGN.md
 - [x] **TOKEN-02**: Light mode surface hierarchy tokens defined as warm-tint inversions of dark palette
-- [ ] **TOKEN-03**: Shadcn semantic tokens (primary, card, muted, accent, etc.) remapped to DESIGN.md colors via hybrid `@theme inline` pattern
+- [x] **TOKEN-03**: Shadcn semantic tokens (primary, card, muted, accent, etc.) remapped to DESIGN.md colors via hybrid `@theme inline` pattern
 - [x] **TOKEN-04**: Font families registered in `@theme` — `--font-sans: "Inter"`, `--font-display: "Manrope"`
 - [x] **TOKEN-05**: All CSS variables use full color values (not bare HSL triples) compatible with Tailwind v4
 

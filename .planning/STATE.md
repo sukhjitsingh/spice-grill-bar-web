@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: UI Facelift — The Radiant Sommelier
 status: Ready to execute
-stopped_at: Completed 08-01-PLAN.md — M3 token system globals.css rewrite
-last_updated: "2026-03-26T01:45:44.248Z"
+stopped_at: Completed 08-03-PLAN.md — Gap closure component migration to M3 tokens
+last_updated: "2026-03-26T01:56:03.665Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 6
-  completed_plans: 3
+  completed_plans: 4
 ---
 
 # Project State
@@ -24,7 +24,7 @@ See: .planning/PROJECT.md (updated 2026-03-24)
 ## Current Position
 
 Phase: 08 (token-system) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 
 ## Performance Metrics
 
@@ -54,6 +54,8 @@ Recent decisions affecting current work:
 - [Phase 07]: outline-none -> outline-hidden replacement extended beyond plan's listed files to Footer.astro and Header.tsx to satisfy zero-match acceptance criteria
 - [Phase 08]: M3 two-layer token architecture: :root/.dark hold raw hex values; @theme inline maps to --color-* Tailwind namespace for utility class generation
 - [Phase 08]: All globals.css tokens use hex values (not hsl) — palette-swappable by updating globals.css only per D-22
+- [Phase 08]: OrderSection glassmorphism uses glass utility (not hardcoded backdrop-blur) per D-14 blur budget
+- [Phase 08]: AstroButton primary variant uses bg-primary-container/text-on-primary-container mirroring button.tsx M3 pattern
 
 ### Pending Todos
 
@@ -67,6 +69,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-26T01:45:44.241Z
-Stopped at: Completed 08-01-PLAN.md — M3 token system globals.css rewrite
+Last session: 2026-03-26T01:56:03.658Z
+Stopped at: Completed 08-03-PLAN.md — Gap closure component migration to M3 tokens
 Resume file: None

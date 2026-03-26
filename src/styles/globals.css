@@ -1,133 +1,273 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Dark mode via class on <html> */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Color tokens — full HSL values (not bare triples) */
+/* ============================================================
+   Layer 1: Raw M3 token values — light mode (default)
+   Seed color: #FF4B12 | Generated via Material Design 3
+   ============================================================ */
 :root {
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(222.2 84% 4.9%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(222.2 84% 4.9%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(222.2 84% 4.9%);
-  --primary: hsl(222.2 47.4% 11.2%);
-  --primary-foreground: hsl(210 40% 98%);
-  --secondary: hsl(210 40% 96.1%);
-  --secondary-foreground: hsl(222.2 47.4% 11.2%);
-  --muted: hsl(210 40% 96.1%);
-  --muted-foreground: hsl(215.4 16.3% 46.9%);
-  --accent: hsl(210 40% 96.1%);
-  --accent-foreground: hsl(222.2 47.4% 11.2%);
-  --destructive: hsl(0 84.2% 60.2%);
-  --destructive-foreground: hsl(210 40% 98%);
-  --border: hsl(214.3 31.8% 91.4%);
-  --input: hsl(214.3 31.8% 91.4%);
-  --ring: hsl(222.2 84% 4.9%);
+  /* Surface hierarchy (TOKEN-01/TOKEN-02 per D-02) */
+  --surface-dim: #f3d3cb;
+  --surface: #fff8f6;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #fff1ed;
+  --surface-container: #ffe9e4;
+  --surface-container-high: #ffe2db;
+  --surface-container-highest: #fcdcd3;
+  --surface-bright: #fff8f6;
+  --surface-variant: #fcdcd3;
+  --on-surface: #281713;
+  --on-surface-variant: #5c4038;
+
+  /* Primary family (per D-03) */
+  --primary: #ad2b00;
+  --primary-container: #d93900;
+  --on-primary: #ffffff;
+  --on-primary-container: #fffbff;
+  --primary-fixed: #ffdbd1;
+  --primary-fixed-dim: #ffb5a1;
+  --on-primary-fixed: #3b0900;
+  --on-primary-fixed-variant: #882000;
+
+  /* Secondary family */
+  --secondary: #a53c1e;
+  --secondary-container: #fe7d5a;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #701900;
+  --secondary-fixed: #ffdbd1;
+  --secondary-fixed-dim: #ffb5a1;
+  --on-secondary-fixed: #3b0900;
+  --on-secondary-fixed-variant: #842407;
+
+  /* Tertiary family */
+  --tertiary: #005ea2;
+  --tertiary-container: #0077cb;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #fdfcff;
+  --tertiary-fixed: #d2e4ff;
+  --tertiary-fixed-dim: #a0c9ff;
+  --on-tertiary-fixed: #001c37;
+  --on-tertiary-fixed-variant: #00497f;
+
+  /* Error family */
+  --error: #ba1a1a;
+  --error-container: #ffdad6;
+  --on-error: #ffffff;
+  --on-error-container: #93000a;
+
+  /* Outline */
+  --outline: #916f66;
+  --outline-variant: #e6beb3;
+
+  /* Inverse */
+  --inverse-surface: #3f2c27;
+  --inverse-on-surface: #ffede9;
+  --inverse-primary: #ffb5a1;
+
+  /* Surface tint and background */
+  --surface-tint: #b12d00;
+  --background: #fff8f6;
+  --on-background: #281713;
+
+  /* Glass adaptive vars — light mode (per D-16) */
+  --glass-bg: rgba(255, 226, 219, 0.70);
+  --glass-border: rgba(230, 190, 179, 0.20);
+
+  /* Shadow token — light mode (per D-17) */
+  --shadow-color: rgba(243, 211, 203, 0.3);
+
+  /* Radius */
   --radius: 0.5rem;
-  --chart-1: hsl(12 76% 61%);
-  --chart-2: hsl(173 58% 39%);
-  --chart-3: hsl(197 37% 24%);
-  --chart-4: hsl(43 74% 66%);
-  --chart-5: hsl(27 87% 67%);
-  --brand-orange: hsl(14 100% 53.5%);
-  --brand-green: hsl(111 40% 25%);
-  --brand-gold: hsl(36 100% 69%);
 }
 
+/* ============================================================
+   Layer 1: Raw M3 token values — dark mode
+   ============================================================ */
 .dark {
-  --background: hsl(222.2 84% 4.9%);
-  --foreground: hsl(210 40% 98%);
-  --card: hsl(222.2 84% 4.9%);
-  --card-foreground: hsl(210 40% 98%);
-  --popover: hsl(222.2 84% 4.9%);
-  --popover-foreground: hsl(210 40% 98%);
-  --primary: hsl(210 40% 98%);
-  --primary-foreground: hsl(222.2 47.4% 11.2%);
-  --secondary: hsl(217.2 32.6% 17.5%);
-  --secondary-foreground: hsl(210 40% 98%);
-  --muted: hsl(217.2 32.6% 17.5%);
-  --muted-foreground: hsl(215 20.2% 65.1%);
-  --accent: hsl(217.2 32.6% 17.5%);
-  --accent-foreground: hsl(210 40% 98%);
-  --destructive: hsl(0 62.8% 30.6%);
-  --destructive-foreground: hsl(210 40% 98%);
-  --border: hsl(217.2 32.6% 17.5%);
-  --input: hsl(217.2 32.6% 17.5%);
-  --ring: hsl(212.7 26.8% 83.9%);
-  --chart-1: hsl(220 70% 50%);
-  --chart-2: hsl(160 60% 45%);
-  --chart-3: hsl(30 80% 55%);
-  --chart-4: hsl(280 65% 60%);
-  --chart-5: hsl(340 75% 55%);
-  --brand-orange: hsl(14 100% 53.5%);
-  --brand-green: hsl(111 40% 25%);
-  --brand-gold: hsl(36 100% 69%);
+  --surface-dim: #1f0f0b;
+  --surface: #1f0f0b;
+  --surface-container-lowest: #190a07;
+  --surface-container-low: #281713;
+  --surface-container: #2d1b17;
+  --surface-container-high: #382621;
+  --surface-container-highest: #44302b;
+  --surface-bright: #49342f;
+  --surface-variant: #44302b;
+  --on-surface: #fcdcd3;
+  --on-surface-variant: #e6beb3;
+
+  --primary: #ffb5a1;
+  --primary-container: #ff5626;
+  --on-primary: #601400;
+  --on-primary-container: #541000;
+  --primary-fixed: #ffdbd1;
+  --primary-fixed-dim: #ffb5a1;
+  --on-primary-fixed: #3b0900;
+  --on-primary-fixed-variant: #882000;
+
+  --secondary: #ffb5a1;
+  --secondary-container: #842407;
+  --on-secondary: #601400;
+  --on-secondary-container: #ff9b7f;
+  --secondary-fixed: #ffdbd1;
+  --secondary-fixed-dim: #ffb5a1;
+  --on-secondary-fixed: #3b0900;
+  --on-secondary-fixed-variant: #842407;
+
+  --tertiary: #a0c9ff;
+  --tertiary-container: #1394f7;
+  --on-tertiary: #003259;
+  --on-tertiary-container: #002b4e;
+  --tertiary-fixed: #d2e4ff;
+  --tertiary-fixed-dim: #a0c9ff;
+  --on-tertiary-fixed: #001c37;
+  --on-tertiary-fixed-variant: #00497f;
+
+  --error: #ffb4ab;
+  --error-container: #93000a;
+  --on-error: #690005;
+  --on-error-container: #ffdad6;
+
+  --outline: #ad897f;
+  --outline-variant: #5c4038;
+
+  --inverse-surface: #fcdcd3;
+  --inverse-on-surface: #3f2c27;
+  --inverse-primary: #b12d00;
+
+  --surface-tint: #ffb5a1;
+  --background: #1f0f0b;
+  --on-background: #fcdcd3;
+
+  /* Glass adaptive vars — dark mode (per D-16) */
+  --glass-bg: rgba(56, 38, 33, 0.70);
+  --glass-border: rgba(92, 64, 56, 0.20);
+
+  /* Shadow token — dark mode (per D-17) */
+  --shadow-color: rgba(25, 10, 7, 0.4);
 }
 
-/* Wire CSS variables into Tailwind utility system */
+/* ============================================================
+   Layer 2: @theme inline — wires M3 tokens into Tailwind
+   utility classes (bg-surface-container, text-on-primary, etc.)
+   D-23/D-24: two-layer architecture
+   ============================================================ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
+  /* Surface hierarchy */
+  --color-surface-dim: var(--surface-dim);
+  --color-surface: var(--surface);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+
+  /* Primary */
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+
+  /* Secondary */
   --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-brand-orange: var(--brand-orange);
-  --color-brand-green: var(--brand-green);
-  --color-brand-gold: var(--brand-gold);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary: var(--on-secondary);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+
+  /* Tertiary */
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+
+  /* Error */
+  --color-error: var(--error);
+  --color-error-container: var(--error-container);
+  --color-on-error: var(--on-error);
+  --color-on-error-container: var(--on-error-container);
+
+  /* Outline */
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  /* Inverse */
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+  --color-inverse-primary: var(--inverse-primary);
+
+  /* Surface tint and background */
+  --color-surface-tint: var(--surface-tint);
+  --color-background: var(--background);
+  --color-on-background: var(--on-background);
+
+  /* Radius */
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
-  --font-sans: "Inter Variable", "Open Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Fonts (per D-25 / TOKEN-04) */
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Base resets — replaces @layer base with plain CSS */
+/* ============================================================
+   Base resets
+   ============================================================ */
 html {
   scroll-behavior: smooth;
 }
 
 * {
-  border-color: var(--border);
+  border-color: var(--outline-variant);
 }
 
 body {
   background-color: var(--background);
-  color: var(--foreground);
+  color: var(--on-surface);
 }
 
-/* Custom utilities — converted from @layer utilities to @utility directive */
+/* ============================================================
+   Custom utilities
+   D-13 through D-19: glass, glass-card, hero/cta gradients
+   ============================================================ */
 @utility glass {
-  background-color: color-mix(in srgb, white 70%, transparent);
-  backdrop-filter: blur(24px);
-  border: 1px solid color-mix(in srgb, white 20%, transparent);
-  box-shadow: var(--shadow-lg);
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(32px);
+  border: 0.5px solid var(--glass-border);
 }
 
 @utility glass-card {
-  background-color: color-mix(in srgb, theme(--color-zinc-100) 50%, transparent);
-  backdrop-filter: blur(12px);
-  border: 1px solid color-mix(in srgb, theme(--color-zinc-200) 50%, transparent);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  box-shadow: 0px 4px 16px var(--shadow-color);
+}
+
+@utility hero-gradient {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary-container) 15%, transparent) 0%,
+    transparent 60%
+  );
+}
+
+@utility cta-gradient {
+  background: linear-gradient(135deg, var(--primary-container) 0%, var(--inverse-primary) 100%);
 }

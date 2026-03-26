@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: UI Facelift — The Radiant Sommelier
-status: Ready to plan
-stopped_at: Phase 8 context gathered
-last_updated: "2026-03-25T18:48:25.415Z"
+status: Ready to execute
+stopped_at: Completed 08-01-PLAN.md — M3 token system globals.css rewrite
+last_updated: "2026-03-26T01:45:44.248Z"
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 6
+  completed_plans: 3
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-24)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Phase 07 — infrastructure
+**Current focus:** Phase 08 — token-system
 
 ## Current Position
 
-Phase: 8
-Plan: Not started
+Phase: 08 (token-system) — EXECUTING
+Plan: 2 of 4
 
 ## Performance Metrics
 
@@ -52,6 +52,8 @@ Recent decisions affecting current work:
 - Light mode tokens: DESIGN.md is dark-first; light mode surface values are not specified. FEATURES.md recommends warm cream inversions (`#fdf6f0`, `#f5ece4`, `#ede0d4`, `#e0cfc4`). Requires owner sign-off before Phase 8 begins.
 - [Phase 07]: tailwindcss and tw-animate-css added to knip ignoreDependencies because CSS @import usage is invisible to knip's JS module graph
 - [Phase 07]: outline-none -> outline-hidden replacement extended beyond plan's listed files to Footer.astro and Header.tsx to satisfy zero-match acceptance criteria
+- [Phase 08]: M3 two-layer token architecture: :root/.dark hold raw hex values; @theme inline maps to --color-* Tailwind namespace for utility class generation
+- [Phase 08]: All globals.css tokens use hex values (not hsl) — palette-swappable by updating globals.css only per D-22
 
 ### Pending Todos
 
@@ -65,6 +67,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-25T18:48:25.407Z
-Stopped at: Phase 8 context gathered
-Resume file: .planning/phases/08-token-system/08-CONTEXT.md
+Last session: 2026-03-26T01:45:44.241Z
+Stopped at: Completed 08-01-PLAN.md — M3 token system globals.css rewrite
+Resume file: None

@@ -62,7 +62,7 @@ Plans:
   4. The `.glass` and `.glass-card` utility classes produce warm-tinted blur surfaces with inner glow, not the old neutral gray glassmorphism
 **Plans**: 4 plans
 Plans:
-- [ ] 08-01-PLAN.md — Rewrite globals.css with M3 token system (surface, semantic, glass, gradient utilities)
+- [x] 08-01-PLAN.md — Rewrite globals.css with M3 token system (surface, semantic, glass, gradient utilities)
 - [ ] 08-02-PLAN.md — Migrate Radix UI components and brand-* references to M3 token classes
 - [ ] 08-03-PLAN.md — Migrate remaining components (Footer, OurStory, Location, Order, GoogleMap, AstroButton) to M3 tokens
 - [ ] 08-04-PLAN.md — Replace font-serif with font-display and run zero-remnant verification sweep
@@ -103,6 +103,6 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 5. GEO Content Pages | v1.0 | 2/2 | Complete | 2026-02-21 |
 | 6. Data Consistency & LH Coverage | v1.0 | 1/1 | Complete | 2026-02-22 |
 | 7. Infrastructure | v2.0 | 0/2 | Not started | - |
-| 8. Token System | v2.0 | 0/4 | Not started | - |
+| 8. Token System | v2.0 | 1/4 | In Progress|  |
 | 9. Visual Redesign | v2.0 | 0/TBD | Not started | - |
 | 10. Quality Assurance | v2.0 | 0/TBD | Not started | - |

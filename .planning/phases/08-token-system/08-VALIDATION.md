@@ -1,10 +1,11 @@
 ---
 phase: 8
 slug: token-system
-status: draft
-nyquist_compliant: false
-wave_0_complete: false
+status: complete
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-03-25
+gaps_filled: 2026-03-25
 ---
 
 # Phase 8 — Validation Strategy
@@ -17,11 +18,12 @@ created: 2026-03-25
 
 | Property | Value |
 |----------|-------|
-| **Framework** | Astro build + Lighthouse CI (vitest not configured) |
+| **Framework** | Shell-based behavioral tests + Astro build + Lighthouse CI |
+| **Token test file** | `tests/test-phase-08-tokens.sh` |
 | **Config file** | `lighthouserc.cjs`, `astro.config.mjs` |
-| **Quick run command** | `npm run build` |
+| **Quick run command** | `bash tests/test-phase-08-tokens.sh` |
 | **Full suite command** | `npm run qa` |
-| **Estimated runtime** | ~30 seconds |
+| **Estimated runtime** | ~5 seconds (token tests), ~30 seconds (full qa) |
 
 ---
 
@@ -38,11 +40,11 @@ created: 2026-03-25
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 08-01-01 | 01 | 1 | TOKEN-01 | build | `npm run build` | ✅ | ⬜ pending |
-| 08-01-02 | 01 | 1 | TOKEN-02 | build | `npm run build` | ✅ | ⬜ pending |
-| 08-01-03 | 01 | 1 | TOKEN-03 | build | `npm run build` | ✅ | ⬜ pending |
-| 08-02-01 | 02 | 2 | TOKEN-04 | build | `npm run build` | ✅ | ⬜ pending |
-| 08-02-02 | 02 | 2 | TOKEN-05 | build+grep | `npm run build && grep -r "brand-orange" src/` | ✅ | ⬜ pending |
+| 08-01-01 | 01 | 1 | TOKEN-01 | shell | `bash tests/test-phase-08-tokens.sh` | ✅ | ✅ green |
+| 08-01-02 | 01 | 1 | TOKEN-02 | shell | `bash tests/test-phase-08-tokens.sh` | ✅ | ✅ green |
+| 08-01-03 | 01 | 1 | TOKEN-03 | shell | `bash tests/test-phase-08-tokens.sh` | ✅ | ✅ green |
+| 08-02-01 | 02 | 2 | TOKEN-04 | shell | `bash tests/test-phase-08-tokens.sh` | ✅ | ✅ green |
+| 08-02-02 | 02 | 2 | TOKEN-05 | shell | `bash tests/test-phase-08-tokens.sh` | ✅ | ✅ green |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -50,7 +52,7 @@ created: 2026-03-25
 
 ## Wave 0 Requirements
 
-*Existing infrastructure covers all phase requirements — `npm run build` validates CSS syntax, Tailwind token resolution, and component compilation.*
+*Existing infrastructure covers CSS syntax, Tailwind token resolution, and component compilation via `npm run build`. The standalone shell test (`tests/test-phase-08-tokens.sh`) adds rerunnable behavioral verification for all 5 TOKEN requirements.*
 
 ---
 
@@ -66,11 +68,11 @@ created: 2026-03-25
 
 ## Validation Sign-Off
 
-- [ ] All tasks have `<automated>` verify or Wave 0 dependencies
-- [ ] Sampling continuity: no 3 consecutive tasks without automated verify
-- [ ] Wave 0 covers all MISSING references
-- [ ] No watch-mode flags
-- [ ] Feedback latency < 30s
-- [ ] `nyquist_compliant: true` set in frontmatter
+- [x] All tasks have `<automated>` verify or Wave 0 dependencies
+- [x] Sampling continuity: no 3 consecutive tasks without automated verify
+- [x] Wave 0 covers all MISSING references
+- [x] No watch-mode flags
+- [x] Feedback latency < 30s
+- [x] `nyquist_compliant: true` set in frontmatter
 
-**Approval:** pending
+**Approval:** gap-filled 2026-03-25 by gsd-nyquist-auditor

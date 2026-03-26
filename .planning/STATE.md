@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: UI Facelift — The Radiant Sommelier
-status: planning
-stopped_at: Completed 08-04-PLAN.md — font-serif replacement and zero-remnant verification (Phase 08 token migration complete)
-last_updated: "2026-03-26T02:19:08.064Z"
-last_activity: 2026-02-22 — Milestone v1.0 completed and archived
+status: executing
+stopped_at: Completed 08-05-PLAN.md
+last_updated: "2026-03-26T06:08:47.295Z"
+last_activity: 2026-03-26
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 7
+  completed_plans: 7
   percent: 0
 ---
 
@@ -21,13 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-02-22)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** v1.0 complete — planning next milestone
+**Current focus:** Phase 08 — token-system
 
 ## Current Position
 
-Phase: v1.0 complete (6 phases, 8 plans shipped)
-Status: Milestone v1.0 archived to .planning/milestones/
-Last activity: 2026-02-22 — Milestone v1.0 completed and archived
+Phase: 08 (token-system) — EXECUTING
+Plan: 2 of 5
+Status: Ready to execute
+Last activity: 2026-03-26
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -48,6 +49,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 08]: All dark: prefixed overrides removed from button variants — M3 tokens auto-switch via CSS variables
 - [Phase 08]: font-serif replaced with font-display (Manrope Variable) across all heading/display text — TOKEN-04 complete
 - [Phase 08]: knip.json updated with ignoreDependencies for react-dom and ignoreBinaries for CLI tools to achieve zero false-positive failures
+- [Phase 08-token-system]: ReviewsSection review cards use bg-surface-container/border-outline-variant (no backdrop-blur) per glass budget D-15
+- [Phase 08-token-system]: MobileActionButtons redundant fallback layer removed — parent .glass provides background and blur via CSS vars
 
 ### Pending Todos
 
@@ -59,6 +62,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-26T02:19:08.058Z
-Stopped at: Completed 08-04-PLAN.md — font-serif replacement and zero-remnant verification (Phase 08 token migration complete)
+Last session: 2026-03-26T06:08:47.290Z
+Stopped at: Completed 08-05-PLAN.md
 Resume file: None

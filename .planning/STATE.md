@@ -1,12 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
+milestone: v2.0
+milestone_name: UI Facelift — The Radiant Sommelier
 status: planning
-stopped_at: Completed 08-02-PLAN.md — Component token migration (brand-* and shadcn to M3)
-last_updated: "2026-03-26T02:03:14.443Z"
+stopped_at: Completed 08-04-PLAN.md — font-serif replacement and zero-remnant verification (Phase 08 token migration complete)
+last_updated: "2026-03-26T02:19:08.064Z"
 last_activity: 2026-02-22 — Milestone v1.0 completed and archived
 progress:
+  total_phases: 4
+  completed_phases: 2
+  total_plans: 4
+  completed_plans: 4
   percent: 0
 ---
 
@@ -42,6 +46,8 @@ Progress: [░░░░░░░░░░] 0%
 Decisions are logged in PROJECT.md Key Decisions table.
 
 - [Phase 08]: All dark: prefixed overrides removed from button variants — M3 tokens auto-switch via CSS variables
+- [Phase 08]: font-serif replaced with font-display (Manrope Variable) across all heading/display text — TOKEN-04 complete
+- [Phase 08]: knip.json updated with ignoreDependencies for react-dom and ignoreBinaries for CLI tools to achieve zero false-positive failures
 
 ### Pending Todos
 
@@ -53,6 +59,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-26T02:03:14.439Z
-Stopped at: Completed 08-02-PLAN.md — Component token migration (brand-* and shadcn to M3)
+Last session: 2026-03-26T02:19:08.058Z
+Stopped at: Completed 08-04-PLAN.md — font-serif replacement and zero-remnant verification (Phase 08 token migration complete)
 Resume file: None

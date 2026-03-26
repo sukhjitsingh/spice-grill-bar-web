@@ -1,3 +1,15 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: planning
+stopped_at: Completed 08-02-PLAN.md — Component token migration (brand-* and shadcn to M3)
+last_updated: "2026-03-26T02:03:14.443Z"
+last_activity: 2026-02-22 — Milestone v1.0 completed and archived
+progress:
+  percent: 0
+---
+
 # Project State
 
 ## Project Reference
@@ -13,7 +25,7 @@ Phase: v1.0 complete (6 phases, 8 plans shipped)
 Status: Milestone v1.0 archived to .planning/milestones/
 Last activity: 2026-02-22 — Milestone v1.0 completed and archived
 
-Progress: [██████████] 100% (v1.0)
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
@@ -29,6 +41,8 @@ Progress: [██████████] 100% (v1.0)
 
 Decisions are logged in PROJECT.md Key Decisions table.
 
+- [Phase 08]: All dark: prefixed overrides removed from button variants — M3 tokens auto-switch via CSS variables
+
 ### Pending Todos
 
 None.
@@ -39,6 +53,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-22
-Stopped at: Milestone v1.0 completed and archived
+Last session: 2026-03-26T02:03:14.439Z
+Stopped at: Completed 08-02-PLAN.md — Component token migration (brand-* and shadcn to M3)
 Resume file: None

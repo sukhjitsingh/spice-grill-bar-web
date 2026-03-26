@@ -1,12 +1,7 @@
 {
   "entry": ["src/pages/**/*.astro"],
   "project": ["src/**/*.{ts,tsx,astro}"],
-  "ignore": [
-    "**/*.d.ts",
-    "postcss.config.cjs",
-    "src/components/ui/**",
-    ".github/**"
-  ],
+  "ignore": ["**/*.d.ts", "postcss.config.cjs", "src/components/ui/**", ".github/**"],
   "ignoreDependencies": [
     "sharp",
     "@astrojs/check",
@@ -20,7 +15,26 @@
     "@radix-ui/react-label",
     "@radix-ui/react-separator",
     "tailwindcss",
-    "tw-animate-css"
+    "tw-animate-css",
+    "react-dom",
+    "@types/react-dom",
+    "@axe-core/cli",
+    "@commitlint/cli",
+    "@lhci/cli",
+    "eslint",
+    "lint-staged"
   ],
-  "ignoreExportsUsedInFile": true
+  "ignoreExportsUsedInFile": true,
+  "ignoreBinaries": [
+    "astro",
+    "axe",
+    "lhci",
+    "eslint",
+    "simple-git-hooks",
+    "prettier",
+    "tsc",
+    "knip",
+    "lint-staged",
+    "commitlint"
+  ]
 }

@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -72,8 +72,8 @@
   --on-background: #281713;
 
   /* Glass adaptive vars — light mode (per D-16) */
-  --glass-bg: rgba(255, 226, 219, 0.70);
-  --glass-border: rgba(230, 190, 179, 0.20);
+  --glass-bg: rgba(255, 226, 219, 0.7);
+  --glass-border: rgba(230, 190, 179, 0.2);
 
   /* Shadow token — light mode (per D-17) */
   --shadow-color: rgba(243, 211, 203, 0.3);
@@ -142,8 +142,8 @@
   --on-background: #fcdcd3;
 
   /* Glass adaptive vars — dark mode (per D-16) */
-  --glass-bg: rgba(56, 38, 33, 0.70);
-  --glass-border: rgba(92, 64, 56, 0.20);
+  --glass-bg: rgba(56, 38, 33, 0.7);
+  --glass-border: rgba(92, 64, 56, 0.2);
 
   /* Shadow token — dark mode (per D-17) */
   --shadow-color: rgba(25, 10, 7, 0.4);
@@ -224,8 +224,8 @@
   --radius-sm: calc(var(--radius) - 4px);
 
   /* Fonts (per D-25 / TOKEN-04) */
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ============================================================

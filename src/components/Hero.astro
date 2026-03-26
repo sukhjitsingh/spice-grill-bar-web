@@ -7,7 +7,7 @@ import AstroButton from './ui/AstroButton.astro';
 ---
 
 <header
-  class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-zinc-50 dark:bg-black"
+  class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-surface"
 >
   {/* Background Image with dynamic overlay */}
   <div class="absolute inset-0 z-0">
@@ -24,7 +24,7 @@ import AstroButton from './ui/AstroButton.astro';
     />
     {/* Gradient Overlay */}
     <div
-      class="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent dark:from-black dark:via-black/40 dark:to-transparent"
+      class="absolute inset-0 bg-gradient-to-t from-surface via-surface/10 to-transparent"
     >
     </div>
     <div
@@ -35,18 +35,18 @@ import AstroButton from './ui/AstroButton.astro';
 
   <div class="relative z-10 max-w-4xl px-6">
     <span
-      class="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-700 dark:text-orange-300 mb-6 backdrop-blur-md"
+      class="inline-block py-1 px-3 rounded-full border border-outline-variant/30 bg-surface-container-high/50 text-xs font-semibold tracking-wider text-primary-container mb-6 backdrop-blur-md"
     >
       EST. 2024
     </span>
     <h1
-      class="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-zinc-900 dark:text-white leading-tight mb-6"
+      class="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-on-surface leading-tight mb-6"
     >
       The Soul of{' '}
       <span class="text-primary-container">Punjab</span>
     </h1>
     <p
-      class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-normal max-w-2xl mx-auto leading-relaxed mb-10"
+      class="text-lg md:text-xl text-on-surface-variant font-normal max-w-2xl mx-auto leading-relaxed mb-10"
     >
       Where the rich traditions of Punjabi cooking meet the history of Route 66 right here in Ash
       Fork, AZ.

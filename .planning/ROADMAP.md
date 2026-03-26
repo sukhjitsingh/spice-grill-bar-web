@@ -60,7 +60,12 @@ Plans:
   2. Existing shadcn components (Button, Sheet, DropdownMenu) render correctly in both modes without any class changes — the `@theme inline` hybrid remapping is transparent to them
   3. Headings rendered with `font-display` show Manrope; body text rendered with `font-sans` shows Inter
   4. The `.glass` and `.glass-card` utility classes produce warm-tinted blur surfaces with inner glow, not the old neutral gray glassmorphism
-**Plans**: TBD
+**Plans**: 4 plans
+Plans:
+- [ ] 08-01-PLAN.md — Rewrite globals.css with M3 token system (surface, semantic, glass, gradient utilities)
+- [ ] 08-02-PLAN.md — Migrate Radix UI components and brand-* references to M3 token classes
+- [ ] 08-03-PLAN.md — Migrate remaining components (Footer, OurStory, Location, Order, GoogleMap, AstroButton) to M3 tokens
+- [ ] 08-04-PLAN.md — Replace font-serif with font-display and run zero-remnant verification sweep
 
 ### Phase 9: Visual Redesign
 **Goal**: Every component on all 4 pages reflects the Radiant Sommelier aesthetic — warm surface depth, Manrope headlines, Inter body text, orange used sparingly, structural borders replaced by tonal background shifts, and glassmorphism budgeted to Header, Sheet, and DropdownMenu only
@@ -98,6 +103,6 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 5. GEO Content Pages | v1.0 | 2/2 | Complete | 2026-02-21 |
 | 6. Data Consistency & LH Coverage | v1.0 | 1/1 | Complete | 2026-02-22 |
 | 7. Infrastructure | v2.0 | 0/2 | Not started | - |
-| 8. Token System | v2.0 | 0/TBD | Not started | - |
+| 8. Token System | v2.0 | 0/4 | Not started | - |
 | 9. Visual Redesign | v2.0 | 0/TBD | Not started | - |
 | 10. Quality Assurance | v2.0 | 0/TBD | Not started | - |

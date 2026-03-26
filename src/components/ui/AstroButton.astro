@@ -11,13 +11,12 @@ interface Props {
 const { href, variant = 'primary', class: className, ...props } = Astro.props;
 
 const baseStyles =
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 rounded-full! focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2';
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-outline disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 rounded-full! focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2';
 
 const variants = {
-  primary:
-    'bg-neutral-900 text-neutral-50 shadow hover:bg-neutral-900/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90 shadow-lg shadow-zinc-200/50 dark:shadow-none',
+  primary: 'bg-primary-container text-on-primary-container shadow hover:bg-primary-container/90 shadow-lg',
   outline:
-    'border border-neutral-200 bg-white shadow-xs hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50',
+    'border border-outline-variant bg-surface shadow-xs hover:bg-surface-container hover:text-on-surface text-on-surface',
 };
 
 // Reduced padding from py-6 to py-4 to fix "fat" look

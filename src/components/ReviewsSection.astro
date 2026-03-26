@@ -21,19 +21,19 @@ const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Re
 <section class="py-24 relative overflow-hidden">
   {/* Background Gradients */}
   <div
-    class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"
+    class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl pointer-events-none"
   >
   </div>
   <div
-    class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"
+    class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"
   >
   </div>
 
   <div class="container mx-auto px-6 mb-12 text-center relative z-10">
-    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-      What Our <span class="text-brand-orange">Guests Say</span>
+    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-on-surface">
+      What Our <span class="text-primary-container">Guests Say</span>
     </h2>
-    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+    <p class="text-lg text-on-surface-variant max-w-2xl mx-auto">
       We love hearing from our community. Here are some of the latest reviews from Google and Yelp.
     </p>
   </div>
@@ -65,8 +65,8 @@ const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Re
               <div class="flex justify-between items-start mb-4 relative z-10">
                 <div class="flex items-center gap-3">
                   <div class="relative flex-shrink-0">
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand-orange to-brand-gold rounded-full blur-md opacity-40" />
-                    <div class="relative w-12 h-12 rounded-full bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white font-bold text-lg shadow-lg border-2 border-white/30 dark:border-white/20">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-container to-secondary-container rounded-full blur-md opacity-40" />
+                    <div class="relative w-12 h-12 rounded-full bg-gradient-to-br from-primary-container to-secondary-container flex items-center justify-center text-white font-bold text-lg shadow-lg border-2 border-white/30 dark:border-white/20">
                       {review.author.charAt(0).toUpperCase()}
                     </div>
                   </div>

@@ -1,30 +1,31 @@
 ---
 gsd_state_version: 1.0
-milestone: v2.0
-milestone_name: UI Facelift — The Radiant Sommelier
-status: Ready to execute
-stopped_at: Completed 08-03-PLAN.md — Gap closure component migration to M3 tokens
-last_updated: "2026-03-26T01:56:03.665Z"
+milestone: v1.0
+milestone_name: milestone
+status: planning
+stopped_at: Completed 08-02-PLAN.md — Component token migration (brand-* and shadcn to M3)
+last_updated: "2026-03-26T02:03:14.443Z"
+last_activity: 2026-02-22 — Milestone v1.0 completed and archived
 progress:
-  total_phases: 4
-  completed_phases: 1
-  total_plans: 6
-  completed_plans: 4
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-24)
+See: .planning/PROJECT.md (updated 2026-02-22)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Phase 08 — token-system
+**Current focus:** v1.0 complete — planning next milestone
 
 ## Current Position
 
-Phase: 08 (token-system) — EXECUTING
-Plan: 3 of 4
+Phase: v1.0 complete (6 phases, 8 plans shipped)
+Status: Milestone v1.0 archived to .planning/milestones/
+Last activity: 2026-02-22 — Milestone v1.0 completed and archived
+
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
@@ -34,28 +35,13 @@ Plan: 3 of 4
 - Average duration: 3.9 min
 - Total execution time: ~35 min
 
-**v2.0 Velocity:**
-
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: —
-
 ## Accumulated Context
 
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
 
-- Tailwind v4: Use `@tailwindcss/upgrade` CLI as a 70% solution only — Astro-specific patterns require manual completion (wrong `astro.config.mjs` placement, invalid `@custom-variant` syntax from tool output)
-- Dark mode: Must use `@custom-variant dark (&:where(.dark, .dark *))` — verify manually before any token work
-- Light mode tokens: DESIGN.md is dark-first; light mode surface values are not specified. FEATURES.md recommends warm cream inversions (`#fdf6f0`, `#f5ece4`, `#ede0d4`, `#e0cfc4`). Requires owner sign-off before Phase 8 begins.
-- [Phase 07]: tailwindcss and tw-animate-css added to knip ignoreDependencies because CSS @import usage is invisible to knip's JS module graph
-- [Phase 07]: outline-none -> outline-hidden replacement extended beyond plan's listed files to Footer.astro and Header.tsx to satisfy zero-match acceptance criteria
-- [Phase 08]: M3 two-layer token architecture: :root/.dark hold raw hex values; @theme inline maps to --color-* Tailwind namespace for utility class generation
-- [Phase 08]: All globals.css tokens use hex values (not hsl) — palette-swappable by updating globals.css only per D-22
-- [Phase 08]: OrderSection glassmorphism uses glass utility (not hardcoded backdrop-blur) per D-14 blur budget
-- [Phase 08]: AstroButton primary variant uses bg-primary-container/text-on-primary-container mirroring button.tsx M3 pattern
+- [Phase 08]: All dark: prefixed overrides removed from button variants — M3 tokens auto-switch via CSS variables
 
 ### Pending Todos
 
@@ -63,12 +49,10 @@ None.
 
 ### Blockers/Concerns
 
-- Phase 8 prerequisite: Light mode surface token values must be signed off before Phase 8 planning begins — DESIGN.md does not specify them
-- Phase 7 risk: `@tailwindcss/upgrade` tool may produce incorrect output; treat as requiring manual review after every automated step
-- Phase 9 risk: `backdrop-blur` budget — blur reserved for Header (scrolled), Sheet, DropdownMenu only; cards use surface background shifts to avoid TBT regression on mobile
+- Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible
 
 ## Session Continuity
 
-Last session: 2026-03-26T01:56:03.658Z
-Stopped at: Completed 08-03-PLAN.md — Gap closure component migration to M3 tokens
+Last session: 2026-03-26T02:03:14.439Z
+Stopped at: Completed 08-02-PLAN.md — Component token migration (brand-* and shadcn to M3)
 Resume file: None

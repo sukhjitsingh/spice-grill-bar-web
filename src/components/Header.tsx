@@ -41,7 +41,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
       <nav className="container mx-auto px-6 h-14 flex items-center justify-between">
         <a
           href="/"
-          className="text-lg tracking-tighter font-serif font-semibold text-zinc-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
+          className="text-lg tracking-tighter font-serif font-semibold text-zinc-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
         >
           SPICE GRILL & BAR
         </a>
@@ -51,7 +51,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
             <a
               key={link.name}
               href={getHref(link.href)}
-              className="hover:text-brand-orange transition-colors relative group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm px-1"
+              className="hover:text-brand-orange transition-colors relative group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm px-1"
             >
               {link.name.toUpperCase()}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-orange transition-all group-hover:w-full" />
@@ -108,7 +108,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
                   <a
                     key={link.name}
                     href={getHref(link.href)}
-                    className="text-lg font-medium font-serif text-zinc-900 dark:text-white hover:text-brand-orange transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
+                    className="text-lg font-medium font-serif text-zinc-900 dark:text-white hover:text-brand-orange transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}

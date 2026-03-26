@@ -24,4 +24,8 @@ pnpm-debug.log*
 .idea/
 
 .lighthouseci/
-\n.astro-indexnow-cache.json
+
+.astro-indexnow-cache.json
+
+# Claude Code worktrees
+.claude/worktrees/

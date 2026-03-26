@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Radiant Sommelier | Spice Grill &amp; Bar</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script
+    id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container": "#ffe9e4", "on-secondary-fixed-variant": "#842407", "on-tertiary-container": "#fdfcff", "surface-container-highest": "#fcdcd3", "surface-bright": "#fff8f6", "tertiary-container": "#0077cb", "on-tertiary": "#ffffff", "surface-container-high": "#ffe2db", "on-primary-fixed": "#3b0900", "surface-tint": "#b12d00", "surface-dim": "#f3d3cb", "primary-fixed": "#ffdbd1", "primary-container": "#d93900", "on-primary-fixed-variant": "#882000", "surface-container-lowest": "#ffffff", "on-surface": "#281713", "on-tertiary-fixed-variant": "#00497f", tertiary: "#005ea2", "inverse-surface": "#3f2c27", surface: "#fff8f6", "on-primary": "#ffffff", "tertiary-fixed-dim": "#a0c9ff", "secondary-fixed": "#ffdbd1", error: "#ba1a1a", secondary: "#a53c1e", "surface-container-low": "#fff1ed", "on-secondary-fixed": "#3b0900", "surface-variant": "#fcdcd3", "secondary-fixed-dim": "#ffb5a1", "inverse-primary": "#ffb5a1", "on-secondary-container": "#701900", outline: "#916f66", "on-error": "#ffffff", "on-tertiary-fixed": "#001c37", "outline-variant": "#e6beb3", "secondary-container": "#fe7d5a", "inverse-on-surface": "#ffede9", "on-background": "#281713", "error-container": "#ffdad6", "on-error-container": "#93000a", "on-secondary": "#ffffff", "on-primary-container": "#fffbff", "primary-fixed-dim": "#ffb5a1", background: "#fff8f6", primary: "#ad2b00", "tertiary-fixed": "#d2e4ff", "on-surface-variant": "#5c4038" }, fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"], display: "Manrope" }, borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" } } } };</script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .glass-card {
+      background: rgba(56, 38, 33, 0.6);
+      backdrop-filter: blur(24px);
+      border: 0.5px solid rgba(173, 137, 127, 0.15);
+    }
+
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(255, 86, 38, 0.15) 0%, rgba(25, 10, 7, 0) 60%);
+    }
+
+    .cta-gradient {
+      background: linear-gradient(135deg, #ff5626 0%, #b12d00 100%);
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+
+<body
+  class="bg-surface-dim text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+  <!-- TopAppBar -->
+  <nav
+    class="fixed top-0 w-full z-50 bg-[#1f0f0b]/70 backdrop-blur-xl shadow-[0px_24px_48px_rgba(25,10,7,0.4)] flex justify-between items-center px-6 h-16 w-full max-w-none">
+    <div class="flex items-center gap-4">
+      <span
+        class="material-symbols-outlined text-[#ff5626] hover:bg-[#49342f]/50 transition-colors duration-300 p-2 rounded-full cursor-pointer scale-95 active:opacity-80 transition-transform">menu</span>
+      <span class="text-[#ff5626] font-manrope font-black tracking-tighter text-xl">Radiant Sommelier</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span
+        class="material-symbols-outlined text-[#ff5626] hover:bg-[#49342f]/50 transition-colors duration-300 p-2 rounded-full cursor-pointer scale-95 active:opacity-80 transition-transform">shopping_bag</span>
+    </div>
+  </nav>
+  <main class="pt-16">
+    <!-- Hero Section -->
+    <section class="relative min-h-[751px] flex items-center px-6 py-12 overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img class="w-full h-full object-cover opacity-50 scale-105"
+          data-alt="Close-up of a vibrant gourmet dish with roasted spices and fresh herbs, dramatic side lighting against a dark textured background"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvzk8rTynBSHD09C7FugRcbrsuel4UwTwduKBuyOdu8-5wnrvvFRmVxwm5-uR-YuwuSGu2PglybWz_5cVV0yGQWERXvkiOCFAvIaQsmszDztgrwlsIBA4H_c4EDEyhFLQWt2SJphGCLDT5rWoEJZysgsQrfjuI-z7I0T7IGEbccrDZ3upDHMe_njkAX-uv33RtqMzDfG-z6ZmHOEj7QGgJjDoCeWqpx-p69qVWmUSwfr8FJI-zex30eaC-jdwENhKZknt34nBHSIc" />
+        <div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-surface-dim/40 to-transparent"></div>
+        <div class="absolute inset-0 hero-gradient"></div>
+      </div>
+      <div class="relative z-10 max-w-xl">
+        <span
+          class="inline-block py-1 px-3 mb-6 rounded-full bg-surface-container-highest text-primary-container font-label text-[10px] uppercase tracking-[0.2em] font-bold">
+          The Spice Grill &amp; Bar
+        </span>
+        <h1 class="font-headline font-extrabold text-[3.5rem] leading-[1.1] tracking-tight mb-8 text-on-surface">
+          A Symphony <br />of <span class="text-primary-container">Fire &amp; Spice.</span>
+        </h1>
+        <p class="text-on-surface-variant font-body text-lg leading-relaxed mb-10 max-w-md">
+          Experience artisanal grilling elevated by rare vintages. A curated journey through heat, smoke, and
+          refinement.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button
+            class="cta-gradient text-on-primary-container font-bold py-4 px-8 rounded-xl shadow-lg shadow-primary-container/20 flex items-center justify-center gap-2 transition-transform active:scale-95">
+            Order Online
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+          <button
+            class="bg-surface-container-high border border-outline-variant/20 hover:bg-surface-bright text-on-surface font-semibold py-4 px-8 rounded-xl backdrop-blur-md transition-all">
+            View Menu
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Culinary Selection (Bento Grid) -->
+    <section class="px-6 py-24 bg-surface-container-low">
+      <div class="mb-16">
+        <h2 class="font-headline font-bold text-4xl tracking-tight mb-4">Culinary Selection</h2>
+        <div class="w-12 h-1 bg-primary-container rounded-full"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Main Featured Item -->
+        <div class="md:col-span-2 relative h-[400px] rounded-3xl overflow-hidden glass-card group">
+          <img
+            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"
+            data-alt="Tender smoked brisket with black pepper crust and a drizzle of rich sauce, presented on dark slate with soft orange backlighting"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYuRXg8eS-MeV7-WjsyyxRBCxGyuJJNXv6HRXHQ6zdIGkmIZzfQqRyMmSqpQa-cXCAPjAus-ccAm67A1ob_dazwS1vV9POPbRMzw0h2NtAbz01gZkXfbJwV05dN3z5citxCQW1djNeoSZ7tk4_LlzrJAyp2l_L277pwFqKQsvc3s1kKyjRY03h-bZeluzqRGUMOBGWebtUta5cvdXCO2Ba7D1Hp07JCzVs4eZ9eyYcryO1RWqzJTtzHdfLd4ZgNl4MTFxPvwxxw4Q" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent">
+          </div>
+          <div class="absolute bottom-0 p-8">
+            <span class="text-primary-container font-label text-xs uppercase tracking-widest mb-2 block">Signature
+              Entrée</span>
+            <h3 class="text-2xl font-headline font-bold mb-2">Prime Smoked Rib-Eye</h3>
+            <p class="text-on-surface-variant text-sm max-w-sm">Aged for 45 days and kissed by hickory smoke. Served
+              with a reduction of our cellar's finest Malbec.</p>
+          </div>
+        </div>
+        <!-- Secondary Item -->
+        <div class="relative h-[400px] rounded-3xl overflow-hidden glass-card group">
+          <img
+            class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+            data-alt="Vibrant grilled octopus tentacles with a smoky char, served with citrus oil and microgreens on a matte black ceramic plate"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb6qVPrCwxDXXY0q_1Ghby6YHTGRmiifrg1IttJC4DAwIm4Q8EHooHTnA6-SXudR8fb8yb_1F1s5srcniCEPKDeJCyu8iHlkl6UlT58GHclNTSrNLKwBITrijNGNh04rq7MxvJalObs1kV_sGG7RYdP1BgTmGSYWocCP7NtCQKkEohhqDiOoXyDux8GZKAPTLQaeLQfxCyoe6c59gKZoeh3oWhOdSFyZiZMqDHCCI2EShWH-k0bWMDFMWNXQchN_tbyLVXJ6R7PMM" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent">
+          </div>
+          <div class="absolute bottom-0 p-8">
+            <span class="text-primary-container font-label text-xs uppercase tracking-widest mb-2 block">Coastal
+              Char</span>
+            <h3 class="text-xl font-headline font-bold">Grilled Octopus</h3>
+          </div>
+        </div>
+        <!-- Tertiary Item -->
+        <div class="relative h-[320px] rounded-3xl overflow-hidden glass-card group">
+          <img
+            class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+            data-alt="Deep red vintage wine being poured into a crystal glass, capturing the light and ruby refractions in a moody atmosphere"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjZ5R7ak_PLsVNZk9AjclABnVvVAExujoEik4FDTjCQ92fmpJfbiRDS4qh_VVzjYprRVp7MbNOQGflVw-aV1OxnthVAE0oM3dgB2ZpFI2Ozxhb30nw2176DcRBFTkqrs6_4JCtb63TLbLbOKu2kvgMfswuhVuSiZ1KcTE4JrTxGK6DDfefGJpSLmmnKDP0oQH1TBK2ltZGvWTrnSf7YTqG4RDJaNdEPY6pY7SWILUnF9vbjkepEHuYna3m6HGECQ7_E-M3pZUGyMA" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent">
+          </div>
+          <div class="absolute bottom-0 p-8">
+            <span class="text-primary-container font-label text-xs uppercase tracking-widest mb-2 block">Sommelier
+              Choice</span>
+            <h3 class="text-xl font-headline font-bold">Rare Vintage Selection</h3>
+          </div>
+        </div>
+        <!-- Quaternary Item -->
+        <div class="md:col-span-2 relative h-[320px] rounded-3xl overflow-hidden glass-card group">
+          <img
+            class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
+            data-alt="Artisanal flatbread topped with truffles and melted aged cheese, baked in a stone oven with embers glowing in the background"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8XXwtVthjYpAHEAxDSiG_iayvr-QFvp9b44Q5MgganKMuYjHwMd_EONT28AoC8101VChPJL1cNIJmKmShhl6AfQSRAFu3-ET7S8bUog5uOFIfsnuMazgkT_Hoo3jvquqkfMR3K4A56qirPxhQa4asORcE8Q6eL4ZuMRzvkUytoEANRtpntASqsdGaoYhC-x8qhp9xininEh-9fVk0qKRs3aGpb0TzCij7xwPwYSMELt0kmiRgprEAHGHdkdxFmENiMmIsGgmjWpg" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent">
+          </div>
+          <div class="absolute bottom-0 p-8">
+            <span class="text-primary-container font-label text-xs uppercase tracking-widest mb-2 block">Earth &amp;
+              Fire</span>
+            <h3 class="text-xl font-headline font-bold">Black Truffle Flatbread</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Guest Reviews (Horizontal Scroll/Magazine Style) -->
+    <section class="py-24 overflow-hidden">
+      <div class="px-6 mb-16 flex justify-between items-end">
+        <div>
+          <h2 class="font-headline font-bold text-4xl tracking-tight mb-4">Guest Reviews</h2>
+          <p class="text-on-surface-variant font-body">Words from our discerning patrons.</p>
+        </div>
+        <div class="hidden md:flex gap-2">
+          <button
+            class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-surface-bright transition-colors">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <button
+            class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-surface-bright transition-colors">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+      <div class="flex gap-6 overflow-x-auto px-6 pb-8 no-scrollbar scroll-smooth snap-x">
+        <!-- Review Card 1 -->
+        <div
+          class="min-w-[300px] md:min-w-[450px] snap-start glass-card p-10 rounded-[2rem] flex flex-col justify-between h-[350px]">
+          <div class="text-primary-container mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+          </div>
+          <p class="font-headline text-xl italic leading-relaxed text-on-surface mb-8">
+            "The tension between the heat of the spices and the coolness of the cellar selection is pure genius. An
+            absolute must-visit."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
+              <img class="w-full h-full object-cover"
+                data-alt="Portrait of a sophisticated man with a beard, soft professional lighting in a modern interior"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC51HgDgEjt-zEIpuq5usmCoeQNGWM2lxw-x4YuhHygZPahB_czmcxIMhp_XHNilq4oEaJiQ5tyFiQQPjqPKCaLQ9IkX9nyH1Fft6wR5mjTV86E0oBg68ArBbkwjxvPHrUKhBvIDbLoaNJCu0C76VfYkO8c-piElU6PGIvUR__v2QigxzlXjoR9h8X1eXoid2BnWErt_rMKgycRSpcMIzHzhnr3WaAyNnvbX2-QrhlhzuIp363DMebUgSaT5nR7Odsa51y6sonUt_0" />
+            </div>
+            <div>
+              <p class="font-bold text-sm">Julian Vance</p>
+              <p class="text-xs text-on-surface-variant uppercase tracking-widest">Culinary Critic</p>
+            </div>
+          </div>
+        </div>
+        <!-- Review Card 2 -->
+        <div
+          class="min-w-[300px] md:min-w-[450px] snap-start glass-card p-10 rounded-[2rem] flex flex-col justify-between h-[350px]">
+          <div class="text-primary-container mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+          </div>
+          <p class="font-headline text-xl italic leading-relaxed text-on-surface mb-8">
+            "The atmosphere feels like a secret club for those who appreciate the finer things. The Rib-Eye is
+            unparalleled."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
+              <img class="w-full h-full object-cover"
+                data-alt="Portrait of a stylish woman with glasses, minimalist aesthetic and warm ambient lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD57Mm02L0zZfe6ZHg2rMMyXiutBL-npg6YFwzZtghJeFA4uVEMiKKUSF24B8paxlUo0qrA1Dzsp9-6gfleRVcRWKk7JYYtVW4WzLuO1_3L3pr1ECUbLpATe-B4eq1ybOITDXvW1tUZtV0IzFfeM-LNP59jE6D4MH2Maga_FiX6_cEWGS7301QeRu0qyUuXzSROPriy84jh-0KvGsnddz8R7Kp-JcirrgbuiczvTEjRA6MQWoh4bJBqug_itkUkODERs61Hf6BwY5c" />
+            </div>
+            <div>
+              <p class="font-bold text-sm">Elena Rossi</p>
+              <p class="text-xs text-on-surface-variant uppercase tracking-widest">Wine Enthusiast</p>
+            </div>
+          </div>
+        </div>
+        <!-- Review Card 3 -->
+        <div
+          class="min-w-[300px] md:min-w-[450px] snap-start glass-card p-10 rounded-[2rem] flex flex-col justify-between h-[350px]">
+          <div class="text-primary-container mb-6">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+          </div>
+          <p class="font-headline text-xl italic leading-relaxed text-on-surface mb-8">
+            "Digital Sommelier is a game changer. The pairings recommended were perfect for the spiced octopus."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
+              <img class="w-full h-full object-cover"
+                data-alt="Portrait of a middle-aged man with a friendly expression, soft sunlight on his face"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNJaODFApwzp1jAaetrBloFFIE_F_Ik9il2xpdoyi1MVe2HuszqgPDvK4nn_EIx8GRsgUmc7LknI3VeqlfwL59IRnSjHNEComwu7jairyRGWhazmcgOjDbBKIfOYY3ffPx7-F4JW7C5h4jZ6ND9bSrUryay4j9qI8N18Y1mV_7VCLxCfOViUHXeU5uVvKhgcrd76OCjIwUx4peHcZy_PG8fZmm6rPD1vQ2u7yRz6CM06sVdnhOpmUbqHyfqz5vYE89XZe5Q6AG8gk" />
+            </div>
+            <div>
+              <p class="font-bold text-sm">Marcus Thorne</p>
+              <p class="text-xs text-on-surface-variant uppercase tracking-widest">Lifestyle Blogger</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter / Reservation Recess -->
+    <section class="px-6 py-24 bg-surface-container-low flex flex-col items-center text-center">
+      <div class="max-w-2xl w-full glass-card rounded-[3rem] py-16 px-8 relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container/10 blur-[100px] rounded-full"></div>
+        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-tertiary-container/10 blur-[100px] rounded-full"></div>
+        <h2 class="font-headline font-bold text-3xl md:text-5xl tracking-tight mb-6">The Inner Circle</h2>
+        <p class="text-on-surface-variant mb-10 text-lg">Join our community for exclusive access to secret vintages and
+          seasonal tasting events.</p>
+        <form class="flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+          <input
+            class="flex-1 bg-surface-container-lowest border-none border-b-2 border-outline-variant focus:border-primary-container focus:ring-0 text-on-surface py-4 px-6 rounded-xl transition-all"
+            placeholder="Your email address" type="email" />
+          <button class="cta-gradient text-on-primary-container font-bold px-8 py-4 rounded-xl whitespace-nowrap">Join
+            Now</button>
+        </form>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer
+    class="bg-[#1f0f0b] flex flex-col items-center gap-8 py-12 px-6 w-full mt-auto rounded-t-3xl border-t border-[#49342f]/20">
+    <div class="flex flex-col items-center gap-4">
+      <span class="text-[#ff5626] font-manrope font-bold text-2xl tracking-tighter">Radiant Sommelier</span>
+      <div class="flex gap-8 mt-4">
+        <a class="font-inter text-[10px] uppercase tracking-widest text-[#49342f] hover:text-[#ff5626] transition-all duration-200 underline-offset-4 hover:underline"
+          href="#">The Cellar</a>
+        <a class="font-inter text-[10px] uppercase tracking-widest text-[#49342f] hover:text-[#ff5626] transition-all duration-200 underline-offset-4 hover:underline"
+          href="#">Cuisine</a>
+        <a class="font-inter text-[10px] uppercase tracking-widest text-[#49342f] hover:text-[#ff5626] transition-all duration-200 underline-offset-4 hover:underline"
+          href="#">Reservations</a>
+        <a class="font-inter text-[10px] uppercase tracking-widest text-[#49342f] hover:text-[#ff5626] transition-all duration-200 underline-offset-4 hover:underline"
+          href="#">Privacy</a>
+      </div>
+    </div>
+    <div class="flex gap-6 my-4">
+      <span class="material-symbols-outlined text-[#49342f] hover:text-[#ff5626] cursor-pointer">share</span>
+      <span class="material-symbols-outlined text-[#49342f] hover:text-[#ff5626] cursor-pointer">public</span>
+      <span class="material-symbols-outlined text-[#49342f] hover:text-[#ff5626] cursor-pointer">mail</span>
+    </div>
+    <p class="font-inter text-[10px] uppercase tracking-[0.3em] text-[#49342f] text-center">
+      © 2024 THE RADIANT SOMMELIER. ALL RIGHTS RESERVED.
+    </p>
+  </footer>
+  <!-- Mobile Navigation Suppressed as per Task Intent (Hero Landing) but following system: -->
+  <div
+    class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 glass-card rounded-full p-2 flex gap-4 z-50 shadow-2xl">
+    <button
+      class="w-12 h-12 flex items-center justify-center rounded-full bg-primary-container text-on-primary-container">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">restaurant_menu</span>
+    </button>
+    <button
+      class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-bright">
+      <span class="material-symbols-outlined">wine_bar</span>
+    </button>
+    <button
+      class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-bright">
+      <span class="material-symbols-outlined">calendar_today</span>
+    </button>
+  </div>
+</body>
+
+</html>

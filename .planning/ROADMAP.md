@@ -78,7 +78,13 @@ Plans:
   3. The orange `#FF4B12` appears in no more than 4 visually distinct contexts across the entire site
   4. All 4 pages (Home, FAQ, Near Grand Canyon, Directions) are visually consistent with the DESIGN.md surface hierarchy in both light and dark mode
   5. The Header glassmorphism uses warm-tinted blur; ambient cards use background color shifts only (no `backdrop-blur` on cards)
-**Plans**: TBD
+**Plans**: 5 plans
+Plans:
+- [ ] 09-01-PLAN.md — Typography @utility classes + old font package removal
+- [ ] 09-02-PLAN.md — Hero redesign (info-rich SEO layout) + home page section reorder
+- [ ] 09-03-PLAN.md — Reskin OurStorySection, ReviewsSection, Footer
+- [ ] 09-04-PLAN.md — Reskin MenuSection, OrderSection, LocationSection, Header
+- [ ] 09-05-PLAN.md — Reskin secondary pages (FAQ, Near Grand Canyon, Directions)
 
 ### Phase 10: Quality Assurance
 **Goal**: The redesigned site passes all automated quality gates and both visual modes are verifiably accessible — confirming no performance, contrast, or animation regressions were introduced by the facelift
@@ -105,5 +111,5 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 6. Data Consistency & LH Coverage | v1.0 | 1/1 | Complete | 2026-02-22 |
 | 7. Infrastructure | v2.0 | 0/2 | Not started | - |
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
-| 9. Visual Redesign | v2.0 | 0/TBD | Not started | - |
+| 9. Visual Redesign | v2.0 | 0/5 | Not started | - |
 | 10. Quality Assurance | v2.0 | 0/TBD | Not started | - |

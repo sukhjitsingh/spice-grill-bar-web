@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the website for **Spice Grill & Bar**, a restaurant in Ash Fork, Arizona on Route 66/I-40. The project is an **Astro 5** static site currently being migrated from Next.js. The primary technical goals are local SEO (GEO), AI/Answer Engine Optimization (AEO), and Lighthouse performance scores.
+This is the website for **Spice Grill & Bar**, a restaurant in Ash Fork, Arizona on Route 66/I-40 Exit 146. The project is an **Astro 5** static site. The primary technical goals are local SEO (GEO), AI/Answer Engine Optimization (AEO), and Lighthouse performance scores.
 
 ## Common Commands
 
@@ -33,10 +33,12 @@ The codebase deliberately splits between two component types:
 
 ### Routing & Pages
 
-File-based routing via `/src/pages/`. Currently only two pages:
+File-based routing via `/src/pages/`. Four pages:
 
 - `index.astro` — Home page (one-page site with multiple sections)
 - `faq.astro` — FAQ page for voice search / AEO
+- `near-grand-canyon.astro` — GEO page targeting Grand Canyon / proximity queries
+- `directions.astro` — GEO page with per-city driving directions and Maps embed
 
 ### Data Layer
 
@@ -54,11 +56,27 @@ Six JSON-LD schema components in `/src/components/schema/` are injected via `Lay
 
 These are critical for local SEO and AEO. Changes to menu, hours, or contact info must be reflected in both the data files and schema components.
 
-### Styling
+### Styling — "The Radiant Sommelier" Design System
 
-TailwindCSS 3 with a custom HSL-based color system. Brand colors: orange `#FF4B12`, green `#2D5A27`, gold `#FFC062`. Dark mode supported via CSS variables. Custom utilities `.glass` and `.glass-card` provide glassmorphism effects.
+**TailwindCSS v4** with CSS-first configuration (`@import 'tailwindcss'` + `@theme inline`). No `tailwind.config.mjs` — all tokens live in `src/styles/globals.css`.
 
-Font stack: Open Sans (body) + Playfair Display (headings).
+**Color system:** Material Design 3 (M3) token hierarchy seeded from `#FF4B12`. All colors defined as CSS custom properties in `:root` (light) and `.dark` (dark). Key token families:
+
+- **Surface hierarchy** (5 depth levels): `bg-surface-dim`, `bg-surface-container-low`, `bg-surface-container`, `bg-surface-container-high`, `bg-surface-bright` — used for tonal separation between sections (no hard borders).
+- **Semantic tokens**: `text-on-surface`, `text-on-surface-variant`, `bg-primary-container`, `text-on-primary-container`, etc.
+- **shadcn bridge**: Radix/shadcn tokens (`--background`, `--foreground`, `--card`, etc.) remapped to M3 values via `@theme inline` so existing shadcn components work without class changes.
+
+**Design rules:**
+
+- **No hard borders** between sections or cards. All visual separation comes from background tonal shifts.
+- **Orange sparingly**: `#FF4B12` (primary-container) appears in max 4 contexts — CTA buttons, star ratings, nav hover, accent details.
+- **Glass budget**: Only Header, Sheet (mobile nav), and DropdownMenu get `backdrop-blur` via `.glass` / `.glass-card` utilities. Cards use tonal backgrounds only.
+
+**Typography:** Manrope Variable (headings/display via `font-display`) + Inter Variable (body via `font-sans`). Seven editorial `@utility` classes: `text-display-lg`, `text-display-md`, `text-heading-lg`, `text-heading-md`, `text-body-lg`, `text-body-md`, `text-label-sm`.
+
+**Dark mode:** `@custom-variant dark (&:where(.dark, .dark *))`. All M3 tokens have dark-mode counterparts in `.dark {}` block. Light is default.
+
+**Animation:** `tw-animate-css` package (TailwindCSS v4 compatible replacement for `tailwindcss-animate`).
 
 Import alias `@/*` resolves to `src/*`.
 

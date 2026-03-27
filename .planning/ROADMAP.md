@@ -83,7 +83,7 @@ Plans:
 - [x] 09-01-PLAN.md — Typography @utility classes + old font package removal
 - [x] 09-02-PLAN.md — Hero redesign (info-rich SEO layout) + home page section reorder
 - [x] 09-03-PLAN.md — Reskin OurStorySection, ReviewsSection, Footer
-- [ ] 09-04-PLAN.md — Reskin MenuSection, OrderSection, LocationSection, Header
+- [x] 09-04-PLAN.md — Reskin MenuSection, OrderSection, LocationSection, Header
 - [ ] 09-05-PLAN.md — Reskin secondary pages (FAQ, Near Grand Canyon, Directions)
 
 ### Phase 10: Quality Assurance

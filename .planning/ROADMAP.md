@@ -84,7 +84,7 @@ Plans:
 - [x] 09-02-PLAN.md — Hero redesign (info-rich SEO layout) + home page section reorder
 - [x] 09-03-PLAN.md — Reskin OurStorySection, ReviewsSection, Footer
 - [x] 09-04-PLAN.md — Reskin MenuSection, OrderSection, LocationSection, Header
-- [ ] 09-05-PLAN.md — Reskin secondary pages (FAQ, Near Grand Canyon, Directions)
+- [x] 09-05-PLAN.md — Reskin secondary pages (FAQ, Near Grand Canyon, Directions)
 
 ### Phase 10: Quality Assurance
 **Goal**: The redesigned site passes all automated quality gates and both visual modes are verifiably accessible — confirming no performance, contrast, or animation regressions were introduced by the facelift

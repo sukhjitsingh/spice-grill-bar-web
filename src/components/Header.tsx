@@ -41,12 +41,12 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
       <nav className="container mx-auto px-6 h-14 flex items-center justify-between">
         <a
           href="/"
-          className="text-lg tracking-tighter font-display font-semibold text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
+          className="text-label-sm uppercase tracking-tighter font-semibold text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
         >
           SPICE GRILL & BAR
         </a>
 
-        <div className="hidden md:flex items-center space-x-8 text-xs font-bold font-display tracking-wide text-on-surface-variant">
+        <div className="hidden md:flex items-center space-x-8 text-body-md text-on-surface-variant">
           {navigation.map((link) => (
             <a
               key={link.name}
@@ -101,7 +101,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-full sm:w-80 bg-surface border-l border-outline-variant"
+              className="w-full sm:w-80 bg-surface-container-low glass-card"
             >
               <div className="flex flex-col space-y-6 mt-8">
                 {navigation.map((link) => (

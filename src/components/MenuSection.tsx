@@ -79,21 +79,16 @@ export function MenuSection() {
   };
 
   return (
-    <section
-      id="menu"
-      className="bg-surface-container-lowest py-24 border-t border-outline-variant transition-colors duration-500"
-    >
+    <section id="menu" className="bg-surface-container-low py-24 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="sticky top-14 z-30 bg-surface-container-lowest py-4 mb-10 transition-colors duration-500">
-          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-on-surface mb-4">
-            Culinary Selection
-          </h2>
+        <div className="sticky top-14 z-30 bg-surface-container-low py-4 mb-10 transition-colors duration-500">
+          <h2 className="text-heading-lg text-on-surface mb-4">Culinary Selection</h2>
           <p className="text-on-surface-variant">
             Crafted with care using traditional Punjabi recipes and the finest ingredients.
           </p>
 
           {/* Mobile Navigation (Sticky inside header) */}
-          <div className="md:hidden mt-6 p-1.5 border border-outline-variant bg-surface-container/50 backdrop-blur-sm rounded-xl">
+          <div className="md:hidden mt-6 p-1.5 bg-surface-container rounded-xl">
             <nav className="flex overflow-x-auto gap-2 hide-scroll">
               {data.map((category) => {
                 const categoryId = toKebabCase(category.category);
@@ -102,10 +97,10 @@ export function MenuSection() {
                     key={categoryId}
                     onClick={() => scrollToCategory(categoryId)}
                     className={cn(
-                      'whitespace-nowrap text-sm font-medium font-display rounded-lg py-2 px-4 transition-all border',
+                      'whitespace-nowrap text-sm font-medium rounded-lg py-2 px-4 transition-all',
                       activeCategory === categoryId
-                        ? 'bg-surface text-primary-container shadow-xs border-outline-variant'
-                        : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface border-transparent'
+                        ? 'bg-surface-container-high text-on-surface'
+                        : 'bg-transparent text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
                     )}
                   >
                     {category.category}
@@ -119,7 +114,7 @@ export function MenuSection() {
         <div className="flex flex-col md:flex-row gap-12 relative">
           {/* Sidebar Navigation (Sticky Desktop) */}
           <aside className="hidden md:block md:w-64 shrink-0 md:max-h-[calc(100vh-13rem)] h-fit md:sticky md:top-52 z-20 pt-2">
-            <nav className="flex md:flex-col overflow-x-auto md:overflow-y-auto gap-2 pb-4 hide-scroll p-2 glass rounded-xl max-h-full">
+            <nav className="flex md:flex-col overflow-x-auto md:overflow-y-auto gap-2 pb-4 hide-scroll p-2 bg-surface-container-high rounded-xl max-h-full">
               {data.map((category) => {
                 const categoryId = toKebabCase(category.category);
                 return (
@@ -150,23 +145,19 @@ export function MenuSection() {
                   id={categoryId}
                   className="menu-category space-y-8 scroll-mt-32"
                 >
-                  <h3 className="text-2xl font-medium text-primary-container tracking-tight border-b border-outline-variant pb-4">
-                    {category.category}
-                  </h3>
+                  <h3 className="text-heading-md text-on-surface">{category.category}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
                     {category.items.map((item, index) => (
                       <div key={index} className="group">
                         <div className="flex justify-between items-baseline mb-2">
-                          <h4 className="text-xl font-medium font-display text-on-surface group-hover:text-primary-container transition-colors">
+                          <h4 className="text-heading-md text-on-surface group-hover:text-primary-container transition-colors">
                             {item.name}
                           </h4>
-                          <span className="text-lg font-medium text-on-surface-variant">
+                          <span className="text-heading-md text-primary-container">
                             ${item.price.toFixed(2)}
                           </span>
                         </div>
-                        <p className="text-base text-on-surface-variant leading-relaxed">
-                          {item.description}
-                        </p>
+                        <p className="text-body-md text-on-surface-variant">{item.description}</p>
                       </div>
                     ))}
                   </div>

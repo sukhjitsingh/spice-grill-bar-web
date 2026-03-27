@@ -80,7 +80,7 @@ Plans:
   5. The Header glassmorphism uses warm-tinted blur; ambient cards use background color shifts only (no `backdrop-blur` on cards)
 **Plans**: 5 plans
 Plans:
-- [ ] 09-01-PLAN.md — Typography @utility classes + old font package removal
+- [x] 09-01-PLAN.md — Typography @utility classes + old font package removal
 - [ ] 09-02-PLAN.md — Hero redesign (info-rich SEO layout) + home page section reorder
 - [ ] 09-03-PLAN.md — Reskin OurStorySection, ReviewsSection, Footer
 - [ ] 09-04-PLAN.md — Reskin MenuSection, OrderSection, LocationSection, Header

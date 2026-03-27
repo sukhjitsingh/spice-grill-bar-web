@@ -18,6 +18,8 @@
     "tw-animate-css",
     "react-dom",
     "@types/react-dom",
+    "@playwright/test",
+    "axe-core",
     "@axe-core/cli",
     "@commitlint/cli",
     "@lhci/cli",
@@ -35,6 +37,7 @@
     "tsc",
     "knip",
     "lint-staged",
-    "commitlint"
+    "commitlint",
+    "playwright"
   ]
 }

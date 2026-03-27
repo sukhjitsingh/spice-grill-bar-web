@@ -24,6 +24,9 @@ pnpm-debug.log*
 .idea/
 
 .lighthouseci/
+dist-dark/
+test-results/
+playwright-report/
 
 .astro-indexnow-cache.json
 

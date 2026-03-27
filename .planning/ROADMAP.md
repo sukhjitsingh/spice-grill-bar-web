@@ -31,7 +31,7 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 
 - [ ] **Phase 7: Infrastructure** — Migrate to TailwindCSS v4, swap animation and font packages, verify build green
 - [x] **Phase 8: Token System** — Define surface hierarchy and semantic color tokens, establish light/dark mode values (completed 2026-03-26)
-- [ ] **Phase 9: Visual Redesign** — Re-skin all 4 pages component by component using the new token system
+- [x] **Phase 9: Visual Redesign** — Re-skin all 4 pages component by component using the new token system (completed 2026-03-27)
 - [ ] **Phase 10: Quality Assurance** — Verify Lighthouse thresholds, WCAG AA contrast, and animation correctness
 
 ## Phase Details
@@ -111,5 +111,5 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 6. Data Consistency & LH Coverage | v1.0 | 1/1 | Complete | 2026-02-22 |
 | 7. Infrastructure | v2.0 | 0/2 | Not started | - |
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
-| 9. Visual Redesign | v2.0 | 0/5 | Not started | - |
+| 9. Visual Redesign | v2.0 | 0/5 | Complete    | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 0/TBD | Not started | - |

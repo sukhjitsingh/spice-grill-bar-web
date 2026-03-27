@@ -5,7 +5,9 @@ export default defineConfig({
   testDir: './e2e',
   use: {
     baseURL: 'http://localhost:4321',
-    reducedMotion: 'no-preference',
+    contextOptions: {
+      reducedMotion: 'no-preference',
+    },
   },
   webServer: {
     command: 'npm run dev',

@@ -20,6 +20,8 @@
     "@types/react-dom",
     "@playwright/test",
     "axe-core",
+    "playwright",
+    "glob",
     "@axe-core/cli",
     "@commitlint/cli",
     "@lhci/cli",

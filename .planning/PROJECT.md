@@ -76,7 +76,7 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - **Two distinct audiences**: (1) Road-trippers on I-40/Route 66 making a pitstop decision in real time; (2) Local residents in Ash Fork, Williams (~18 mi), Seligman (~30 mi), Kaibab Estates (~15 mi)
 - **AI citation strategy**: Content must be self-contained, extractable passages — AI engines retrieve specific sentences, not full pages
 - **Current state**: 4 pages (home, FAQ, near-grand-canyon, directions), 2,412 LOC (Astro/TS/TSX), 6 schema components, 20 FAQ entries, 7 reviews. TailwindCSS v4 with CSS-first config (`@theme inline`, `@custom-variant dark`), Manrope Variable + Inter Variable fonts installed alongside legacy fonts.
-- **Tech debt**: FAQSchema globally injected on all pages (should restrict to /faq/ only); duplicate FAQPage schemas on GEO pages; phone display format cosmetic inconsistency; legacy Open Sans + Playfair Display fonts still bundled (remove in Phase 9)
+- **Tech debt**: FAQSchema globally injected on all pages (should restrict to /faq/ only); duplicate FAQPage schemas on GEO pages; phone display format cosmetic inconsistency
 - **Codebase map**: See `.planning/codebase/` for full architecture, stack, and conventions
 
 ## Constraints
@@ -102,10 +102,13 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 | Speakable schema with CSS selectors on GEO pages | Targets H1 + lead paragraph for voice assistant extraction | ✓ Good |
 | E.164 tel: URIs across all components | RFC 3966 compliance; consistent with RestaurantSchema format | ✓ Good |
 | TailwindCSS v4 with CSS-first config | `@theme` replaces JS config; cleaner token system aligned with DESIGN.md | ✓ Good — Phase 7 |
-| Hybrid token system (shadcn + surface hierarchy) | Avoids rewriting every component while gaining DESIGN.md depth system | Pending |
+| Hybrid token system (shadcn + surface hierarchy) | Avoids rewriting every component while gaining DESIGN.md depth system | ✓ Good — Phase 8 |
 | Manrope + Inter fonts | DESIGN.md spec: geometric display + maximum readability body | ✓ Good — Phase 7 |
-| Light default + dark mode | Both modes redesigned; light stays default for accessibility | Pending |
-| Design source of truth: docs/DESIGN.md | "The Radiant Sommelier" — editorial aesthetic with surface depth layers | Pending |
+| Light default + dark mode | Both modes redesigned; light stays default for accessibility | ✓ Good — Phase 9 |
+| Design source of truth: docs/DESIGN.md | "The Radiant Sommelier" — editorial aesthetic with surface depth layers | ✓ Good — Phase 9 |
+| Borderless tonal separation | Structural borders replaced by background tonal shifts across all components | ✓ Good — Phase 9 |
+| Orange sparingly (≤4 contexts) | Orange #FF4B12 limited to CTAs, stars, nav hover, accent details | ✓ Good — Phase 9 |
+| Glass budget: Header + Sheet + DropdownMenu only | Warm-tinted glassmorphism restricted to chrome elements; cards use tonal bg | ✓ Good — Phase 9 |
 
 ## Evolution
 
@@ -126,4 +129,4 @@ This document evolves at phase transitions and milestone boundaries.
 
 ---
 
-*Last updated: 2026-03-25 — Phase 7 (Infrastructure) complete*
+*Last updated: 2026-03-27 — Phase 9 (Visual Redesign) complete*

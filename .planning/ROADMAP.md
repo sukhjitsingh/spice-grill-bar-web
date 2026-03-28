@@ -96,9 +96,9 @@ Plans:
   3. The Sheet (mobile nav), DropdownMenu, and MobileActionButtons all animate open and closed correctly in the browser with `tw-animate-css`
 **Plans**: 3 plans
 Plans:
-- [ ] 10-01-PLAN.md — Install Playwright + create all QA test infrastructure (configs, scripts, npm commands)
+- [x] 10-01-PLAN.md — Install Playwright + create all QA test infrastructure (configs, scripts, npm commands)
 - [ ] 10-02-PLAN.md — Run Lighthouse CI + axe-core audits (light and dark), fix all failures
-- [ ] 10-03-PLAN.md — Write and run Playwright E2E animation tests for 3 animated components
+- [x] 10-03-PLAN.md — Write and run Playwright E2E animation tests for 3 animated components
 
 ## Progress
 
@@ -116,4 +116,4 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 7. Infrastructure | v2.0 | 0/2 | Not started | - |
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
 | 9. Visual Redesign | v2.0 | 0/5 | Complete    | 2026-03-27 |
-| 10. Quality Assurance | v2.0 | 0/3 | Not started | - |
+| 10. Quality Assurance | v2.0 | 2/3 | In Progress|  |

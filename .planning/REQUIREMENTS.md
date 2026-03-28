@@ -34,7 +34,7 @@
 
 - [ ] **QA-01**: Lighthouse CI passes on all 4 pages (LCP < 4s, TBT < 600ms, CLS < 0.1, Accessibility ≥ 90, SEO ≥ 90)
 - [ ] **QA-02**: Both light and dark modes render correctly with WCAG AA contrast ratios
-- [ ] **QA-03**: `tw-animate-css` animations verified in Sheet, DropdownMenu, and MobileActionButtons components
+- [x] **QA-03**: `tw-animate-css` animations verified in Sheet, DropdownMenu, and MobileActionButtons components
 
 ## Future Requirements
 

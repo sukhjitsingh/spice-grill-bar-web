@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: UI Facelift — The Radiant Sommelier
 status: executing
-stopped_at: Completed 10-01-PLAN.md
-last_updated: "2026-03-27T23:38:00Z"
-last_activity: 2026-03-27
+stopped_at: Completed 10-03-PLAN.md
+last_updated: "2026-03-28T02:59:50.610Z"
+last_activity: 2026-03-28
 progress:
   total_phases: 4
   completed_phases: 3
   total_plans: 15
-  completed_plans: 13
+  completed_plans: 14
   percent: 87
 ---
 
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-02-22)
 ## Current Position
 
 Phase: 10
-Plan: 1 of 3 complete
-Status: Executing Phase 10
-Last activity: 2026-03-27
+Plan: 2 of 3 complete
+Status: Ready to execute
+Last activity: 2026-03-28
 
 Progress: [████████░░] 87%
 
@@ -54,6 +54,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 
 - [Phase 10]: reducedMotion placed in contextOptions per Playwright v1.58 type system
 - [Phase 10]: playwright and glob installed as explicit devDependencies for scripts/ imports
+- [Phase 10-quality-assurance]: data-radix-menu-content used for DropdownMenu selector (Radix v2 shared menu primitive — not data-radix-dropdown-menu-content)
+- [Phase 10-quality-assurance]: Sheet close button targeted via sheetContent.locator('button').first() — Radix Dialog.Close has no data-radix-dialog-close attribute at runtime
 
 ### Pending Todos
 
@@ -65,6 +67,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-27T23:38:00Z
-Stopped at: Completed 10-01-PLAN.md
-Resume file: .planning/phases/10-quality-assurance/10-02-PLAN.md
+Last session: 2026-03-28T02:59:50.605Z
+Stopped at: Completed 10-03-PLAN.md
+Resume file: None

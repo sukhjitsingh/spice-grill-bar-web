@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Sheet (mobile nav) animation', () => {
   test.use({ viewport: { width: 375, height: 812 } }); // iPhone viewport — Sheet only visible on mobile
@@ -25,23 +25,31 @@ test.describe('Sheet (mobile nav) animation', () => {
   });
 });
 
-test.describe('DropdownMenu animation', () => {
-  test('opens and closes with animation', async ({ page }) => {
+test.describe('Theme toggle', () => {
+  test('toggles between light and dark mode', async ({ page }) => {
     await page.goto('/');
 
-    // ModeToggle renders a button with sr-only "Toggle theme" text
-    const trigger = page.getByRole('button', { name: /toggle theme/i });
-    await trigger.click();
+    const toggle = page.getByRole('button', { name: /toggle theme/i });
 
-    // DropdownMenuContent renders with data-radix-menu-content attribute (Radix v2 naming)
-    // and role="menu" — data-state transitions to 'open' when visible
-    const content = page.locator('[data-radix-menu-content]');
-    await expect(content).toBeVisible({ timeout: 5000 });
-    await expect(content).toHaveAttribute('data-state', 'open');
+    // Initial state: light mode (dark class should not be present)
+    const initiallyDark = await page.evaluate(() =>
+      document.documentElement.classList.contains('dark')
+    );
+    expect(initiallyDark).toBe(false);
 
-    // Close by pressing Escape — standard Radix behavior
-    await page.keyboard.press('Escape');
-    await expect(content).not.toBeVisible({ timeout: 5000 });
+    // Click to switch to dark mode
+    await toggle.click();
+    const isDarkAfterFirstClick = await page.evaluate(() =>
+      document.documentElement.classList.contains('dark')
+    );
+    expect(isDarkAfterFirstClick).toBe(true);
+
+    // Click again to switch back to light mode
+    await toggle.click();
+    const isDarkAfterSecondClick = await page.evaluate(() =>
+      document.documentElement.classList.contains('dark')
+    );
+    expect(isDarkAfterSecondClick).toBe(false);
   });
 });
 

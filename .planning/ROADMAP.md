@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 SEO/GEO/AEO Optimization** — Phases 1-6 (shipped 2026-02-22)
-- 🚧 **v2.0 UI Facelift — The Radiant Sommelier** — Phases 7-10 (in progress)
+- ✅ **v2.0 UI Facelift — The Radiant Sommelier** — Phases 7-10 (audit complete 2026-03-27)
 
 ## Phases
 
@@ -23,13 +23,13 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 
 ---
 
-### 🚧 v2.0 UI Facelift — The Radiant Sommelier (In Progress)
+### ✅ v2.0 UI Facelift — The Radiant Sommelier (Audit Complete)
 
 **Milestone Goal:** Redesign the visual identity of all 4 pages following the DESIGN.md spec, upgrade TailwindCSS to v4 with CSS-first configuration, and establish a hybrid design token system with light and dark modes.
 
 #### Phases
 
-- [ ] **Phase 7: Infrastructure** — Migrate to TailwindCSS v4, swap animation and font packages, verify build green
+- [x] **Phase 7: Infrastructure** — Migrate to TailwindCSS v4, swap animation and font packages, verify build green (completed 2026-03-25)
 - [x] **Phase 8: Token System** — Define surface hierarchy and semantic color tokens, establish light/dark mode values (completed 2026-03-26)
 - [x] **Phase 9: Visual Redesign** — Re-skin all 4 pages component by component using the new token system (completed 2026-03-27)
 - [x] **Phase 10: Quality Assurance** — Verify Lighthouse thresholds, WCAG AA contrast, and animation correctness (completed 2026-03-28)
@@ -113,7 +113,7 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 4. Content Infrastructure | v1.0 | 1/1 | Complete | 2026-02-21 |
 | 5. GEO Content Pages | v1.0 | 2/2 | Complete | 2026-02-21 |
 | 6. Data Consistency & LH Coverage | v1.0 | 1/1 | Complete | 2026-02-22 |
-| 7. Infrastructure | v2.0 | 0/2 | Not started | - |
+| 7. Infrastructure | v2.0 | 2/2 | Complete | 2026-03-25 |
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
-| 9. Visual Redesign | v2.0 | 0/5 | Complete    | 2026-03-27 |
+| 9. Visual Redesign | v2.0 | 5/5 | Complete    | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 3/3 | Complete    | 2026-03-28 |

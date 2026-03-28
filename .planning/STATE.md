@@ -70,7 +70,7 @@ None.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260328-fl3 | Add LA to Grand Canyon directions on FAQ page | 2026-03-28 | 48eccb6 | [260328-fl3-add-la-to-grand-canyon-directions-on-faq](./quick/260328-fl3-add-la-to-grand-canyon-directions-on-faq/) |
-| 260328-gl5 | Remove system option from theme toggle | 2026-03-28 | eeb480e | [260328-gl5-remove-system-option-from-theme-toggle-d](./quick/260328-gl5-remove-system-option-from-theme-toggle-d/) |
+| 260328-gl5 | Remove system option from theme toggle | 2026-03-28 | c3415af | [260328-gl5-remove-system-option-from-theme-toggle-d](./quick/260328-gl5-remove-system-option-from-theme-toggle-d/) |
 
 ## Session Continuity
 

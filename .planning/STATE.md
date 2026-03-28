@@ -73,7 +73,7 @@ None.
 | 260328-gl5 | Remove system option from theme toggle | 2026-03-28 | c3415af | [260328-gl5-remove-system-option-from-theme-toggle-d](./quick/260328-gl5-remove-system-option-from-theme-toggle-d/) |
 | 260328-h01 | Replace theme toggle dropdown with sun/moon icon toggle button | 2026-03-28 | f969344 | [260328-h01-replace-theme-toggle-dropdown-with-sun-m](./quick/260328-h01-replace-theme-toggle-dropdown-with-sun-m/) |
 | 260328-i73 | Restore hero tagline 'The Soul of Punjab' and subtitle | 2026-03-28 | f6f953d | [260328-i73-preserve-hero-section-tagline-and-subtit](./quick/260328-i73-preserve-hero-section-tagline-and-subtit/) |
-| 260328-hhm | Remove unused DropdownMenu component and @radix-ui/react-dropdown-menu dependency | 2026-03-28 | 7d64e4e | [260328-hhm-remove-unused-dropdownmenu-component-and](./quick/260328-hhm-remove-unused-dropdownmenu-component-and/) |
+| 260328-hhm | Remove unused DropdownMenu component and @radix-ui/react-dropdown-menu dependency | 2026-03-28 | 017bbe8 | [260328-hhm-remove-unused-dropdownmenu-component-and](./quick/260328-hhm-remove-unused-dropdownmenu-component-and/) |
 
 ## Session Continuity
 

@@ -32,7 +32,7 @@ Full details: `.planning/milestones/v1.0-ROADMAP.md`
 - [ ] **Phase 7: Infrastructure** — Migrate to TailwindCSS v4, swap animation and font packages, verify build green
 - [x] **Phase 8: Token System** — Define surface hierarchy and semantic color tokens, establish light/dark mode values (completed 2026-03-26)
 - [x] **Phase 9: Visual Redesign** — Re-skin all 4 pages component by component using the new token system (completed 2026-03-27)
-- [ ] **Phase 10: Quality Assurance** — Verify Lighthouse thresholds, WCAG AA contrast, and animation correctness
+- [x] **Phase 10: Quality Assurance** — Verify Lighthouse thresholds, WCAG AA contrast, and animation correctness (completed 2026-03-28)
 
 ## Phase Details
 
@@ -97,7 +97,7 @@ Plans:
 **Plans**: 3 plans
 Plans:
 - [x] 10-01-PLAN.md — Install Playwright + create all QA test infrastructure (configs, scripts, npm commands)
-- [ ] 10-02-PLAN.md — Run Lighthouse CI + axe-core audits (light and dark), fix all failures
+- [x] 10-02-PLAN.md — Run Lighthouse CI + axe-core audits (light and dark), fix all failures
 - [x] 10-03-PLAN.md — Write and run Playwright E2E animation tests for 3 animated components
 
 ## Progress
@@ -116,4 +116,4 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 7. Infrastructure | v2.0 | 0/2 | Not started | - |
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
 | 9. Visual Redesign | v2.0 | 0/5 | Complete    | 2026-03-27 |
-| 10. Quality Assurance | v2.0 | 2/3 | In Progress|  |
+| 10. Quality Assurance | v2.0 | 3/3 | Complete   | 2026-03-28 |

@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-02-22)
 Phase: 10
 Plan: Not started
 Status: Executing Phase 10
-Last activity: 2026-03-28 - Completed quick task 260328-gl5: Remove system option from theme toggle
+Last activity: 2026-03-28 - Completed quick task 260328-h01: Replace theme toggle dropdown with sun/moon icon toggle button
 
 Progress: [████████░░] 87%
 
@@ -71,6 +71,7 @@ None.
 |---|-------------|------|--------|-----------|
 | 260328-fl3 | Add LA to Grand Canyon directions on FAQ page | 2026-03-28 | 48eccb6 | [260328-fl3-add-la-to-grand-canyon-directions-on-faq](./quick/260328-fl3-add-la-to-grand-canyon-directions-on-faq/) |
 | 260328-gl5 | Remove system option from theme toggle | 2026-03-28 | c3415af | [260328-gl5-remove-system-option-from-theme-toggle-d](./quick/260328-gl5-remove-system-option-from-theme-toggle-d/) |
+| 260328-h01 | Replace theme toggle dropdown with sun/moon icon toggle button | 2026-03-28 | f969344 | [260328-h01-replace-theme-toggle-dropdown-with-sun-m](./quick/260328-h01-replace-theme-toggle-dropdown-with-sun-m/) |
 
 ## Session Continuity
 

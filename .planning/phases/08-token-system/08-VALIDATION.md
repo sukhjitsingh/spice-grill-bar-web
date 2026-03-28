@@ -6,6 +6,7 @@ nyquist_compliant: true
 wave_0_complete: true
 created: 2026-03-25
 gaps_filled: 2026-03-25
+last_audited: 2026-03-27
 ---
 
 # Phase 8 — Validation Strategy
@@ -76,3 +77,20 @@ gaps_filled: 2026-03-25
 - [x] `nyquist_compliant: true` set in frontmatter
 
 **Approval:** gap-filled 2026-03-25 by gsd-nyquist-auditor
+
+---
+
+## Validation Audit 2026-03-27
+
+| Metric | Count |
+|--------|-------|
+| Gaps found | 5 |
+| Resolved | 5 |
+| Escalated | 0 |
+
+**Root cause:** All 5 failures were stale assertions from Phase 9/10 changes:
+- `--primary-container` hex updated by Phase 10 contrast fix (`#d93900` → `#c03200`)
+- `MenuSection.tsx border-outline-variant` removed in Phase 9 (no-border rule; tonal separation)
+- `Hero.astro`, `faq.astro`, `directions.astro` `font-display` → Phase 9 refactored to editorial utilities (`text-display-lg`, `text-display-md`, `text-heading-*`)
+
+All TOKEN-01–05 requirements remain satisfied. Test assertions updated to reflect current implementation.

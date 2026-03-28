@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v2.0
+milestone_name: UI Facelift — The Radiant Sommelier
+status: executing
+stopped_at: Completed 10-01-PLAN.md
+last_updated: "2026-03-27T23:38:00Z"
+last_activity: 2026-03-27
+progress:
+  total_phases: 4
+  completed_phases: 3
+  total_plans: 15
+  completed_plans: 13
+  percent: 87
+---
+
 # Project State
 
 ## Project Reference
@@ -5,15 +21,16 @@
 See: .planning/PROJECT.md (updated 2026-02-22)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** v1.0 complete — planning next milestone
+**Current focus:** Phase 10 — quality-assurance
 
 ## Current Position
 
-Phase: v1.0 complete (6 phases, 8 plans shipped)
-Status: Milestone v1.0 archived to .planning/milestones/
-Last activity: 2026-02-22 — Milestone v1.0 completed and archived
+Phase: 10
+Plan: 1 of 3 complete
+Status: Executing Phase 10
+Last activity: 2026-03-27
 
-Progress: [██████████] 100% (v1.0)
+Progress: [████████░░] 87%
 
 ## Performance Metrics
 
@@ -29,6 +46,15 @@ Progress: [██████████] 100% (v1.0)
 
 Decisions are logged in PROJECT.md Key Decisions table.
 
+- [Phase 08]: All dark: prefixed overrides removed from button variants — M3 tokens auto-switch via CSS variables
+- [Phase 08]: font-serif replaced with font-display (Manrope Variable) across all heading/display text — TOKEN-04 complete
+- [Phase 08]: knip.json updated with ignoreDependencies for react-dom and ignoreBinaries for CLI tools to achieve zero false-positive failures
+- [Phase 08-token-system]: ReviewsSection review cards use bg-surface-container/border-outline-variant (no backdrop-blur) per glass budget D-15
+- [Phase 08-token-system]: MobileActionButtons redundant fallback layer removed — parent .glass provides background and blur via CSS vars
+
+- [Phase 10]: reducedMotion placed in contextOptions per Playwright v1.58 type system
+- [Phase 10]: playwright and glob installed as explicit devDependencies for scripts/ imports
+
 ### Pending Todos
 
 None.
@@ -39,6 +65,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-22
-Stopped at: Milestone v1.0 completed and archived
-Resume file: None
+Last session: 2026-03-27T23:38:00Z
+Stopped at: Completed 10-01-PLAN.md
+Resume file: .planning/phases/10-quality-assurance/10-02-PLAN.md

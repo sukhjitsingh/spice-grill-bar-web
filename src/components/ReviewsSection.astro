@@ -18,22 +18,12 @@ interface Review {
 const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Review[];
 ---
 
-<section class="py-24 relative overflow-hidden">
-  {/* Background Gradients */}
-  <div
-    class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none"
-  >
-  </div>
-  <div
-    class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"
-  >
-  </div>
-
+<section class="py-24 bg-surface-dim relative overflow-hidden">
   <div class="container mx-auto px-6 mb-12 text-center relative z-10">
-    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-      What Our <span class="text-brand-orange">Guests Say</span>
+    <h2 class="text-heading-lg text-on-surface mb-6">
+      What Our <span class="text-primary-container">Guests Say</span>
     </h2>
-    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+    <p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto">
       We love hearing from our community. Here are some of the latest reviews from Google and Yelp.
     </p>
   </div>
@@ -42,11 +32,11 @@ const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Re
   <div class="relative w-full overflow-hidden group/marquee">
     {/* Gradient Masks */}
     <div
-      class="absolute left-0 top-0 bottom-0 w-32 z-20 bg-gradient-to-r from-background to-transparent pointer-events-none"
+      class="absolute left-0 top-0 bottom-0 w-32 z-20 bg-gradient-to-r from-surface-dim to-transparent pointer-events-none"
     >
     </div>
     <div
-      class="absolute right-0 top-0 bottom-0 w-32 z-20 bg-gradient-to-l from-background to-transparent pointer-events-none"
+      class="absolute right-0 top-0 bottom-0 w-32 z-20 bg-gradient-to-l from-surface-dim to-transparent pointer-events-none"
     >
     </div>
 
@@ -54,27 +44,26 @@ const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Re
       {
         reviews.map((review) => (
           <div class="w-[340px] md:w-[380px] h-[280px] flex-shrink-0 mx-3 relative group">
-            <div class="h-full p-6 rounded-2xl relative overflow-hidden flex flex-col bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-zinc-200 dark:border-white/10 shadow-lg shadow-zinc-200/50 dark:shadow-black/20 hover:border-orange-500/50 dark:hover:border-orange-500/40 hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300">
+            <div class="h-full p-6 rounded-2xl relative overflow-hidden flex flex-col bg-surface-container transition-all duration-300">
               <Quote
-                className="absolute top-5 right-5 w-12 h-12 text-orange-500/15 dark:text-orange-500/10 group-hover:text-orange-500/25 dark:group-hover:text-orange-500/20 transition-colors duration-300 rotate-180"
+                className="absolute top-5 right-5 w-12 h-12 text-primary-container/15 group-hover:text-primary-container/25 transition-colors duration-300 rotate-180"
                 aria-hidden="true"
               />
 
-              <div class="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-yellow-500/0 group-hover:from-orange-500/5 group-hover:to-yellow-500/5 transition-all duration-500 pointer-events-none rounded-2xl" />
+              <div class="absolute inset-0 bg-gradient-to-br from-primary-container/0 to-secondary-container/0 group-hover:from-primary-container/5 group-hover:to-secondary-container/5 transition-all duration-500 pointer-events-none rounded-2xl" />
 
               <div class="flex justify-between items-start mb-4 relative z-10">
                 <div class="flex items-center gap-3">
-                  <div class="relative flex-shrink-0">
-                    <div class="absolute inset-0 bg-gradient-to-br from-brand-orange to-brand-gold rounded-full blur-md opacity-40" />
-                    <div class="relative w-12 h-12 rounded-full bg-gradient-to-br from-brand-orange to-brand-gold flex items-center justify-center text-white font-bold text-lg shadow-lg border-2 border-white/30 dark:border-white/20">
+                  <div class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface font-bold text-lg">
                       {review.author.charAt(0).toUpperCase()}
                     </div>
                   </div>
                   <div class="min-w-0">
-                    <p class="font-semibold text-zinc-900 dark:text-zinc-100 leading-tight truncate">
+                    <p class="font-semibold text-on-surface leading-tight truncate">
                       {review.author}
                     </p>
-                    <span class="text-xs text-zinc-500 dark:text-zinc-400">{review.date}</span>
+                    <span class="text-xs text-on-surface-variant">{review.date}</span>
                   </div>
                 </div>
 
@@ -93,7 +82,7 @@ const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Re
               <div class="flex gap-1 mb-4 relative z-10">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
-                    className={`w-4 h-4 ${i < review.rating ? 'fill-orange-500 text-orange-500' : 'text-zinc-300 dark:text-zinc-600'}`}
+                    className={`w-4 h-4 ${i < review.rating ? 'fill-primary-container text-primary-container' : 'text-outline-variant'}`}
                     aria-hidden="true"
                   />
                 ))}
@@ -101,12 +90,12 @@ const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Re
               </div>
 
               <div class="flex-1 relative z-10 overflow-hidden">
-                <p class="text-zinc-700 dark:text-zinc-200 text-sm leading-relaxed line-clamp-4">
+                <p class="text-on-surface-variant text-sm leading-relaxed line-clamp-4">
                   &ldquo;{review.text}&rdquo;
                 </p>
               </div>
 
-              <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white/90 dark:from-zinc-900/90 to-transparent pointer-events-none rounded-b-2xl" />
+              <div class="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-surface-container/90 to-transparent pointer-events-none rounded-b-2xl" />
             </div>
           </div>
         ))

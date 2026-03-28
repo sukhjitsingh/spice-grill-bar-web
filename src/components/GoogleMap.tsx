@@ -38,7 +38,7 @@ export function GoogleMap({ apiKey }: { apiKey: string }) {
   return (
     <div
       ref={containerRef}
-      className="group relative flex h-full w-full cursor-pointer items-center justify-center bg-zinc-100 dark:bg-zinc-800"
+      className="group relative flex h-full w-full cursor-pointer items-center justify-center bg-surface-container"
       onClick={() => setShowMap(true)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -55,7 +55,7 @@ export function GoogleMap({ apiKey }: { apiKey: string }) {
         className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-75"
       />
       <div className="relative z-10 animate-pulse text-center">
-        <p className="mb-4 font-medium text-zinc-600 dark:text-zinc-300">Loading Map...</p>
+        <p className="mb-4 font-medium text-on-surface-variant">Loading Map...</p>
       </div>
     </div>
   );

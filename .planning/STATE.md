@@ -72,9 +72,10 @@ None.
 | 260328-fl3 | Add LA to Grand Canyon directions on FAQ page | 2026-03-28 | 48eccb6 | [260328-fl3-add-la-to-grand-canyon-directions-on-faq](./quick/260328-fl3-add-la-to-grand-canyon-directions-on-faq/) |
 | 260328-gl5 | Remove system option from theme toggle | 2026-03-28 | c3415af | [260328-gl5-remove-system-option-from-theme-toggle-d](./quick/260328-gl5-remove-system-option-from-theme-toggle-d/) |
 | 260328-h01 | Replace theme toggle dropdown with sun/moon icon toggle button | 2026-03-28 | f969344 | [260328-h01-replace-theme-toggle-dropdown-with-sun-m](./quick/260328-h01-replace-theme-toggle-dropdown-with-sun-m/) |
+| 260328-i73 | Restore hero tagline 'The Soul of Punjab' and subtitle | 2026-03-28 | f6f953d | [260328-i73-preserve-hero-section-tagline-and-subtit](./quick/260328-i73-preserve-hero-section-tagline-and-subtit/) |
 
 ## Session Continuity
 
-Last session: 2026-03-28T12:03:00.000Z
-Stopped at: Completed quick task 260328-gl5
+Last session: 2026-03-28T13:10:00.000Z
+Stopped at: Completed quick task 260328-i73
 Resume file: None

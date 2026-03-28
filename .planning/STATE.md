@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-02-22)
 Phase: 10
 Plan: Not started
 Status: Executing Phase 10
-Last activity: 2026-03-28
+Last activity: 2026-03-28 - Completed quick task 260328-fl3: Add LA to Grand Canyon directions on FAQ page
 
 Progress: [████████░░] 87%
 
@@ -64,6 +64,12 @@ None.
 ### Blockers/Concerns
 
 - Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260328-fl3 | Add LA to Grand Canyon directions on FAQ page | 2026-03-28 | 48eccb6 | [260328-fl3-add-la-to-grand-canyon-directions-on-faq](./quick/260328-fl3-add-la-to-grand-canyon-directions-on-faq/) |
 
 ## Session Continuity
 

@@ -254,8 +254,12 @@ assert_contains "$DIRECTIONS" "bg-primary-container text-on-primary-container" \
   "directions.astro CTA uses M3 bg-primary-container text-on-primary-container"
 
 MENU="$SRC_DIR/components/MenuSection.tsx"
-assert_contains "$MENU" "border-outline-variant" \
-  "MenuSection.tsx uses M3 border-outline-variant (not hardcoded border-orange-300)"
+# Phase 9 removed explicit border classes (no-border rule: tonal separation replaces borders).
+# Verify MenuSection uses M3 surface tokens and has no hardcoded orange border.
+assert_contains "$MENU" "bg-surface-container" \
+  "MenuSection.tsx uses M3 bg-surface-container (tonal separation, no hard border)"
+assert_not_contains "$MENU" "border-orange" \
+  "MenuSection.tsx contains no hardcoded border-orange-* classes"
 
 # --------------------------------------------------------------------------
 # TOKEN-04: font-display (Manrope) and font-sans (Inter) registered in
@@ -278,10 +282,13 @@ assert_not_contains "$GLOBALS_CSS" "--font-serif" \
 assert_src_zero_matches "font-serif" \
   "src/ contains zero font-serif class references"
 
-# Key components use font-display on headings/display text
+# Key components use Manrope (font-display) for headings.
+# Phase 9 refactored to use editorial utilities (text-display-lg, text-display-md,
+# text-heading-lg, etc.) which apply font-display internally via @utility definitions.
+# Assertions updated to match Phase 9 implementation.
 HERO="$SRC_DIR/components/Hero.astro"
-assert_file_has_match "font-display" "$HERO" \
-  "Hero.astro uses font-display on main headline"
+assert_file_has_match "text-display-lg|text-display-md|text-heading" "$HERO" \
+  "Hero.astro uses display/heading editorial utility (Manrope font)"
 
 assert_file_has_match "font-display" "$HEADER" \
   "Header.tsx uses font-display on logo/nav text"
@@ -290,12 +297,12 @@ assert_file_has_match "font-display" "$MENU" \
   "MenuSection.tsx uses font-display on menu headings"
 
 FAQ="$SRC_DIR/pages/faq.astro"
-assert_file_has_match "font-display" "$FAQ" \
-  "faq.astro uses font-display on page title"
+assert_file_has_match "text-display-lg|text-display-md|text-heading" "$FAQ" \
+  "faq.astro uses display/heading editorial utility (Manrope font)"
 
 DIRECTIONS_FILE="$SRC_DIR/pages/directions.astro"
-assert_file_has_match "font-display" "$DIRECTIONS_FILE" \
-  "directions.astro uses font-display on headings"
+assert_file_has_match "text-display-lg|text-display-md|text-heading" "$DIRECTIONS_FILE" \
+  "directions.astro uses display/heading editorial utility (Manrope font)"
 
 # --------------------------------------------------------------------------
 # TOKEN-05: All CSS variables use hex values (no hsl() wrappers).
@@ -320,8 +327,8 @@ assert_contains "$GLOBALS_CSS" "--surface-container: #ffe9e4" \
   "globals.css light --surface-container is hex #ffe9e4 (no hsl wrapper)"
 assert_contains "$GLOBALS_CSS" "--surface-container: #2d1b17" \
   "globals.css dark --surface-container is hex #2d1b17 (no hsl wrapper)"
-assert_contains "$GLOBALS_CSS" "--primary-container: #d93900" \
-  "globals.css light --primary-container is hex #d93900 (no hsl wrapper)"
+assert_contains "$GLOBALS_CSS" "--primary-container: #c03200" \
+  "globals.css light --primary-container is hex #c03200 (no hsl wrapper; updated by Phase 10 contrast fix)"
 assert_contains "$GLOBALS_CSS" "--primary-container: #ff5626" \
   "globals.css dark --primary-container is hex #ff5626 (no hsl wrapper)"
 

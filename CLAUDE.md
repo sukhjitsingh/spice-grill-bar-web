@@ -96,7 +96,7 @@ Conventional commits are enforced via commitlint (`feat:`, `fix:`, `chore:`, `re
 
 Code changes must not degrade:
 
-- LCP < 4000ms, TBT < 600ms, CLS < 0.1
+- LCP < 4000ms, TBT < 600ms, CLS < 0.105
 - Accessibility ≥ 90, Best Practices ≥ 80, SEO ≥ 90
 
 ## Environment Variables

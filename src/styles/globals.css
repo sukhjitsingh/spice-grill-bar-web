@@ -223,9 +223,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  /* Fonts (per D-25 / TOKEN-04) */
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Manrope Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Fonts (per D-25 / TOKEN-04) - Includes Fontaine auto-generated fallbacks for zero CLS */
+  --font-sans: 'Inter Variable', 'Inter Variable fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Manrope Variable', 'Manrope Variable fallback', ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ============================================================
@@ -233,6 +233,29 @@
    ============================================================ */
 html {
   scroll-behavior: smooth;
+}
+
+/* ============================================================
+   Font Metrics Overrides (Zero CLS)
+   Calculated specifically to match Inter and Manrope against 
+   system fonts (Arial, BlinkMacSystemFont) to prevent layout shifts.
+   ============================================================ */
+@font-face {
+  font-family: 'Inter Variable fallback';
+  src: local('BlinkMacSystemFont'), local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+  ascent-override: 90.4891%;
+  descent-override: 22.5476%;
+  size-adjust: 107.0854%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Manrope Variable fallback';
+  src: local('BlinkMacSystemFont'), local('Segoe UI'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+  ascent-override: 92.1%;
+  descent-override: 23%;
+  size-adjust: 105.2%;
+  line-gap-override: 0%;
 }
 
 * {

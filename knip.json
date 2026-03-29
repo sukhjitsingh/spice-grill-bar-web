@@ -3,6 +3,8 @@
   "project": ["src/**/*.{ts,tsx,astro}"],
   "ignore": ["**/*.d.ts", "postcss.config.cjs", "src/components/ui/**", ".github/**"],
   "ignoreDependencies": [
+    "@fontsource-variable/inter",
+    "@fontsource-variable/manrope",
     "sharp",
     "@astrojs/check",
     "typescript",

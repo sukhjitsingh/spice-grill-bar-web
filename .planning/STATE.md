@@ -63,7 +63,7 @@ None.
 
 ### Blockers/Concerns
 
-- Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible
+- ~~Future: FAQSchema injected on all pages via Layout.astro — Google may flag FAQ schema on pages where FAQ content is not visible~~ (resolved 260401-fv4)
 
 ### Quick Tasks Completed
 
@@ -74,9 +74,10 @@ None.
 | 260328-h01 | Replace theme toggle dropdown with sun/moon icon toggle button | 2026-03-28 | f969344 | [260328-h01-replace-theme-toggle-dropdown-with-sun-m](./quick/260328-h01-replace-theme-toggle-dropdown-with-sun-m/) |
 | 260328-i73 | Restore hero tagline 'The Soul of Punjab' and subtitle | 2026-03-28 | f6f953d | [260328-i73-preserve-hero-section-tagline-and-subtit](./quick/260328-i73-preserve-hero-section-tagline-and-subtit/) |
 | 260328-hhm | Remove unused DropdownMenu component and @radix-ui/react-dropdown-menu dependency | 2026-03-28 | 017bbe8 | [260328-hhm-remove-unused-dropdownmenu-component-and](./quick/260328-hhm-remove-unused-dropdownmenu-component-and/) |
+| 260401-fv4 | Fix SEO issues: FAQ OG tags, FAQSchema scope to /faq/, remove hardcoded ogUrl from GEO pages | 2026-04-01 | 40b525b | [260401-fv4-fix-seo-issues-faq-og-tags-faqschema-sco](./quick/260401-fv4-fix-seo-issues-faq-og-tags-faqschema-sco/) |
 
 ## Session Continuity
 
-Last session: 2026-03-28T14:55:00.000Z
-Stopped at: Completed quick task 260328-hhm
+Last session: 2026-04-01T18:38:10Z
+Stopped at: Completed quick task 260401-fv4
 Resume file: None

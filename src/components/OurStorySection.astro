@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 
 import garlicNaanImg from '../assets/GarlicNaan.webp';
 ---
@@ -40,10 +40,15 @@ import garlicNaanImg from '../assets/GarlicNaan.webp';
     </div>
 
     <div class="relative group cursor-pointer overflow-hidden rounded-2xl shadow-2xl">
-      <Image
+      <Picture
         src={garlicNaanImg}
         alt="Tandoori Preparation"
         class="w-full aspect-[4/5] object-cover rounded-2xl lg:grayscale lg:group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
+        widths={[320, 640, 960, 1280, 1600]}
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        formats={['avif', 'webp']}
+        quality={60}
+        decoding="async"
       />
       <div class="absolute bottom-6 left-6 right-6">
         <div class="glass p-4 rounded-xl">

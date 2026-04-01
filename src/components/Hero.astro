@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import { ArrowRight, Star } from 'lucide-react';
 
 import heroBg from '../assets/HomePageBackground.webp';
@@ -11,14 +11,15 @@ import AstroButton from './ui/AstroButton.astro';
 >
   {/* Background Image */}
   <div class="absolute inset-0 z-0">
-    <Image
+    <Picture
       src={heroBg}
       alt="Authentic Punjabi cuisine restaurant interior"
       class="object-cover opacity-40 scale-105 w-full h-full"
       itemprop="image"
-      widths={[640, 768, 1024, 1280, 1536]}
-      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
-      quality={80}
+      widths={[640, 750, 828, 1080, 1200, 1920, 2048, 2560]}
+      sizes="100vw"
+      formats={['avif', 'webp']}
+      quality={60}
       loading="eager"
       fetchpriority="high"
     />

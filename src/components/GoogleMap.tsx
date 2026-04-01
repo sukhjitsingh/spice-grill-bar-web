@@ -52,6 +52,9 @@ export function GoogleMap({ apiKey }: { apiKey: string }) {
       <img
         src="/location-preview.webp"
         alt="Map Preview"
+        width={3230}
+        height={2176}
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-75"
       />
       <div className="relative z-10 animate-pulse text-center">

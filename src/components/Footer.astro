@@ -1,5 +1,7 @@
 ---
 import { Clock, MapPin, Phone } from 'lucide-react';
+
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-surface-container-low py-16 transition-colors duration-500">
@@ -143,7 +145,7 @@ import { Clock, MapPin, Phone } from 'lucide-react';
     <div
       class="max-w-7xl mx-auto px-6 py-4 pb-20 md:pb-4 flex justify-center items-center text-label-sm text-on-surface-variant"
     >
-      <p>&copy; 2024 Spice Grill &amp; Bar. All rights reserved.</p>
+      <p>&copy; {currentYear} Spice Grill &amp; Bar. All rights reserved.</p>
     </div>
   </div>
 </footer>

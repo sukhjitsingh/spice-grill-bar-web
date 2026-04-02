@@ -147,8 +147,8 @@ export function MenuSection() {
                 >
                   <h3 className="text-heading-md text-on-surface">{category.category}</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
-                    {category.items.map((item, index) => (
-                      <div key={index} className="group">
+                    {category.items.map((item) => (
+                      <div key={item.name} className="group">
                         <div className="flex justify-between items-baseline mb-2">
                           <h4 className="text-heading-md text-on-surface group-hover:text-primary-container transition-colors">
                             {item.name}

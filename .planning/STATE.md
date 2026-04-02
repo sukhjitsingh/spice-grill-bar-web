@@ -76,9 +76,10 @@ None.
 | 260328-hhm | Remove unused DropdownMenu component and @radix-ui/react-dropdown-menu dependency | 2026-03-28 | 017bbe8 | | [260328-hhm-remove-unused-dropdownmenu-component-and](./quick/260328-hhm-remove-unused-dropdownmenu-component-and/) |
 | 260401-fv4 | Fix SEO issues: FAQ OG tags, FAQSchema scope to /faq/, remove hardcoded ogUrl from GEO pages | 2026-04-01 | 40b525b | | [260401-fv4-fix-seo-issues-faq-og-tags-faqschema-sco](./quick/260401-fv4-fix-seo-issues-faq-og-tags-faqschema-sco/) |
 | 260401-go1 | Fix Astro image issues: Hero+OurStory to Picture (AVIF+WebP), GoogleMap CLS fix | 2026-04-01 | 6713f13 | Verified | [260401-go1-fix-astro-image-issues-from-astro-images](./quick/260401-go1-fix-astro-image-issues-from-astro-images/) |
+| 260401-ihx | Fix framework audit issues: ModeToggle flash, GoogleMap rootMargin, FAQ heading skip, footer year, menu keys | 2026-04-01 | edf1d31 | Verified | [260401-ihx-fix-astro-framework-audit-issues-modetog](./quick/260401-ihx-fix-astro-framework-audit-issues-modetog/) |
 
 ## Session Continuity
 
-Last session: 2026-04-01T12:10:54Z
-Stopped at: Completed quick task 260401-go1 (Verified)
+Last session: 2026-04-01T19:28:00Z
+Stopped at: Completed quick task 260401-ihx (Verified)
 Resume file: None

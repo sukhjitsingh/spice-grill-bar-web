@@ -4,11 +4,9 @@ import * as React from 'react';
 import { Button } from '@/components/ui/button';
 
 export function ModeToggle() {
-  const [isDark, setIsDark] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'));
-  }, []);
+  const [isDark, setIsDark] = React.useState(() =>
+    typeof document !== 'undefined' ? document.documentElement.classList.contains('dark') : false
+  );
 
   const onClick = () => {
     const next = !isDark;

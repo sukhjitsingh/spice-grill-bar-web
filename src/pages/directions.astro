@@ -221,7 +221,7 @@ const API_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
 
       <!-- Google Maps embed (below fold for LCP) -->
       <div class="w-full h-[400px] rounded-2xl overflow-hidden mt-12 mb-16">
-        <GoogleMap apiKey={API_KEY} client:visible />
+        <GoogleMap apiKey={API_KEY} client:visible={{ rootMargin: '200px' }} />
       </div>
 
       <!-- Cross-links section with keyword-rich anchor text -->

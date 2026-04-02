@@ -77,10 +77,10 @@ None.
 | 260401-fv4 | Fix SEO issues: FAQ OG tags, FAQSchema scope to /faq/, remove hardcoded ogUrl from GEO pages | 2026-04-01 | 40b525b | | [260401-fv4-fix-seo-issues-faq-og-tags-faqschema-sco](./quick/260401-fv4-fix-seo-issues-faq-og-tags-faqschema-sco/) |
 | 260401-go1 | Fix Astro image issues: Hero+OurStory to Picture (AVIF+WebP), GoogleMap CLS fix | 2026-04-01 | 6713f13 | Verified | [260401-go1-fix-astro-image-issues-from-astro-images](./quick/260401-go1-fix-astro-image-issues-from-astro-images/) |
 | 260401-ihx | Fix framework audit issues: ModeToggle flash, GoogleMap rootMargin, FAQ heading skip, footer year, menu keys | 2026-04-01 | edf1d31 | Verified | [260401-ihx-fix-astro-framework-audit-issues-modetog](./quick/260401-ihx-fix-astro-framework-audit-issues-modetog/) |
-| 260401-rmp | Tone down cta-gradient to subtle 20% warm hint using color-mix | 2026-04-01 | 1eb23c8 | | [260401-rmp-restore-order-section-background-image-f](./quick/260401-rmp-restore-order-section-background-image-f/) |
+| 260401-rmp | Tone down cta-gradient to subtle 20% warm hint using color-mix | 2026-04-01 | 1eb23c8 | Needs Review | [260401-rmp-restore-order-section-background-image-f](./quick/260401-rmp-restore-order-section-background-image-f/) |
 
 ## Session Continuity
 
-Last session: 2026-04-01T20:03:00Z
-Stopped at: Completed quick task 260401-rmp
+Last session: 2026-04-02T02:53:39Z
+Stopped at: Completed quick task 260401-rmp (Needs Review — visual check required)
 Resume file: None

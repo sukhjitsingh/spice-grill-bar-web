@@ -292,7 +292,11 @@ body {
 }
 
 @utility cta-gradient {
-  background: linear-gradient(135deg, var(--primary-container) 0%, var(--inverse-primary) 100%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary-container) 20%, transparent) 0%,
+    color-mix(in srgb, var(--inverse-primary) 10%, transparent) 100%
+  );
 }
 
 /* ============================================================

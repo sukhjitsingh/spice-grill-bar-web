@@ -21,7 +21,7 @@ Our palette is rooted in deep, obsidian tones (`surface: #1f0f0b`) contrasted ag
 - **Level 1 (Sectioning):** `surface_container_low (#281713)`
 - **Level 2 (Active Cards):** `surface_container (#2d1b17)`
 - **Level 3 (Floating Elements):** `surface_bright (#49342f)`
-- **The "Glass & Gradient" Rule:** For primary CTAs and hero backgrounds, use a subtle linear gradient from `primary_container` to `inverse_primary` at a 135-degree angle. This adds "visual soul" and mimics the refraction of light through liquid.
+- **The "Glass & Gradient" Rule:** For primary CTAs and hero backgrounds, use a barely-there warm gradient implemented via `color-mix` — not full-saturation token values. The `cta-gradient` utility blends `primary_container` at 20% and `inverse_primary` at 10% with `transparent` at 135deg, layered over `bg-surface-dim`. This produces a faint ember warmth rather than a vivid orange band. Full-saturation gradients are prohibited — they overpower the tonal hierarchy.
 - **Signature Textures:** Apply a `backdrop-filter: blur(20px)` to any surface using `surface_variant` at 60% opacity to achieve the signature "Digital Sommelier" glass effect.
 
 ---

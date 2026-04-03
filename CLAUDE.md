@@ -70,7 +70,7 @@ These are critical for local SEO and AEO. Changes to menu, hours, or contact inf
 
 - **No hard borders** between sections or cards. All visual separation comes from background tonal shifts.
 - **Orange sparingly**: `#FF4B12` (primary-container) appears in max 4 contexts — CTA buttons, star ratings, nav hover, accent details.
-- **Glass budget**: Only Header, Sheet (mobile nav), and DropdownMenu get `backdrop-blur` via `.glass` / `.glass-card` utilities. Cards use tonal backgrounds only.
+- **Glass budget**: `backdrop-blur` via `.glass` / `.glass-card` is used by Header (on scroll), Sheet (mobile nav), OrderSection CTA card, and MobileActionButtons. Minor `backdrop-blur-sm` on Hero tag chip. Cards elsewhere use tonal backgrounds only — no additional glass consumers should be added without design review.
 
 **Typography:** Manrope Variable (headings/display via `font-display`) + Inter Variable (body via `font-sans`). Seven editorial `@utility` classes: `text-display-lg`, `text-display-md`, `text-heading-lg`, `text-heading-md`, `text-body-lg`, `text-body-md`, `text-label-sm`.
 

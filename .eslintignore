@@ -1,5 +1,14 @@
 dist/
+dist-dark/
 node_modules/
 .astro/
+.lighthouseci/
 src/env.d.ts
 public/
+reports/
+test-results/
+docs/
+scripts/
+playwright.config.ts
+next-env.d.ts
+commitlint.config.cjs

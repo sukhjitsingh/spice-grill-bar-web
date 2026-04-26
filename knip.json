@@ -1,19 +1,14 @@
 {
-  "entry": ["src/pages/**/*.astro", "src/content/config.ts", "src/env.d.ts"],
+  "entry": ["src/pages/**/*.astro"],
   "project": ["src/**/*.{ts,tsx,astro}"],
-  "ignore": [
-    "**/*.d.ts",
-    "postcss.config.cjs",
-    "tailwind.config.mjs",
-    "src/components/ui/**",
-    ".github/**"
-  ],
+  "ignore": ["**/*.d.ts", "postcss.config.cjs", "src/components/ui/**", ".github/**"],
   "ignoreDependencies": [
+    "@fontsource-variable/inter",
+    "@fontsource-variable/manrope",
     "sharp",
     "@astrojs/check",
     "typescript",
     "eslint-config-airbnb-typescript",
-    "autoprefixer",
     "postcss",
     "eslint-plugin-import",
     "eslint-plugin-react",
@@ -21,7 +16,32 @@
     "eslint-config-airbnb-base",
     "@radix-ui/react-label",
     "@radix-ui/react-separator",
-    "puppeteer"
+    "tailwindcss",
+    "tw-animate-css",
+    "react-dom",
+    "@types/react-dom",
+    "@playwright/test",
+    "axe-core",
+    "playwright",
+    "glob",
+    "@axe-core/cli",
+    "@commitlint/cli",
+    "@lhci/cli",
+    "eslint",
+    "lint-staged"
   ],
-  "ignoreExportsUsedInFile": true
+  "ignoreExportsUsedInFile": true,
+  "ignoreBinaries": [
+    "astro",
+    "axe",
+    "lhci",
+    "eslint",
+    "simple-git-hooks",
+    "prettier",
+    "tsc",
+    "knip",
+    "lint-staged",
+    "commitlint",
+    "playwright"
+  ]
 }

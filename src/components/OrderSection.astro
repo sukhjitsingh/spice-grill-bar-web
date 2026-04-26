@@ -6,28 +6,16 @@ import AstroButton from './ui/AstroButton.astro';
 
 <section
   id="order"
-  class="py-32 bg-zinc-100 dark:bg-zinc-950 relative overflow-hidden transition-colors duration-500 flex items-center justify-center"
+  class="py-32 bg-surface-dim cta-gradient relative overflow-hidden transition-colors duration-500 flex items-center justify-center"
 >
-  {/* Background Image */}
-  <div
-    class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop')] opacity-10 dark:opacity-20 bg-cover bg-center"
-  >
-  </div>
-
   {/* Glassmorphism Container */}
   <div class="relative z-10 max-w-xl mx-auto px-6 w-full">
-    <div
-      class="bg-white/30 dark:bg-black/40 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-2xl rounded-3xl p-8 md:p-12 text-center"
-    >
-      <h2
-        class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-900 dark:text-white mb-4"
-      >
-        Bring it Home
-      </h2>
-      <p class="text-lg text-zinc-700 dark:text-zinc-300 mb-8 font-medium">
-        Authentic flavors available for <span class="text-orange-700 dark:text-orange-300"
-          >Pickup</span
-        > & <span class="text-orange-700 dark:text-orange-300">Curbside</span>.
+    <div class="glass shadow-2xl rounded-3xl p-8 md:p-12 text-center">
+      <h2 class="text-[1.875rem] md:text-display-md text-on-surface mb-4">Bring it Home</h2>
+      <p class="text-body-lg text-on-surface-variant mb-8">
+        Authentic flavors available for <span class="text-primary-container">Pickup</span> & <span
+          class="text-primary-container">Curbside</span
+        >.
       </p>
 
       <div class="space-y-6">
@@ -40,7 +28,7 @@ import AstroButton from './ui/AstroButton.astro';
           />
         </AstroButton>
 
-        <p class="text-xs text-zinc-700 dark:text-zinc-300 font-medium tracking-wide opacity-80">
+        <p class="text-label-sm text-on-surface-variant opacity-80">
           Powered by our secure online ordering partner.
         </p>
       </div>

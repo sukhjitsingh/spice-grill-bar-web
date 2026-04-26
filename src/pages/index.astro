@@ -9,15 +9,15 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (Route 66)"
+  title="Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ | Route 66 | I-40 Exit 146"
   description="Authentic Indian Punjabi cuisine on historic Route 66 in Ash Fork, AZ. The perfect pit stop for Grand Canyon travelers and riders. Enjoy fresh naan, curry, and tandoori specials. Dine-in & Takeout."
 >
   <main>
     <Hero />
+    <OurStorySection />
     <ReviewsSection />
     <MenuSection client:visible={{ rootMargin: '200px' }} />
-    <OurStorySection />
-    <LocationSection />
     <OrderSection />
+    <LocationSection />
   </main>
 </Layout>

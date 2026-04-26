@@ -1,492 +1,311 @@
-# Research: Local Restaurant GEO/AEO Schema Stack
+# Technology Stack
 
-**Research Date:** 2026-02-20
-**Research Type:** Project Research — Stack dimension for local restaurant SEO/GEO/AEO optimization on an Astro 5 static site
-**Milestone Context:** Subsequent — Astro 5 migration complete. Adding local SEO schema enhancements, content pages, and AEO optimization to the existing site at spicegrillbar66.com.
-**Knowledge Basis:** Training data through August 2025; no live web access available for this session. All schema.org property definitions are stable and version-tracked; Google structured data guidelines are stable but evolve — verify against https://developers.google.com/search/docs/appearance/structured-data before implementation.
+**Project:** Spice Grill & Bar — v2.0 UI Facelift ("The Radiant Sommelier")
+**Researched:** 2026-03-24
+**Scope:** NEW additions and changes only. Existing validated capabilities (Astro 5.17.1, React islands, `@astrojs/react`, Partytown, schema components, Apache deploy, Radix UI primitives, shadcn patterns) are not re-researched here.
 
 ---
 
 ## Executive Summary
 
-The existing schema foundation is solid but incomplete for local SEO and AI citation. The six JSON-LD schema components are correctly typed using `schema-dts` and injected via `is:inline` (bypasses Astro's JS bundling — correct). The critical gaps are: `RestaurantSchema` missing `geo`, `hasMap`, `aggregateRating`, `potentialAction` (OrderAction), and a narrow `areaServed`; `OrganizationSchema` missing third-party directory `sameAs` links; `WebSiteSchema` missing `description` and `publisher`. No Astro-specific schema library is needed — `schema-dts` already provides full type coverage and the current pattern of `<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />` is optimal for a static Astro site.
+This milestone requires exactly four package-level changes: swap TailwindCSS v3 for v4 (different packages, different integration point), replace the v3-only animation plugin with its v4 CSS-native replacement, and swap two font packages. Everything else in the stack is untouched. The largest complexity is not in the packages themselves but in the migration procedure — the `@tailwindcss/upgrade` CLI tool partially works with Astro but leaves Astro-specific gaps that must be completed manually.
 
 ---
 
-## Section 1: Schema.org Restaurant Type — Property Priority Matrix
+## What Changes
 
-### 1.1 Required / Near-Required (Google processes these for Knowledge Panel and Local Pack)
+### Remove
 
-| Property                    | Format                                                                                                | Current Status                                                     | Confidence |
-| --------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------- |
-| `@type`                     | `"Restaurant"`                                                                                        | Present                                                            | High       |
-| `name`                      | Exact legal/GBP name                                                                                  | Present                                                            | High       |
-| `address` (PostalAddress)   | Full address with `streetAddress`, `addressLocality`, `addressRegion`, `postalCode`, `addressCountry` | Present                                                            | High       |
-| `telephone`                 | E.164 format `+1-928-277-1292`                                                                        | Present (wrong in RestaurantSchema — uses `(928)` format)          | High       |
-| `url`                       | Canonical URL of business website                                                                     | Present (note: RestaurantSchema uses `www.` prefix inconsistently) | High       |
-| `openingHoursSpecification` | Array of `OpeningHoursSpecification` with full schema.org day URIs                                    | Present                                                            | High       |
+| Package | Reason |
+|---------|--------|
+| `tailwindcss ^3.4.19` (devDep) | Replaced by Tailwind v4. Different package behavior — v4 bundles Lightning CSS, removes PostCSS dependency. |
+| `@astrojs/tailwind ^6.0.2` (devDep) | Deprecated for Tailwind v4. The Vite-native `@tailwindcss/vite` plugin is the v4 replacement. |
+| `autoprefixer ^10.4.24` (devDep) | Tailwind v4 bundles Lightning CSS which handles vendor prefixing natively. Autoprefixer is a no-op in v4 and should be removed. |
+| `tailwindcss-animate ^1.0.7` (dep) | Uses the v3 JS plugin API (`plugins: [require('tailwindcss-animate')]`). That plugin API does not exist in v4. Must be replaced before running the upgrade tool. |
+| `@fontsource/open-sans ^5.2.7` (dep) | Font swap per DESIGN.md: Open Sans replaced by Inter. |
+| `@fontsource/playfair-display ^5.2.8` (dep) | Font swap per DESIGN.md: Playfair Display replaced by Manrope. |
+| `tailwind.config.mjs` (file) | v4 uses CSS-first `@theme` configuration. The JS config file is deleted entirely. |
 
-**Issue found:** `RestaurantSchema.astro` uses `(928) 277-1292` for telephone but `OrganizationSchema.astro` uses `+1-928-277-1292`. Google's structured data guidelines specify E.164 format (`+19282771292` or `+1-928-277-1292`). RestaurantSchema should be normalized to match.
+Note: there is no `postcss.config.*` file in this project root. If the `@tailwindcss/upgrade` tool creates one, delete it — Astro uses the Vite plugin, not PostCSS.
 
-**Issue found:** `RestaurantSchema.astro` URL is `https://www.spicegrillbar66.com` (with www) but `OrganizationSchema.astro` and all other references use `https://spicegrillbar66.com` (without www). These must be consistent and match the canonical URL in `astro.config.mjs` (`https://spicegrillbar66.com`).
+### Add
 
-### 1.2 High-Impact for Local SEO (Google Local Pack, AI citation, Google Maps integration)
+| Package | Version | Location | Why |
+|---------|---------|----------|-----|
+| `tailwindcss` | `^4.2.2` | devDep | v4 core — CSS-first, Lightning CSS built-in, no PostCSS config needed |
+| `@tailwindcss/vite` | `^4.2.2` | devDep | Vite-native plugin. Replaces `@astrojs/tailwind` in `astro.config.mjs`. Goes in `vite.plugins[]`, not `integrations[]`. |
+| `tw-animate-css` | `^1.4.0` | dep | v4-compatible replacement for `tailwindcss-animate`. Pure CSS. Imported with `@import "tw-animate-css"` in the global CSS file. Ships the same accordion-down/up, animate-in/out utilities used by the Radix Dialog, DropdownMenu, and Sheet components. |
+| `@fontsource-variable/manrope` | `^5.2.8` | dep | Variable font, self-hosted, weight range 200–800. DESIGN.md display/headline font. Same import pattern as existing `@fontsource/open-sans`. |
+| `@fontsource-variable/inter` | `^5.2.8` | dep | Variable font, self-hosted, weight range 100–900. DESIGN.md body/label font. Same import pattern as existing `@fontsource/playfair-display`. |
 
-#### `geo` — GeoCoordinates
+**Confidence — packages:** HIGH. `@tailwindcss/vite` at 4.2.2 verified via npm registry (March 2026). `tw-animate-css` at 1.4.0 verified via npm registry. `@fontsource-variable/*` at 5.2.8 verified via npm registry.
 
-**Why it matters:** Google uses `geo` to confirm physical location and improve placement in proximity-based queries. AI engines that synthesize location-aware answers (Perplexity, Google AI Overviews) read geo coordinates to establish geographic relevance. Missing `geo` is the single biggest gap for a highway-corridor restaurant where users are asking "what's near I-40 exit 146."
+---
 
-**Format:**
+## Integration Changes
 
-```json
-"geo": {
-  "@type": "GeoCoordinates",
-  "latitude": 35.5022,
-  "longitude": -112.4874
+### 1. astro.config.mjs — Replace Integration with Vite Plugin
+
+The `@tailwindcss/vite` plugin is not an Astro integration — it is a Vite plugin. It must live in `vite.plugins`, not `integrations`.
+
+**Before:**
+```js
+import tailwind from '@astrojs/tailwind';
+// ...
+integrations: [react(), tailwind(), sitemap(), ...],
+```
+
+**After:**
+```js
+import tailwindcss from '@tailwindcss/vite';
+// ...
+integrations: [react(), sitemap(), ...],  // tailwind removed from integrations
+vite: {
+  plugins: [tailwindcss()],
+},
+```
+
+Remove `import tailwind from '@astrojs/tailwind'` entirely. The `@astrojs/tailwind` import will throw if the package is uninstalled.
+
+### 2. Global CSS Rewrite (src/styles/globals.css)
+
+The current `globals.css` uses `@tailwind base/components/utilities` and a shadcn-style HSL variable system in `@layer base`. In v4 this file becomes the configuration source of truth using new directives.
+
+**Structure of the new globals.css:**
+```css
+/* 1. Import Tailwind v4 */
+@import "tailwindcss";
+
+/* 2. Import animation utilities (replaces tailwindcss-animate plugin) */
+@import "tw-animate-css";
+
+/* 3. Dark mode variant (replaces darkMode: ['class'] in tailwind.config.mjs) */
+@custom-variant dark (&:is(.dark *));
+
+/* 4. CSS-first theme (replaces tailwind.config.mjs @theme extension) */
+@theme inline {
+  /* Font families */
+  --font-sans: 'Inter Variable', sans-serif;
+  --font-display: 'Manrope Variable', sans-serif;
+
+  /* DESIGN.md surface hierarchy — 5 depth levels */
+  --color-surface-dim:              #1f0f0b;   /* Level 0: base/page background */
+  --color-surface-container-low:    #281713;   /* Level 1: sectioning */
+  --color-surface-container:        #2d1b17;   /* Level 2: active cards */
+  --color-surface-container-high:   #3d2620;   /* Level 3: floating elements */
+  --color-surface-bright:           #49342f;   /* Level 3 alt: floating (DESIGN.md exact value) */
+
+  /* Brand colors from DESIGN.md */
+  --color-primary:                  #ff5626;
+  --color-primary-container:        #ff5626;
+  --color-inverse-primary:          #ff8f6a;
+  --color-brand-orange:             #ff4b12;
+  --color-brand-green:              #2d5a27;
+  --color-brand-gold:               #ffc062;
+
+  /* Semantic tokens (shadcn-compatible remapping) */
+  /* ... full token map driven by DESIGN.md palette ... */
+  --color-background:               var(--color-surface-dim);
+  --color-foreground:               #f5ece9;
+  --color-border:                   color-mix(in srgb, var(--color-surface-bright) 30%, transparent);
+}
+
+/* 5. Custom utilities for glassmorphism (replaces @layer utilities .glass/.glass-card) */
+@utility glass {
+  background: color-mix(in srgb, var(--color-surface-container-high) 70%, transparent);
+  backdrop-filter: blur(32px);
+  box-shadow: inset 0 0 0 0.5px color-mix(in srgb, var(--color-surface-bright) 20%, transparent);
+}
+
+@utility glass-card {
+  background: color-mix(in srgb, var(--color-surface-container) 80%, transparent);
+  backdrop-filter: blur(20px);
 }
 ```
 
-**Ash Fork, AZ approximate coordinates:** latitude `35.5022`, longitude `-112.4874`. Verify against Google Maps pin for 33 Lewis Ave before committing.
+The `@theme inline` variant (as used by shadcn/ui v4 migration) avoids the need for `hsl()` wrappers by making token values directly available as CSS variables without generating duplicate `--tw-*` shadow variables.
 
-**Confidence:** High — `geo` is a stable, well-documented property; Google's local business structured data documentation explicitly lists it.
+### 3. Delete tailwind.config.mjs
 
----
+All configuration moves into `@theme {}` in globals.css. The file must be deleted — v4 ignores it and keeping it creates confusion.
 
-#### `hasMap` — URL to Google Maps listing
+### 4. Font Imports in Layout.astro
 
-**Why it matters:** `hasMap` creates a machine-readable link between the schema entity and the business's Google Maps presence. This helps Google associate the structured data with the GBP listing and improves Knowledge Panel completeness.
+Replace existing `@fontsource` imports:
 
-**Format:**
+```js
+// Remove:
+import '@fontsource/open-sans';
+import '@fontsource/playfair-display';
 
-```json
-"hasMap": "https://maps.google.com/?cid=GOOGLE_CID"
+// Add:
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/inter';
 ```
 
-Use the Google Maps CID (Customer ID) URL, not a search URL. The CID URL is stable and canonical. Get it by searching the restaurant in Google Maps and copying the link when the business card appears.
+Variable font CSS from `@fontsource-variable/*` packages is self-hosted WOFF2 — no Google Fonts CDN, no DNS lookup, no FOUT risk, fonts are bundled at build time. This is the correct approach for LCP and CLS requirements. The `@fontsource-variable/*` packages are the variable-font equivalents of the `@fontsource/*` packages already in use.
 
-**Confidence:** High — documented schema.org property. Effect on ranking is indirect (entity association) rather than direct signal.
+Do NOT use Astro 5.7's experimental Fonts API (`experimental.fonts`). It was added in Astro 5.7 and is still experimental (flagged in official docs). The `@fontsource-variable` approach is stable, already follows the project pattern, and requires zero Astro config changes.
 
 ---
 
-#### `aggregateRating` — Review score
+## v4 Breaking Changes That Will Affect This Codebase
 
-**Why it matters:** `aggregateRating` is one of the most powerful properties for AI citation and rich results. Perplexity, ChatGPT, and Google AI Overviews explicitly surface ratings when answering "best Indian restaurant near X" queries. Google does NOT show star ratings in search results from JSON-LD alone — they require an approved review platform — but AI engines do use the schema-embedded rating for answer synthesis.
+### @apply in Astro Component `<style>` Blocks
 
-**Format:**
+This is the most likely source of build failures after migration. Tailwind v4 no longer auto-injects theme variables into scoped `<style>` blocks in `.astro` files. Any `<style>` block using `@apply` with custom tokens or any utility class that depends on theme values will fail.
 
-```json
-"aggregateRating": {
-  "@type": "AggregateRating",
-  "ratingValue": "4.5",
-  "reviewCount": "127",
-  "bestRating": "5",
-  "worstRating": "1"
-}
+The current `globals.css` uses `@apply border-border` and `@apply bg-background text-foreground` in `@layer base`. These move to direct CSS in v4.
+
+**Fix options:**
+1. Add `@reference "../styles/globals.css";` as the first line of any `<style>` block using `@apply`
+2. Move custom utility definitions to `@utility` in globals.css (shown above for `.glass` and `.glass-card`) — this is the v4-native approach and should be preferred
+
+The project currently uses `.glass` and `.glass-card` in JSX components. Moving these to `@utility glass` and `@utility glass-card` in globals.css makes them available as utility classes (`class="glass"`) without needing `@apply` in scoped styles.
+
+**Confidence:** HIGH. Multiple community reports and official v4 docs confirm this scope change. It is the most-reported migration pain point for Astro + Tailwind v4.
+
+### Dark Mode Variant
+
+`darkMode: ['class']` in `tailwind.config.mjs` does not exist in v4. The HTML `.dark` class toggle the site already uses is preserved with a one-line CSS replacement:
+
+```css
+@custom-variant dark (&:is(.dark *));
 ```
 
-**Important constraint:** Google's guidelines prohibit self-serving ratings (you cannot make up a rating). The value must reflect actual reviews from a recognized platform. Since `reviews.json` is auto-updated weekly via GitHub Actions from real review data, derive `ratingValue` and `reviewCount` dynamically from that file. This keeps it accurate and automated.
+This goes in globals.css. The `dark:` prefix on utility classes continues to work identically.
 
-**Data source in codebase:** `/src/data/reviews.json` — the Gemini pipeline already aggregates this data. The `RestaurantSchema.astro` should import `reviews.json` and compute average/count at build time.
+**Confidence:** HIGH. Documented in v4 upgrade guide. shadcn/ui v4 migration uses this exact pattern.
 
-**Confidence:** High for the property format. High that AI engines use it. Medium for Google rich results (Google has tightened eligibility — restaurant self-hosted ratings rarely qualify for gold stars in SERPs, but AI engines still use the data).
+### Border Default Changed
+
+In v3, `@apply border` applied a `solid currentColor` border. In v4, `border` uses `var(--color-border)`. The existing `@layer base { * { @apply border-border; } }` pattern is a v3 reset. In v4, the equivalent is either:
+- Remove it entirely (v4 default border color is already `var(--color-border)`)
+- Replace with `*, *::before, *::after { border-color: var(--color-border); }` in a `@layer base` block
+
+**Confidence:** HIGH. Official v4 upgrade guide.
+
+### Renamed Utilities (Template Scan Required)
+
+v4 renames several utilities that may be used in this codebase:
+
+| v3 Class | v4 Class |
+|----------|----------|
+| `shadow-sm` | `shadow-xs` |
+| `drop-shadow-sm` | `drop-shadow-xs` |
+| `blur-sm` | `blur-xs` |
+| `ring-offset-*` | Removed — use `outline-offset-*` |
+| `flex-shrink-*` | `shrink-*` |
+| `flex-grow-*` | `grow-*` |
+| `overflow-ellipsis` | `text-ellipsis` |
+| `decoration-slice` | `box-decoration-slice` |
+
+The `@tailwindcss/upgrade` CLI tool handles these template renames automatically.
 
 ---
 
-#### `areaServed` — Geographic service area
+## The @tailwindcss/upgrade CLI Tool
 
-**Why it matters:** This is the primary signal for GEO (Geographic SEO). It tells search engines and AI crawlers which geographic areas the business explicitly serves. For a highway-corridor restaurant, the service area is not just the town — it's the full corridor of potential customers.
+**Verdict: Use it for template scanning. Manually complete the Astro-specific steps.**
 
-**Current value:** `"Ash Fork"` — far too narrow.
+The tool (`npx @tailwindcss/upgrade`) runs three passes:
+1. Template scan — renames deprecated utility classes in all `.astro`, `.tsx`, `.ts` files
+2. Config migration — converts `tailwind.config.mjs` to a draft CSS `@theme` block
+3. Dependency update — updates `package.json`
 
-**Recommended format (array of Place or City objects):**
+**Known Astro-specific failures (multiple community reports, Feb–Mar 2025/2026):**
 
-```json
-"areaServed": [
-  {
-    "@type": "City",
-    "name": "Ash Fork",
-    "sameAs": "https://en.wikipedia.org/wiki/Ash_Fork,_Arizona"
-  },
-  {
-    "@type": "City",
-    "name": "Williams",
-    "sameAs": "https://en.wikipedia.org/wiki/Williams,_Arizona"
-  },
-  {
-    "@type": "City",
-    "name": "Seligman",
-    "sameAs": "https://en.wikipedia.org/wiki/Seligman,_Arizona"
-  },
-  {
-    "@type": "AdministrativeArea",
-    "name": "Kaibab Estates"
-  },
-  {
-    "@type": "AdministrativeArea",
-    "name": "I-40 Corridor, Arizona"
-  },
-  {
-    "@type": "AdministrativeArea",
-    "name": "Route 66, Arizona"
-  }
-]
+- Crashes with "Cannot apply unknown utility class" when the project has `@apply` using HSL CSS variables — the tool cannot resolve them during its scan pass
+- Does not correctly rewrite `astro.config.mjs` — it may add `@tailwindcss/vite` to `integrations[]` instead of `vite.plugins[]`
+- PostCSS config migration step fails or creates an unnecessary `postcss.config.cjs` (not relevant here since we have none)
+- Crashes on `plugins: [require('tailwindcss-animate')]` in `tailwind.config.mjs`
+
+**Recommended procedure:**
+
+```
+1. Remove tailwindcss-animate from tailwind.config.mjs plugins array before running the tool
+   (comment it out: // plugins: [require('tailwindcss-animate')])
+
+2. Run: npx @tailwindcss/upgrade
+   - Accept the template rename pass (shadow-sm → shadow-xs etc.)
+   - Use the generated CSS @theme block as a draft/reference only
+
+3. Manually fix astro.config.mjs:
+   - Move @tailwindcss/vite from integrations[] to vite.plugins[]
+   - Remove @astrojs/tailwind import
+
+4. Write the final globals.css @theme block from DESIGN.md spec
+   (the tool's draft will have the old shadcn tokens — use it as a starting point)
+
+5. Delete tailwind.config.mjs
 ```
 
-**Why Wikipedia `sameAs`:** Linking `City` entities to their Wikipedia pages provides entity disambiguation — this is how knowledge graphs confirm the specific "Williams, AZ" rather than Williams in another state. This is a known AEO signal.
-
-**Confidence:** High that expanding `areaServed` to an array is correct and beneficial. Medium that the specific format with Wikipedia `sameAs` on City entities is commonly used (it is valid schema.org and commonly recommended in local SEO literature, but Google's official docs don't explicitly require it).
+**Confidence — upgrade tool behavior:** MEDIUM. Based on documented issues in tailwindlabs/tailwindcss GitHub (issues #18055, #16733, discussion #15809). Core breakages are well-documented. Tool may improve in patch releases.
 
 ---
 
-#### `potentialAction` — OrderAction
+## What NOT to Add
 
-**Why it matters:** `OrderAction` declares that the restaurant has online ordering capability. AI engines (especially Google Assistant and ChatGPT when using plugins) use this to answer "can I order from Spice Grill & Bar online?" affirmatively. It also surfaces in Google's own food ordering features.
+| Package | Why Not |
+|---------|---------|
+| Any CSS glassmorphism plugin (`@casoon/tailwindcss-glass` etc.) | DESIGN.md glassmorphism is specific enough to implement with 2 `@utility` blocks. A plugin adds a dep for 3 utility classes. |
+| `@tailwindcss/typography` | Not needed for this site's content structure. |
+| `@tailwindcss/forms` | Radix UI handles form styling. No native HTML forms on the site. |
+| `tailwind-animate` (npm package) | Different package from `tw-animate-css`. Less active, less aligned with v4 CSS-first architecture. Avoid name confusion. |
+| Astro experimental Fonts API | Flagged experimental in Astro 5.17. `@fontsource-variable/*` is stable and already follows the project pattern. No upside for added instability risk. |
+| `postcss-import`, `autoprefixer` | Removed. Built into v4's Lightning CSS engine. Adding them does nothing. |
+| Any new React animation library (Framer Motion, etc.) | PROJECT.md explicitly prohibits new deps beyond Tailwind v4 migration. Bundle constraint is non-negotiable. |
 
-**Format:**
+---
 
-```json
-"potentialAction": {
-  "@type": "OrderAction",
-  "target": {
-    "@type": "EntryPoint",
-    "urlTemplate": "https://www.toasttab.com/spice-grill-and-bar",
-    "actionPlatform": [
-      "http://schema.org/DesktopWebPlatform",
-      "http://schema.org/MobileWebPlatform"
-    ]
-  },
-  "deliveryMethod": "http://purl.org/goodrelations/v1#DeliveryModePickUp"
-}
+## Install Commands
+
+```bash
+# 1. Remove old packages
+npm uninstall @astrojs/tailwind tailwindcss-animate @fontsource/open-sans @fontsource/playfair-display autoprefixer
+
+# 2. Add new packages
+npm install -D tailwindcss @tailwindcss/vite
+npm install tw-animate-css @fontsource-variable/manrope @fontsource-variable/inter
+
+# 3. Run upgrade tool for template scanning (after removing tailwindcss-animate from config)
+npx @tailwindcss/upgrade
 ```
 
-**Note:** Since the restaurant uses Toast for ordering but does NOT offer delivery (takeout/pickup only), use `DeliveryModePickUp`. Do not claim `DeliveryModeMail` or home delivery. Verify the exact Toast URL for this restaurant — it should be the direct ordering URL, not a search page.
+---
 
-**Alternative approach:** If the Toast ordering URL is unknown or may change, use `ReservationAction` (for table reservations) paired with a `telephone` action as a fallback. However, if ordering is available, `OrderAction` is more valuable.
+## Summary Table
 
-**Confidence:** High for the property format and AEO signal. Medium for direct effect on Google rich results (Google's food ordering feature has specific eligibility requirements and partnerships — schema alone may not unlock the feature, but it doesn't hurt and does help AI citation).
+| Category | v3 (Current) | v4 (New) | Confidence |
+|----------|-------------|---------|------------|
+| Tailwind core | `tailwindcss ^3.4.19` devDep | `tailwindcss ^4.2.2` devDep | HIGH |
+| Astro integration | `@astrojs/tailwind` in `integrations[]` | `@tailwindcss/vite` in `vite.plugins[]` | HIGH |
+| Configuration file | `tailwind.config.mjs` (JS) | Deleted — replaced by `@theme` in `globals.css` | HIGH |
+| Dark mode | `darkMode: ['class']` in JS config | `@custom-variant dark (&:is(.dark *))` in CSS | HIGH |
+| Animation plugin | `tailwindcss-animate ^1.0.7` dep | `tw-animate-css ^1.4.0` dep, `@import "tw-animate-css"` | HIGH |
+| Vendor prefixing | `autoprefixer` devDep | Built into v4 Lightning CSS — remove autoprefixer | HIGH |
+| Display/headline font | `@fontsource/playfair-display ^5.2.8` | `@fontsource-variable/manrope ^5.2.8` | HIGH |
+| Body/label font | `@fontsource/open-sans ^5.2.7` | `@fontsource-variable/inter ^5.2.8` | HIGH |
+| Custom utilities `.glass` | `@layer utilities { .glass { @apply ... } }` | `@utility glass { ... }` in globals.css | HIGH |
+| `@apply` in scoped styles | Works automatically | Requires `@reference` prefix or refactor to `@utility` | HIGH |
+| PostCSS config | None present | None needed (delete if tool creates one) | HIGH |
 
 ---
 
-#### `containedInPlace` — Parent location context
-
-**Why it matters:** For a restaurant on a named highway/route, `containedInPlace` signals the broader geographic context to knowledge graphs. This is particularly valuable for AI engines synthesizing "restaurants on Route 66" queries.
-
-**Format:**
-
-```json
-"containedInPlace": {
-  "@type": "Place",
-  "name": "Historic Route 66",
-  "sameAs": "https://en.wikipedia.org/wiki/U.S._Route_66"
-}
-```
-
-**Confidence:** Medium — `containedInPlace` is a valid schema.org property but is less commonly implemented for restaurants and less directly validated by Google's documentation. It is likely used by AI engines for entity relationship building. Low implementation cost, medium expected benefit.
-
----
-
-### 1.3 High-Impact for AEO (AI/Answer Engine Citation)
-
-#### `description` — Business description
-
-**Why it matters:** AI engines (Perplexity, ChatGPT, Google AI Overviews) frequently extract the `description` property directly into answers when no better passage is available on the page. The current description is: `"Authentic Indian Restaurant in Ash Fork, AZ. Located on Historic Route 66, the perfect pitstop for Grand Canyon travelers."` — this is usable but should include more extractable facts.
-
-**Recommended format:**
-
-```json
-"description": "Spice Grill & Bar is an authentic Punjabi Indian restaurant at I-40 Exit 146 in Ash Fork, Arizona on Historic Route 66, approximately 70 miles from the Grand Canyon South Rim. Open daily 7 AM – 10 PM, serving Tandoori specialties, Butter Chicken, Goat Curry, Garlic Naan, and vegetarian/vegan dishes. Beer, wine, and cocktails available. Takeout and curbside pickup via Toast. Family-friendly with motorcycle parking."
-```
-
-**Key AEO writing principles applied:**
-
-- Lead with the most extractable fact (location + exit number)
-- Include distance anchor (70 miles / Grand Canyon)
-- List specific dishes AI engines can cite
-- Include hours (hours are a top query type)
-- Mention services and dietary options
-
-**Confidence:** High — description is a consistently cited AEO property. The writing style mirrors established AEO content patterns.
-
----
-
-#### `servesCuisine` — Cuisine types
-
-**Current value:** Array including `"Beer"`, `"Wine"`, `"Soft Drinks"`, `"Alcoholic Beverages"` alongside cuisine types. This is incorrect usage — `servesCuisine` should only contain cuisine/food category strings, not beverage categories.
-
-**Recommended correction:**
-
-```json
-"servesCuisine": ["Indian", "Punjabi", "North Indian", "Tandoori"]
-```
-
-Beverage offerings should be expressed via `"amenityFeature"` or the `description` field. Mixing beverages into `servesCuisine` may confuse classifiers.
-
-**Confidence:** High — this is clearly incorrect usage based on schema.org's definition of `servesCuisine` as food/cuisine categories only.
-
----
-
-#### `image` — Business image
-
-**Current value:** `"https://spicegrillbar66.com/HomePageBackground.webp"` — single string.
-
-**Recommended format:**
-
-```json
-"image": [
-  "https://spicegrillbar66.com/HomePageBackground.webp",
-  "https://spicegrillbar66.com/og-image.jpg"
-]
-```
-
-Google recommends providing multiple images when available (16:9, 4:3, and 1:1 aspect ratios). AI engines prefer multiple images for richer entity profiles.
-
-**Confidence:** Medium — multiple images are documented as Google's preference; single image is acceptable and functional.
-
----
-
-### 1.4 Properties to NOT Add (or Add with Caution)
-
-| Property                       | Reason to Avoid/Defer                                                                                                                           |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `starRating`                   | This is for hotels, not restaurants. Use `aggregateRating` instead.                                                                             |
-| `acceptsReservations`          | Valid if table reservations are accepted. If walk-in only, omit — do not set to `false` as this may discourage bookings. Add only if confirmed. |
-| `menu` (as URL)                | Current `hasMenu` is correct. Do not duplicate with `menu` property — schema-dts types them identically but Google may count as redundant.      |
-| `branchOf`                     | Deprecated — do not use. Restaurant is standalone, not a franchise branch.                                                                      |
-| `openingHours` (string format) | Deprecated in favor of `openingHoursSpecification`. Current implementation is correct. Do not add the simple string format.                     |
-| `founder` / `employee`         | No local SEO benefit for a restaurant. Adds payload without benefit.                                                                            |
-| `numberOfEmployees`            | No local SEO benefit.                                                                                                                           |
-| `legalName`                    | Add only if the legal business name differs from the operating name. If DBA matches legal name, omit.                                           |
-| `paymentAccepted`              | Low local SEO value. Only add if specifically asked about payment methods in FAQ.                                                               |
-| `SpecialAnnouncement`          | COVID-era schema. Do not use.                                                                                                                   |
-| `Event` schema for specials    | Only if the restaurant runs ticketed events. Weekly specials are not Events in schema.org's definition.                                         |
-
----
-
-## Section 2: OrganizationSchema — `sameAs` Property
-
-**Why it matters:** `sameAs` is the primary mechanism for entity disambiguation across knowledge graphs. When Google, Perplexity, and other AI systems see matching `sameAs` links across multiple sources, they consolidate entity signals and build higher confidence in the business's identity. This directly affects Knowledge Panel richness and AI citation frequency.
-
-**Current `sameAs` links:** Facebook, Instagram.
-
-**Required additions (pending URLs from client):**
-
-```json
-"sameAs": [
-  "https://www.facebook.com/profile.php?id=61566349169122",
-  "https://www.instagram.com/panjabi_dhaba_sgb",
-  "https://www.google.com/maps/place/?q=place_id:PLACE_ID_HERE",
-  "https://www.yelp.com/biz/BUSINESS_SLUG_HERE",
-  "https://www.tripadvisor.com/Restaurant_Review-REVIEW_ID_HERE"
-]
-```
-
-**Format guidance:**
-
-- Google Maps URL: Use the `place_id` parameter URL, not a search URL (`maps.app.goo.gl` short links are not canonical and may break). Find the Place ID at https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder.
-- Yelp URL: Use the canonical business URL (e.g., `https://www.yelp.com/biz/spice-grill-and-bar-ash-fork`), not a search result URL.
-- TripAdvisor URL: Use the full restaurant listing URL, not a mobile or shortened URL.
-
-**Confidence:** High — `sameAs` for entity disambiguation is one of the most consistently validated knowledge graph signals in local SEO literature.
-
----
-
-## Section 3: WebSiteSchema — Required Properties
-
-**Current state:** Minimal — only `@type`, `url`, `name`.
-
-**Recommended additions:**
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "url": "https://spicegrillbar66.com",
-  "name": "Spice Grill & Bar",
-  "description": "Official website of Spice Grill & Bar — authentic Punjabi Indian restaurant at I-40 Exit 146, Ash Fork, Arizona on Historic Route 66.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Spice Grill & Bar",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://spicegrillbar66.com/favicon.svg"
-    }
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://spicegrillbar66.com/faq/?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string"
-  }
-}
-```
-
-**Note on `SearchAction`:** This enables a sitelinks searchbox in Google SERP for the brand query. The `urlTemplate` should point to a real search endpoint. If the site has no search functionality, omit `SearchAction` — do not point it to the FAQ page unless the FAQ page actually supports `?q=` query parameters. If implementing, a JavaScript-based client-side search (e.g., filtering FAQ items) would satisfy this requirement without breaking static hosting.
-
-**Confidence:** High for `description` and `publisher`. Medium for `SearchAction` (requires actual search functionality on the target URL).
-
----
-
-## Section 4: Astro-Specific Implementation Patterns
-
-### 4.1 Current Pattern Assessment
-
-The current pattern is optimal for a static Astro site:
-
-```astro
-<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
-```
-
-**Why `is:inline` is correct:** Without `is:inline`, Astro may process the `<script>` tag through its bundler, which would break the JSON-LD (it's not JavaScript). `is:inline` emits the script tag verbatim.
-
-**Why `set:html` is correct:** Astro escapes HTML by default. `set:html` bypasses escaping for the JSON content, which is necessary to prevent `&amp;` and similar HTML entities from corrupting the JSON.
-
-**Do NOT use:** `set:text` (would escape the JSON), template literals inside the script tag (Astro won't process them), or external `.json` file references via `src` attribute (browsers don't load JSON-LD from external files).
-
-### 4.2 No New npm Packages Needed
-
-`schema-dts` (already installed at v1.1.5) provides TypeScript types for all schema.org types including `Restaurant`, `GeoCoordinates`, `AggregateRating`, `OrderAction`, and `EntryPoint`. No additional libraries are needed.
-
-**Packages to NOT add:**
-
-- `next-seo` — Next.js specific, incompatible
-- `astro-seo` — Provides `<head>` meta tags only, not JSON-LD management; adds unnecessary abstraction over the current pattern
-- `react-schemaorg` — React-specific, overkill for static JSON-LD
-- Any schema validation npm packages — use Google's Rich Results Test and Schema.org Validator instead (external tools, no bundle impact)
-
-**Confidence:** High — the current `schema-dts` + `is:inline` pattern is optimal and matches patterns used in production Astro sites with high Lighthouse scores.
-
-### 4.3 Dynamic Data in Schema Components
-
-For `aggregateRating` derived from `reviews.json`:
-
-```astro
----
-import reviewsData from '../../data/reviews.json';
-
-// Compute at build time — no runtime cost
-const totalRating = reviewsData.reduce((sum, r) => sum + r.rating, 0);
-const avgRating = (totalRating / reviewsData.length).toFixed(1);
-const reviewCount = reviewsData.length;
----
-```
-
-This approach has zero runtime cost (computed at build time by Astro), no bundle impact, and automatically stays current as the GitHub Actions workflow updates `reviews.json` weekly.
-
-**Prerequisite:** Verify `reviews.json` structure includes a numeric `rating` field per review entry. If the Gemini pipeline stores ratings differently (e.g., as strings, or as a pre-computed average), adjust accordingly.
-
-**Confidence:** High for the Astro build-time computation pattern. Medium for the specific field access (`r.rating`) pending verification of `reviews.json` schema.
-
----
-
-## Section 5: AEO Content Patterns (Non-Schema)
-
-### 5.1 FAQ Schema — AEO Signal
-
-The current `FAQSchema.astro` implementation is correct. The expansion from 9 to 20 questions should follow these AEO writing rules:
-
-**High-value question templates for I-40 corridor restaurants:**
-
-- Distance/time questions: "How far is [restaurant] from [landmark]?" — AI engines answer these directly
-- Exit/navigation questions: "What exit is [restaurant] on I-40?" — exact fact, highly extractable
-- Hours questions: "Is [restaurant] open on [day]?" — verify FAQ hours match `openingHoursSpecification` exactly
-- Cuisine/dietary questions: "Does [restaurant] have vegan options?" — must match actual offerings
-- Pickup/ordering questions: "Can I order ahead from [restaurant]?" — link to Toast URL
-
-**AEO writing rules for `faq.json` answers:**
-
-1. State the core fact in the first sentence. AI engines extract the first sentence.
-2. Include the business name and location in the answer (not just the question). Standalone extractability.
-3. Include exact numbers where possible (distances, hours, prices).
-4. Keep answers under 100 words. Longer answers are truncated by AI engines.
-5. Do not use HTML in answers — `FAQSchema.astro` renders them as `text` not `html`.
-
-### 5.2 `llms.txt` and `llms-full.txt`
-
-These files are not schema but are directly relevant to AEO. AI crawlers (Anthropic's ClaudeBot, OpenAI's GPTBot, Google-Extended) read `llms.txt` as a machine-readable summary of the site's authoritative facts. The current `llms.txt` and `llms-full.txt` should contain:
-
-- Exact address with exit number
-- Operating hours
-- Distance from key landmarks (Grand Canyon, Las Vegas, Flagstaff)
-- Top dishes with descriptions
-- Ordering methods
-- The corrected Halal messaging (pending Phase 4)
-
-**Confidence:** Medium-High — `llms.txt` is an emerging standard (proposed by Answer.ai) not universally adopted. Perplexity has confirmed it reads `llms.txt`. OpenAI and Google have not officially confirmed `llms.txt` support but do crawl the file.
-
----
-
-## Section 6: Schema Consistency Audit — Bugs Found in Current Implementation
-
-| File                            | Issue                                                                                                                                     | Fix Required                                                                                                    |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `RestaurantSchema.astro` L8     | URL `https://www.spicegrillbar66.com` — `www.` prefix inconsistent with canonical                                                         | Remove `www.` to match canonical                                                                                |
-| `RestaurantSchema.astro` L13    | `telephone: '(928) 277-1292'` — not E.164 format                                                                                          | Change to `'+1-928-277-1292'`                                                                                   |
-| `RestaurantSchema.astro` L46-47 | `servesCuisine` includes beverages (`"Beer"`, `"Wine"`, etc.) — semantically incorrect                                                    | Move beverage info to `description`, keep only food cuisines in `servesCuisine`                                 |
-| `RestaurantSchema.astro` L53    | `areaServed: 'Ash Fork'` — string, not array, too narrow                                                                                  | Expand to array of Place/City objects                                                                           |
-| `RestaurantSchema.astro`        | Missing `geo`, `hasMap`, `aggregateRating`, `potentialAction`                                                                             | Add all four                                                                                                    |
-| `WebSiteSchema.astro`           | Missing `description`, `publisher`                                                                                                        | Add both                                                                                                        |
-| `OrganizationSchema.astro`      | `sameAs` missing Google Maps, Yelp, TripAdvisor                                                                                           | Blocked on client providing URLs                                                                                |
-| All schemas                     | `openingHoursSpecification` hours (`07:00`–`22:00`) contradict FAQ answer (`8:00 AM to 9:00 PM` weekdays, `8:00 AM to 10:00 PM` weekends) | **Critical data conflict** — hours must be verified with client and unified across schema, FAQ, and all content |
-
-**The hours conflict is a blocking issue.** RestaurantSchema says 7 AM–10 PM daily. FAQ says 8 AM–9 PM weekdays and 8 AM–10 PM weekends. These are different on both open time and close time. Google may penalize for inconsistent structured data. This must be resolved before any deployment.
-
----
-
-## Section 7: Schema Types NOT Recommended for This Site
-
-| Schema Type                      | Reason                                                                                                                                                                                            |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `LocalBusiness` (standalone)     | `Restaurant` inherits from `FoodEstablishment` which inherits from `LocalBusiness`. Using bare `LocalBusiness` is a downgrade. Current `Restaurant` type is correct.                              |
-| `FoodEstablishment` (standalone) | Same reason — `Restaurant` is more specific. More specific types are always preferred.                                                                                                            |
-| `Store`                          | Incorrect type for a restaurant.                                                                                                                                                                  |
-| `TouristAttraction`              | Not an attraction — a restaurant. Using incorrect type can confuse classifiers.                                                                                                                   |
-| `Product` schema for dishes      | `MenuItem` (already used in `MenuSchema.astro`) is correct. `Product` schema for food items is an incorrect type.                                                                                 |
-| `Event` for daily specials       | Only use for actual dated events with ticket/registration. Daily specials are not Events.                                                                                                         |
-| `NewsArticle` / `Article`        | Only for blog posts. The GEO content pages (`/about/`, `/directions/`, etc.) should use `WebPage` with `breadcrumb`, not `Article`.                                                               |
-| Multiple `@graph` consolidation  | Combining all schemas into a single `@graph` is sometimes recommended but adds complexity with no proven benefit for local SEO. Maintain separate schema components per the current architecture. |
-
----
-
-## Section 8: Recommended Implementation Sequence
-
-This sequence is prioritized by impact/effort ratio, not by the PROJECT.md phase order (defer to that for final ordering):
-
-1. **Fix data conflict first** — Resolve hours discrepancy across schema, FAQ, and content. No other schema work should deploy until this is resolved.
-2. **Fix `servesCuisine`** — Remove beverages. Zero-risk change, takes 5 minutes.
-3. **Fix URL/telephone consistency** — Remove `www.`, normalize telephone to E.164 in `RestaurantSchema.astro`.
-4. **Add `geo`** — Verify coordinates, add `GeoCoordinates` to `RestaurantSchema.astro`.
-5. **Add `aggregateRating`** — Import from `reviews.json`, compute at build time. Verify `reviews.json` field structure first.
-6. **Expand `areaServed`** — Replace string with array of `City`/`AdministrativeArea` objects.
-7. **Add `hasMap`** — Requires Google Maps CID URL from client.
-8. **Add `potentialAction` (OrderAction)** — Requires verified Toast ordering URL.
-9. **Update `WebSiteSchema.astro`** — Add `description` and `publisher`. Defer `SearchAction` unless search is implemented.
-10. **Expand `OrganizationSchema.astro` `sameAs`** — Blocked on client providing Yelp, TripAdvisor, Google Maps URLs.
-
----
-
-## Confidence Level Summary
-
-| Recommendation                                      | Confidence  | Basis                                                                 |
-| --------------------------------------------------- | ----------- | --------------------------------------------------------------------- |
-| `geo` GeoCoordinates format and value               | High        | Stable schema.org spec; Google local business docs                    |
-| `aggregateRating` format                            | High        | Stable schema.org spec; Google rich results docs                      |
-| `areaServed` array expansion                        | High        | Stable schema.org spec; well-documented local SEO practice            |
-| `hasMap` format                                     | High        | Stable schema.org spec                                                |
-| `potentialAction` OrderAction format                | High        | Stable schema.org spec                                                |
-| `sameAs` for entity disambiguation                  | High        | Core knowledge graph principle; consistently validated                |
-| `servesCuisine` correction                          | High        | Clear schema.org misuse                                               |
-| URL/telephone normalization                         | High        | Google structured data guidelines                                     |
-| `is:inline` + `set:html` pattern                    | High        | Astro documentation; no alternatives exist for JSON-LD                |
-| No new npm packages needed                          | High        | schema-dts covers all required types                                  |
-| `containedInPlace` for Route 66                     | Medium      | Valid schema.org; less validated for direct ranking impact            |
-| `aggregateRating` enabling Google star rich results | Medium      | Google has tightened eligibility; benefit is primarily for AI engines |
-| `SearchAction` in WebSiteSchema                     | Medium      | Requires actual search endpoint implementation                        |
-| `llms.txt` AEO benefit                              | Medium-High | Perplexity confirmed; other AI engines unconfirmed                    |
-| Wikipedia `sameAs` on City entities in `areaServed` | Medium      | Valid schema.org; common recommendation but not Google-official       |
-
----
-
-_Research by: Claude Sonnet 4.6 (claude-sonnet-4-6)_
-_Based on: schema.org specification, Google Search Central structured data documentation, AEO/GEO local SEO patterns — training data through August 2025. Verify Google's structured data guidelines at developers.google.com/search/docs before implementation as guidelines update periodically._
+## Sources
+
+- [Install Tailwind CSS with Astro — Tailwind CSS official](https://tailwindcss.com/docs/installation/framework-guides/astro) — authoritative Astro integration pattern (HIGH)
+- [Tailwind CSS v4.0 release blog](https://tailwindcss.com/blog/tailwindcss-v4) — v4 feature overview, Lightning CSS, CSS-first (HIGH)
+- [Tailwind CSS Upgrade Guide](https://tailwindcss.com/docs/upgrade-guide) — breaking changes, renamed utilities, @custom-variant (HIGH)
+- [Tailwind CSS Theme Variables docs](https://tailwindcss.com/docs/theme) — @theme, @utility, @custom-variant directives (HIGH)
+- [Tailwind CSS Dark Mode docs](https://tailwindcss.com/docs/dark-mode) — @custom-variant pattern for class-based dark mode (HIGH)
+- [shadcn/ui Tailwind v4 migration guide](https://ui.shadcn.com/docs/tailwind-v4) — @theme inline, CSS variable pattern, component updates (HIGH)
+- [tw-animate-css on GitHub (Wombosvideo)](https://github.com/Wombosvideo/tw-animate-css) — v4-compatible tailwindcss-animate replacement (HIGH)
+- [tw-animate-css on npm](https://www.npmjs.com/package/tw-animate-css) — version 1.4.0, install and `@import` usage (HIGH)
+- [@fontsource-variable/manrope on npm](https://www.npmjs.com/package/@fontsource-variable/manrope?activeTab=versions) — version 5.2.8 (HIGH)
+- [@fontsource-variable/inter on npm](https://www.npmjs.com/package/@fontsource-variable/inter) — version 5.2.8 (HIGH)
+- [Astro 5.2 — Tailwind v4 support announcement](https://astro.build/blog/astro-520/) — official confirmation @tailwindcss/vite is the v4 path in Astro (HIGH)
+- [Upgrading TailwindCSS to v4 in an Astro Blog — okaryo.log](https://blog.okaryo.studio/en/20250201-astro-tailwindcss-v4-upgrade/) — Astro-specific migration experience, @reference workaround (MEDIUM)
+- [How to Upgrade Your Astro Site to Tailwind v4 — Brian Douglass](https://bhdouglass.com/blog/how-to-upgrade-your-astro-site-to-tailwind-v4/) — vite.plugins vs integrations, postcss deletion (MEDIUM)
+- [Astro site failing after upgrading Tailwind v3 to v4 — GitHub issue #18055](https://github.com/tailwindlabs/tailwindcss/issues/18055) — documented upgrade tool failures with Astro (MEDIUM)
+- [Astro Experimental Fonts API docs](https://docs.astro.build/en/reference/experimental-flags/fonts/) — why we're NOT using it (experimental status confirmed) (HIGH)

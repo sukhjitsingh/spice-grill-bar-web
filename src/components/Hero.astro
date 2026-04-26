@@ -1,66 +1,90 @@
 ---
-import { Image } from 'astro:assets';
-import { ArrowRight } from 'lucide-react';
+import { Picture } from 'astro:assets';
+import { ArrowRight, Star } from 'lucide-react';
 
 import heroBg from '../assets/HomePageBackground.webp';
 import AstroButton from './ui/AstroButton.astro';
 ---
 
-<header
-  class="relative w-full h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-zinc-50 dark:bg-black"
+<section
+  class="relative w-full min-h-screen flex flex-col justify-center items-center text-center overflow-hidden bg-surface-dim"
 >
-  {/* Background Image with dynamic overlay */}
+  {/* Background Image */}
   <div class="absolute inset-0 z-0">
-    <Image
+    <Picture
       src={heroBg}
       alt="Authentic Punjabi cuisine restaurant interior"
-      class="object-cover opacity-40 dark:opacity-40 scale-105 w-full h-full"
+      class="object-cover opacity-40 scale-105 w-full h-full"
       itemprop="image"
-      widths={[640, 768, 1024, 1280, 1536]}
-      sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw"
-      quality={80}
+      widths={[640, 750, 828, 1080, 1200, 1920, 2048, 2560]}
+      sizes="100vw"
+      formats={['avif', 'webp']}
+      quality={60}
       loading="eager"
       fetchpriority="high"
     />
-    {/* Gradient Overlay */}
-    <div
-      class="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent dark:from-black dark:via-black/40 dark:to-transparent"
-    >
-    </div>
-    <div
-      class="absolute inset-0 bg-gradient-to-b from-brand-orange/5 to-transparent pointer-events-none"
-    >
-    </div>
+    <div class="absolute inset-0 hero-gradient"></div>
   </div>
 
-  <div class="relative z-10 max-w-4xl px-6">
+  <div class="relative z-10 max-w-3xl px-6 flex flex-col items-center">
     <span
-      class="inline-block py-1 px-3 rounded-full border border-zinc-200 dark:border-white/20 bg-white/50 dark:bg-white/5 text-xs font-semibold tracking-wider text-orange-700 dark:text-orange-300 mb-6 backdrop-blur-md"
+      class="inline-block py-1.5 px-4 rounded-full bg-surface-container-high/50 text-label-sm uppercase tracking-wider text-on-surface-variant backdrop-blur-sm"
     >
       EST. 2024
     </span>
+
     <h1
-      class="font-serif text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-zinc-900 dark:text-white leading-tight mb-6"
+      class="font-display text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-on-surface leading-tight mt-6 mb-6"
     >
       The Soul of{' '}
-      <span class="text-brand-orange">Punjab</span>
+      <span class="text-primary-container">Punjab</span>
     </h1>
+
     <p
-      class="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 font-normal max-w-2xl mx-auto leading-relaxed mb-10"
+      class="text-lg md:text-xl text-on-surface-variant font-normal max-w-2xl mx-auto leading-relaxed mb-8"
     >
       Where the rich traditions of Punjabi cooking meet the history of Route 66 right here in Ash
       Fork, AZ.
       <br />
       Authentic spices, clay oven cooking, and modern elegance.
     </p>
-    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-      <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-        <AstroButton href="#order"> Order Online </AstroButton>
-        <AstroButton href="#menu" variant="outline" class="group">
-          View Menu{' '}
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-        </AstroButton>
+
+    <p class="text-body-lg text-on-surface-variant mb-2">
+      Authentic Punjabi Indian Cuisine &middot; Ash Fork, AZ &middot; Route 66 &middot; I-40 Exit
+      146
+    </p>
+
+    <div class="text-body-md text-on-surface-variant mb-1">
+      <p>Open Tue&ndash;Thu 8AM&ndash;9PM &middot; Fri&ndash;Sun 8AM&ndash;10PM</p>
+    </div>
+
+    <a href="tel:+19282771292" class="text-body-md text-primary-container hover:underline mb-4">
+      (928) 277-1292
+    </a>
+
+    <div class="flex items-center gap-2 mb-8">
+      <div class="flex" aria-label="4.8 out of 5 stars">
+        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
+        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
+        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
+        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
+        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
       </div>
+      <span class="text-label-sm text-on-surface-variant">4.7 &middot; 300+ Reviews</span>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center gap-4">
+      <AstroButton
+        href="https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ORDER NOW
+      </AstroButton>
+      <AstroButton href="#menu" variant="outline" class="group">
+        VIEW MENU{' '}
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+      </AstroButton>
     </div>
   </div>
-</header>
+</section>

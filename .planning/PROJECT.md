@@ -1,8 +1,24 @@
-# Spice Grill & Bar — SEO/GEO/AEO Optimization
+# Spice Grill & Bar — Website
 
 ## What This Is
 
 The production website for Spice Grill & Bar, an authentic Punjabi Indian restaurant at I-40 Exit 146 in Ash Fork, Arizona (Route 66). Built on Astro 5 with React islands, optimized for local SEO, AI answer engines (AEO), and Lighthouse performance. The site now ranks with full structured data coverage, 4 content pages targeting highway/proximity queries, and 20 AEO-compliant FAQ entries.
+
+## Current Milestone: v2.0 UI Facelift — The Radiant Sommelier
+
+**Goal:** Redesign the visual identity of all 4 pages following the DESIGN.md spec ("The Radiant Sommelier"), upgrade TailwindCSS to v4 with CSS-first configuration, and establish a hybrid design token system.
+
+**Target features:**
+- Upgrade TailwindCSS 3.4 → v4 (`@tailwindcss/vite`, remove `@astrojs/tailwind`, delete `tailwind.config.mjs`)
+- Migrate CSS to `@import "tailwindcss"` + `@theme` directive for all design tokens
+- Handle all v4 breaking changes (renamed utilities, syntax changes, border defaults)
+- New hybrid color system: shadcn semantic tokens remapped + DESIGN.md surface hierarchy (5 depth levels)
+- Font swap: Open Sans + Playfair Display → Manrope + Inter
+- Glassmorphism overhaul per DESIGN.md spec (tinted shadows, backdrop-blur, no-line rule)
+- Light mode (default) + dark mode, both redesigned to DESIGN.md palette
+- Redesign all 4 pages: Home, FAQ, Near Grand Canyon, Directions
+- Test/migrate `tailwindcss-animate` for v4 compatibility (used in: MobileActionButtons, Sheet, DropdownMenu)
+- Design source of truth: `docs/DESIGN.md`
 
 ## Core Value
 
@@ -59,13 +75,13 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - **Location**: I-40 Exit 146, Ash Fork, AZ 86320
 - **Two distinct audiences**: (1) Road-trippers on I-40/Route 66 making a pitstop decision in real time; (2) Local residents in Ash Fork, Williams (~18 mi), Seligman (~30 mi), Kaibab Estates (~15 mi)
 - **AI citation strategy**: Content must be self-contained, extractable passages — AI engines retrieve specific sentences, not full pages
-- **Current state**: 4 pages (home, FAQ, near-grand-canyon, directions), 2,412 LOC (Astro/TS/TSX), 6 schema components, 20 FAQ entries, 7 reviews
+- **Current state**: 4 pages (home, FAQ, near-grand-canyon, directions), 2,412 LOC (Astro/TS/TSX), 6 schema components, 20 FAQ entries, 7 reviews. TailwindCSS v4 with CSS-first config (`@theme inline`, `@custom-variant dark`), Manrope Variable + Inter Variable fonts installed alongside legacy fonts.
 - **Tech debt**: FAQSchema globally injected on all pages (should restrict to /faq/ only); duplicate FAQPage schemas on GEO pages; phone display format cosmetic inconsistency
 - **Codebase map**: See `.planning/codebase/` for full architecture, stack, and conventions
 
 ## Constraints
 
-- **No new npm packages**: Lighthouse scores and bundle size are non-negotiable
+- **No new npm packages beyond Tailwind v4 migration**: Lighthouse scores and bundle size are non-negotiable
 - **Lighthouse thresholds**: LCP < 4000ms, TBT < 600ms, CLS < 0.1, Accessibility ≥ 90, Best Practices ≥ 80, SEO ≥ 90
 - **Static hosting**: All pages must generate as `/page/index.html` via Astro's `format: 'directory'` — no server runtime
 - **Halal replacement copy**: New wording must be agreed upon before execution
@@ -85,7 +101,32 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 | Page-specific inline FAQ schema separate from global FAQSchema | Different Q&As for different pages; placed in Layout slot not head | ✓ Good |
 | Speakable schema with CSS selectors on GEO pages | Targets H1 + lead paragraph for voice assistant extraction | ✓ Good |
 | E.164 tel: URIs across all components | RFC 3966 compliance; consistent with RestaurantSchema format | ✓ Good |
+| TailwindCSS v4 with CSS-first config | `@theme` replaces JS config; cleaner token system aligned with DESIGN.md | ✓ Good — Phase 7 |
+| Hybrid token system (shadcn + surface hierarchy) | Avoids rewriting every component while gaining DESIGN.md depth system | ✓ Good — Phase 8 |
+| Manrope + Inter fonts | DESIGN.md spec: geometric display + maximum readability body | ✓ Good — Phase 7 |
+| Light default + dark mode | Both modes redesigned; light stays default for accessibility | ✓ Good — Phase 9 |
+| Design source of truth: docs/DESIGN.md | "The Radiant Sommelier" — editorial aesthetic with surface depth layers | ✓ Good — Phase 9 |
+| Borderless tonal separation | Structural borders replaced by background tonal shifts across all components | ✓ Good — Phase 9 |
+| Orange sparingly (≤4 contexts) | Orange #FF4B12 limited to CTAs, stars, nav hover, accent details | ✓ Good — Phase 9 |
+| Glass budget: Header + Sheet + DropdownMenu only | Warm-tinted glassmorphism restricted to chrome elements; cards use tonal bg | ✓ Good — Phase 9 |
+
+## Evolution
+
+This document evolves at phase transitions and milestone boundaries.
+
+**After each phase transition** (via `/gsd:transition`):
+1. Requirements invalidated? → Move to Out of Scope with reason
+2. Requirements validated? → Move to Validated with phase reference
+3. New requirements emerged? → Add to Active
+4. Decisions to log? → Add to Key Decisions
+5. "What This Is" still accurate? → Update if drifted
+
+**After each milestone** (via `/gsd:complete-milestone`):
+1. Full review of all sections
+2. Core Value check — still the right priority?
+3. Audit Out of Scope — reasons still valid?
+4. Update Context with current state
 
 ---
 
-*Last updated: 2026-02-22 after v1.0 milestone*
+*Last updated: 2026-03-27 — Phase 9 (Visual Redesign) complete*

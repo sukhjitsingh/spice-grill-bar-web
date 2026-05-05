@@ -4,21 +4,20 @@
 
 The production website for Spice Grill & Bar, an authentic Punjabi Indian restaurant at I-40 Exit 146 in Ash Fork, Arizona (Route 66). Built on Astro 5 with React islands, optimized for local SEO, AI answer engines (AEO), and Lighthouse performance. The site now ranks with full structured data coverage, 4 content pages targeting highway/proximity queries, and 20 AEO-compliant FAQ entries.
 
-## Current Milestone: v2.0 UI Facelift — The Radiant Sommelier
+## Current Milestone: v3.0 AEO/GEO Refinement
 
-**Goal:** Redesign the visual identity of all 4 pages following the DESIGN.md spec ("The Radiant Sommelier"), upgrade TailwindCSS to v4 with CSS-first configuration, and establish a hybrid design token system.
+**Goal:** Strengthen AI/Answer Engine Optimization (AEO) and local SEO so Spice Grill & Bar surfaces correctly in voice search, ChatGPT, Gemini, Perplexity, and similar assistants.
 
 **Target features:**
-- Upgrade TailwindCSS 3.4 → v4 (`@tailwindcss/vite`, remove `@astrojs/tailwind`, delete `tailwind.config.mjs`)
-- Migrate CSS to `@import "tailwindcss"` + `@theme` directive for all design tokens
-- Handle all v4 breaking changes (renamed utilities, syntax changes, border defaults)
-- New hybrid color system: shadcn semantic tokens remapped + DESIGN.md surface hierarchy (5 depth levels)
-- Font swap: Open Sans + Playfair Display → Manrope + Inter
-- Glassmorphism overhaul per DESIGN.md spec (tinted shadows, backdrop-blur, no-line rule)
-- Light mode (default) + dark mode, both redesigned to DESIGN.md palette
-- Redesign all 4 pages: Home, FAQ, Near Grand Canyon, Directions
-- Test/migrate `tailwindcss-animate` for v4 compatibility (used in: MobileActionButtons, Sheet, DropdownMenu)
-- Design source of truth: `docs/DESIGN.md`
+- Fix Monday hours data drift in `RestaurantSchema.astro`, `public/llms.txt`, `public/llms-full.txt` (Mon 8AM–9PM)
+- Enrich `RestaurantSchema.astro` with `paymentAccepted`, `acceptsReservations`, `amenityFeature[]`, and confirmed `Kaibab Estates West` `areaServed` entry
+- Expand `public/llms.txt` and `public/llms-full.txt` with payments, reservations, delivery/takeout, amenities, and dietary sections
+- Inject `FAQSchema` on the home page (currently scoped to `/faq/`) and add a visible 8-question home-page FAQ section marked with `SpeakableSpecification`
+- Expand `src/data/faq.json` by 13 entries (≥34 total) covering Williams/Kaibab, payment, reservations, pricing, delivery/takeout, signature dishes, spice level
+- New GEO page `/near-williams/` mirroring `/near-grand-canyon/` for Williams, AZ tourists and Kaibab Estates West residents
+- Strengthen `scripts/aeo-audit.mjs` (FAQ count ≥ 34, required `llms.txt` sections, AI-bot allowlist in `robots.txt`)
+
+**Source of truth:** v3.0 requirements in `.planning/REQUIREMENTS.md`. Past v2.0 milestone archived (see `.planning/v2.0-MILESTONE-AUDIT.md`).
 
 ## Core Value
 

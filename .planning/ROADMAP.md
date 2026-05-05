@@ -4,6 +4,7 @@
 
 - ✅ **v1.0 SEO/GEO/AEO Optimization** — Phases 1-6 (shipped 2026-02-22)
 - ✅ **v2.0 UI Facelift — The Radiant Sommelier** — Phases 7-10 (audit complete 2026-03-27)
+- 🚧 **v3.0 AEO/GEO Refinement** — Phase 11 (active, started 2026-05-05)
 
 ## Phases
 
@@ -100,10 +101,33 @@ Plans:
 - [x] 10-02-PLAN.md — Run Lighthouse CI + axe-core audits (light and dark), fix all failures
 - [x] 10-03-PLAN.md — Write and run Playwright E2E animation tests for 3 animated components
 
+---
+
+### 🚧 v3.0 AEO/GEO Refinement (Active)
+
+**Milestone Goal:** Strengthen AI/Answer Engine Optimization (AEO) and local SEO so AI assistants and voice search return accurate, complete answers about Spice Grill & Bar — covering hours, location, payments, reservations, dietary options, signature dishes, and proximity to Williams/Kaibab Estates West.
+
+#### Phases
+
+- [ ] **Phase 11: AEO/GEO Refinement** — Fix Monday hours data drift, enrich RestaurantSchema (payment/reservations/amenities), expand `llms.txt` files, add home-page FAQ + SpeakableSpecification, expand FAQ data to ≥34 entries, add `/near-williams/` GEO page, strengthen `aeo-audit.mjs`
+
+### Phase 11: AEO/GEO Refinement
+**Goal**: AI assistants (ChatGPT, Gemini, Perplexity, Google Assistant) return accurate, complete answers about Spice Grill & Bar — Monday hours match across schema/llms.txt/llms-full.txt; structured data exposes payment, reservation, amenity, and dietary signals; the home page emits FAQ + SpeakableSpecification schema for voice search; FAQ data covers ≥34 highway/proximity/operations questions including Williams and Kaibab Estates West; a dedicated `/near-williams/` GEO page targets Williams tourists and Kaibab residents; and `npm run test:aeo` enforces these gates so future drift fails CI
+**Depends on**: Nothing (first phase of v3.0)
+**Requirements**: AEO-01, AEO-02, AEO-03, AEO-04, AEO-05, AEO-06, AEO-07, AEO-08, AEO-09
+**Success Criteria** (what must be TRUE):
+  1. `RestaurantSchema.astro` lists Monday in `openingHoursSpecification` with `opens: "08:00"` / `closes: "21:00"`, and includes `paymentAccepted`, `acceptsReservations`, `amenityFeature`, plus a `Kaibab Estates West` entry in `areaServed`
+  2. `public/llms.txt` and `public/llms-full.txt` show Monday open (8:00 AM – 9:00 PM) and contain dedicated sections for payment methods, reservation policy, delivery/takeout availability, amenities, and dietary options
+  3. Loading the home page `/` injects an `application/ld+json` block with `@type: "FAQPage"` (drawn from `faq.json`) and the page DOM contains a visible FAQ section with 8 question/answer pairs and a `SpeakableSpecification` schema marking those nodes
+  4. `src/data/faq.json` contains ≥34 question/answer entries, every entry passes the existing 50-word voice audit, and entries cover Williams proximity, Kaibab Estates West proximity, payment methods, reservations, pricing/budget, delivery/takeout, signature dishes (Butter Chicken, Tandoori), and spice level customization
+  5. `src/pages/near-williams.astro` exists, follows the `near-grand-canyon.astro` AEO/GEO template (answer-first H1, speakable lead, distance section, what-to-order, breadcrumb), is added to `.lighthouserc.json`, and renders cleanly in `npm run build`
+  6. `npm run test:aeo` fails when: FAQ count drops below 34, `llms.txt` is missing required section headers (Payment, Reservations, Delivery, Amenities, Dietary), or `robots.txt` lacks `Allow: /` for `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`
+**Plans**: TBD (planner will derive)
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 7 → 8 → 9 → 10
+Phases execute in numeric order: 7 → 8 → 9 → 10 → 11
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 | --- | --- | --- | --- | --- |
@@ -117,3 +141,4 @@ Phases execute in numeric order: 7 → 8 → 9 → 10
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
 | 9. Visual Redesign | v2.0 | 5/5 | Complete    | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 3/3 | Complete    | 2026-03-28 |
+| 11. AEO/GEO Refinement | v3.0 | 0/TBD | Active | — |

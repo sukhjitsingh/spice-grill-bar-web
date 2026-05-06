@@ -24,13 +24,13 @@
 
 ### Schema Enrichment & Hours Fix
 
-- [ ] **AEO-01**: `RestaurantSchema.astro` `openingHoursSpecification` includes Monday opening hours (`opens: "08:00"` / `closes: "21:00"`) and Monday is no longer omitted/closed. Drift across `RestaurantSchema.astro`, `public/llms.txt`, and `public/llms-full.txt` is eliminated.
+- [x] **AEO-01**: `RestaurantSchema.astro` `openingHoursSpecification` includes Monday opening hours (`opens: "08:00"` / `closes: "21:00"`) and Monday is no longer omitted/closed. Drift across `RestaurantSchema.astro`, `public/llms.txt`, and `public/llms-full.txt` is eliminated.
 - [x] **AEO-02**: `RestaurantSchema.astro` adds `paymentAccepted` (string list per schema.org), `acceptsReservations` (boolean), and `amenityFeature` (`LocationFeatureSpecification[]`) — values sourced from confirmed business data
-- [ ] **AEO-03**: `RestaurantSchema.astro` `areaServed` includes a `Kaibab Estates West` entry (verify presence; promote to `Place` with description if missing)
+- [x] **AEO-03**: `RestaurantSchema.astro` `areaServed` includes a `Kaibab Estates West` entry (verify presence; promote to `Place` with description if missing)
 
 ### AI-Readable File Expansion
 
-- [ ] **AEO-04**: `public/llms.txt` and `public/llms-full.txt` show Monday as OPEN (8:00 AM – 9:00 PM) under Operating Hours, and add new sections for Payment Methods, Reservation Policy, Delivery & Takeout, Amenities, and Dietary Options. The bundled FAQ block in `llms.txt` reflects the corrected hours.
+- [x] **AEO-04**: `public/llms.txt` and `public/llms-full.txt` show Monday as OPEN (8:00 AM – 9:00 PM) under Operating Hours, and add new sections for Payment Methods, Reservation Policy, Delivery & Takeout, Amenities, and Dietary Options. The bundled FAQ block in `llms.txt` reflects the corrected hours.
 
 ### Home Page AEO
 

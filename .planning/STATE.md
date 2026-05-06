@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: AEO/GEO Refinement
 status: executing
-stopped_at: Completed 11-01-PLAN.md (Owner-confirmation checklist)
-last_updated: "2026-05-06T20:30:53.521Z"
+stopped_at: Completed 11-03-PLAN.md (llms.txt + llms-full.txt hours fix and 5-section expansion)
+last_updated: "2026-05-06T20:36:36.727Z"
 last_activity: 2026-05-06
 progress:
   total_phases: 5
   completed_phases: 4
   total_plans: 23
-  completed_plans: 16
+  completed_plans: 18
   percent: 87
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-05-05)
 ## Current Position
 
 Phase: 11 (aeo-refinement) — EXECUTING
-Plan: 2 of 8
+Plan: 4 of 8
 Status: Ready to execute
 Last activity: 2026-05-06
 
@@ -59,6 +59,10 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 11-aeo-refinement]: Walk-in only reservation policy locked (acceptsReservations: false in RestaurantSchema)
 - [Phase 11-aeo-refinement]: Wi-Fi NOT confirmed by owner — exclude from amenityFeature[] in Plan 11-05 and any FAQ/llms.txt content
 - [Phase 11-aeo-refinement]: Kaibab Estates West direction corrected: ~5 mi NORTH of Ash Fork (NOT east on I-40) — overrides 11-CONTEXT.md and 11-RESEARCH.md; downstream plans 11-04 and 11-07 must honor
+- [Phase 11-aeo-refinement]: Merged Monday into the existing Tue-Thu OpeningHoursSpecification block (one entry, hours match exactly) — closes AEO-01 P0 hours drift
+- [Phase 11-aeo-refinement]: Used owner-confirmed Kaibab direction (~5 miles north of Ash Fork, NOT on I-40) over plan-prescribed 'east on I-40' — owner SUMMARY wins over stale plan text
+- [Phase 11-aeo-refinement]: Walk-in phrasing locked to 'Walk-ins welcome — we do not take reservations.' across llms.txt, llms-full.txt; cross-file 5-section diff = 0 (byte-identical Payment/Reservation/Delivery/Amenities/Dietary blocks)
+- [Phase 11-aeo-refinement]: Wi-Fi explicitly NOT mentioned in llms.txt or llms-full.txt (owner did not tick Wi-Fi in 11-OWNER-CONFIRMATION.md §3); enforces no-hallucination guarantee for AI crawlers
 
 ### Pending Todos
 
@@ -82,9 +86,11 @@ None.
 | 260401-ihx | Fix framework audit issues: ModeToggle flash, GoogleMap rootMargin, FAQ heading skip, footer year, menu keys | 2026-04-01 | edf1d31 | Verified | [260401-ihx-fix-astro-framework-audit-issues-modetog](./quick/260401-ihx-fix-astro-framework-audit-issues-modetog/) |
 | 260401-rmp | Tone down cta-gradient to subtle 20% warm hint using color-mix | 2026-04-01 | 1eb23c8 | Needs Review | [260401-rmp-restore-order-section-background-image-f](./quick/260401-rmp-restore-order-section-background-image-f/) |
 | Phase 11-aeo-refinement P01 | 1 min | 2 tasks | 1 files |
+| Phase 11-aeo-refinement P02 | 3 min | 2 tasks | 1 files |
+| Phase 11-aeo-refinement P03 | 2 min | 3 tasks | 2 files |
 
 ## Session Continuity
 
-Last session: 2026-05-06T20:30:53.516Z
-Stopped at: Completed 11-01-PLAN.md (Owner-confirmation checklist)
+Last session: 2026-05-06T20:36:36.721Z
+Stopped at: Completed 11-03-PLAN.md (llms.txt + llms-full.txt hours fix and 5-section expansion)
 Resume file: None

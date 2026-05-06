@@ -39,7 +39,7 @@
 
 ### FAQ Data Expansion
 
-- [ ] **AEO-07**: `src/data/faq.json` expands by 13 entries (≥34 total). New entries cover: (1) Williams, AZ proximity, (2) Kaibab Estates West proximity, (3) accepted payment methods, (4) reservation policy, (5) pricing / budget-friendliness, (6) delivery availability, (7) takeout availability, (8) best restaurant on I-40, (9) signature Butter Chicken, (10) signature Tandoori specialties, (11) spice-level customization, (12) family/group dining, (13) one additional voice-friendly entry. Every new entry must pass the existing 50-word voice audit (`scripts/aeo-audit.mjs`).
+- [x] **AEO-07**: `src/data/faq.json` expands by 13 entries (≥34 total). New entries cover: (1) Williams, AZ proximity, (2) Kaibab Estates West proximity, (3) accepted payment methods, (4) reservation policy, (5) pricing / budget-friendliness, (6) delivery availability, (7) takeout availability, (8) best restaurant on I-40, (9) signature Butter Chicken, (10) signature Tandoori specialties, (11) spice-level customization, (12) family/group dining, (13) one additional voice-friendly entry. Every new entry must pass the existing 50-word voice audit (`scripts/aeo-audit.mjs`).
 
 ### GEO Content
 

@@ -127,7 +127,7 @@ Plans:
 - [x] 11-01-PLAN.md — Owner-confirmation checklist (BLOCKING gate for AEO-02 schema enrichment)
 - [x] 11-02-PLAN.md — Fix Monday hours + Kaibab Estates West Place upgrade in RestaurantSchema (AEO-01, AEO-03)
 - [x] 11-03-PLAN.md — Fix Monday hours + add 5 new sections in llms.txt and llms-full.txt (AEO-04)
-- [ ] 11-04-PLAN.md — Expand faq.json by 13 entries to 34+ (AEO-07)
+- [x] 11-04-PLAN.md — Expand faq.json by 13 entries to 34+ (AEO-07)
 - [ ] 11-05-PLAN.md — Add paymentAccepted, acceptsReservations, amenityFeature to RestaurantSchema (AEO-02)
 - [ ] 11-06-PLAN.md — Broaden FAQSchema gate + add visible 8-Q FAQ section + SpeakableSpecification on home (AEO-05, AEO-06)
 - [ ] 11-07-PLAN.md — Create near-williams.astro GEO page + Footer + Lighthouse config (AEO-08)
@@ -150,4 +150,4 @@ Phases execute in numeric order: 7 → 8 → 9 → 10 → 11
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
 | 9. Visual Redesign | v2.0 | 5/5 | Complete    | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 3/3 | Complete    | 2026-03-28 |
-| 11. AEO/GEO Refinement | v3.0 | 3/8 | In Progress|  |
+| 11. AEO/GEO Refinement | v3.0 | 4/8 | In Progress|  |

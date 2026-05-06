@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: AEO/GEO Refinement
 status: executing
-stopped_at: Completed 11-03-PLAN.md (llms.txt + llms-full.txt hours fix and 5-section expansion)
-last_updated: "2026-05-06T20:36:36.727Z"
+stopped_at: Completed 11-04-PLAN.md
+last_updated: "2026-05-06T20:39:25.721Z"
 last_activity: 2026-05-06
 progress:
   total_phases: 5
   completed_phases: 4
   total_plans: 23
-  completed_plans: 18
+  completed_plans: 19
   percent: 87
 ---
 
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-05-05)
 ## Current Position
 
 Phase: 11 (aeo-refinement) — EXECUTING
-Plan: 4 of 8
+Plan: 5 of 8
 Status: Ready to execute
 Last activity: 2026-05-06
 
@@ -63,6 +63,8 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 11-aeo-refinement]: Used owner-confirmed Kaibab direction (~5 miles north of Ash Fork, NOT on I-40) over plan-prescribed 'east on I-40' — owner SUMMARY wins over stale plan text
 - [Phase 11-aeo-refinement]: Walk-in phrasing locked to 'Walk-ins welcome — we do not take reservations.' across llms.txt, llms-full.txt; cross-file 5-section diff = 0 (byte-identical Payment/Reservation/Delivery/Amenities/Dietary blocks)
 - [Phase 11-aeo-refinement]: Wi-Fi explicitly NOT mentioned in llms.txt or llms-full.txt (owner did not tick Wi-Fi in 11-OWNER-CONFIRMATION.md §3); enforces no-hallucination guarantee for AI crawlers
+- [Phase 11-aeo-refinement]: FAQ entry #11 rephrased to 'Can I order mild Indian food at Spice Grill & Bar?' (mild-only angle) to deduplicate against existing entry #12 'Can I customize how spicy my food is...' (full-range customization angle)
+- [Phase 11-aeo-refinement]: Kaibab Estates West FAQ entry framed as 'Spice Grill is south of Kaibab' with directions via 'local road from Kaibab to Ash Fork, then I-40 Exit 146' — honors owner override that Kaibab is north of Ash Fork and NOT on I-40
 
 ### Pending Todos
 
@@ -88,9 +90,10 @@ None.
 | Phase 11-aeo-refinement P01 | 1 min | 2 tasks | 1 files |
 | Phase 11-aeo-refinement P02 | 3 min | 2 tasks | 1 files |
 | Phase 11-aeo-refinement P03 | 2 min | 3 tasks | 2 files |
+| Phase 11-aeo-refinement P04 | 4min | 2 tasks | 1 files |
 
 ## Session Continuity
 
-Last session: 2026-05-06T20:36:36.721Z
-Stopped at: Completed 11-03-PLAN.md (llms.txt + llms-full.txt hours fix and 5-section expansion)
+Last session: 2026-05-06T20:39:25.714Z
+Stopped at: Completed 11-04-PLAN.md
 Resume file: None

@@ -75,7 +75,12 @@ const schema: WithContext<Restaurant> = {
   areaServed: [
     { '@type': 'City', name: 'Ash Fork', '@id': 'https://en.wikipedia.org/wiki/Ash_Fork,_Arizona' },
     { '@type': 'City', name: 'Williams', '@id': 'https://en.wikipedia.org/wiki/Williams,_Arizona' },
-    { '@type': 'City', name: 'Kaibab Estates West' },
+    {
+      '@type': 'Place',
+      name: 'Kaibab Estates West',
+      description:
+        'Residential community approximately 5 miles north of Ash Fork, AZ — within easy driving distance of Spice Grill & Bar.',
+    },
     { '@type': 'City', name: 'Crookton' },
     { '@type': 'City', name: 'Seligman', '@id': 'https://en.wikipedia.org/wiki/Seligman,_Arizona' },
     { '@type': 'City', name: 'Paulden' },

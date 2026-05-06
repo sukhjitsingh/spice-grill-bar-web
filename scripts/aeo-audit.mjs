@@ -29,6 +29,14 @@ try {
         console.log(`✅ [FAQ #${index + 1}] Optimized (${wordCount} words).`);
       }
     });
+
+    // FAQ Count Gate (≥34 entries required for v3.0 AEO coverage)
+    if (faqData.length < 34) {
+      console.error(`❌ FAQ count is ${faqData.length}, expected ≥34`);
+      errors++;
+    } else {
+      console.log(`✅ FAQ count: ${faqData.length} entries (target ≥34).`);
+    }
   } else {
     console.warn('⚠️ FAQ Data not found. Skipping FAQ check.');
   }
@@ -37,12 +45,52 @@ try {
   errors++;
 }
 
-// 2. Check llms.txt Existence (AI Agent Readiness)
+// 2. Check llms.txt Existence + Required Sections (AI Agent Readiness)
 const LLMS_TXT_PATH = path.join(ROOT_DIR, 'public/llms.txt');
 if (fs.existsSync(LLMS_TXT_PATH)) {
   console.log('✅ llms.txt found (AI Agent Discovery enabled).');
+
+  // llms.txt Section Gate (v3.0 AEO refinement — required H2 sections must remain)
+  const llmsContent = fs.readFileSync(LLMS_TXT_PATH, 'utf-8');
+  const requiredSections = [
+    '## Payment Methods',
+    '## Reservation Policy',
+    '## Delivery', // matches "## Delivery & Takeout"
+    '## Amenities',
+    '## Dietary', // matches "## Dietary Options"
+  ];
+  const missing = requiredSections.filter((s) => !llmsContent.includes(s));
+  if (missing.length > 0) {
+    console.error(`❌ llms.txt missing required sections: ${missing.join(', ')}`);
+    errors++;
+  } else {
+    console.log('✅ llms.txt contains all required sections.');
+  }
 } else {
   console.error('❌ llms.txt missing in public/. Required for AI search visibility.');
+  errors++;
+}
+
+// 3. robots.txt AI-bot Allowlist Gate (forward-protection — current file already passes)
+const ROBOTS_PATH = path.join(ROOT_DIR, 'public/robots.txt');
+if (fs.existsSync(ROBOTS_PATH)) {
+  const robotsContent = fs.readFileSync(ROBOTS_PATH, 'utf-8');
+  const requiredBots = ['GPTBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended', 'CCBot'];
+  for (const bot of requiredBots) {
+    // Match `User-agent: <bot>` followed by `Allow: /` (allow blank/comment lines between)
+    const re = new RegExp(
+      `User-agent:\\s*${bot}\\s*\\n(?:#[^\\n]*\\n|\\s*\\n)*Allow:\\s*/`,
+      'i'
+    );
+    if (!re.test(robotsContent)) {
+      console.error(`❌ robots.txt: ${bot} missing Allow: / directive`);
+      errors++;
+    } else {
+      console.log(`✅ robots.txt: ${bot} allowed.`);
+    }
+  }
+} else {
+  console.error('❌ robots.txt missing in public/.');
   errors++;
 }
 

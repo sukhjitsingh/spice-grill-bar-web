@@ -5,7 +5,21 @@ import { MenuSection } from '../components/MenuSection';
 import OrderSection from '../components/OrderSection.astro';
 import OurStorySection from '../components/OurStorySection.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
+import faqData from '../data/faq.json';
 import Layout from '../layouts/Layout.astro';
+
+// Curated 8 entries optimized for highway / voice queries (per Research §"FAQ Inventory Analysis").
+// Indices reference src/data/faq.json (post Plan 11-04, 34 entries):
+//   14 = What are the operating hours for Spice Grill & Bar? (top voice query, 14 words)
+//   2  = Where is Spice Grill & Bar located? (operational anchor)
+//   3  = How far is Spice Grill & Bar from the Grand Canyon? (top proximity)
+//   13 = Does Spice Grill & Bar have vegetarian or vegan options? (dietary voice)
+//   10 = What are the most popular dishes at Spice Grill & Bar? (signature)
+//   1  = Is Spice Grill & Bar a good I-40 food stop in Arizona? (highway hook)
+//   15 = Do you offer takeout or delivery services? (operations)
+//   21 = How far is Spice Grill & Bar from Williams, AZ? (NEW from Plan 11-04)
+const homeFaqIndices = [14, 2, 3, 13, 10, 1, 15, 21];
+const homeFaq = homeFaqIndices.map((i) => faqData[i]).filter((entry) => entry);
 ---
 
 <Layout
@@ -17,7 +31,38 @@ import Layout from '../layouts/Layout.astro';
     <OurStorySection />
     <ReviewsSection />
     <MenuSection client:visible={{ rootMargin: '200px' }} />
+    <section id="home-faq" class="py-20 px-6 bg-surface-container-low">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-display-md text-on-surface text-center mb-12">
+          Common <span class="text-primary-container">Questions</span>
+        </h2>
+        <div class="space-y-4">
+          {
+            homeFaq.map((item) => (
+              <div class="bg-surface-container p-8 rounded-2xl">
+                <h3 class="text-heading-md text-on-surface mb-3">{item.question}</h3>
+                <p class="text-body-md text-on-surface-variant">{item.answer}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
     <OrderSection />
     <LocationSection />
   </main>
+
+  <!-- Speakable schema markup — anchors voice extraction to the visible FAQ DOM.
+       Selectors use ID + tag (stable across Tailwind v4 utility renames). -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Spice Grill & Bar",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["#home-faq h3", "#home-faq p"]
+      }
+    }
+  </script>
 </Layout>

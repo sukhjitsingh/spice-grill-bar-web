@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: AEO/GEO Refinement
-status: planning
-stopped_at: Phase 11 plans pending
-last_updated: "2026-05-05T00:00:00.000Z"
-last_activity: 2026-05-05
+status: executing
+stopped_at: Completed 11-01-PLAN.md (Owner-confirmation checklist)
+last_updated: "2026-05-06T20:30:53.521Z"
+last_activity: 2026-05-06
 progress:
-  total_phases: 1
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  total_phases: 5
+  completed_phases: 4
+  total_plans: 23
+  completed_plans: 16
+  percent: 87
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-05)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Phase 11 — aeo-refinement (v3.0)
+**Current focus:** Phase 11 — aeo-refinement
 
 ## Current Position
 
-Phase: 11
-Plan: Not started
-Status: Planning Phase 11
-Last activity: 2026-03-28 - Completed quick task 260328-hhm: Remove unused DropdownMenu component and @radix-ui/react-dropdown-menu dependency
+Phase: 11 (aeo-refinement) — EXECUTING
+Plan: 2 of 8
+Status: Ready to execute
+Last activity: 2026-05-06
 
 Progress: [████████░░] 87%
 
@@ -56,6 +56,9 @@ Decisions are logged in PROJECT.md Key Decisions table.
 - [Phase 10]: playwright and glob installed as explicit devDependencies for scripts/ imports
 - [Phase 10-quality-assurance]: data-radix-menu-content used for DropdownMenu selector (Radix v2 shared menu primitive — not data-radix-dropdown-menu-content)
 - [Phase 10-quality-assurance]: Sheet close button targeted via sheetContent.locator('button').first() — Radix Dialog.Close has no data-radix-dialog-close attribute at runtime
+- [Phase 11-aeo-refinement]: Walk-in only reservation policy locked (acceptsReservations: false in RestaurantSchema)
+- [Phase 11-aeo-refinement]: Wi-Fi NOT confirmed by owner — exclude from amenityFeature[] in Plan 11-05 and any FAQ/llms.txt content
+- [Phase 11-aeo-refinement]: Kaibab Estates West direction corrected: ~5 mi NORTH of Ash Fork (NOT east on I-40) — overrides 11-CONTEXT.md and 11-RESEARCH.md; downstream plans 11-04 and 11-07 must honor
 
 ### Pending Todos
 
@@ -78,9 +81,10 @@ None.
 | 260401-go1 | Fix Astro image issues: Hero+OurStory to Picture (AVIF+WebP), GoogleMap CLS fix | 2026-04-01 | 6713f13 | Verified | [260401-go1-fix-astro-image-issues-from-astro-images](./quick/260401-go1-fix-astro-image-issues-from-astro-images/) |
 | 260401-ihx | Fix framework audit issues: ModeToggle flash, GoogleMap rootMargin, FAQ heading skip, footer year, menu keys | 2026-04-01 | edf1d31 | Verified | [260401-ihx-fix-astro-framework-audit-issues-modetog](./quick/260401-ihx-fix-astro-framework-audit-issues-modetog/) |
 | 260401-rmp | Tone down cta-gradient to subtle 20% warm hint using color-mix | 2026-04-01 | 1eb23c8 | Needs Review | [260401-rmp-restore-order-section-background-image-f](./quick/260401-rmp-restore-order-section-background-image-f/) |
+| Phase 11-aeo-refinement P01 | 1 min | 2 tasks | 1 files |
 
 ## Session Continuity
 
-Last session: 2026-04-02T02:53:39Z
-Stopped at: Completed quick task 260401-rmp (Needs Review — visual check required)
+Last session: 2026-05-06T20:30:53.516Z
+Stopped at: Completed 11-01-PLAN.md (Owner-confirmation checklist)
 Resume file: None

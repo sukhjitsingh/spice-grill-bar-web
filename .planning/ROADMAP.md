@@ -124,7 +124,7 @@ Plans:
   6. `npm run test:aeo` fails when: FAQ count drops below 34, `llms.txt` is missing required section headers (Payment, Reservations, Delivery, Amenities, Dietary), or `robots.txt` lacks `Allow: /` for `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`
 **Plans**: 8 plans
 Plans:
-- [ ] 11-01-PLAN.md — Owner-confirmation checklist (BLOCKING gate for AEO-02 schema enrichment)
+- [x] 11-01-PLAN.md — Owner-confirmation checklist (BLOCKING gate for AEO-02 schema enrichment)
 - [ ] 11-02-PLAN.md — Fix Monday hours + Kaibab Estates West Place upgrade in RestaurantSchema (AEO-01, AEO-03)
 - [ ] 11-03-PLAN.md — Fix Monday hours + add 5 new sections in llms.txt and llms-full.txt (AEO-04)
 - [ ] 11-04-PLAN.md — Expand faq.json by 13 entries to 34+ (AEO-07)
@@ -150,4 +150,4 @@ Phases execute in numeric order: 7 → 8 → 9 → 10 → 11
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
 | 9. Visual Redesign | v2.0 | 5/5 | Complete    | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 3/3 | Complete    | 2026-03-28 |
-| 11. AEO/GEO Refinement | v3.0 | 0/8 | Active | — |
+| 11. AEO/GEO Refinement | v3.0 | 1/8 | In Progress|  |

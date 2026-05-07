@@ -34,8 +34,8 @@
 
 ### Home Page AEO
 
-- [ ] **AEO-05**: `src/layouts/Layout.astro` injects `FAQSchema` on the home page (`/`) in addition to `/faq/`. The current `currentPath.startsWith('/faq')` gate is broadened so AI crawlers see Q&A on the landing page.
-- [ ] **AEO-06**: `src/pages/index.astro` renders a visible 8-question FAQ section in the page DOM. The section is annotated with a `SpeakableSpecification` schema block targeting the question-and-answer DOM nodes (CSS selectors or XPath) for Google voice extraction.
+- [x] **AEO-05**: `src/layouts/Layout.astro` injects `FAQSchema` on the home page (`/`) in addition to `/faq/`. The current `currentPath.startsWith('/faq')` gate is broadened so AI crawlers see Q&A on the landing page.
+- [x] **AEO-06**: `src/pages/index.astro` renders a visible 8-question FAQ section in the page DOM. The section is annotated with a `SpeakableSpecification` schema block targeting the question-and-answer DOM nodes (CSS selectors or XPath) for Google voice extraction.
 
 ### FAQ Data Expansion
 
@@ -43,11 +43,11 @@
 
 ### GEO Content
 
-- [ ] **AEO-08**: A new page `src/pages/near-williams.astro` exists, mirrors the `near-grand-canyon.astro` template (answer-first H1, speakable lead, standalone Exit 146 sentence, "Why Stop Here" / "Distance from Nearby Cities" / "What to Order" sections, breadcrumb), targets Williams tourists AND Kaibab Estates West residents, and is added to `.lighthouserc.json` for Lighthouse CI coverage.
+- [x] **AEO-08**: A new page `src/pages/near-williams.astro` exists, mirrors the `near-grand-canyon.astro` template (answer-first H1, speakable lead, standalone Exit 146 sentence, "Why Stop Here" / "Distance from Nearby Cities" / "What to Order" sections, breadcrumb), targets Williams tourists AND Kaibab Estates West residents, and is added to `.lighthouserc.json` for Lighthouse CI coverage.
 
 ### Audit Strengthening
 
-- [ ] **AEO-09**: `scripts/aeo-audit.mjs` adds gates that fail (`process.exit(1)`) when:
+- [x] **AEO-09**: `scripts/aeo-audit.mjs` adds gates that fail (`process.exit(1)`) when:
   - FAQ count in `faq.json` < 34
   - `public/llms.txt` is missing required section headers (Payment Methods, Reservations, Delivery, Amenities, Dietary)
   - `public/robots.txt` does not contain `Allow: /` for major AI bots: `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`

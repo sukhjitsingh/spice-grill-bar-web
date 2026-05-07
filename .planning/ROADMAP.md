@@ -109,7 +109,7 @@ Plans:
 
 #### Phases
 
-- [ ] **Phase 11: AEO/GEO Refinement** — Fix Monday hours data drift, enrich RestaurantSchema (payment/reservations/amenities), expand `llms.txt` files, add home-page FAQ + SpeakableSpecification, expand FAQ data to ≥34 entries, add `/near-williams/` GEO page, strengthen `aeo-audit.mjs`
+- [x] **Phase 11: AEO/GEO Refinement** — Fix Monday hours data drift, enrich RestaurantSchema (payment/reservations/amenities), expand `llms.txt` files, add home-page FAQ + SpeakableSpecification, expand FAQ data to ≥34 entries, add `/near-williams/` GEO page, strengthen `aeo-audit.mjs` (completed 2026-05-07)
 
 ### Phase 11: AEO/GEO Refinement
 **Goal**: AI assistants (ChatGPT, Gemini, Perplexity, Google Assistant) return accurate, complete answers about Spice Grill & Bar — Monday hours match across schema/llms.txt/llms-full.txt; structured data exposes payment, reservation, amenity, and dietary signals; the home page emits FAQ + SpeakableSpecification schema for voice search; FAQ data covers ≥34 highway/proximity/operations questions including Williams and Kaibab Estates West; a dedicated `/near-williams/` GEO page targets Williams tourists and Kaibab residents; and `npm run test:aeo` enforces these gates so future drift fails CI
@@ -128,10 +128,10 @@ Plans:
 - [x] 11-02-PLAN.md — Fix Monday hours + Kaibab Estates West Place upgrade in RestaurantSchema (AEO-01, AEO-03)
 - [x] 11-03-PLAN.md — Fix Monday hours + add 5 new sections in llms.txt and llms-full.txt (AEO-04)
 - [x] 11-04-PLAN.md — Expand faq.json by 13 entries to 34+ (AEO-07)
-- [ ] 11-05-PLAN.md — Add paymentAccepted, acceptsReservations, amenityFeature to RestaurantSchema (AEO-02)
-- [ ] 11-06-PLAN.md — Broaden FAQSchema gate + add visible 8-Q FAQ section + SpeakableSpecification on home (AEO-05, AEO-06)
-- [ ] 11-07-PLAN.md — Create near-williams.astro GEO page + Footer + Lighthouse config (AEO-08)
-- [ ] 11-08-PLAN.md — Strengthen aeo-audit.mjs with FAQ count + llms.txt sections + robots.txt AI-bot gates (AEO-09)
+- [x] 11-05-PLAN.md — Add paymentAccepted, acceptsReservations, amenityFeature to RestaurantSchema (AEO-02)
+- [x] 11-06-PLAN.md — Broaden FAQSchema gate + add visible 8-Q FAQ section + SpeakableSpecification on home (AEO-05, AEO-06)
+- [x] 11-07-PLAN.md — Create near-williams.astro GEO page + Footer + Lighthouse config (AEO-08)
+- [x] 11-08-PLAN.md — Strengthen aeo-audit.mjs with FAQ count + llms.txt sections + robots.txt AI-bot gates (AEO-09)
 
 ## Progress
 
@@ -150,4 +150,4 @@ Phases execute in numeric order: 7 → 8 → 9 → 10 → 11
 | 8. Token System | v2.0 | 5/5 | Complete   | 2026-03-26 |
 | 9. Visual Redesign | v2.0 | 5/5 | Complete    | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 3/3 | Complete    | 2026-03-28 |
-| 11. AEO/GEO Refinement | v3.0 | 4/8 | In Progress|  |
+| 11. AEO/GEO Refinement | v3.0 | 8/8 | Complete   | 2026-05-07 |

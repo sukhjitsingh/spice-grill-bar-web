@@ -16,13 +16,12 @@ interface MenuCategory {
 const menu = menuData as MenuCategory[];
 
 export function priceFor(name: string): number {
-  for (const cat of menu) {
-    const item = cat.items.find((i) => i.name === name);
-    if (item) return item.price;
-  }
+  const item = menu.flatMap((cat) => cat.items).find((i) => i.name === name);
+  if (item) return item.price;
+
   throw new Error(
     `Menu item not found in src/data/menu.json: "${name}". ` +
-      `If the item was renamed or removed, update the caller (likely a featured-dish list on a GEO page).`
+      'If the item was renamed or removed, update the caller (likely a featured-dish list on a GEO page).'
   );
 }
 

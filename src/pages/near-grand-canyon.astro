@@ -1,4 +1,5 @@
 ---
+import { formatPrice } from '@/lib/menu';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -90,7 +91,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="bg-surface-container p-6 rounded-2xl">
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-heading-md text-on-surface">Fish Pakora</h3>
-              <span class="text-primary-container font-semibold">$11.99</span>
+              <span class="text-primary-container font-semibold">${formatPrice('Fish Pakora')}</span>
             </div>
             <p class="text-on-surface-variant text-sm leading-relaxed">
               Marinated fish fried in crispy chickpea batter — a road-trip crowd favorite.
@@ -99,7 +100,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="bg-surface-container p-6 rounded-2xl">
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-heading-md text-on-surface">Butter Chicken</h3>
-              <span class="text-primary-container font-semibold">$17.99</span>
+              <span class="text-primary-container font-semibold">${formatPrice('Butter Chicken')}</span>
             </div>
             <p class="text-on-surface-variant text-sm leading-relaxed">
               Rich butter-cream and tomato sauce with tender chicken thighs.
@@ -108,7 +109,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="bg-surface-container p-6 rounded-2xl">
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-heading-md text-on-surface">Shahi Paneer</h3>
-              <span class="text-primary-container font-semibold">$16.99</span>
+              <span class="text-primary-container font-semibold">${formatPrice('Shahi Paneer')}</span>
             </div>
             <p class="text-on-surface-variant text-sm leading-relaxed">
               Cottage cheese in savory buttery cream sauce — a vegetarian favorite.
@@ -117,7 +118,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="bg-surface-container p-6 rounded-2xl">
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-heading-md text-on-surface">Chicken Biryani</h3>
-              <span class="text-primary-container font-semibold">$18.99</span>
+              <span class="text-primary-container font-semibold">${formatPrice('Chicken Biryani')}</span>
             </div>
             <p class="text-on-surface-variant text-sm leading-relaxed">
               Fragrant basmati rice sautéed with chicken and aromatic spices.
@@ -128,7 +129,7 @@ import Layout from '../layouts/Layout.astro';
           >
             <div class="flex items-start justify-between mb-2">
               <h3 class="text-heading-md text-on-surface">Garlic Naan</h3>
-              <span class="text-primary-container font-semibold">$4.99</span>
+              <span class="text-primary-container font-semibold">${formatPrice('Garlic Naan')}</span>
             </div>
             <p class="text-on-surface-variant text-sm leading-relaxed">
               Freshly baked and drizzled with butter and garlic.

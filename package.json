@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "prebuild": "node scripts/generate-llms-full.mjs",
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "astro": "astro",

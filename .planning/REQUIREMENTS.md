@@ -1,79 +1,76 @@
-# Requirements — v2.0 UI Facelift: The Radiant Sommelier
+# Requirements — v3.0 AEO/GEO Refinement
 
-## Infrastructure
+**Defined:** 2026-05-05
+**Core Value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
 
-- [x] **INFRA-01**: Site builds and runs on TailwindCSS v4 with `@tailwindcss/vite` plugin replacing `@astrojs/tailwind`
-- [x] **INFRA-02**: CSS configuration uses `@import "tailwindcss"` and `@theme` directive, `tailwind.config.mjs` deleted
-- [x] **INFRA-03**: All v4 breaking utility renames applied (`shadow-sm`→`shadow-xs`, `outline-none`→`outline-hidden`, `ring`→`ring-3`, `!` position flipped)
-- [x] **INFRA-04**: Dark mode works correctly with `@custom-variant dark (&:where(.dark, .dark *))` syntax
-- [x] **INFRA-05**: `autoprefixer` removed (Tailwind v4 Lightning CSS handles prefixing)
-- [x] **INFRA-06**: `tailwindcss-animate` replaced with `tw-animate-css`, Sheet/DropdownMenu/MobileActionButtons verified functional
+> Past milestone requirements archived under `.planning/milestones/v2.0-REQUIREMENTS.md` and `.planning/milestones/v1.0-REQUIREMENTS.md`.
 
-## Token System
+## Confirmed Business Data (source of truth — v3.0 deltas only)
 
-- [x] **TOKEN-01**: Surface hierarchy tokens defined (5 depth levels: dim, container-low, container, container-high, bright) for dark mode per DESIGN.md
-- [x] **TOKEN-02**: Light mode surface hierarchy tokens defined as warm-tint inversions of dark palette
-- [x] **TOKEN-03**: Shadcn semantic tokens (primary, card, muted, accent, etc.) remapped to DESIGN.md colors via hybrid `@theme inline` pattern
-- [x] **TOKEN-04**: Font families registered in `@theme` — `--font-sans: "Inter"`, `--font-display: "Manrope"`
-- [x] **TOKEN-05**: All CSS variables use full color values (not bare HSL triples) compatible with Tailwind v4
+| Field                | Value                                                                                          |
+| -------------------- | ---------------------------------------------------------------------------------------------- |
+| Hours (corrected)    | Monday–Thursday: 8:00 AM – 9:00 PM / Friday–Sunday: 8:00 AM – 10:00 PM (Monday is OPEN, per recent menu/hours commit `28501bb` and current `faq.json`) |
+| Williams distance    | 18 miles east on I-40 (~18 minutes) — confirmed in existing FAQ entries                       |
+| Kaibab Estates West  | ~5 miles east of Ash Fork on I-40 (~6 minutes); residential community — distance to be confirmed in CONTEXT |
+| Payment methods      | TBD — confirm in CONTEXT (typical restaurant set: cash, Visa/MC/Amex/Discover, debit, Apple Pay, Google Pay) |
+| Reservations         | TBD — confirm in CONTEXT (walk-in vs phone reservation policy)                                 |
+| Delivery / Takeout   | Pickup (Toast Online), Curbside, Dine-in confirmed; third-party delivery TBD                  |
+| Amenities            | TBD — confirm in CONTEXT (parking, wheelchair access, seating type, Wi-Fi, family-friendly)   |
+| Dietary              | Vegetarian-friendly + vegan options confirmed (existing FAQ entry); GF options TBD            |
 
-## Visual Redesign
+> The planner must NOT invent payment methods, reservation policy, or amenity details. Any "TBD" field above must either be answered by the user during CONTEXT gathering or marked as "verify with owner" in the plan.
 
-- [x] **VISUAL-01**: Manrope (display/headlines) + Inter (body/labels) replace Open Sans + Playfair Display across all 4 pages
-- [x] **VISUAL-02**: Glassmorphism utilities updated per DESIGN.md — `backdrop-blur(20px-32px)`, tinted shadows using `surface_container_lowest`, budgeted to Header/Sheet/Dropdown only
-- [x] **VISUAL-03**: "No-Line Rule" enforced — structural borders replaced with background tonal shifts using surface hierarchy
-- [x] **VISUAL-04**: Editorial typography scale applied — `display-lg` (3.5rem) for hero moments, dramatic scale shifts per DESIGN.md
-- [x] **VISUAL-05**: `.glass` and `.glass-card` utilities migrated to `@utility` directive syntax
-- [x] **VISUAL-06**: Home page sections redesigned (Hero, OurStory, Reviews, Menu, Order, Location) following DESIGN.md
-- [x] **VISUAL-07**: FAQ page redesigned following DESIGN.md surface hierarchy and typography
-- [x] **VISUAL-08**: Near Grand Canyon page redesigned following DESIGN.md
-- [x] **VISUAL-09**: Directions page redesigned following DESIGN.md
-- [x] **VISUAL-10**: Primary orange `#FF4B12` used sparingly as "laser not floodlight" per DESIGN.md directive
+## v3.0 Requirements
 
-## Quality
+### Schema Enrichment & Hours Fix
 
-- [x] **QA-01**: Lighthouse CI passes on all 4 pages (LCP < 4s, TBT < 600ms, CLS < 0.1, Accessibility ≥ 90, SEO ≥ 90)
-- [x] **QA-02**: Both light and dark modes render correctly with WCAG AA contrast ratios
-- [x] **QA-03**: `tw-animate-css` animations verified in Sheet, DropdownMenu, and MobileActionButtons components
+- [x] **AEO-01**: `RestaurantSchema.astro` `openingHoursSpecification` includes Monday opening hours (`opens: "08:00"` / `closes: "21:00"`) and Monday is no longer omitted/closed. Drift across `RestaurantSchema.astro`, `public/llms.txt`, and `public/llms-full.txt` is eliminated.
+- [x] **AEO-02**: `RestaurantSchema.astro` adds `paymentAccepted` (string list per schema.org), `acceptsReservations` (boolean), and `amenityFeature` (`LocationFeatureSpecification[]`) — values sourced from confirmed business data
+- [x] **AEO-03**: `RestaurantSchema.astro` `areaServed` includes a `Kaibab Estates West` entry (verify presence; promote to `Place` with description if missing)
 
-## Future Requirements
+### AI-Readable File Expansion
 
-- [ ] Additional content pages (`/about/`, `/route-66-dining/`) with DESIGN.md styling (deferred from v1.0 Active)
-- [ ] Fix `servesCuisine` in RestaurantSchema (deferred from v1.0 Active)
-- [ ] Halal messaging revision (deferred from v1.0 Active, wording TBD)
+- [x] **AEO-04**: `public/llms.txt` and `public/llms-full.txt` show Monday as OPEN (8:00 AM – 9:00 PM) under Operating Hours, and add new sections for Payment Methods, Reservation Policy, Delivery & Takeout, Amenities, and Dietary Options. The bundled FAQ block in `llms.txt` reflects the corrected hours.
+
+### Home Page AEO
+
+- [x] **AEO-05**: `src/layouts/Layout.astro` injects `FAQSchema` on the home page (`/`) in addition to `/faq/`. The current `currentPath.startsWith('/faq')` gate is broadened so AI crawlers see Q&A on the landing page.
+- [x] **AEO-06**: `src/pages/index.astro` renders a visible 8-question FAQ section in the page DOM. The section is annotated with a `SpeakableSpecification` schema block targeting the question-and-answer DOM nodes (CSS selectors or XPath) for Google voice extraction.
+
+### FAQ Data Expansion
+
+- [x] **AEO-07**: `src/data/faq.json` expands by 13 entries (≥34 total). New entries cover: (1) Williams, AZ proximity, (2) Kaibab Estates West proximity, (3) accepted payment methods, (4) reservation policy, (5) pricing / budget-friendliness, (6) delivery availability, (7) takeout availability, (8) best restaurant on I-40, (9) signature Butter Chicken, (10) signature Tandoori specialties, (11) spice-level customization, (12) family/group dining, (13) one additional voice-friendly entry. Every new entry must pass the existing 50-word voice audit (`scripts/aeo-audit.mjs`).
+
+### GEO Content
+
+- [x] **AEO-08**: A new page `src/pages/near-williams.astro` exists, mirrors the `near-grand-canyon.astro` template (answer-first H1, speakable lead, standalone Exit 146 sentence, "Why Stop Here" / "Distance from Nearby Cities" / "What to Order" sections, breadcrumb), targets Williams tourists AND Kaibab Estates West residents, and is added to `.lighthouserc.json` for Lighthouse CI coverage.
+
+### Audit Strengthening
+
+- [x] **AEO-09**: `scripts/aeo-audit.mjs` adds gates that fail (`process.exit(1)`) when:
+  - FAQ count in `faq.json` < 34
+  - `public/llms.txt` is missing required section headers (Payment Methods, Reservations, Delivery, Amenities, Dietary)
+  - `public/robots.txt` does not contain `Allow: /` for major AI bots: `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`
 
 ## Out of Scope
 
-- New page routes or content pages — this milestone is visual redesign only
+- Visual redesign work — v2.0 is shipped, do not touch tokens, glass budget, or typography utilities
 - Online ordering system changes — Toast integration unchanged
-- Schema/structured data modifications — v1.0 schema work is complete
-- Server-side rendering — site stays fully static
+- Halal messaging revision (deferred from v1.0 Active, wording still TBD)
+- `/about/` and `/route-66-dining/` content pages (deferred from v1.0 Active, separate future phase)
+- Apple Maps Business Connect work — manual, off-site
+- Fix `servesCuisine` in `RestaurantSchema` to remove beverage types (deferred from v1.0 Active — separate quick task)
 
 ## Traceability
 
 | REQ-ID | Phase | Plan | Status |
 | --- | --- | --- | --- |
-| INFRA-01 | Phase 7 | 07-01 | Complete |
-| INFRA-02 | Phase 7 | 07-01 | Complete |
-| INFRA-03 | Phase 7 | 07-01 | Complete |
-| INFRA-04 | Phase 7 | 07-01, 07-02 | Complete |
-| INFRA-05 | Phase 7 | 07-01 | Complete |
-| INFRA-06 | Phase 7 | 07-01, 07-02 | Complete |
-| TOKEN-01 | Phase 8 | 08-01 | Complete |
-| TOKEN-02 | Phase 8 | 08-01 | Complete |
-| TOKEN-03 | Phase 8 | 08-02, 08-03, 08-04, 08-05 | Complete |
-| TOKEN-04 | Phase 8 | 08-01, 08-04 | Complete |
-| TOKEN-05 | Phase 8 | 08-01 | Complete |
-| VISUAL-01 | Phase 9 | 09-01 | Complete |
-| VISUAL-02 | Phase 9 | 09-04 | Complete |
-| VISUAL-03 | Phase 9 | 09-03, 09-04 | Complete |
-| VISUAL-04 | Phase 9 | 09-01 | Complete |
-| VISUAL-05 | Phase 9 | 09-01 | Complete |
-| VISUAL-06 | Phase 9 | 09-02, 09-03, 09-04 | Complete |
-| VISUAL-07 | Phase 9 | 09-05 | Complete |
-| VISUAL-08 | Phase 9 | 09-05 | Complete |
-| VISUAL-09 | Phase 9 | 09-05 | Complete |
-| VISUAL-10 | Phase 9 | 09-02 | Complete |
-| QA-01 | Phase 10 | 10-01, 10-02 | Complete |
-| QA-02 | Phase 10 | 10-01, 10-02 | Complete |
-| QA-03 | Phase 10 | 10-01, 10-03 | Complete |
+| AEO-01 | Phase 11 | TBD | Active |
+| AEO-02 | Phase 11 | TBD | Active |
+| AEO-03 | Phase 11 | TBD | Active |
+| AEO-04 | Phase 11 | TBD | Active |
+| AEO-05 | Phase 11 | TBD | Active |
+| AEO-06 | Phase 11 | TBD | Active |
+| AEO-07 | Phase 11 | TBD | Active |
+| AEO-08 | Phase 11 | TBD | Active |
+| AEO-09 | Phase 11 | TBD | Active |

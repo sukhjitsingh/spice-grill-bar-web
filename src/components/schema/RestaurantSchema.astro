@@ -33,6 +33,7 @@ const schema: WithContext<Restaurant> = {
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: [
+        'https://schema.org/Monday',
         'https://schema.org/Tuesday',
         'https://schema.org/Wednesday',
         'https://schema.org/Thursday',
@@ -74,7 +75,12 @@ const schema: WithContext<Restaurant> = {
   areaServed: [
     { '@type': 'City', name: 'Ash Fork', '@id': 'https://en.wikipedia.org/wiki/Ash_Fork,_Arizona' },
     { '@type': 'City', name: 'Williams', '@id': 'https://en.wikipedia.org/wiki/Williams,_Arizona' },
-    { '@type': 'City', name: 'Kaibab Estates West' },
+    {
+      '@type': 'Place',
+      name: 'Kaibab Estates West',
+      description:
+        'Residential community approximately 5 miles north of Ash Fork, AZ — within easy driving distance of Spice Grill & Bar.',
+    },
     { '@type': 'City', name: 'Crookton' },
     { '@type': 'City', name: 'Seligman', '@id': 'https://en.wikipedia.org/wiki/Seligman,_Arizona' },
     { '@type': 'City', name: 'Paulden' },
@@ -96,6 +102,26 @@ const schema: WithContext<Restaurant> = {
     bestRating: 5,
     worstRating: 1,
   },
+  paymentAccepted:
+    'Cash, Visa, Mastercard, American Express, Discover, Debit cards, Apple Pay, Google Pay',
+  acceptsReservations: false,
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Free on-site parking', value: true },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'RV and truck parking nearby',
+      value: true,
+    },
+    {
+      '@type': 'LocationFeatureSpecification',
+      name: 'Wheelchair accessible entrance',
+      value: true,
+    },
+    { '@type': 'LocationFeatureSpecification', name: 'Indoor seating', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Outdoor seating', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Family-friendly', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Full bar', value: true },
+  ],
   hasMap: 'https://maps.app.goo.gl/q2EJFMbMRaysU6vH8',
   potentialAction: {
     '@type': 'OrderAction',

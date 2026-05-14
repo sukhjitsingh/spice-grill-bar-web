@@ -64,10 +64,10 @@
 
 | REQ-ID | Phase | Status |
 |--------|-------|--------|
-| AEO-10 | TBD | Pending roadmap |
-| AEO-11 | TBD | Pending roadmap |
-| AEO-12 | TBD | Pending roadmap |
-| AEO-13 | TBD | Pending roadmap |
-| AEO-14 | TBD | Pending roadmap |
-| AEO-15 | TBD | Pending roadmap |
-| AEO-16 | TBD | Pending roadmap |
+| AEO-10 | Phase 13 | Pending |
+| AEO-11 | Phase 12 | Pending |
+| AEO-12 | Phase 14 | Pending |
+| AEO-13 | Phase 14 | Pending |
+| AEO-14 | Phase 15 | Pending |
+| AEO-15 | Phase 15 | Pending |
+| AEO-16 | Phase 12 | Pending |

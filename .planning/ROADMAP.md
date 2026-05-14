@@ -63,7 +63,10 @@ Full details: `.planning/milestones/v3.0-ROADMAP.md` | Audit: `.planning/milesto
   3. `Layout.astro` `<head>` contains `<link rel="alternate" type="text/plain" href="/llms.txt" />` (not `rel="help"`)
   4. `Layout.astro` `<head>` contains a second `<link rel="alternate" type="text/plain" href="/llms-full.txt" />`
   5. Google Rich Results Test shows no entity collision warning; Lighthouse SEO score does not degrade
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 12-01-PLAN.md — RestaurantSchema + OrganizationSchema @id fragments and sameAs canonicalization (AEO-11)
+- [ ] 12-02-PLAN.md — Layout.astro AI crawler discovery links + aeo-audit.mjs @id fragment gate (AEO-16)
 
 ### Phase 13: FAQPage Schema Compliance
 **Goal**: The home page FAQPage JSON-LD matches exactly the 8 questions visible in the DOM, eliminating the Google policy violation caused by the schema/DOM mismatch
@@ -113,7 +116,7 @@ Full details: `.planning/milestones/v3.0-ROADMAP.md` | Audit: `.planning/milesto
 | 9. Visual Redesign | v2.0 | 5/5 | Complete | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 3/3 | Complete | 2026-03-28 |
 | 11. AEO/GEO Refinement | v3.0 | 8/8 | Complete | 2026-05-07 |
-| 12. Schema Entity Disambiguation | v3.1 | 0/TBD | Not started | - |
+| 12. Schema Entity Disambiguation | v3.1 | 0/2 | Not started | - |
 | 13. FAQPage Schema Compliance | v3.1 | 0/TBD | Not started | - |
 | 14. Speakable Coverage | v3.1 | 0/TBD | Not started | - |
 | 15. Voice Directions + Content Polish | v3.1 | 0/TBD | Not started | - |

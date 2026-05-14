@@ -1,76 +1,73 @@
-# Requirements — v3.0 AEO/GEO Refinement
+# Requirements — v3.1 AEO Gap Fixes
 
-**Defined:** 2026-05-05
-**Core Value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
+**Defined:** 2026-05-13
+**Core Value:** AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
 
-> Past milestone requirements archived under `.planning/milestones/v2.0-REQUIREMENTS.md` and `.planning/milestones/v1.0-REQUIREMENTS.md`.
+> Past milestone requirements archived under `.planning/milestones/v3.0-REQUIREMENTS.md`, `.planning/milestones/v2.0-REQUIREMENTS.md`, and `.planning/milestones/v1.0-REQUIREMENTS.md`.
 
-## Confirmed Business Data (source of truth — v3.0 deltas only)
+## Research Summary
 
-| Field                | Value                                                                                          |
-| -------------------- | ---------------------------------------------------------------------------------------------- |
-| Hours (corrected)    | Monday–Thursday: 8:00 AM – 9:00 PM / Friday–Sunday: 8:00 AM – 10:00 PM (Monday is OPEN, per recent menu/hours commit `28501bb` and current `faq.json`) |
-| Williams distance    | 18 miles east on I-40 (~18 minutes) — confirmed in existing FAQ entries                       |
-| Kaibab Estates West  | ~5 miles east of Ash Fork on I-40 (~6 minutes); residential community — distance to be confirmed in CONTEXT |
-| Payment methods      | TBD — confirm in CONTEXT (typical restaurant set: cash, Visa/MC/Amex/Discover, debit, Apple Pay, Google Pay) |
-| Reservations         | TBD — confirm in CONTEXT (walk-in vs phone reservation policy)                                 |
-| Delivery / Takeout   | Pickup (Toast Online), Curbside, Dine-in confirmed; third-party delivery TBD                  |
-| Amenities            | TBD — confirm in CONTEXT (parking, wheelchair access, seating type, Wi-Fi, family-friendly)   |
-| Dietary              | Vegetarian-friendly + vegan options confirmed (existing FAQ entry); GF options TBD            |
+**Stack:** Zero new npm packages required. schema-dts v1.1.5 (installed) covers `HowTo`, `HowToStep`, `@id`, and `sameAs` on Restaurant without any workaround or upgrade.
 
-> The planner must NOT invent payment methods, reservation policy, or amenity details. Any "TBD" field above must either be answered by the user during CONTEXT gathering or marked as "verify with owner" in the plan.
+**Key research findings:**
+- FAQPage schema/DOM mismatch on `/` is a Google policy violation — fix must ship as a single atomic commit (Layout.astro + index.astro together)
+- HowTo rich results were deprecated September 2023 — HowTo schema value is AEO/voice-only (AI engines still parse it)
+- `@id` fragments must be distinct: `#restaurant` for RestaurantSchema, `#organization` for OrganizationSchema — shared bare domain `@id` causes graph conflict
+- Speakable on `/faq/` should target a short intro paragraph (not the full 68-element Q&A grid) to stay within the 20-30 second voice window
+- Class-based speakable selectors for per-city directions are safer than compound ID+descendant CSS selectors
+- GBP CID URL for `sameAs` requires manual lookup (expand the `maps.app.goo.gl` short link)
 
-## v3.0 Requirements
+## v3.1 Requirements
 
-### Schema Enrichment & Hours Fix
+### Schema Compliance
 
-- [x] **AEO-01**: `RestaurantSchema.astro` `openingHoursSpecification` includes Monday opening hours (`opens: "08:00"` / `closes: "21:00"`) and Monday is no longer omitted/closed. Drift across `RestaurantSchema.astro`, `public/llms.txt`, and `public/llms-full.txt` is eliminated.
-- [x] **AEO-02**: `RestaurantSchema.astro` adds `paymentAccepted` (string list per schema.org), `acceptsReservations` (boolean), and `amenityFeature` (`LocationFeatureSpecification[]`) — values sourced from confirmed business data
-- [x] **AEO-03**: `RestaurantSchema.astro` `areaServed` includes a `Kaibab Estates West` entry (verify presence; promote to `Place` with description if missing)
+- [ ] **AEO-10**: `src/layouts/Layout.astro` FAQSchema gate is narrowed from `currentPath === '/'` to `/faq/` only. `src/pages/index.astro` gains an inline `FAQPage` schema block built from `faqData[homeFaqIndices]` at build time, containing exactly the 8 questions rendered in the visible DOM. Both files change in a single atomic commit to prevent a duplicate-or-missing schema window.
 
-### AI-Readable File Expansion
+- [ ] **AEO-11**: `src/components/schema/RestaurantSchema.astro` adds `'@id': 'https://spicegrillbar66.com/#restaurant'` and `sameAs` (same 5 URLs as OrganizationSchema: Google Maps, Yelp, TripAdvisor, Facebook, Instagram). `src/components/schema/OrganizationSchema.astro` adds `'@id': 'https://spicegrillbar66.com/#organization'` to prevent entity graph collision between the two schemas.
 
-- [x] **AEO-04**: `public/llms.txt` and `public/llms-full.txt` show Monday as OPEN (8:00 AM – 9:00 PM) under Operating Hours, and add new sections for Payment Methods, Reservation Policy, Delivery & Takeout, Amenities, and Dietary Options. The bundled FAQ block in `llms.txt` reflects the corrected hours.
+### Speakable Coverage
 
-### Home Page AEO
+- [ ] **AEO-12**: `src/pages/faq.astro` adds `id="faq-list"` to the outer FAQ container `div`. A short intro paragraph (2-3 sentences) is added above the Q&A list to serve as the Speakable target. A `WebPage` + `SpeakableSpecification` inline schema block is injected after `</main>` targeting the intro paragraph.
 
-- [x] **AEO-05**: `src/layouts/Layout.astro` injects `FAQSchema` on the home page (`/`) in addition to `/faq/`. The current `currentPath.startsWith('/faq')` gate is broadened so AI crawlers see Q&A on the landing page.
-- [x] **AEO-06**: `src/pages/index.astro` renders a visible 8-question FAQ section in the page DOM. The section is annotated with a `SpeakableSpecification` schema block targeting the question-and-answer DOM nodes (CSS selectors or XPath) for Google voice extraction.
+- [ ] **AEO-13**: `src/pages/directions.astro` Speakable `cssSelector` array is extended with class-based selectors covering the Flagstaff, Williams, and Las Vegas per-city direction paragraphs. A `speakable-city-directions` class (or equivalent per-city classes) is added to the key direction `<p>` elements in those three city sections.
 
-### FAQ Data Expansion
+### Voice Directions
 
-- [x] **AEO-07**: `src/data/faq.json` expands by 13 entries (≥34 total). New entries cover: (1) Williams, AZ proximity, (2) Kaibab Estates West proximity, (3) accepted payment methods, (4) reservation policy, (5) pricing / budget-friendliness, (6) delivery availability, (7) takeout availability, (8) best restaurant on I-40, (9) signature Butter Chicken, (10) signature Tandoori specialties, (11) spice-level customization, (12) family/group dining, (13) one additional voice-friendly entry. Every new entry must pass the existing 50-word voice audit (`scripts/aeo-audit.mjs`).
+- [ ] **AEO-14**: `src/pages/directions.astro` adds a `HowTo` schema block (three `HowTo` objects in a single `@graph`) for Flagstaff (PT46M), Williams (PT18M), and Las Vegas (PT3H). Each `HowToStep.text` must be verbatim or near-verbatim from the corresponding DOM paragraph to pass AEO text-DOM alignment policy. `supply` and `tool` fields are omitted (irrelevant for driving directions).
 
-### GEO Content
+### Content & Discovery
 
-- [x] **AEO-08**: A new page `src/pages/near-williams.astro` exists, mirrors the `near-grand-canyon.astro` template (answer-first H1, speakable lead, standalone Exit 146 sentence, "Why Stop Here" / "Distance from Nearby Cities" / "What to Order" sections, breadcrumb), targets Williams tourists AND Kaibab Estates West residents, and is added to `.lighthouserc.json` for Lighthouse CI coverage.
+- [ ] **AEO-15**: `src/pages/faq.astro` `description` prop is rewritten to at least 150 characters covering the breadth of all 34 FAQ topic clusters: hours, location, menu, vegetarian/vegan, takeout, payment, parking, bikers, Route 66, Grand Canyon proximity, and price range. Anchor phrase includes "I-40 Exit 146, Ash Fork, AZ".
 
-### Audit Strengthening
+- [ ] **AEO-16**: `src/layouts/Layout.astro` `<head>` link for `llms.txt` is updated from `rel="help"` to `rel="alternate" type="text/plain"`. A second `<link rel="alternate" type="text/plain" href="/llms-full.txt" />` is added immediately after.
 
-- [x] **AEO-09**: `scripts/aeo-audit.mjs` adds gates that fail (`process.exit(1)`) when:
-  - FAQ count in `faq.json` < 34
-  - `public/llms.txt` is missing required section headers (Payment Methods, Reservations, Delivery, Amenities, Dietary)
-  - `public/robots.txt` does not contain `Allow: /` for major AI bots: `GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `CCBot`
+## Future Requirements (deferred)
+
+- Additional HowTo schemas for remaining 4 cities on `/directions/` (Seligman, Kingman, Phoenix, Los Angeles)
+- `/about/` page — full brand narrative with extractable AI passages, Punjabi cuisine context, Ash Fork location identity
+- `/route-66-dining/` page — Route 66 heritage content, road-tripper dining context
+- Halal messaging revision across `llms.txt`, `llms-full.txt`, and `OurStorySection.astro` (wording TBD with owner)
+- Apple Maps Business Connect profile optimization — manual, off-site
+- Automated KPI tracker (AI citation frequency, GBP direction requests, review velocity)
 
 ## Out of Scope
 
-- Visual redesign work — v2.0 is shipped, do not touch tokens, glass budget, or typography utilities
-- Online ordering system changes — Toast integration unchanged
-- Halal messaging revision (deferred from v1.0 Active, wording still TBD)
-- `/about/` and `/route-66-dining/` content pages (deferred from v1.0 Active, separate future phase)
-- Apple Maps Business Connect work — manual, off-site
-- Fix `servesCuisine` in `RestaurantSchema` to remove beverage types (deferred from v1.0 Active — separate quick task)
+| Item | Reason |
+|------|--------|
+| Remove Beer/Wine from `servesCuisine` | Owner confirmed full bar — beverage entries are correct and intentional |
+| New npm packages | Bundle size and Lighthouse TBT scores are non-negotiable constraints |
+| Server-side rendering | Site must stay fully static (Apache hosting, no runtime) |
+| HowTo for all 7 directions cities | Deferred — 3 highest-traffic cities cover the AEO voice use case for this milestone |
+| Yelp/TripAdvisor/Reddit engagement | Manual off-site work, not automated by this codebase |
 
 ## Traceability
 
-| REQ-ID | Phase | Plan | Status |
-| --- | --- | --- | --- |
-| AEO-01 | Phase 11 | TBD | Active |
-| AEO-02 | Phase 11 | TBD | Active |
-| AEO-03 | Phase 11 | TBD | Active |
-| AEO-04 | Phase 11 | TBD | Active |
-| AEO-05 | Phase 11 | TBD | Active |
-| AEO-06 | Phase 11 | TBD | Active |
-| AEO-07 | Phase 11 | TBD | Active |
-| AEO-08 | Phase 11 | TBD | Active |
-| AEO-09 | Phase 11 | TBD | Active |
+| REQ-ID | Phase | Status |
+|--------|-------|--------|
+| AEO-10 | TBD | Pending roadmap |
+| AEO-11 | TBD | Pending roadmap |
+| AEO-12 | TBD | Pending roadmap |
+| AEO-13 | TBD | Pending roadmap |
+| AEO-14 | TBD | Pending roadmap |
+| AEO-15 | TBD | Pending roadmap |
+| AEO-16 | TBD | Pending roadmap |

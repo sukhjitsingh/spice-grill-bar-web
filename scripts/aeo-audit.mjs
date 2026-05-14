@@ -94,6 +94,25 @@ if (fs.existsSync(ROBOTS_PATH)) {
   errors++;
 }
 
+// 4. @id fragment gate — verifies build output contains entity @id fragments
+const distIndexPath = path.join(ROOT_DIR, 'dist/index.html');
+if (!fs.existsSync(distIndexPath)) {
+  console.warn('⚠ @id gate: dist/index.html not found — skipping (run npm run build first for full audit)');
+} else {
+  const distHtml = fs.readFileSync(distIndexPath, 'utf-8');
+  const restaurantId = '"@id":"https://spicegrillbar66.com/#restaurant"';
+  const orgId = '"@id":"https://spicegrillbar66.com/#organization"';
+  const missingIds = [];
+  if (!distHtml.includes(restaurantId)) missingIds.push('#restaurant');
+  if (!distHtml.includes(orgId)) missingIds.push('#organization');
+  if (missingIds.length > 0) {
+    console.error(`✗ @id gate: dist/index.html missing @id fragment(s): ${missingIds.join(', ')}`);
+    errors++;
+  } else {
+    console.log('✓ @id gate: both #restaurant and #organization @id fragments found in dist/index.html');
+  }
+}
+
 console.log('\n---------------------------------------------------');
 if (errors > 0) {
   console.error(`❌ AEO Audit Failed with ${errors} errors.`);

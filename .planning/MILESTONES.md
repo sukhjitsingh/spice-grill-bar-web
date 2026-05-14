@@ -1,10 +1,22 @@
 # Milestones
 
-## v3.0 AEO/GEO Refinement (Active — started 2026-05-05)
+## v3.0 AEO/GEO Refinement (Shipped: 2026-05-14)
 
-**Goal:** Strengthen AI/Answer Engine Optimization (AEO) and local SEO so Spice Grill & Bar surfaces correctly in voice search, ChatGPT, Gemini, and similar assistants. Fix data drift (Monday hours), enrich structured data with payment/amenity/reservation signals, expand AI-readable files, add a home-page voice-ready FAQ, expand FAQ data, add a `/near-williams/` GEO page, and strengthen the AEO audit script.
+**Phases completed:** 1 phase (Phase 11), 8 plans
 
-**Phase plan:** Phase 11 — AEO/GEO Refinement (single phase, multi-wave).
+**Key accomplishments:**
+
+- Locked all owner-confirmed business-data values (8 payment methods, walk-in-only reservations, 7 amenities) and corrected Kaibab Estates West direction from "east on I-40" to "north of Ash Fork" — unblocking all downstream schema/content writes
+- Closed AEO-01 P0 hours drift: Monday added to RestaurantSchema.astro openingHoursSpecification; Monday-closed strings eliminated across schema, llms.txt, and llms-full.txt
+- Eliminated Monday-closed drift in AI-crawler docs and added 5 H2 sections (Payment Methods, Reservation Policy, Delivery & Takeout, Amenities, Dietary Options) using owner-confirmed values — AI agents now see authoritative prose for the highest-volume voice queries
+- Added `paymentAccepted`, `acceptsReservations` (false), and `amenityFeature` (7 entries) to RestaurantSchema.astro — schema-dts strictly typed, owner-confirmed values, Wi-Fi excluded
+- Broadened FAQSchema gate to home page + added visible 8-Q FAQ section + SpeakableSpecification for Google voice extraction (AEO-05, AEO-06)
+- Expanded `src/data/faq.json` from 21 to 34 voice-optimized entries covering Williams, Kaibab, payment, reservations, pricing, delivery/takeout, Butter Chicken/Tandoori, spice level, and Route 66 — all under 50-word ceiling
+- Created `/near-williams/` GEO landing page targeting Williams tourists (18 mi east on I-40) and Kaibab Estates West residents (5 mi north of Ash Fork), wired to Footer, sitemap, and Lighthouse CI
+- Added 3 fail-fast gates to `scripts/aeo-audit.mjs` (FAQ count ≥34, llms.txt required sections, robots.txt AI-bot allowlist) — future AEO drift now fails CI before deploy
+
+**Stats:** 29 files changed, +2158/−110 lines | 1 day execution (2026-05-06)
+**Audit:** tech_debt — 9/9 requirements satisfied, 6 non-critical tech-debt items (see `.planning/milestones/v3.0-MILESTONE-AUDIT.md`)
 
 ---
 
@@ -13,6 +25,7 @@
 **Phases completed:** 4 phases, 15 plans
 
 **Key accomplishments:**
+
 - Migrated TailwindCSS 3 → v4 (CSS-first config, `@tailwindcss/vite`, `@theme` directive)
 - Established M3 surface hierarchy + semantic token system in `globals.css` (5 depth levels, light + dark)
 - Swapped fonts to Manrope Variable (`font-display`) + Inter Variable (`font-sans`)
@@ -30,6 +43,7 @@
 **Phases completed:** 6 phases, 8 plans, 5 tasks
 
 **Key accomplishments:**
+
 - Fixed all NAP data (hours, phone, URL) in RestaurantSchema and synced across faq.json and Footer
 - Added 6 local SEO schema signals (geo, areaServed, aggregateRating, hasMap, OrderAction, sameAs)
 - Expanded FAQ from 9 to 20 highway-targeted AEO entries passing 50-word audit

@@ -56,17 +56,21 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - ✓ FAQSchema on home page (/) + visible 8-Q section + SpeakableSpecification — v3.0
 - ✓ /near-williams/ GEO page targeting Williams tourists and Kaibab Estates West residents — v3.0
 - ✓ aeo-audit.mjs with CI-enforced gates: FAQ count ≥34, llms.txt sections, robots.txt AI-bot allowlist — v3.0
+- ✓ RestaurantSchema `@id: #restaurant` + 5-URL sameAs (canonical CID Maps URL) — v3.1 Phase 12
+- ✓ OrganizationSchema `@id: #organization` + canonical CID Maps URL in sameAs — v3.1 Phase 12
+- ✓ Layout.astro AI crawler discovery links: `rel=alternate type=text/plain` for /llms.txt and /llms-full.txt — v3.1 Phase 12
+- ✓ aeo-audit.mjs @id fragment gate: verifies #restaurant and #organization in dist/index.html — v3.1 Phase 12
 
 ### Active
 
 **v3.1 AEO Gap Fixes:**
 - [ ] Fix home page FAQPage schema to match 8 visible questions — `Layout.astro`, `index.astro`
 - [ ] Add Speakable schema to `/faq/` page — `faq.astro`
-- [ ] Add `@id` + `sameAs` to `RestaurantSchema.astro` for entity disambiguation
+- [x] Add `@id` + `sameAs` to `RestaurantSchema.astro` for entity disambiguation — Phase 12
 - [ ] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas
 - [ ] Extend Directions page Speakable to cover per-city direction sections — `directions.astro`
 - [ ] Expand FAQ page meta description — `faq.astro`
-- [ ] Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` — `Layout.astro`
+- [x] Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` — `Layout.astro` — Phase 12
 
 **Future milestones:**
 - [ ] `/about/` page — full brand narrative with extractable AI passages, Punjabi cuisine context, Ash Fork location identity

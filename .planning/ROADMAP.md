@@ -46,7 +46,7 @@ Full details: `.planning/milestones/v3.0-ROADMAP.md` | Audit: `.planning/milesto
 
 ### v3.1 AEO Gap Fixes (Phases 12-15)
 
-- [ ] **Phase 12: Schema Entity Disambiguation** — Establish distinct @id fragments on Restaurant/Organization schemas and wire AI crawler discovery links in Layout.astro head
+- [x] **Phase 12: Schema Entity Disambiguation** — Establish distinct @id fragments on Restaurant/Organization schemas and wire AI crawler discovery links in Layout.astro head (completed 2026-05-14)
 - [ ] **Phase 13: FAQPage Schema Compliance** — Atomic fix aligning home page FAQPage schema to exactly the 8 visible DOM questions
 - [ ] **Phase 14: Speakable Coverage** — Add Speakable annotation to /faq/ intro and extend Directions Speakable to cover per-city sections
 - [ ] **Phase 15: Voice Directions + Content Polish** — Add HowTo schema for 3 cities on /directions/ and expand FAQ meta description to reflect all 34 topic clusters
@@ -65,8 +65,8 @@ Full details: `.planning/milestones/v3.0-ROADMAP.md` | Audit: `.planning/milesto
   5. Google Rich Results Test shows no entity collision warning; Lighthouse SEO score does not degrade
 **Plans**: 2 plans
 Plans:
-- [ ] 12-01-PLAN.md — RestaurantSchema + OrganizationSchema @id fragments and sameAs canonicalization (AEO-11)
-- [ ] 12-02-PLAN.md — Layout.astro AI crawler discovery links + aeo-audit.mjs @id fragment gate (AEO-16)
+- [x] 12-01-PLAN.md — RestaurantSchema + OrganizationSchema @id fragments and sameAs canonicalization (AEO-11)
+- [x] 12-02-PLAN.md — Layout.astro AI crawler discovery links + aeo-audit.mjs @id fragment gate (AEO-16)
 
 ### Phase 13: FAQPage Schema Compliance
 **Goal**: The home page FAQPage JSON-LD matches exactly the 8 questions visible in the DOM, eliminating the Google policy violation caused by the schema/DOM mismatch
@@ -116,7 +116,7 @@ Plans:
 | 9. Visual Redesign | v2.0 | 5/5 | Complete | 2026-03-27 |
 | 10. Quality Assurance | v2.0 | 3/3 | Complete | 2026-03-28 |
 | 11. AEO/GEO Refinement | v3.0 | 8/8 | Complete | 2026-05-07 |
-| 12. Schema Entity Disambiguation | v3.1 | 0/2 | Not started | - |
+| 12. Schema Entity Disambiguation | v3.1 | 2/2 | Complete | 2026-05-14 |
 | 13. FAQPage Schema Compliance | v3.1 | 0/TBD | Not started | - |
 | 14. Speakable Coverage | v3.1 | 0/TBD | Not started | - |
 | 15. Voice Directions + Content Polish | v3.1 | 0/TBD | Not started | - |

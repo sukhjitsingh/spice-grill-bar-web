@@ -34,7 +34,7 @@ key-decisions:
   - "Tandoori entry focuses on menu items + clay-oven preparation, not 'popular dishes' framing"
   - "Large-group entry uses '6+ parties, call ahead' framing distinct from existing entry #20 ('kid-friendly or family-friendly')"
   - "Route 66 entry chosen over an RV-only entry to avoid duplicate framing with existing entry #17 ('parking available')"
-  - "Budget entry uses concrete price range ($13.99–$16.99 curries, $2.99–$6.99 naan) for AI-extractable specifics"
+  - "Budget entry uses concrete price range ($14.99–$18.99 curries, $2.99–$7.99 naan) for AI-extractable specifics"
   - "Delivery entry explicitly says 'does not offer in-house delivery' + redirects to Toast takeout — the disambiguation pair with takeout entry resolves existing entry #15's combined framing"
 
 requirements-completed: [AEO-07]
@@ -155,7 +155,7 @@ Voice-clip optimization: framed as Spice Grill being SOUTH of Kaibab (i.e., Kaib
 - **Kaibab framing as "Spice Grill is south of Kaibab" (not "Kaibab is north of Spice Grill").** The owner correction says Kaibab is north of Ash Fork. Phrasing the answer with Spice Grill at the subject ("Spice Grill is south of Kaibab") preserves the brand-opener voice convention while correctly conveying the directional relationship. The directions clause ("local road from Kaibab to Ash Fork, then I-40 Exit 146") explicitly avoids claiming Kaibab is on I-40.
 - **Mild-spice rephrase to avoid existing entry #12.** Existing #12 is "Can I customize how spicy my food is at Spice Grill & Bar?" (range customization). New entry #11 is "Can I order mild Indian food at Spice Grill & Bar?" (mild-only request) — same domain, different angle, distinct question text.
 - **Route 66 framing for entry #13** (over RV-only). RV/truck parking is already covered in existing entry #17 ("Is there parking available at Spice Grill & Bar?"), so a dedicated RV entry would have framed-overlapped. Route 66 framing is broader (RV + truck + bikers + road-trippers) and pulls in a distinct voice-search audience ("place to stop while driving Route 66" is a known long-tail query).
-- **Budget entry uses concrete price range** ($13.99–$16.99 curries, $2.99–$6.99 naan). AI assistants extract numeric ranges well; "moderately priced" alone is too vague for voice.
+- **Budget entry uses concrete price range** ($14.99–$18.99 curries, $2.99–$7.99 naan). AI assistants extract numeric ranges well; "moderately priced" alone is too vague for voice.
 - **Delivery entry says "does not" up front.** Voice assistants rank confident negatives highly; opening with "Spice Grill & Bar does not offer in-house delivery" gives a clean voice clip and immediately redirects to the Toast takeout option.
 
 ## Deviations from Plan

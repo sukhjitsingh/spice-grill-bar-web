@@ -94,12 +94,15 @@ if (fs.existsSync(ROBOTS_PATH)) {
   errors++;
 }
 
-// 4. @id fragment gate — verifies build output contains entity @id fragments
+// 4. @id fragment gate + FAQPage Question count gate — verifies build output
 const distIndexPath = path.join(ROOT_DIR, 'dist/index.html');
 if (!fs.existsSync(distIndexPath)) {
   console.warn('⚠ @id gate: dist/index.html not found — skipping (run npm run build first for full audit)');
+  console.warn('⚠ FAQPage gate: dist/index.html not found — skipping (run npm run build first for full audit)');
 } else {
   const distHtml = fs.readFileSync(distIndexPath, 'utf-8');
+
+  // @id fragment gate
   const restaurantId = '"@id":"https://spicegrillbar66.com/#restaurant"';
   const orgId = '"@id":"https://spicegrillbar66.com/#organization"';
   const missingIds = [];
@@ -110,6 +113,15 @@ if (!fs.existsSync(distIndexPath)) {
     errors++;
   } else {
     console.log('✓ @id gate: both #restaurant and #organization @id fragments found in dist/index.html');
+  }
+
+  // 5. FAQPage home-page schema gate — verifies exactly 8 Question entries in dist/index.html
+  const questionMatches = distHtml.match(/"@type":"Question"/g) || [];
+  if (questionMatches.length !== 8) {
+    console.error(`✗ FAQPage gate: dist/index.html has ${questionMatches.length} Question entries, expected exactly 8`);
+    errors++;
+  } else {
+    console.log('✓ FAQPage gate: dist/index.html contains exactly 8 Question entries');
   }
 }
 

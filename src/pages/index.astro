@@ -20,6 +20,19 @@ import Layout from '../layouts/Layout.astro';
 //   21 = How far is Spice Grill & Bar from Williams, AZ? (NEW from Plan 11-04)
 const homeFaqIndices = [14, 2, 3, 13, 10, 1, 15, 21];
 const homeFaq = homeFaqIndices.map((i) => faqData[i]).filter((entry) => entry);
+
+const faqPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: homeFaq.map((q) => ({
+    '@type': 'Question',
+    name: q.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: q.answer,
+    },
+  })),
+};
 ---
 
 <Layout
@@ -65,4 +78,6 @@ const homeFaq = homeFaqIndices.map((i) => faqData[i]).filter((entry) => entry);
       }
     }
   </script>
+  <!-- FAQPage schema — 8 questions matching the visible home-page FAQ section (D-01, D-02). -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />
 </Layout>

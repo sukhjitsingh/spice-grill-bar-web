@@ -4,8 +4,8 @@ milestone: v3.1
 milestone_name: AEO Gap Fixes
 status: executing
 stopped_at: Phase 12 context gathered
-last_updated: "2026-05-14T22:39:16.530Z"
-last_activity: 2026-05-14 -- Phase 13 planning complete
+last_updated: "2026-05-14T22:47:38.613Z"
+last_activity: 2026-05-14 -- Phase 13 execution started
 progress:
   total_phases: 4
   completed_phases: 1
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-13)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** v3.1 AEO Gap Fixes — Phase 13 next
+**Current focus:** Phase 13 — faqpage-schema-compliance
 
 ## Current Position
 
-Phase: 12 — schema-entity-disambiguation (complete)
-Plan: —
-Status: Ready to execute
-Last activity: 2026-05-14 -- Phase 13 planning complete
+Phase: 13 (faqpage-schema-compliance) — EXECUTING
+Plan: 1 of 2
+Status: Executing Phase 13
+Last activity: 2026-05-14 -- Phase 13 execution started
 
 Progress: [██░░░░░░░░] 25%
 

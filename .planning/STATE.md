@@ -1,36 +1,36 @@
 ---
 gsd_state_version: 1.0
-milestone: v3.0
-milestone_name: AEO/GEO Refinement
-status: complete
-stopped_at: v3.0 milestone archived
-last_updated: "2026-05-14T00:00:00.000Z"
-last_activity: 2026-05-14
+milestone: v3.1
+milestone_name: AEO Gap Fixes
+status: planning
+stopped_at: ~
+last_updated: "2026-05-13T00:00:00.000Z"
+last_activity: 2026-05-13
 progress:
-  total_phases: 1
-  completed_phases: 1
-  total_plans: 8
-  completed_plans: 8
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-05-14)
+See: .planning/PROJECT.md (updated 2026-05-13)
 
 **Core value:** AI engines and Google must surface Spice Grill & Bar as the answer when anyone asks about a food stop on I-40 or an Indian restaurant near the Grand Canyon, Williams, or Seligman.
-**Current focus:** Planning next milestone (v4.0)
+**Current focus:** v3.1 AEO Gap Fixes — defining requirements
 
 ## Current Position
 
-Phase: —
+Phase: Not started (defining requirements)
 Plan: —
-Status: Milestone v3.0 complete — ready for next milestone planning
-Last activity: 2026-05-14
+Status: Defining requirements
+Last activity: 2026-05-13 — Milestone v3.1 started
 
-Progress: [██████████] 100%
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 

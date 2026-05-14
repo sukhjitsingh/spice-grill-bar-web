@@ -1,5 +1,18 @@
 # Spice Grill & Bar — Website
 
+## Current Milestone: v3.1 AEO Gap Fixes
+
+**Goal:** Close 7 AEO compliance and coverage gaps identified in the post-v3.0 audit — schema/DOM alignment, entity disambiguation, Speakable coverage, voice directions schema, and AI crawler discovery.
+
+**Target features:**
+- Fix home page FAQPage schema to match the 8 visible questions (not all 34 — schema/DOM mismatch)
+- Add Speakable schema to `/faq/` page (all 34 Q&As visible but zero voice annotation)
+- Add `@id` + `sameAs` to `RestaurantSchema.astro` for Knowledge Graph + AI entity disambiguation
+- Add `HowTo` schema to `/directions/` for 3 cities (Flagstaff, Williams, Las Vegas)
+- Extend Directions page Speakable to cover per-city direction sections
+- Expand FAQ page meta description to reflect all 34 topic categories
+- Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` for AI crawler discovery
+
 ## What This Is
 
 The production website for Spice Grill & Bar, an authentic Punjabi Indian restaurant at I-40 Exit 146 in Ash Fork, Arizona (Route 66). Built on Astro 5 with React islands, optimized for local SEO, AI answer engines (AEO), and Lighthouse performance. The site has 5 content pages with full structured data coverage, 34 voice-optimized FAQ entries, and CI-enforced AEO gates that prevent data drift before deploy.
@@ -46,9 +59,18 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 
 ### Active
 
+**v3.1 AEO Gap Fixes:**
+- [ ] Fix home page FAQPage schema to match 8 visible questions — `Layout.astro`, `index.astro`
+- [ ] Add Speakable schema to `/faq/` page — `faq.astro`
+- [ ] Add `@id` + `sameAs` to `RestaurantSchema.astro` for entity disambiguation
+- [ ] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas
+- [ ] Extend Directions page Speakable to cover per-city direction sections — `directions.astro`
+- [ ] Expand FAQ page meta description — `faq.astro`
+- [ ] Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` — `Layout.astro`
+
+**Future milestones:**
 - [ ] `/about/` page — full brand narrative with extractable AI passages, Punjabi cuisine context, Ash Fork location identity
 - [ ] `/route-66-dining/` page — Route 66 heritage content, road-tripper dining context
-- [ ] Fix `servesCuisine` in RestaurantSchema to remove beverage types (Beer, Wine, etc.)
 - [ ] Halal messaging revised across `llms.txt`, `llms-full.txt`, and `OurStorySection.astro` (wording TBD with owner)
 - [ ] Apple Maps Business Connect profile optimization (categories, imagery, Toast integration) — manual, off-site
 - [ ] Automated KPI tracker (AI citation frequency, GBP direction requests, review velocity)
@@ -126,4 +148,4 @@ This document evolves at phase transitions and milestone boundaries.
 
 ---
 
-*Last updated: 2026-05-14 — v3.0 milestone (AEO/GEO Refinement) complete*
+*Last updated: 2026-05-13 — v3.1 milestone (AEO Gap Fixes) started*

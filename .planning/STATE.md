@@ -2,12 +2,12 @@
 gsd_state_version: 1.0
 milestone: v3.1
 milestone_name: AEO Gap Fixes
-status: planning
-stopped_at: ~
-last_updated: "2026-05-13T00:00:00.000Z"
-last_activity: 2026-05-13
+status: Defining requirements
+stopped_at: Phase 12 context gathered
+last_updated: "2026-05-14T20:43:02.558Z"
+last_activity: 2026-05-13 — Milestone v3.1 started
 progress:
-  total_phases: 0
+  total_phases: 4
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -94,6 +94,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-05-06T20:39:25.714Z
-Stopped at: Completed 11-04-PLAN.md
-Resume file: None
+Last session: 2026-05-14T20:43:02.548Z
+Stopped at: Phase 12 context gathered
+Resume file: .planning/phases/12-schema-entity-disambiguation/12-CONTEXT.md

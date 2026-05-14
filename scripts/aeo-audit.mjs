@@ -94,7 +94,7 @@ if (fs.existsSync(ROBOTS_PATH)) {
   errors++;
 }
 
-// 4. @id fragment gate + FAQPage Question count gate — verifies build output
+// 4. @id fragment gate + FAQPage Question count gate — verifies build output (dist/index.html read once)
 const distIndexPath = path.join(ROOT_DIR, 'dist/index.html');
 if (!fs.existsSync(distIndexPath)) {
   console.warn('⚠ @id gate: dist/index.html not found — skipping (run npm run build first for full audit)');
@@ -115,7 +115,7 @@ if (!fs.existsSync(distIndexPath)) {
     console.log('✓ @id gate: both #restaurant and #organization @id fragments found in dist/index.html');
   }
 
-  // 5. FAQPage home-page schema gate — verifies exactly 8 Question entries in dist/index.html
+  // FAQPage Question count gate — verifies exactly 8 Question entries in dist/index.html
   const questionMatches = distHtml.match(/"@type":"Question"/g) || [];
   if (questionMatches.length !== 8) {
     console.error(`✗ FAQPage gate: dist/index.html has ${questionMatches.length} Question entries, expected exactly 8`);

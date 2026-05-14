@@ -120,6 +120,6 @@ Plans:
 | 10. Quality Assurance | v2.0 | 3/3 | Complete | 2026-03-28 |
 | 11. AEO/GEO Refinement | v3.0 | 8/8 | Complete | 2026-05-07 |
 | 12. Schema Entity Disambiguation | v3.1 | 2/2 | Complete | 2026-05-14 |
-| 13. FAQPage Schema Compliance | v3.1 | 2/2 | Complete   | 2026-05-14 |
+| 13. FAQPage Schema Compliance | v3.1 | 2/2 | Complete    | 2026-05-14 |
 | 14. Speakable Coverage | v3.1 | 0/TBD | Not started | - |
 | 15. Voice Directions + Content Polish | v3.1 | 0/TBD | Not started | - |

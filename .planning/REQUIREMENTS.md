@@ -21,7 +21,7 @@
 
 ### Schema Compliance
 
-- [ ] **AEO-10**: `src/layouts/Layout.astro` FAQSchema gate is narrowed from `currentPath === '/'` to `/faq/` only. `src/pages/index.astro` gains an inline `FAQPage` schema block built from `faqData[homeFaqIndices]` at build time, containing exactly the 8 questions rendered in the visible DOM. Both files change in a single atomic commit to prevent a duplicate-or-missing schema window.
+- [x] **AEO-10**: `src/layouts/Layout.astro` FAQSchema gate is narrowed from `currentPath === '/'` to `/faq/` only. `src/pages/index.astro` gains an inline `FAQPage` schema block built from `faqData[homeFaqIndices]` at build time, containing exactly the 8 questions rendered in the visible DOM. Both files change in a single atomic commit to prevent a duplicate-or-missing schema window.
 
 - [ ] **AEO-11**: `src/components/schema/RestaurantSchema.astro` adds `'@id': 'https://spicegrillbar66.com/#restaurant'` and `sameAs` (same 5 URLs as OrganizationSchema: Google Maps, Yelp, TripAdvisor, Facebook, Instagram). `src/components/schema/OrganizationSchema.astro` adds `'@id': 'https://spicegrillbar66.com/#organization'` to prevent entity graph collision between the two schemas.
 
@@ -64,7 +64,7 @@
 
 | REQ-ID | Phase | Status |
 |--------|-------|--------|
-| AEO-10 | Phase 13 | Pending |
+| AEO-10 | Phase 13 | Complete |
 | AEO-11 | Phase 12 | Pending |
 | AEO-12 | Phase 14 | Pending |
 | AEO-13 | Phase 14 | Pending |

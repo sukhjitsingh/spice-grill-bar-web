@@ -60,11 +60,15 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - ✓ OrganizationSchema `@id: #organization` + canonical CID Maps URL in sameAs — v3.1 Phase 12
 - ✓ Layout.astro AI crawler discovery links: `rel=alternate type=text/plain` for /llms.txt and /llms-full.txt — v3.1 Phase 12
 - ✓ aeo-audit.mjs @id fragment gate: verifies #restaurant and #organization in dist/index.html — v3.1 Phase 12
+- ✓ Home page FAQPage schema narrowed to 8 questions (DOM-aligned), /faq/ retains full 34-question schema — v3.1 Phase 13
+- ✓ CID-verified geo coordinates (`35.222908/-112.4781558`) in RestaurantSchema and Layout.astro — v3.1 Phase 13
+- ✓ WebSiteSchema publisher wired to `#organization` entity — v3.1 Phase 13
+- ✓ aeo-audit.mjs FAQPage Question-count gate: verifies exactly 8 Question entries in dist/index.html — v3.1 Phase 13
 
 ### Active
 
 **v3.1 AEO Gap Fixes:**
-- [ ] Fix home page FAQPage schema to match 8 visible questions — `Layout.astro`, `index.astro`
+- [x] Fix home page FAQPage schema to match 8 visible questions — Phase 13
 - [ ] Add Speakable schema to `/faq/` page — `faq.astro`
 - [x] Add `@id` + `sameAs` to `RestaurantSchema.astro` for entity disambiguation — Phase 12
 - [ ] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas
@@ -152,4 +156,4 @@ This document evolves at phase transitions and milestone boundaries.
 
 ---
 
-*Last updated: 2026-05-13 — v3.1 milestone (AEO Gap Fixes) started*
+*Last updated: 2026-05-14 — Phase 13 complete (FAQPage schema compliance)*

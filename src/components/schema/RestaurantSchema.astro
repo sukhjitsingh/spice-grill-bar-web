@@ -18,8 +18,16 @@ const reviewCount = ratedReviews.length;
 const schema: WithContext<Restaurant> = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
+  '@id': 'https://spicegrillbar66.com/#restaurant',
   name: 'Spice Grill & Bar',
   url: 'https://spicegrillbar66.com',
+  sameAs: [
+    'https://www.google.com/maps?cid=5034425112937519671',
+    'https://www.yelp.com/biz/spice-grill-and-bar-ash-fork',
+    'https://www.tripadvisor.com/Restaurant_Review-g29037-d33218710-Reviews-Spice_Grill_Bar-Ash_Fork_Arizona.html',
+    'https://www.facebook.com/profile.php?id=61566349169122',
+    'https://www.instagram.com/panjabi_dhaba_sgb',
+  ],
   address: {
     '@type': 'PostalAddress',
     streetAddress: '33 Lewis Ave',

@@ -141,6 +141,22 @@ if (!fs.existsSync(distFaqPath)) {
   }
 }
 
+// 6. HowTo schema gate — verifies HowTo present in dist/directions/index.html (AEO-14)
+const distDirectionsPath = path.join(ROOT_DIR, 'dist/directions/index.html');
+if (!fs.existsSync(distDirectionsPath)) {
+  console.warn(
+    '⚠ HowTo gate: dist/directions/index.html not found — skipping (run npm run build first for full audit)'
+  );
+} else {
+  const distDirectionsHtml = fs.readFileSync(distDirectionsPath, 'utf-8');
+  if (!distDirectionsHtml.includes('"@type": "HowTo"')) {
+    console.error('✗ HowTo gate: HowTo schema not found in dist/directions/index.html');
+    errors++;
+  } else {
+    console.log('✓ HowTo gate: HowTo schema found in dist/directions/index.html');
+  }
+}
+
 console.log('\n---------------------------------------------------');
 if (errors > 0) {
   console.error(`❌ AEO Audit Failed with ${errors} errors.`);

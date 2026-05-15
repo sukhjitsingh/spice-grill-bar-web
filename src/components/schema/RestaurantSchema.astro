@@ -103,13 +103,17 @@ const schema: WithContext<Restaurant> = {
     { '@type': 'Place', name: 'I-40 Corridor, Arizona' },
     { '@type': 'Place', name: 'Historic Route 66, Arizona' },
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue,
-    reviewCount,
-    bestRating: 5,
-    worstRating: 1,
-  },
+  ...(reviewCount > 0
+    ? {
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue,
+          reviewCount,
+          bestRating: 5,
+          worstRating: 1,
+        },
+      }
+    : {}),
   paymentAccepted:
     'Cash, Visa, Mastercard, American Express, Discover, Debit cards, Apple Pay, Google Pay',
   acceptsReservations: false,

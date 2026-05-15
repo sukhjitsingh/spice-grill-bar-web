@@ -64,16 +64,20 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - ✓ CID-verified geo coordinates (`35.222908/-112.4781558`) in RestaurantSchema and Layout.astro — v3.1 Phase 13
 - ✓ WebSiteSchema publisher wired to `#organization` entity — v3.1 Phase 13
 - ✓ aeo-audit.mjs FAQPage Question-count gate: verifies exactly 8 Question entries in dist/index.html — v3.1 Phase 13
+- ✓ /faq/ SpeakableSpecification JSON-LD targeting `.speakable-faq-intro` intro paragraph + id="faq-list" on FAQ container — v3.1 Phase 14
+- ✓ /directions/ Speakable cssSelector extended to 4 entries: .speakable-heading, .speakable-lead, .speakable-exit, .speakable-city-directions — v3.1 Phase 14
+- ✓ Flagstaff, Williams, Las Vegas primary direction paragraphs carry speakable-city-directions class — v3.1 Phase 14
+- ✓ aeo-audit.mjs FAQ Speakable gate (gate #5): verifies SpeakableSpecification in dist/faq/index.html — v3.1 Phase 14
 
 ### Active
 
 **v3.1 AEO Gap Fixes:**
 - [x] Fix home page FAQPage schema to match 8 visible questions — Phase 13
-- [ ] Add Speakable schema to `/faq/` page — `faq.astro`
+- [x] Add Speakable schema to `/faq/` page — Phase 14
 - [x] Add `@id` + `sameAs` to `RestaurantSchema.astro` for entity disambiguation — Phase 12
-- [ ] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas
-- [ ] Extend Directions page Speakable to cover per-city direction sections — `directions.astro`
-- [ ] Expand FAQ page meta description — `faq.astro`
+- [ ] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas — Phase 15
+- [x] Extend Directions page Speakable to cover per-city direction sections — Phase 14
+- [ ] Expand FAQ page meta description — Phase 15
 - [x] Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` — `Layout.astro` — Phase 12
 
 **Future milestones:**

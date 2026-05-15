@@ -49,7 +49,7 @@ Full details: `.planning/milestones/v3.0-ROADMAP.md` | Audit: `.planning/milesto
 - [x] **Phase 12: Schema Entity Disambiguation** — Establish distinct @id fragments on Restaurant/Organization schemas and wire AI crawler discovery links in Layout.astro head (completed 2026-05-14)
 - [x] **Phase 13: FAQPage Schema Compliance** — Atomic fix aligning home page FAQPage schema to exactly the 8 visible DOM questions (completed 2026-05-14)
 - [x] **Phase 14: Speakable Coverage** — Add Speakable annotation to /faq/ intro and extend Directions Speakable to cover per-city sections (completed 2026-05-14)
-- [ ] **Phase 15: Voice Directions + Content Polish** — Add HowTo schema for 3 cities on /directions/ and expand FAQ meta description to reflect all 34 topic clusters (3 plans)
+- [x] **Phase 15: Voice Directions + Content Polish** — Add HowTo schema for 3 cities on /directions/ and expand FAQ meta description to reflect all 34 topic clusters (3 plans) (completed 2026-05-15)
 
 ## Phase Details
 
@@ -109,7 +109,7 @@ Plans:
 Plans:
 - [x] 15-01-PLAN.md — directions.astro: DOM text update "I-40 Exit 146" (all 7 cities) + HowTo @graph schema block (Flagstaff PT46M, Williams PT18M, Las Vegas PT3H) (AEO-14)
 - [x] 15-02-PLAN.md — faq.astro: description prop replacement with 228-char D-05 copy (AEO-15)
-- [ ] 15-03-PLAN.md — aeo-audit.mjs: Section 6 HowTo gate + full npm run qa green (AEO-14, AEO-15)
+- [x] 15-03-PLAN.md — aeo-audit.mjs: Section 6 HowTo gate + full npm run qa green (AEO-14, AEO-15)
 
 ## Progress
 
@@ -129,4 +129,4 @@ Plans:
 | 12. Schema Entity Disambiguation | v3.1 | 2/2 | Complete | 2026-05-14 |
 | 13. FAQPage Schema Compliance | v3.1 | 2/2 | Complete    | 2026-05-14 |
 | 14. Speakable Coverage | v3.1 | 2/2 | Complete | 2026-05-14 |
-| 15. Voice Directions + Content Polish | v3.1 | 2/3 | In Progress|  |
+| 15. Voice Directions + Content Polish | v3.1 | 3/3 | Complete   | 2026-05-15 |

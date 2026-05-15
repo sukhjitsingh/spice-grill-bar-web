@@ -129,4 +129,4 @@ Plans:
 | 12. Schema Entity Disambiguation | v3.1 | 2/2 | Complete | 2026-05-14 |
 | 13. FAQPage Schema Compliance | v3.1 | 2/2 | Complete    | 2026-05-14 |
 | 14. Speakable Coverage | v3.1 | 2/2 | Complete | 2026-05-14 |
-| 15. Voice Directions + Content Polish | v3.1 | 3/3 | Complete   | 2026-05-15 |
+| 15. Voice Directions + Content Polish | v3.1 | 3/3 | Complete    | 2026-05-15 |

@@ -33,11 +33,11 @@
 
 ### Voice Directions
 
-- [ ] **AEO-14**: `src/pages/directions.astro` adds a `HowTo` schema block (three `HowTo` objects in a single `@graph`) for Flagstaff (PT46M), Williams (PT18M), and Las Vegas (PT3H). Each `HowToStep.text` must be verbatim or near-verbatim from the corresponding DOM paragraph to pass AEO text-DOM alignment policy. `supply` and `tool` fields are omitted (irrelevant for driving directions).
+- [x] **AEO-14**: `src/pages/directions.astro` adds a `HowTo` schema block (three `HowTo` objects in a single `@graph`) for Flagstaff (PT46M), Williams (PT18M), and Las Vegas (PT3H). Each `HowToStep.text` must be verbatim or near-verbatim from the corresponding DOM paragraph to pass AEO text-DOM alignment policy. `supply` and `tool` fields are omitted (irrelevant for driving directions).
 
 ### Content & Discovery
 
-- [ ] **AEO-15**: `src/pages/faq.astro` `description` prop is rewritten to at least 150 characters covering the breadth of all 34 FAQ topic clusters: hours, location, menu, vegetarian/vegan, takeout, payment, parking, bikers, Route 66, Grand Canyon proximity, and price range. Anchor phrase includes "I-40 Exit 146, Ash Fork, AZ".
+- [x] **AEO-15**: `src/pages/faq.astro` `description` prop is rewritten to at least 150 characters covering the breadth of all 34 FAQ topic clusters: hours, location, menu, vegetarian/vegan, takeout, payment, parking, bikers, Route 66, Grand Canyon proximity, and price range. Anchor phrase includes "I-40 Exit 146, Ash Fork, AZ".
 
 - [ ] **AEO-16**: `src/layouts/Layout.astro` `<head>` link for `llms.txt` is updated from `rel="help"` to `rel="alternate" type="text/plain"`. A second `<link rel="alternate" type="text/plain" href="/llms-full.txt" />` is added immediately after.
 
@@ -68,6 +68,6 @@
 | AEO-11 | Phase 12 | Pending |
 | AEO-12 | Phase 14 | Pending |
 | AEO-13 | Phase 14 | Pending |
-| AEO-14 | Phase 15 | Pending |
-| AEO-15 | Phase 15 | Pending |
+| AEO-14 | Phase 15 | Complete |
+| AEO-15 | Phase 15 | Complete |
 | AEO-16 | Phase 12 | Pending |

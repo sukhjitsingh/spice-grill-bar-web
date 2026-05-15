@@ -49,7 +49,7 @@ Full details: `.planning/milestones/v3.0-ROADMAP.md` | Audit: `.planning/milesto
 - [x] **Phase 12: Schema Entity Disambiguation** — Establish distinct @id fragments on Restaurant/Organization schemas and wire AI crawler discovery links in Layout.astro head (completed 2026-05-14)
 - [x] **Phase 13: FAQPage Schema Compliance** — Atomic fix aligning home page FAQPage schema to exactly the 8 visible DOM questions (completed 2026-05-14)
 - [x] **Phase 14: Speakable Coverage** — Add Speakable annotation to /faq/ intro and extend Directions Speakable to cover per-city sections (completed 2026-05-14)
-- [ ] **Phase 15: Voice Directions + Content Polish** — Add HowTo schema for 3 cities on /directions/ and expand FAQ meta description to reflect all 34 topic clusters
+- [ ] **Phase 15: Voice Directions + Content Polish** — Add HowTo schema for 3 cities on /directions/ and expand FAQ meta description to reflect all 34 topic clusters (3 plans)
 
 ## Phase Details
 
@@ -128,5 +128,5 @@ Plans:
 | 11. AEO/GEO Refinement | v3.0 | 8/8 | Complete | 2026-05-07 |
 | 12. Schema Entity Disambiguation | v3.1 | 2/2 | Complete | 2026-05-14 |
 | 13. FAQPage Schema Compliance | v3.1 | 2/2 | Complete    | 2026-05-14 |
-| 14. Speakable Coverage | v3.1 | 0/2 | Not started | - |
-| 15. Voice Directions + Content Polish | v3.1 | 0/3 | Not started | - |
+| 14. Speakable Coverage | v3.1 | 2/2 | Complete | 2026-05-14 |
+| 15. Voice Directions + Content Polish | v3.1 | 0/3 | Ready to execute | - |

@@ -503,17 +503,17 @@ No ASVS categories apply. No threat patterns introduced.
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **D-04 discretion — update all 7 or only 3 city paragraphs?**
    - What we know: D-04 explicitly grants Claude's discretion. Seligman, Kingman, Los Angeles, Phoenix sections all use bare "Exit 146" in their `<p>` elements (verified: lines 133, 171, 190, 209 use `<strong>Exit 146</strong>`).
    - What's unclear: Is consistency worth the marginal extra edit time?
-   - Recommendation: Update all 7 for content uniformity. The 4 non-HowTo cities are out of AEO-14 scope but D-04 explicitly permits this. Risk is zero — it's the same one-word substitution.
+   - RESOLVED: Update all 7 city `<p>` elements for content uniformity. Plan 15-01 Task 1 implements this. Risk is zero — same one-word substitution across all cities.
 
 2. **HowToStep text — use em-dash (—) or hyphen?**
    - What we know: The DOM paragraphs use `—` (em-dash) via the HTML character directly.
    - What's unclear: Some JSON parsers handle this; some toolchains encode it differently.
-   - Recommendation: Copy the em-dash character as-is into the JSON string. Astro passes raw `<script>` blocks through unmodified. [ASSUMED]
+   - RESOLVED: Copy the em-dash character as-is into the JSON string. Astro passes raw `<script>` blocks through unmodified. The ready-to-copy code examples in this RESEARCH.md already embed the em-dash directly.
 
 ---
 

@@ -15,7 +15,13 @@ import Layout from '../layouts/Layout.astro';
         Frequently Asked <span class="text-primary-container">Questions</span>
       </h1>
 
-      <div class="space-y-4">
+      <p class="speakable-faq-intro text-body-lg text-on-surface-variant mb-8">
+        Spice Grill &amp; Bar is an authentic Indian restaurant at I-40 Exit 146 in Ash Fork,
+        Arizona on historic Route 66. This page answers common questions about our hours, menu,
+        vegetarian and vegan options, takeout, and location. Find the answer you need below.
+      </p>
+
+      <div id="faq-list" class="space-y-4">
         {
           faqData.map((item) => (
             <div class="bg-surface-container p-8 rounded-2xl">
@@ -27,4 +33,17 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </main>
+
+  <!-- Speakable schema markup — targets intro paragraph for voice extraction -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "FAQ | Spice Grill & Bar",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".speakable-faq-intro"]
+      }
+    }
+  </script>
 </Layout>

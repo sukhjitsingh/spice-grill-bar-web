@@ -125,6 +125,22 @@ if (!fs.existsSync(distIndexPath)) {
   }
 }
 
+// 5. FAQ Speakable gate — verifies SpeakableSpecification present in dist/faq/index.html (AEO-12)
+const distFaqPath = path.join(ROOT_DIR, 'dist/faq/index.html');
+if (!fs.existsSync(distFaqPath)) {
+  console.warn(
+    '⚠ FAQ Speakable gate: dist/faq/index.html not found — skipping (run npm run build first for full audit)'
+  );
+} else {
+  const distFaqHtml = fs.readFileSync(distFaqPath, 'utf-8');
+  if (!distFaqHtml.includes('SpeakableSpecification')) {
+    console.error('✗ FAQ Speakable gate: SpeakableSpecification not found in dist/faq/index.html');
+    errors++;
+  } else {
+    console.log('✓ FAQ Speakable gate: SpeakableSpecification found in dist/faq/index.html');
+  }
+}
+
 console.log('\n---------------------------------------------------');
 if (errors > 0) {
   console.error(`❌ AEO Audit Failed with ${errors} errors.`);

@@ -107,8 +107,8 @@ Plans:
   4. All 5 Lighthouse-audited pages pass CI thresholds (LCP < 4s, TBT < 600ms, CLS < 0.105, A11y ≥ 90, SEO ≥ 90) after all v3.1 changes
 **Plans**: 3 plans
 Plans:
-- [ ] 15-01-PLAN.md — directions.astro: DOM text update "I-40 Exit 146" (all 7 cities) + HowTo @graph schema block (Flagstaff PT46M, Williams PT18M, Las Vegas PT3H) (AEO-14)
-- [ ] 15-02-PLAN.md — faq.astro: description prop replacement with 228-char D-05 copy (AEO-15)
+- [x] 15-01-PLAN.md — directions.astro: DOM text update "I-40 Exit 146" (all 7 cities) + HowTo @graph schema block (Flagstaff PT46M, Williams PT18M, Las Vegas PT3H) (AEO-14)
+- [x] 15-02-PLAN.md — faq.astro: description prop replacement with 228-char D-05 copy (AEO-15)
 - [ ] 15-03-PLAN.md — aeo-audit.mjs: Section 6 HowTo gate + full npm run qa green (AEO-14, AEO-15)
 
 ## Progress
@@ -129,4 +129,4 @@ Plans:
 | 12. Schema Entity Disambiguation | v3.1 | 2/2 | Complete | 2026-05-14 |
 | 13. FAQPage Schema Compliance | v3.1 | 2/2 | Complete    | 2026-05-14 |
 | 14. Speakable Coverage | v3.1 | 2/2 | Complete | 2026-05-14 |
-| 15. Voice Directions + Content Polish | v3.1 | 0/3 | Ready to execute | - |
+| 15. Voice Directions + Content Polish | v3.1 | 2/3 | In Progress|  |

@@ -91,7 +91,10 @@ Plans:
   2. `faq.astro` contains a `WebPage` + `SpeakableSpecification` inline schema block targeting that intro paragraph — Google Rich Results Test validates the Speakable markup
   3. `directions.astro` per-city direction paragraphs for Flagstaff, Williams, and Las Vegas carry a `speakable-city-directions` class (or equivalent)
   4. `directions.astro` Speakable `cssSelector` array includes class-based selectors for all three newly annotated city sections
-**Plans**: TBD
+**Plans**: 2 plans
+Plans:
+- [ ] 14-01-PLAN.md — FAQ intro paragraph + id annotation + WebPage SpeakableSpecification schema + AEO CI gate (AEO-12)
+- [ ] 14-02-PLAN.md — Directions per-city speakable-city-directions class annotation + cssSelector extension (AEO-13)
 
 ### Phase 15: Voice Directions + Content Polish
 **Goal**: Voice assistants can respond to "how do I get to Spice Grill & Bar from [city]" for the 3 highest-traffic origin cities, and the /faq/ page description accurately represents its full 34-topic breadth
@@ -121,5 +124,5 @@ Plans:
 | 11. AEO/GEO Refinement | v3.0 | 8/8 | Complete | 2026-05-07 |
 | 12. Schema Entity Disambiguation | v3.1 | 2/2 | Complete | 2026-05-14 |
 | 13. FAQPage Schema Compliance | v3.1 | 2/2 | Complete    | 2026-05-14 |
-| 14. Speakable Coverage | v3.1 | 0/TBD | Not started | - |
+| 14. Speakable Coverage | v3.1 | 0/2 | Not started | - |
 | 15. Voice Directions + Content Polish | v3.1 | 0/TBD | Not started | - |

@@ -302,4 +302,46 @@ const API_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
       }
     }
   </script>
+
+  <!-- HowTo schema markup — voice directions for Flagstaff, Williams, Las Vegas (AEO-14) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "HowTo",
+          "name": "How to get to Spice Grill & Bar from Flagstaff, AZ",
+          "totalTime": "PT46M",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "text": "From Flagstaff, take I-40 West toward Kingman. Drive 51 miles (about 46 minutes) and take I-40 Exit 146 (Ash Fork / Historic Route 66). Turn right onto Lewis Ave — Spice Grill & Bar is at 33 Lewis Ave on your right."
+            }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to get to Spice Grill & Bar from Williams, AZ",
+          "totalTime": "PT18M",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "text": "From Williams, take I-40 West. Drive 18 miles (about 18 minutes) and take I-40 Exit 146. Turn right onto Lewis Ave — Spice Grill & Bar is at 33 Lewis Ave on your right."
+            }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to get to Spice Grill & Bar from Las Vegas, NV",
+          "totalTime": "PT3H",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "text": "From Las Vegas, take US-93 South to I-40 East. Drive approximately 200 miles (about 3 hours) and take I-40 Exit 146 in Ash Fork. Turn left onto Lewis Ave — Spice Grill & Bar is at 33 Lewis Ave."
+            }
+          ]
+        }
+      ]
+    }
+  </script>
 </Layout>

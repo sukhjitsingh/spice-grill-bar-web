@@ -68,6 +68,10 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - ✓ /directions/ Speakable cssSelector extended to 4 entries: .speakable-heading, .speakable-lead, .speakable-exit, .speakable-city-directions — v3.1 Phase 14
 - ✓ Flagstaff, Williams, Las Vegas primary direction paragraphs carry speakable-city-directions class — v3.1 Phase 14
 - ✓ aeo-audit.mjs FAQ Speakable gate (gate #5): verifies SpeakableSpecification in dist/faq/index.html — v3.1 Phase 14
+- ✓ HowTo @graph schema on /directions/ for Flagstaff (PT46M), Williams (PT18M), Las Vegas (PT3H) — v3.1 Phase 15
+- ✓ All 7 city direction paragraphs use "I-40 Exit 146" text for content uniformity — v3.1 Phase 15
+- ✓ FAQ meta description expanded to 227 chars covering all 34 topic clusters with "I-40 Exit 146, Ash Fork, AZ" anchor — v3.1 Phase 15
+- ✓ aeo-audit.mjs HowTo gate (gate #6): verifies HowTo schema in dist/directions/index.html — v3.1 Phase 15
 
 ### Active
 
@@ -75,9 +79,9 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - [x] Fix home page FAQPage schema to match 8 visible questions — Phase 13
 - [x] Add Speakable schema to `/faq/` page — Phase 14
 - [x] Add `@id` + `sameAs` to `RestaurantSchema.astro` for entity disambiguation — Phase 12
-- [ ] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas — Phase 15
+- [x] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas — Phase 15
 - [x] Extend Directions page Speakable to cover per-city direction sections — Phase 14
-- [ ] Expand FAQ page meta description — Phase 15
+- [x] Expand FAQ page meta description — Phase 15
 - [x] Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` — `Layout.astro` — Phase 12
 
 **Future milestones:**

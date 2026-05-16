@@ -1,630 +1,518 @@
-# Feature Landscape: UI Facelift — The Radiant Sommelier
+# Features Research — v3.1 AEO Gap Fixes
 
-**Domain:** Visual design system overhaul on existing Astro 5 + React restaurant site
-**Researched:** 2026-03-24
-**Milestone:** v2.0 UI Facelift
+**Researched:** 2026-05-13
+**Domain:** AEO schema compliance — FAQPage alignment, SpeakableSpecification, entity disambiguation, HowTo, meta description, AI crawler discovery
+**Milestone:** v3.1 AEO Gap Fixes
 
 ---
 
 ## Summary
 
-This research covers what is required to implement "The Radiant Sommelier" design spec across 6
-design-system features: surface hierarchy tokens, no-line boundaries, glassmorphism, editorial
-typography, hybrid token migration, and light/dark mode with a dark-first spec. The site is already
-built — nothing here is greenfield. Every feature maps to an existing component that must be
-re-skinned without breaking Lighthouse scores, accessibility thresholds, or the static build.
+This research covers the 7 targeted AEO fixes identified in the post-v3.0 audit. The site's schema foundation is solid (RestaurantSchema, OrganizationSchema, 34-entry FAQPage, Speakable on GEO pages); these fixes close precision gaps in entity disambiguation, schema/DOM alignment, voice coverage, and AI-crawler discovery.
 
-The primary complexity is the **Tailwind v3 → v4 migration** that underpins everything. The token
-system, glassmorphism utilities, animation library, and dark mode strategy all change in v4. The
-design features themselves are straightforward — they become hard only when layered on top of an
-in-flight framework migration.
+Two critical findings that affect how to think about this work:
+
+1. **FAQ and HowTo rich results are fully deprecated as of May 2026.** FAQPage and HowTo schema no longer produce visible SERP features for non-government sites. However, both types retain AEO/GEO value: AI engines (Perplexity, ChatGPT, Google AI Overviews) continue to extract and cite FAQPage content at high rates, and HowTo schema structures step-by-step content for voice extraction even without rich results.
+
+2. **The schema/DOM alignment rule is non-negotiable.** Google's spam policies require that every Q&A in FAQPage schema corresponds to visible content on that page. The current home page ships all 34 FAQ entries in the schema but only renders 8 in the DOM — this is the most urgent fix of the seven.
 
 ---
 
-## Table Stakes
+## Fix 1: FAQPage schema/DOM alignment
 
-Features that must work for the facelift to be considered complete. Missing any one of these means
-the DESIGN.md spec is not implemented — the site just looks patched.
+### Policy
 
----
+Google requires that every `Question` in a `FAQPage` schema object corresponds to content the user can actually see on that page. The official guideline: "The content in the structured data must match the content on the page." Answers hidden behind accordions are acceptable — content that exists only in the schema and not in the DOM at all is a violation.
 
-### 1. TailwindCSS v3 → v4 Migration
+**Current violation (high priority):** `Layout.astro` injects the global `FAQSchema` component on both `/` and `/faq/` paths. `FAQSchema.astro` renders all 34 entries from `faq.json`. The home page `index.astro` only renders 8 of those 34 entries in the DOM (`#home-faq` section). This means 26 schema questions have no DOM counterpart on the home page — a direct policy violation.
 
-**Why expected:** Every other feature in this milestone depends on the v4 `@theme` directive and
-CSS-first token system. The DESIGN.md surface hierarchy cannot be expressed cleanly in v3's
-`tailwind.config.mjs`. Token migration, glassmorphism overhaul, and dark mode strategy all assume
-v4. This is the prerequisite gate.
+The FAQ page (`/faq/`) is clean: it renders all 34 entries and the global FAQSchema provides all 34 entries — full alignment.
 
-**What changes:**
-- Replace `@astrojs/tailwind` integration with `@tailwindcss/vite` plugin in `astro.config.mjs`
-- Delete `tailwind.config.mjs` entirely
-- Replace `@tailwind base/components/utilities` directives in `globals.css` with `@import "tailwindcss"`
-- Rewrite all design tokens into `@theme {}` blocks
-- Handle renamed utilities: `bg-opacity-*` → `bg-black/[n]`, `flex-shrink-*` → `shrink-*`,
-  `overflow-ellipsis` → `text-ellipsis`, `decoration-slice/clone` → `box-decoration-*`
-- `border` utility no longer applies a default border color (BREAKING — every `border` usage must
-  be audited; `border border-zinc-200` pattern must be explicit)
+### Fix pattern
 
-**Existing dependency to migrate:** `tailwindcss-animate` is used in MobileActionButtons
-(`animate-in`, `slide-in-from-bottom-4`, `fade-in`), Sheet, and DropdownMenu. `tailwindcss-animate`
-was deprecated March 19, 2025 — migration path is `tw-animate-css` (pure CSS replacement). This is
-a `npm install tw-animate-css` + swap `@plugin "tailwindcss-animate"` for `@import "tw-animate-css"`.
-The class names remain the same; this is a drop-in replacement.
+The home page needs its own scope-limited FAQPage schema that contains only the same 8 entries visible in the DOM. The global `FAQSchema` component must not fire on `/` (or must be replaced with a page-specific variant on that path).
 
-**Complexity:** High. Not because any single change is hard, but because the surface area is large
-(every component file, globals.css, astro.config.mjs) and every missed `border` without a color
-class is a regression.
+**Two implementation paths:**
 
-**Dependencies:** None — this must be done first before any other feature.
+**Option A — Per-page FAQPage inline block (matches GEO page pattern):**
+Remove FAQSchema from Layout.astro's home-page gate. Add an inline `<script type="application/ld+json">` block directly in `index.astro` that contains only the 8 `homeFaqIndices` entries. Keeps schema co-located with its DOM. Pattern already used in `directions.astro`.
 
----
+**Option B — Prop-filtered FAQSchema component:**
+Add an optional `entries` prop to `FAQSchema.astro`. When passed, render only those entries. Layout.astro passes `homeFaq` on `/` and `undefined` (all 34) on `/faq/`. More reusable but requires Layout to receive homeFaq data, which it currently does not have.
 
-### 2. Surface Hierarchy Color Token System (5 Depth Levels)
+**Recommendation: Option A.** Simpler, consistent with the inline schema pattern already established for `directions.astro`. Leaves `FAQSchema.astro` untouched.
 
-**Why expected:** The DESIGN.md spec defines 5 named surface levels that replace the current
-zinc-based background system. Without these tokens as named CSS variables, the no-line rule and
-glassmorphism overhaul cannot be implemented — they reference token names, not hex values.
+### Table stakes vs. nice-to-have
 
-**What the DESIGN.md requires:**
-
-| Level | Token | Hex | Current analog |
-|-------|-------|-----|----------------|
-| 0 | `surface_dim` | `#1f0f0b` | `bg-zinc-950` (dark) / `bg-white` (light) |
-| 1 | `surface_container_low` | `#281713` | `bg-zinc-900` (dark) |
-| 2 | `surface_container` | `#2d1b17` | `bg-zinc-800` (dark) |
-| 3 | `surface_bright` | `#49342f` | `bg-zinc-700` (dark) |
-| 4 | `surface_container_high` | ~`#5a403a` (interpolated) | none |
-| 5 | `surface_container_highest` | ~`#6b4c45` (interpolated) | none |
-
-**How it maps to Tailwind v4 `@theme`:**
-
-```css
-@theme {
-  --color-surface-dim: #1f0f0b;
-  --color-surface-container-low: #281713;
-  --color-surface-container: #2d1b17;
-  --color-surface-bright: #49342f;
-  --color-surface-container-high: #5a403a;
-  --color-surface-container-highest: #6b4c45;
-}
-```
-
-These become `bg-surface-dim`, `bg-surface-container-low`, etc. as Tailwind utilities automatically.
-
-**Light mode adaptation:** The DESIGN.md is dark-first. Light mode must be a warm inversion, not
-neutral gray. Analogous light-mode tokens use warm cream/linen tones instead of obsidian:
-
-| Level | Light hex (recommended) |
-|-------|-------------------------|
-| surface_dim | `#fdf6f0` (warm white) |
-| surface_container_low | `#f5ece4` |
-| surface_container | `#ede0d4` |
-| surface_bright | `#e0cfc4` |
-
-These are overridden in `.dark {}` to restore the DESIGN.md dark values.
-
-**Complexity:** Low to Medium. Token definition is low complexity. Applying them across ~12
-component files replaces `bg-zinc-*` with `bg-surface-*` — mechanical but requires component-by-
-component audit. The real risk is missing places that currently reference `bg-background` (the
-shadcn token) — those are the hardest to find because they're inherited through the shadcn component
-library not written by this project.
-
-**Dependencies:** Tailwind v4 migration must be complete.
-
----
-
-### 3. Hybrid Token Migration (shadcn Semantic Names + Surface Hierarchy)
-
-**Why expected:** The site uses shadcn/ui components (Button, Sheet, DropdownMenu). These
-components reference `--background`, `--foreground`, `--primary`, `--card`, etc. — the shadcn
-semantic token names. These cannot be removed or renamed without breaking the shadcn components.
-The hybrid strategy keeps both token systems alive simultaneously.
-
-**How it works in Tailwind v4:**
-
-```css
-/* Step 1: Define surface values as base references */
-:root {
-  --surface-dim: #fdf6f0;
-  --surface-container-low: #f5ece4;
-  /* ... light values ... */
-
-  /* shadcn tokens remapped to surface hierarchy */
-  --background: var(--surface-dim);
-  --card: var(--surface-container-low);
-  --popover: var(--surface-container-low);
-}
-
-.dark {
-  --surface-dim: #1f0f0b;
-  --surface-container-low: #281713;
-  /* ... dark values ... */
-}
-
-/* Step 2: @theme inline exposes both as Tailwind utilities */
-@theme inline {
-  --color-background: var(--background);
-  --color-card: var(--card);
-  --color-surface-dim: var(--surface-dim);
-  --color-surface-container-low: var(--surface-container-low);
-}
-```
-
-**Concrete token remapping required:**
-
-| shadcn token | Maps to surface level | Rationale |
+| Requirement | Status | Why |
 |---|---|---|
-| `--background` | `surface_dim` (Level 0) | Page base layer |
-| `--card` | `surface_container_low` (Level 1) | Card sections |
-| `--popover` | `surface_container` (Level 2) | Floating dropdowns |
-| `--muted` | `surface_container_low` | Muted backgrounds |
-| `--accent` | `surface_bright` (Level 3) | Hover states |
-| `--border` | `outline_variant` at 15% opacity | Ghost border fallback |
+| Schema questions must be in DOM | Table stakes — fix immediately | Policy violation; risk of manual action |
+| Question text must match exactly | Table stakes | AI engines cross-reference schema text to DOM text |
+| Answers can be in accordions | Acceptable | Not used here but good to know |
+| Schema on `/faq/` is already aligned | Already done | 34 schema = 34 DOM entries |
 
-**Components that reference shadcn tokens directly (cannot break):**
-- `Button` (uses `bg-primary`, `bg-secondary`, etc.)
-- `Sheet` (uses `bg-background`, `border-l`)
-- `DropdownMenu` (uses `bg-popover`, `text-popover-foreground`)
-- `mode-toggle` (uses `bg-background`)
+### Current state of Layout.astro gate
 
-**Complexity:** Medium. The mapping logic is clear but the implementation requires surgical precision
-— `@theme inline` syntax must be correct or Tailwind v4 won't generate the utility classes. The risk
-is introducing circular variable references (`var(--background)` referencing `var(--surface-dim)`
-which must also be defined in `:root`). Test with a single component before full migration.
+```typescript
+// Line 121 in Layout.astro (current — fires global 34-entry schema on home page)
+{(currentPath === '/' || currentPath.startsWith('/faq')) && <FAQSchema />}
+```
 
-**Dependencies:** Tailwind v4 migration, surface hierarchy token definition.
+After fix: gate should be `currentPath.startsWith('/faq')` only, with home page getting its own inline 8-entry block.
+
+**Confidence:** HIGH — [VERIFIED: Google Search Central FAQPage docs via search result content] [CITED: developers.google.com/search/docs/appearance/structured-data/faqpage]
 
 ---
 
-### 4. Font Migration: Open Sans + Playfair → Manrope + Inter
+## Fix 2: SpeakableSpecification on FAQ page
 
-**Why expected:** The DESIGN.md calls out Manrope (display/headlines) and Inter (body/labels)
-explicitly. The current Open Sans + Playfair Display pairing does not achieve the "geometric,
-architectural" editorial feel specified. Playfair's serif serifs actively conflict with the
-"pressure-cooked," modern sommelier aesthetic.
+### Current state
 
-**What changes:**
-- Remove `@fontsource/open-sans` and `@fontsource/playfair-display` imports from `Layout.astro`
-- Install `@fontsource-variable/manrope` and `@fontsource-variable/inter` (variable font versions
-  for performance — one file covers all weights vs. 3+ separate weight files currently)
-- Update font-family tokens in `@theme`:
-  ```css
-  @theme {
-    --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-    --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+The home page (`index.astro`) and directions page (`directions.astro`) both have Speakable schema. The FAQ page (`faq.astro`) has zero Speakable markup despite being the richest voice-extraction target on the site: 34 questions each with a direct, concise answer.
+
+### CSS selector patterns that work
+
+Speakable's `cssSelector` property accepts standard CSS selector strings. The FAQ page currently renders each Q&A as:
+
+```html
+<div class="bg-surface-container p-8 rounded-2xl">
+  <h2 class="text-heading-md text-on-surface mb-3">{question}</h2>
+  <p class="text-body-md text-on-surface-variant">{answer}</p>
+</div>
+```
+
+**Problem with class-based selectors here:** The FAQ page currently has no `id` on the FAQ container and uses utility classes that could change. The home page solved this with `#home-faq h3` and `#home-faq p` — stable ID-anchored selectors per the v3.0 decision (see PROJECT.md Key Decisions: "ID-anchored SpeakableSpecification selectors").
+
+**Recommended approach for FAQ page:** Add `id="faq-list"` to the FAQ container `<div class="space-y-4">`. Then target:
+
+```json
+"cssSelector": ["#faq-list h2", "#faq-list p"]
+```
+
+This mirrors the established `#home-faq h3`/`#home-faq p` pattern exactly. H2 is correct here because the FAQ page uses `<h2>` for questions (the home section uses `<h3>` since it's a subsection of the page).
+
+### Word count and structure requirements
+
+Google's Speakable guidance specifies content should represent approximately 20-30 seconds of speech when read aloud. At an average speaking pace of 130 words per minute, this is roughly 40-65 words per Speakable segment.
+
+The current FAQ answers are appropriately sized — they are 1-2 sentences, typically 20-50 words. This is within the target range for voice extraction. No restructuring needed.
+
+**Content guidelines for Speakable:**
+- Must be concise, directly answerable content — the FAQ answers already satisfy this
+- Must not be confusing when read aloud out of context (photo captions, datelines, source attributions are excluded — not a concern here)
+- Should provide standalone comprehensible information — each FAQ answer is a self-contained response
+
+### Voice extraction behavior
+
+When a user asks a voice assistant a question matching one of the FAQ entries, the assistant can extract both the `h2` question and `p` answer as a voice-optimized pair. The Speakable markup signals which DOM elements to prioritize for text-to-speech rendering.
+
+**Important:** Speakable remains in "BETA" status on Google Search Central as of 2026. Google uses it for news content primarily, but schema.org's definition includes any web content, and AI engines use it as a signal regardless of Google's current beta status.
+
+### Implementation block
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "FAQ | Spice Grill & Bar",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#faq-list h2", "#faq-list p"]
   }
-  ```
-- Audit every `font-serif` class (currently used on: Header nav, Hero h1, Button, MenuSection
-  category tabs, MobileActionButtons) and replace with `font-display`
-- `font-sans` body default stays as `font-sans` — only the value changes
+}
+```
 
-**Performance note:** Variable fonts reduce bundle size. Current setup: 6 font files (Open Sans
-400/500/700, Playfair 400/500/700). Variable replacement: 2 font files (Manrope Variable, Inter
-Variable). Net reduction of ~4 HTTP requests on first load.
+Place as inline `<script type="application/ld+json">` in `faq.astro` (not in Layout.astro) — same pattern as directions.astro and index.astro.
 
-**Complexity:** Low. Package swap + class rename. The only risk is missing a `font-serif` reference
-and having fallback system-serif render in one component.
-
-**Dependencies:** Tailwind v4 migration (for `@theme` font tokens). No new npm packages beyond
-fontsource variable versions (which are already in the fontsource ecosystem — same package prefix).
+**Confidence:** HIGH for selector pattern [VERIFIED: matches established project convention, schema.org spec] | MEDIUM for voice extraction effectiveness [ASSUMED: Speakable remains in beta and Google's usage of it for non-news is not officially confirmed]
 
 ---
 
-### 5. No-Line Rule Implementation (Background Shifts Instead of Borders)
+## Fix 3: Restaurant @id
 
-**Why expected:** The DESIGN.md is explicit: "Under no circumstances are 1px solid borders to be
-used for sectioning or layout containment." This is the most pervasive change — the current codebase
-uses borders extensively for section separation.
+### Canonical format
 
-**Current violations across the codebase:**
+The `@id` property in JSON-LD creates a unique, stable identifier for an entity in the knowledge graph. For a restaurant with a dedicated web presence, the canonical format is:
 
-| Component | Current border | Replacement |
+```
+https://yourdomain.com/#type
+```
+
+Where `#type` is the schema type, lowercase. For this site:
+
+```
+https://spicegrillbar66.com/#restaurant
+```
+
+The hash fragment (`#restaurant`) distinguishes this entity identifier from the page URL (`url: "https://spicegrillbar66.com"`). Both must be present and consistent:
+
+- `@id` — the permanent entity identifier, used as a cross-reference key
+- `url` — where the entity's primary web presence lives (already in the schema)
+
+**Consistency rule:** Once set, `@id` must be identical wherever this Restaurant entity is referenced in structured data across the entire site. Google treats different `@id` strings as different entities even if they resolve to the same page.
+
+### What it unlocks in the Knowledge Graph
+
+Adding `@id` to the Restaurant schema enables:
+
+1. **Entity disambiguation** — Google and AI engines can unambiguously identify "Spice Grill & Bar" as a specific entity at a specific `@id`, not a name that might match other restaurants
+2. **Cross-page entity linking** — If schema on other pages references `@id: "https://spicegrillbar66.com/#restaurant"`, the knowledge graph connects them as the same entity
+3. **AI citation precision** — AI engines (Perplexity, ChatGPT plugins with web access) use `@id` URIs to de-duplicate entities during retrieval
+4. **Knowledge Panel strengthening** — A stable `@id` paired with `sameAs` is the primary signal Google uses to associate a business with its Knowledge Panel
+
+### Implementation
+
+Add to `RestaurantSchema.astro` within the existing `schema` object:
+
+```typescript
+const schema: WithContext<Restaurant> = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  '@id': 'https://spicegrillbar66.com/#restaurant',
+  'url': 'https://spicegrillbar66.com', // already present — keep it
+  // ... rest of existing schema
+};
+```
+
+No other changes needed. The `url` property is already in the schema — `@id` is purely additive.
+
+**Confidence:** HIGH [CITED: schema.org data model, multiple authoritative SEO sources confirming `site.com/#type` convention]
+
+---
+
+## Fix 4: sameAs on Restaurant
+
+### Current state
+
+`OrganizationSchema.astro` already carries `sameAs` with Google Maps, Yelp, TripAdvisor, Facebook, and Instagram URLs. The `RestaurantSchema.astro` has no `sameAs` property. For entity disambiguation, the `sameAs` should be on the primary entity type (`Restaurant`) rather than (or in addition to) `Organization`.
+
+### Which URLs to include
+
+**Tier 1 — Maximum entity authority signal:**
+
+| URL | Why Include | Notes |
 |---|---|---|
-| `MenuSection.tsx` | `border-t border-zinc-200` on section | Remove; `bg-surface-container-low` on section vs `bg-surface-dim` on surrounding |
-| `MenuSection.tsx` | `border border-zinc-200` on mobile tab nav | Remove; background tonal shift to `bg-surface-container` |
-| `MenuSection.tsx` | `border-b border-orange-300` on category h3 | Remove; spacing + color-only separation |
-| `Footer.astro` | `border-t border-zinc-200` | Remove; section background shift |
-| `Footer.astro` | `border-t border-zinc-100` on bottom bar | Remove; vertical space only |
-| `Footer.astro` | `border-t border-zinc-100` in Explore section | Remove; spacing |
-| `Header.tsx` | `border-b border-transparent` (scrolled: `glass`) | Keep as "ghost border" at `outline_variant` 15% opacity |
-| `Header.tsx` | `border-l border-zinc-200` divider in nav | Remove; vertical spacing |
-| `MobileActionButtons.astro` | `border border-white/20` on container | This IS a glassmorphism stroke — keep at reduced opacity |
-| `ReviewsSection.astro` | `border border-zinc-200` on cards | This IS a glassmorphism surface stroke — keep at `outline_variant` 20% opacity |
+| Wikidata entity URL | Highest-authority third-party identifier; directly feeds Google Knowledge Graph | Only include if Spice Grill & Bar has a Wikidata entry — do NOT create one speculatively |
+| Wikipedia URL | Second-highest authority; strong Knowledge Panel trigger | Only if a Wikipedia article exists for this specific restaurant |
+| Google Business Profile (GBP) URL | Ties schema entity to the GBP record that feeds the local Knowledge Panel | Use `https://www.google.com/maps?cid=YOUR_CID` format (permanent CID, not short URL) |
 
-**The "Ghost Border" exception:** When accessibility requires a visible edge (interactive elements,
-focus states, glassmorphism surfaces), use `outline_variant` at 15-20% opacity. It should "feel"
-rather than "be seen."
+**Tier 2 — Standard social/directory signals:**
 
-**Implementation pattern:**
-```css
-/* Token for ghost border */
-@theme {
-  --color-outline-variant: oklch(from #49342f l c h / 0.2);
-}
-```
-Applied as `border border-outline-variant` where needed — technically a border but visually
-imperceptible as a layout element.
-
-**Complexity:** Low per file, Medium overall. Each component is simple to fix, but there are ~8
-components to audit and the border removal must be validated to not break layout in any breakpoint.
-
-**Dependencies:** Surface hierarchy tokens (you need the surface level values to do the background
-shifts). Tailwind v4 migration.
-
----
-
-### 6. Glassmorphism Overhaul (Tinted Shadows, Backdop-Blur, Inner Glow)
-
-**Why expected:** The current `.glass` and `.glass-card` utilities use neutral gray tints
-(`bg-white/70`, `bg-zinc-100/50`). DESIGN.md specifies warm-tinted glass using `surface_container_high`
-at 70% opacity, `backdrop-blur: 32px`, and a 0.5px inner-glow stroke using `outline_variant` at 20%
-opacity. The tinted shadow must use `surface_container_lowest` not black.
-
-**Current `.glass` utility:**
-```css
-.glass {
-  @apply bg-white/70 dark:bg-black/70 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-lg;
-}
-```
-
-**Target `.glass` utility (DESIGN.md aligned):**
-```css
-.glass {
-  background: color-mix(in oklch, var(--color-surface-container-high) 70%, transparent);
-  backdrop-filter: blur(32px);
-  -webkit-backdrop-filter: blur(32px);
-  border: 0.5px solid color-mix(in oklch, var(--color-outline-variant) 20%, transparent);
-  box-shadow: 0px 24px 48px color-mix(in oklch, var(--color-surface-dim) 40%, transparent);
-}
-```
-
-**Where glass is currently used:**
-- `Header.tsx` — scrolled state uses `.glass`
-- `MenuSection.tsx` — sidebar nav uses `.glass`
-- `OurStorySection.astro` — image overlay caption uses `.glass`
-- `MobileActionButtons.astro` — container uses `.glass` + explicit `bg-white/60`
-- `OrderSection.astro` — CTA container uses `bg-white/30 backdrop-blur-xl`
-
-**Browser support:** `backdrop-filter` has 96%+ support as of 2025. The `-webkit-` prefix is still
-required for Safari. Use `@supports (backdrop-filter: blur(1px))` as a fallback wrapper — solid
-`surface_container` without blur is the graceful degradation.
-
-**Accessibility consideration:** Glass surfaces over text content must maintain 4.5:1 contrast ratio
-(WCAG AA). The warm tint at 70% opacity over `surface_dim` background is darker than the neutral
-glass currently used — this generally improves rather than hurts contrast. Validate with a contrast
-checker after implementation.
-
-**Complexity:** Low. The existing utilities just need their values updated. The new `color-mix()`
-approach requires modern CSS support (96%+) — same as `backdrop-filter`. No JavaScript changes.
-
-**Dependencies:** Surface hierarchy tokens (to have `--color-surface-container-high` defined).
-
----
-
-### 7. Light + Dark Mode — Both Modes Redesigned
-
-**Why expected:** Currently dark mode is a generic dark theme (blue-gray zinc palette). Both modes
-must be re-skinned to the DESIGN.md palette. Light mode stays as the default; dark mode is activated
-by the existing `.dark` class toggle (already implemented in `/public/scripts/theme.js`).
-
-**Current dark mode strategy:** Class-based (`.dark` on `<html>`). The existing `theme.js` script
-handles the toggle and persists to `localStorage`. This strategy is correct for v4 — no changes to
-the toggle mechanism needed.
-
-**v4 dark mode configuration:**
-```css
-/* In global.css, after @import "tailwindcss" */
-@custom-variant dark (&:where(.dark, .dark *));
-```
-This replaces the v3 `darkMode: 'class'` config key (which no longer exists in v4).
-
-**Light mode (default) token values:** Warm cream inversion of the DESIGN.md dark palette. The key
-principle: no pure grays (never `#888888`); all values must have a warm undertone sourced from the
-`#FF4B12` seed. Recommended light mode surfaces:
-
-| Token | Light value | Rationale |
+| URL | Format | Priority |
 |---|---|---|
-| `surface_dim` | `#fdf6f0` | Warm off-white base |
-| `surface_container_low` | `#f5ece4` | Section tint |
-| `surface_container` | `#ede0d4` | Card backgrounds |
-| `surface_bright` | `#e0cfc4` | Elevated elements |
-| `on_surface` (text) | `#1f0f0b` | Dark brown on light |
-| `on_surface_variant` | `#49342f` | Muted text |
+| Yelp listing | `https://www.yelp.com/biz/spice-grill-bar-ash-fork` | High — local authority |
+| TripAdvisor listing | Full TripAdvisor URL for the restaurant | High — travel-relevant audience |
+| Facebook page | `https://www.facebook.com/SpiceGrillBar` (or actual URL) | Medium |
+| Instagram profile | `https://www.instagram.com/spicegrillbar/` (or actual URL) | Medium |
 
-**Dark mode (`.dark`) token values:** The DESIGN.md values as-is:
+**Tier 3 — Avoid unless verified:**
+- Do NOT use `goo.gl/maps` short links (redirect chain, not stable)
+- Do NOT use `maps.app.goo.gl` short URLs (same issue)
+- Do NOT use `maps.google.com` domain (use `www.google.com/maps?cid=...`)
+- Do NOT include Wikipedia/Wikidata if no article exists — linking to a non-existent or wrong entity harms disambiguation
 
-| Token | Dark value |
-|---|---|
-| `surface_dim` | `#1f0f0b` |
-| `surface_container_low` | `#281713` |
-| `surface_container` | `#2d1b17` |
-| `surface_bright` | `#49342f` |
-| `on_surface` | `#fdf0e8` |
-| `on_surface_variant` | `#d4b8aa` |
+### Finding the GBP CID
 
-**Anti-flash requirement:** `theme.js` already runs before paint (`is:inline` in `<head>`). The
-CSS variable overrides in `.dark {}` are synchronous. No flash of wrong theme. This is correct and
-should not be changed.
+The CID (Customer ID) is extracted from the Google Maps URL for the business. The existing `hasMap` value in RestaurantSchema (`https://maps.app.goo.gl/q2EJFMbMRaysU6vH8`) is a short link. To get the CID-based URL:
 
-**Complexity:** Low. Token value changes. The dark mode mechanism is already working — just the
-values change. The risk is that light mode warm tones must be validated for accessibility contrast
-at each surface level combination (text on surface, border visibility, etc.).
+1. Open the `hasMap` short link in a browser
+2. The expanded URL will contain `cid=XXXXXXXXXXX` in the query string
+3. Use `https://www.google.com/maps?cid=XXXXXXXXXXX` as the `sameAs` GBP entry
 
-**Dependencies:** Surface hierarchy tokens, Tailwind v4 migration.
+### Format in schema
+
+```typescript
+sameAs: [
+  'https://www.google.com/maps?cid=YOUR_CID_HERE',   // GBP — replace with real CID
+  'https://www.yelp.com/biz/spice-grill-bar-ash-fork', // verify actual Yelp URL
+  'https://www.tripadvisor.com/...',                   // verify actual TripAdvisor URL
+  'https://www.facebook.com/SpiceGrillBar',            // verify actual Facebook URL
+  'https://www.instagram.com/spicegrillbar/',          // verify actual Instagram URL
+],
+```
+
+**Note:** Wikipedia/Wikidata should only be added after confirming entries exist. A small restaurant in Ash Fork, AZ likely does not have a Wikipedia article. Include Wikidata only if a legitimate entry exists.
+
+### OrganizationSchema coordination
+
+The `OrganizationSchema.astro` already has `sameAs`. To avoid redundancy, the planner can choose either:
+- Add `sameAs` to `RestaurantSchema` only (Restaurant is the primary type for this page)
+- Keep both — not harmful, just redundant
+
+The primary type (`Restaurant`) carrying `sameAs` is the more semantically correct approach.
+
+**Confidence:** HIGH for format and priority ordering [CITED: multiple schema.org/local-business sources, Google Search Central organization schema docs] | LOW for GBP CID value (must be looked up — `[ASSUMED]` current hasMap URL is a short link that needs expansion)
 
 ---
 
-## Differentiators
+## Fix 5: HowTo schema for driving directions
 
-Features from the DESIGN.md that elevate the aesthetic beyond "functional redesign" to "editorial
-experience." These are not strictly required for the facelift to be complete, but they are what
-distinguish The Radiant Sommelier from a generic dark-mode restaurant theme.
+### Rich results status: DEPRECATED (August 2023)
 
----
+HowTo rich results were removed from Google Search in September 2023 — first on mobile, then desktop. HowTo structured data no longer produces SERP-visible rich results. The Search Console HowTo report was also removed.
 
-### 1. Editorial Typography Scale (Dramatic Size Shifts)
+**However, HowTo schema retains AEO value.** AI engines (Perplexity, Google AI Overviews, ChatGPT with web access) extract structured step-by-step content for voice and conversational answers. "How do I get from Las Vegas to Spice Grill & Bar?" is a natural voice query where HowTo structure aids AI extraction. The goal is AI citation, not a rich result.
 
-**What it adds:** The DESIGN.md calls for `display-lg` (3.5rem) next to `label-sm` — deliberate
-scale tension that signals premium, curated editorial design. The current Hero h1 is `text-5xl
-md:text-7xl lg:text-8xl` with no corresponding small-type counterpoint. Adding the "EST. 2024" or
-category labels in `label-sm` (0.625rem, letter-spacing: 0.15em) adjacent to large display type
-creates the magazine tension the spec describes.
+### Required fields (per schema.org specification)
 
-**Token definition:**
-```css
-@theme {
-  --text-display-lg: 3.5rem;       /* Hero h1 */
-  --text-display-md: 2.5rem;       /* Section h2 */
-  --text-body-md: 1rem;            /* Standard body */
-  --text-label-sm: 0.625rem;       /* Eyebrows, captions */
-  --leading-display: 1.1;          /* Tight for display */
-  --tracking-display: -0.02em;     /* Manrope tight at display size */
-  --tracking-label: 0.15em;        /* Expanded for small caps */
+schema.org does not enforce required fields — any HowTo property is optional in the spec. In practice, for useful AI extraction, include:
+
+| Field | Required for AI value | Notes |
+|---|---|---|
+| `@type: "HowTo"` | Yes | Type declaration |
+| `name` | Yes | "Directions from Flagstaff to Spice Grill & Bar" — the answerable question framing |
+| `description` | Recommended | One-sentence summary — mirrors the existing `<p>` paragraph |
+| `step` | Yes | Array of `HowToStep` objects |
+| `step[].@type` | Yes | `"HowToStep"` |
+| `step[].text` | Yes | The instruction text — each turn/action as a sentence |
+| `step[].name` | Recommended | Short label for the step ("Take I-40 West") |
+| `estimatedCost` | No | Not applicable for directions |
+| `supply` | No | Not applicable for directions |
+| `tool` | No | Not applicable for directions |
+| `totalTime` | Recommended | Duration in ISO 8601 format: `"PT46M"` for 46 minutes |
+
+### 3-city scope justification
+
+The PROJECT.md specifies Flagstaff, Williams, and Las Vegas as the 3 HowTo targets. These are the three highest-value origin cities:
+- **Flagstaff** — Largest nearby city, primary I-40 traffic source
+- **Williams** — Grand Canyon gateway town, highest-intent tourist traffic
+- **Las Vegas** — Highest-volume long-distance origin, Route 66 road-trip corridor
+
+Seligman, Kingman, Los Angeles, and Phoenix are covered by the existing FAQPage inline schema on directions.astro — they don't need HowTo duplication.
+
+### Sample structure for one city
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to drive from Flagstaff to Spice Grill & Bar",
+  "description": "Step-by-step driving directions from Flagstaff, AZ to Spice Grill & Bar at I-40 Exit 146 in Ash Fork, AZ — 51 miles, about 46 minutes.",
+  "totalTime": "PT46M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Start on I-40 West",
+      "text": "From Flagstaff, take I-40 West toward Kingman."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Drive 51 miles",
+      "text": "Drive 51 miles west on I-40 (about 46 minutes)."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Take Exit 146",
+      "text": "Take Exit 146 in Ash Fork — the Ash Fork / Historic Route 66 exit."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Arrive at Spice Grill & Bar",
+      "text": "Turn right onto Lewis Ave. Spice Grill & Bar is at 33 Lewis Ave on your right."
+    }
+  ]
 }
 ```
 
-**Where to apply:**
-- Hero: The "EST. 2024" badge is already `text-xs tracking-wider` — upgrade to `label-sm` with
-  `tracking-[0.15em]`. The H1 moves to `text-display-lg`.
-- Section headers in MenuSection, OurStorySection: Currently `text-3xl md:text-5xl` — keep size but
-  add the asymmetric label treatment (small descriptor text placed far right using `justify-between`
-  flex alignment).
-- Review cards: Author name as `body-sm`, date as `label-sm` with tinted text color.
+All three HowTo objects go into a single `<script type="application/ld+json">` block in `directions.astro` as a JSON-LD array, or as three separate script blocks. Both are valid.
 
-**Complexity:** Low. Class additions and token definitions. No structural changes.
+### Voice output behavior
 
-**Dependencies:** Font migration (Manrope must be installed for display tracking to work correctly
-at geometric precision — Open Sans looks wrong at tight tracking).
+When a voice assistant handles "How do I get to Spice Grill & Bar from Las Vegas?", the HowTo step `text` values are what the assistant reads aloud in sequence. Each step should be one complete, unambiguous instruction — no abbreviations, no road jargon without expansion (spell out "I-40" not "40", "Exit 146" not "Exit 146").
+
+**Confidence:** HIGH for field structure [CITED: schema.org/HowTo, schema.org/HowToStep specs] | HIGH for deprecation status [CITED: developers.google.com/search/blog/2023/08/howto-faq-changes] | MEDIUM for AEO extraction value [ASSUMED: AI engines extract HowTo steps — no official confirmation from individual AI providers]
 
 ---
 
-### 2. Tinted Ambient Shadows (No Black Shadows)
+## Fix 6: FAQ meta description
 
-**What it adds:** Every current `shadow-*` utility generates gray/black shadows. DESIGN.md specifies
-shadows must be tinted with `surface_container_lowest` (#190a07 or similar deep brown-black). This
-makes shadows feel like occlusion of warm ambient light rather than neutral darkness — the "visual
-soul" of the sommelier aesthetic.
+### Current state
 
-**Implementation:**
-```css
-@theme {
-  --shadow-ambient: 0px 24px 48px oklch(from #190a07 l c h / 0.4);
-  --shadow-card: 0px 8px 24px oklch(from #190a07 l c h / 0.25);
-  --shadow-primary: 0px 4px 12px oklch(from #ff5626 l c h / 0.3);
-}
-```
-
-Applied as `shadow-[var(--shadow-card)]` in Tailwind v4's arbitrary value syntax. Or defined as
-named shadow utilities via `@theme { --shadow-ambient: ...; }` if Tailwind v4's shadow namespace
-support allows (it does).
-
-**Where applied:** All cards in ReviewsSection, OurStorySection glass-card elements, OrderSection
-CTA container, Header glass effect. The floating `MobileActionButtons` container.
-
-**Complexity:** Low. Shadow value changes. No structural changes.
-
-**Dependencies:** Surface hierarchy tokens for the tint source color.
-
----
-
-### 3. Asymmetric Editorial Layout Moments
-
-**What it adds:** The DESIGN.md "Do" list includes: "Place a small label far to the right of a
-large headline to create a premium editorial grid." This is not a broad layout overhaul — it is
-targeted use of `flex justify-between` or `grid` with a small metadata element positioned opposite
-a large headline. Used in 2-3 places, it creates the premium feel without requiring a full layout
-redesign.
-
-**Where to apply (specific, limited):**
-- Hero section: "EST. 2024" badge moves from above the H1 to a right-floated position alongside it
-- MenuSection section header: Category name on left, item count or tag on right
-- OurStorySection: "Mission / Vision / Values" section headers with small decorative counter
-
-**Complexity:** Low. Small class additions. No component rewrites.
-
-**Dependencies:** Typography tokens, font migration.
-
----
-
-### 4. Orange Primary as Laser, Not Floodlight
-
-**What it adds:** Currently orange (`#FF4B12` / `brand-orange`) is used on: H3 category names in
-MenuSection, active nav tab, CTA button, avatar gradient, stat numbers, hover underline — it
-appears 15+ times on the home page. DESIGN.md says "use sparingly. It is a laser, not a floodlight."
-
-**What changes:** Reduce orange to 3-4 high-impact moments:
-1. Primary CTA button (`bg-primary_container`)
-2. Brand moments (logo hover, active state)
-3. The "soul" gradient: `linear-gradient(135deg, #ff5626, inverse_primary)` on hero CTA/hero
-   background tint
-
-Everything currently orange-on-hover reverts to `on_surface_variant` (warm brown text). Category
-headers in MenuSection lose their orange color and become `on_surface` (near-white in dark, near-
-black in light).
-
-**Complexity:** Low (class value changes). Medium in aesthetic judgment — must be done carefully so
-the menu doesn't feel flat after removing the category color highlights.
-
-**Dependencies:** Surface hierarchy tokens, on_surface_variant token defined.
-
----
-
-## Anti-Features
-
-Things to explicitly not do during this facelift. Each wastes time or creates regressions.
-
----
-
-### 1. Do Not Add New npm Packages for Visual Effects
-
-**Why avoid:** `PROJECT.md` constraints are explicit: "No new npm packages beyond Tailwind v4
-migration." The Lighthouse TBT budget (< 600ms) and bundle size are non-negotiable. Every visual
-effect in the DESIGN.md spec is achievable with CSS (backdrop-filter, color-mix, CSS gradients,
-CSS animations). No JS animation library, no GSAP, no Framer Motion. The MobileActionButtons
-already use `animate-in slide-in-from-bottom-4` from `tailwindcss-animate` — migrating to
-`tw-animate-css` is a swap, not an addition.
-
----
-
-### 2. Do Not Animate Glassmorphism on Scroll
-
-**Why avoid:** `backdrop-filter: blur()` is GPU-expensive. Animating it on scroll (e.g., increasing
-blur as you scroll down) causes paint storms on mobile, destroys CLS, and burns TBT budget. The
-Header's scroll-triggered glassmorphism transition (already exists: `class` changes on scroll) is
-acceptable because it is a one-time state change, not a continuous animation. Do not introduce
-`transition-all` on anything with `backdrop-filter`.
-
----
-
-### 3. Do Not Rewrite the React Islands as Astro Components
-
-**Why avoid:** MenuSection and Header are React islands for good reason — they have interactive
-state (scroll tracking, category active state, mobile menu open state). Converting them to Astro
-would require either losing the interactivity or adding heavy Astro script islands. The existing
-React hydration (`client:visible`, `client:load`) is appropriate. The facelift is a re-skin, not an
-architecture change.
-
----
-
-### 4. Do Not Remove the `.dark` Class Toggle Mechanism
-
-**Why avoid:** The site uses a `theme.js` pre-paint script that reads `localStorage` and applies
-the `.dark` class before the browser paints — eliminating flash of wrong theme. This is the correct
-pattern. The Tailwind v4 `@custom-variant dark` declaration works alongside this pattern
-unchanged. Do not switch to `prefers-color-scheme` media query as the primary toggle — that removes
-user control and breaks the existing ModeToggle component.
-
----
-
-### 5. Do Not Use Pure Neutral Grays
-
-**Why avoid:** DESIGN.md explicitly: "Never use `#888888`. Always use the tinted tokens." The entire
-surface hierarchy uses warm brown undertones derived from the `#FF4B12` seed. Reaching for `zinc-*`
-or `gray-*` utilities breaks the cohesion. When replacing the current `zinc-*` classes, always
-substitute the corresponding surface hierarchy token, not a gray equivalent.
-
----
-
-### 6. Do Not Use `@apply` Extensively in v4
-
-**Why avoid:** Tailwind v4 discourages `@apply` outside of `@layer utilities`. The current `globals.css`
-uses it for `.glass` and `.glass-card`. The v4-idiomatic way is to define these as CSS classes
-directly without `@apply`, using the CSS custom property tokens directly. This reduces specificity
-conflicts and aligns with v4's CSS-first approach. Rewriting `.glass` and `.glass-card` without
-`@apply` is recommended.
-
----
-
-### 7. Do Not Change JSON-LD Schema Components
-
-**Why avoid:** `RestaurantSchema.astro`, `FAQSchema.astro`, and the other schema components are
-purely functional (they emit `<script type="application/ld+json">` tags). They have no visual output
-and no Tailwind classes. The facelift does not touch them. Touching them risks breaking Lighthouse
-SEO scores (≥ 90 required) and the structured data that was carefully built in v1.0.
-
----
-
-## Feature Dependencies Map
+`faq.astro` passes this description to Layout.astro:
 
 ```
-TailwindCSS v4 Migration
-  └── Surface Hierarchy Tokens
-        ├── No-Line Rule Implementation
-        ├── Glassmorphism Overhaul (warmer tints)
-        ├── Light + Dark Mode Redesign
-        └── Hybrid Token Migration (shadcn + surface)
-              └── All component re-skins
-
-Font Migration (Open Sans + Playfair → Manrope + Inter)
-  └── Editorial Typography Scale
-        └── Asymmetric Layout Moments
-
-tailwindcss-animate → tw-animate-css swap
-  └── MobileActionButtons, Sheet, DropdownMenu (preserve existing animations)
+"Frequently asked questions about Spice Grill & Bar. Information on hours, location, and vegetarian options."
 ```
 
-**Critical path:** Tailwind v4 migration → Surface hierarchy tokens → Everything else in parallel.
+This is 105 characters and covers only 3 of the 34 FAQ topics. It does not signal breadth of coverage to either search engines or AI extractors.
+
+### Length guidance
+
+- Google renders meta descriptions up to approximately 155-160 characters before truncating in traditional SERPs
+- For AI-generated snippets and overviews, Google often rewrites or replaces the meta description with page content anyway — but the description shapes the initial relevance signal
+- 150-160 characters is the practical target: long enough to carry keyword density, short enough not to truncate
+
+### Keyword pattern for AI snippet selection
+
+AI engines use the meta description as a topic signal for page-level categorization. For a FAQ page, the description should:
+
+1. **Signal page type** — "questions and answers" or "FAQ" explicitly
+2. **Cover the major topic clusters** present in the 34 entries (not just 3)
+3. **Include geographic and intent modifiers** that match voice query patterns
+4. **Front-load the most important keywords** (Google truncates from the end)
+
+**Topic clusters in the 34 FAQ entries:**
+- Hours and operations (opening hours, takeout, delivery, reservations)
+- Location and directions (I-40 Exit 146, Ash Fork, Route 66)
+- Proximity queries (Grand Canyon, Flagstaff, Williams, Las Vegas, Phoenix)
+- Menu and cuisine (Indian, Punjabi, vegetarian, vegan, butter chicken, naan)
+- Amenities (parking, bar, family-friendly, accessibility)
+- Pricing and payment
+
+### Recommended meta description
+
+```
+Answers to 34 common questions about Spice Grill & Bar in Ash Fork, AZ — hours, menu, vegetarian options, parking, and directions from the Grand Canyon, Flagstaff, Williams, and Las Vegas.
+```
+
+Character count: 190 — slightly over the 160-character soft limit. Trim to:
+
+```
+34 FAQ answers: hours, menu, vegetarian options, directions from the Grand Canyon, Flagstaff, Williams, and Las Vegas to Spice Grill & Bar at I-40 Exit 146, Ash Fork, AZ.
+```
+
+Character count: 172. Still slightly long. Final version at 158 characters:
+
+```
+Hours, menu, vegetarian options, and driving directions to Spice Grill & Bar at I-40 Exit 146, Ash Fork, AZ — answers to 34 common questions.
+```
+
+**Why this pattern works:**
+- Leads with the top 3 voice query topics (hours, menu, dietary)
+- Includes the geographic identity anchor (I-40 Exit 146, Ash Fork, AZ)
+- Closes with the FAQ scope signal ("34 common questions") — establishes breadth for AI categorization
+- Every keyword is present in the actual FAQ content — aligned with page, not keyword-stuffed
+
+### ogDescription
+
+The `ogDescription` passed to Layout.astro can be slightly longer (social sharing, not search truncation):
+
+```
+Find answers to 34 questions about Spice Grill & Bar — operating hours, authentic Indian menu, vegetarian and vegan options, parking, full bar, and step-by-step directions from the Grand Canyon, Flagstaff, Williams, Las Vegas, and Phoenix.
+```
+
+**Confidence:** MEDIUM [CITED: Google snippet documentation, multiple SEO sources on description length] | MEDIUM for AI extraction signal value [ASSUMED: meta description influences AI categorization — no direct confirmation from AI providers]
 
 ---
 
-## MVP Recommendation
+## Fix 7: llms-full.txt head link
 
-For a complete, shippable v2.0 facelift, prioritize in this order:
+### Current state
 
-**Phase 1 — Foundation (all other work is blocked without this):**
-1. TailwindCSS v3 → v4 migration (`@tailwindcss/vite`, delete `tailwind.config.mjs`, fix all
-   breaking changes)
-2. `tailwindcss-animate` → `tw-animate-css` swap (done in same PR as migration)
-3. Font migration (Manrope Variable + Inter Variable, replace `@fontsource` imports)
+`Layout.astro` currently has:
 
-**Phase 2 — Token System:**
-4. Surface hierarchy tokens in `@theme`
-5. Hybrid token migration (remap shadcn tokens to surface levels in `@theme inline`)
-6. Dark mode `@custom-variant dark` declaration + `.dark {}` value overrides
+```html
+<link rel="help" href="/llms.txt" />
+```
 
-**Phase 3 — Visual Re-skin (can be done component by component):**
-7. Glassmorphism utilities overhaul (`.glass`, `.glass-card`)
-8. No-line rule audit across all components (remove structural borders)
-9. Typography: apply Manrope as display font, editorial scale, label-sm treatments
-10. Orange restraint: reduce orange to 3-4 laser moments
-11. Tinted shadows: replace `shadow-*` with warm-tinted shadow tokens
+Two issues:
+1. `rel="help"` is semantically wrong — "help" describes a link to a help/support page, not to an AI documentation file
+2. `llms-full.txt` is not linked in `<head>` at all — only `llms.txt` is
 
-**Defer to post-facelift if time is short:**
-- Asymmetric editorial layout moments (nice-to-have, not required for spec compliance)
-- Per-component micro-animations beyond what tailwindcss-animate already provides
+### Spec status
+
+The `llms.txt` convention was proposed by Jeremy Howard in September 2024 and lives at `llmstxt.org`. It is a **community proposal, not a W3C or WHATWG standard.** No major AI provider (OpenAI, Anthropic, Google, Meta) has publicly confirmed they read or act on `llms.txt` files from server logs or official documentation as of May 2026.
+
+That said, over 844,000 websites have implemented it, and it represents best-effort future-proofing against AI crawlers that may adopt it.
+
+### rel value
+
+The semantically correct `rel` value for linking to an alternative machine-readable representation of the site is `alternate`. This is an established HTML rel type defined in the HTML Living Standard (WHATWG). Usage:
+
+```html
+<link rel="alternate" type="text/plain" href="/llms.txt" title="AI documentation (llms.txt)" />
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI documentation — full content (llms-full.txt)" />
+```
+
+### type attribute: `text/plain` vs `text/markdown`
+
+- `llms.txt` and `llms-full.txt` are plain text files with Markdown formatting — they are not rendered as HTML
+- `text/plain` is technically accurate (the MIME type served by Apache for `.txt` files)
+- Some implementations use `type="text/markdown"` (the official MIME type for Markdown, registered per RFC 7763)
+- Since the Apache server serves these as `.txt` files and no AI tool is confirmed to parse the `type` attribute to make routing decisions, `text/plain` is the safer, technically correct value for this site's setup
+- If the server were configured to serve them as `text/markdown`, using that type would be more precise
+
+**Recommendation:** Use `type="text/plain"` because that is what Apache will serve. Avoid `text/markdown` unless the server's MIME type configuration is updated.
+
+### Does the type attribute matter to AI crawlers?
+
+[ASSUMED] No confirmed AI crawler reads the `<link rel="alternate">` head tag to discover llms.txt. The most common discovery method is direct path crawling (`/llms.txt` as a well-known path, similar to `/robots.txt` or `/sitemap.xml`). The head link is a forward-compatibility signal — it costs nothing and may help future crawlers or tools that parse HTML head metadata.
+
+### Implementation
+
+Replace the existing single `<link rel="help" href="/llms.txt" />` in `Layout.astro` with:
+
+```html
+<link rel="alternate" type="text/plain" href="/llms.txt" title="AI documentation summary" />
+<link rel="alternate" type="text/plain" href="/llms-full.txt" title="AI documentation — full menu and content" />
+```
+
+**Confidence:** HIGH for `rel="alternate"` correctness [CITED: WHATWG HTML Living Standard, multiple llms.txt implementation guides] | LOW for AI crawler impact [ASSUMED: no confirmed AI provider reads this head tag as of May 2026]
 
 ---
 
-## Complexity Reference
+## Dependency Map
 
-| Feature | Complexity | Risk |
-|---------|------------|------|
-| Tailwind v4 migration | High | Missing `border` regressions across all components |
-| tw-animate-css swap | Low | Class name parity — verify `animate-in` still works |
-| Font migration | Low | Missing `font-serif` audit — one unswapped class looks wrong |
-| Surface hierarchy tokens | Low | Token name typos break all derived utilities |
-| Hybrid token migration | Medium | Circular CSS variable references silently break theming |
-| No-line rule | Medium | Layout gaps appear if border removal isn't paired with background shift |
-| Glassmorphism overhaul | Low | Contrast ratio validation needed on warm tints |
-| Light + dark mode redesign | Low | Anti-flash `theme.js` must not be changed |
-| Editorial typography | Low | Tracking looks wrong if Manrope isn't loaded yet |
-| Tinted shadows | Low | oklch values may need browser compat check |
-| Orange restraint | Low | Aesthetic judgment required; test against design spec |
+```
+Fix 3 (Restaurant @id)
+  └── Fix 4 (sameAs on Restaurant) — both in RestaurantSchema.astro, do together
+
+Fix 1 (FAQPage schema/DOM alignment)
+  └── independent of other fixes
+
+Fix 2 (Speakable on /faq/)
+  └── independent; requires adding id="faq-list" to DOM element in faq.astro
+
+Fix 5 (HowTo schema for 3 cities)
+  └── Extend Directions Speakable (not in this 7-fix scope but related — directions.astro)
+
+Fix 6 (FAQ meta description)
+  └── faq.astro only — no dependencies
+
+Fix 7 (llms-full.txt head link)
+  └── Layout.astro — independent
+```
+
+**Critical path:** Fix 1 is the only item with a policy violation risk. All others are additive.
+
+---
+
+## Assumptions Log
+
+| # | Claim | Section | Risk if Wrong |
+|---|-------|---------|---------------|
+| A1 | AI engines (Perplexity, ChatGPT, AI Overviews) extract FAQPage schema content at high rates | Fix 1 summary | Lower AEO ROI than expected; still no downside to fixing the violation |
+| A2 | Speakable schema aids AI extraction on non-news pages | Fix 2 | Speakable may only apply to Google News — annotation is still harmless |
+| A3 | HowTo steps are extracted by AI engines for voice/conversational answers | Fix 5 | AEO value of HowTo may be lower than expected; still no downside |
+| A4 | GBP CID URL format is stable and preferred over short links | Fix 4 | CID format may not be the only valid format; both work for sameAs |
+| A5 | The `hasMap` short URL `maps.app.goo.gl/q2EJFMbMRaysU6vH8` can be expanded to a CID URL | Fix 4 | May redirect to a non-CID Google Maps URL; requires manual verification |
+| A6 | Apache serves llms.txt as `text/plain` | Fix 7 | If `.htaccess` overrides MIME types, `text/markdown` may be correct |
+| A7 | No major AI provider reads the `<link rel="alternate">` head tag for llms.txt discovery | Fix 7 | If crawlers do read it, higher impact than estimated |
+| A8 | Spice Grill & Bar does not have a Wikidata or Wikipedia entry | Fix 4 | If an entry exists, including its URL in sameAs would be high-value — needs manual check |
 
 ---
 
 ## Sources
 
-- Tailwind CSS v4.0 release notes: [tailwindcss.com/blog/tailwindcss-v4](https://tailwindcss.com/blog/tailwindcss-v4)
-- Tailwind v4 theme variables: [tailwindcss.com/docs/theme](https://tailwindcss.com/docs/theme)
-- Tailwind v4 dark mode: [tailwindcss.com/docs/dark-mode](https://tailwindcss.com/docs/dark-mode)
-- Tailwind v4 upgrade guide: [tailwindcss.com/docs/upgrade-guide](https://tailwindcss.com/docs/upgrade-guide)
-- shadcn/ui Tailwind v4 guide: [ui.shadcn.com/docs/tailwind-v4](https://ui.shadcn.com/docs/tailwind-v4)
-- tw-animate-css (tailwindcss-animate replacement): [github.com/Wombosvideo/tw-animate-css](https://github.com/Wombosvideo/tw-animate-css)
-- Material Design 3 surface color roles: [m3.material.io/styles/color/roles](https://m3.material.io/styles/color/roles)
-- Material Design 3 design tokens: [m3.material.io/foundations/design-tokens](https://m3.material.io/foundations/design-tokens)
-- Glassmorphism accessibility guide: [playground.halfaccessible.com/blog/glassmorphism-design-trend-implementation-guide](https://playground.halfaccessible.com/blog/glassmorphism-design-trend-implementation-guide)
-- Manrope on Google Fonts: [fonts.google.com/specimen/Manrope](https://fonts.google.com/specimen/Manrope)
-- Astro + Tailwind v4 setup: [tailwindcss.com/docs/installation/framework-guides/astro](https://tailwindcss.com/docs/installation/framework-guides/astro)
+### Primary (HIGH confidence)
+- Google Search Central — FAQPage structured data: developers.google.com/search/docs/appearance/structured-data/faqpage — content requirements, visibility policy
+- Google Search Central — HowTo FAQ changes August 2023: developers.google.com/search/blog/2023/08/howto-faq-changes — deprecation of HowTo and FAQ rich results
+- schema.org/SpeakableSpecification — cssSelector property, content targeting spec
+- schema.org/HowTo, schema.org/HowToStep — field definitions
+- schema.org/@id / data model — entity identifier semantics
+- WHATWG HTML Living Standard — `rel="alternate"` link type definition
 
-_Research completed: 2026-03-24. Author: Claude Sonnet 4.6._
+### Secondary (MEDIUM confidence)
+- Multiple schema.org SEO guides confirming `site.com/#type` as `@id` format convention for LocalBusiness/Restaurant
+- Google Search Central organization schema docs — sameAs property guidance
+- Multiple meta description length guides citing 150-160 character truncation point (varies by pixel width)
+- llmstxt.org specification — `rel="alternate"` usage convention
+
+### Tertiary (LOW confidence)
+- AI citation rate claims for FAQPage schema — industry blogs, not confirmed by AI providers directly
+- Voice extraction behavior of HowTo schema — no official AI provider documentation
+- AI crawler adoption of `<link rel="alternate">` head tag — no confirmed adoption as of May 2026
+
+---
+
+_Research completed: 2026-05-13. Milestone: v3.1 AEO Gap Fixes._

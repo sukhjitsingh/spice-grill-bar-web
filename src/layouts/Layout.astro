@@ -67,7 +67,8 @@ function slugToLabel(path: string): string {
     />
     <link rel="canonical" href={canonicalURL} />
     <link rel="manifest" href="/manifest.json" />
-    <link rel="help" href="/llms.txt" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -100,7 +101,7 @@ function slugToLabel(path: string): string {
     <meta property="twitter:image" content="https://spicegrillbar66.com/opengraph-image.webp" />
 
     <!-- Geo Tags -->
-    <meta name="geo.position" content="35.2241;-112.4829" />
+    <meta name="geo.position" content="35.222908;-112.4781558" />
     <meta name="geo.placename" content="Ash Fork, Arizona" />
     <meta name="geo.region" content="US-AZ" />
 
@@ -118,7 +119,7 @@ function slugToLabel(path: string): string {
     <Footer />
     <MobileActionButtons />
     <RestaurantSchema />
-    {(currentPath === '/' || currentPath.startsWith('/faq')) && <FAQSchema />}
+    {currentPath.startsWith('/faq') && <FAQSchema />}
     <MenuSchema />
     <OrganizationSchema />
     <WebSiteSchema />

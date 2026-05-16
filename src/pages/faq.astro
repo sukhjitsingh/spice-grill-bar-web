@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="FAQ | Spice Grill & Bar"
-  description="Frequently asked questions about Spice Grill & Bar. Information on hours, location, and vegetarian options."
+  description="34 FAQs covering hours, menu, vegetarian and vegan options, takeout, payment, parking, and prices at Spice Grill & Bar — I-40 Exit 146, Ash Fork, AZ. Biker-friendly Indian restaurant on Route 66, 78 miles from the Grand Canyon."
   ogTitle="FAQ | Spice Grill & Bar — Common Questions Answered"
   ogDescription="Find answers to common questions about Spice Grill & Bar — hours, location, menu, vegetarian options, and more."
 >
@@ -15,16 +15,36 @@ import Layout from '../layouts/Layout.astro';
         Frequently Asked <span class="text-primary-container">Questions</span>
       </h1>
 
-      <div class="space-y-4">
+      <p class="speakable-faq-intro text-body-lg text-on-surface-variant mb-8">
+        Spice Grill &amp; Bar is an authentic Indian restaurant at I-40 Exit 146 in Ash Fork,
+        Arizona on historic Route 66. This page answers common questions about our hours, menu,
+        vegetarian and vegan options, takeout, and location. Find the answer you need below.
+      </p>
+
+      <div id="faq-list" class="space-y-4">
         {
           faqData.map((item) => (
             <div class="bg-surface-container p-8 rounded-2xl">
               <h2 class="text-heading-md text-on-surface mb-3">{item.question}</h2>
-              <p class="text-body-md text-on-surface-variant">{item.answer}</p>
+              <p class="speakable-faq-answer text-body-md text-on-surface-variant">{item.answer}</p>
             </div>
           ))
         }
       </div>
     </div>
   </main>
+
+  <!-- Speakable schema markup — targets intro paragraph for voice extraction -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "url": "https://spicegrillbar66.com/faq/",
+      "name": "FAQ | Spice Grill & Bar",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".speakable-faq-intro", ".speakable-faq-answer"]
+      }
+    }
+  </script>
 </Layout>

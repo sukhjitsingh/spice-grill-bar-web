@@ -18,7 +18,7 @@ try {
     console.log(`Checking ${faqData.length} FAQ items for Voice Readiness...`);
 
     faqData.forEach((item, index) => {
-      const wordCount = item.answer.split(/\s+/).length;
+      const wordCount = item.answer.trim().split(/\s+/).length;
       if (wordCount > 50) {
         console.error(
           `❌ [FAQ #${index + 1}] Answer too long for Voice Search (${wordCount} words). Target < 50.`
@@ -41,7 +41,8 @@ try {
     console.warn('⚠️ FAQ Data not found. Skipping FAQ check.');
   }
 } catch (err) {
-  console.error('❌ Failed to parse FAQ data:', err.message);
+  const msg = err instanceof Error ? err.message : String(err);
+  console.error('❌ Failed to parse FAQ data:', msg);
   errors++;
 }
 
@@ -71,6 +72,15 @@ if (fs.existsSync(LLMS_TXT_PATH)) {
   errors++;
 }
 
+// 2b. Check llms-full.txt Existence (AI Agent Readiness — full site content mirror)
+const LLMS_FULL_PATH = path.join(ROOT_DIR, 'public/llms-full.txt');
+if (fs.existsSync(LLMS_FULL_PATH)) {
+  console.log('✅ llms-full.txt found (full AI content mirror enabled).');
+} else {
+  console.error('❌ llms-full.txt missing in public/. Required for AI crawlers (linked from <head>).');
+  errors++;
+}
+
 // 3. robots.txt AI-bot Allowlist Gate (forward-protection — current file already passes)
 const ROBOTS_PATH = path.join(ROOT_DIR, 'public/robots.txt');
 if (fs.existsSync(ROBOTS_PATH)) {
@@ -92,6 +102,71 @@ if (fs.existsSync(ROBOTS_PATH)) {
 } else {
   console.error('❌ robots.txt missing in public/.');
   errors++;
+}
+
+// 4. @id fragment gate + FAQPage Question count gate — verifies build output (dist/index.html read once)
+const distIndexPath = path.join(ROOT_DIR, 'dist/index.html');
+if (!fs.existsSync(distIndexPath)) {
+  console.warn('⚠️ @id gate: dist/index.html not found — skipping (run npm run build first for full audit)');
+  console.warn('⚠️ FAQPage gate: dist/index.html not found — skipping (run npm run build first for full audit)');
+} else {
+  const distHtml = fs.readFileSync(distIndexPath, 'utf-8');
+
+  // @id fragment gate
+  const restaurantId = '"@id":"https://spicegrillbar66.com/#restaurant"';
+  const orgId = '"@id":"https://spicegrillbar66.com/#organization"';
+  const missingIds = [];
+  if (!distHtml.includes(restaurantId)) missingIds.push('#restaurant');
+  if (!distHtml.includes(orgId)) missingIds.push('#organization');
+  if (missingIds.length > 0) {
+    console.error(`❌ @id gate: dist/index.html missing @id fragment(s): ${missingIds.join(', ')}`);
+    errors++;
+  } else {
+    console.log('✅ @id gate: both #restaurant and #organization @id fragments found in dist/index.html');
+  }
+
+  // FAQPage Question count gate — verifies ≥8 Question entries in dist/index.html
+  // KEEP IN SYNC with homeFaqIndices.length in src/pages/index.astro (currently 8).
+  const MIN_HOME_FAQ_QUESTIONS = 8;
+  const questionMatches = distHtml.match(/"@type":"Question"/g) || [];
+  if (questionMatches.length < MIN_HOME_FAQ_QUESTIONS) {
+    console.error(`❌ FAQPage gate: dist/index.html has ${questionMatches.length} Question entries, expected ≥${MIN_HOME_FAQ_QUESTIONS} (matches homeFaqIndices in src/pages/index.astro)`);
+    errors++;
+  } else {
+    console.log(`✅ FAQPage gate: dist/index.html contains ${questionMatches.length} Question entries`);
+  }
+}
+
+// 5. FAQ Speakable gate — verifies SpeakableSpecification present in dist/faq/index.html (AEO-12)
+const distFaqPath = path.join(ROOT_DIR, 'dist/faq/index.html');
+if (!fs.existsSync(distFaqPath)) {
+  console.warn(
+    '⚠️ FAQ Speakable gate: dist/faq/index.html not found — skipping (run npm run build first for full audit)'
+  );
+} else {
+  const distFaqHtml = fs.readFileSync(distFaqPath, 'utf-8');
+  if (!distFaqHtml.includes('SpeakableSpecification')) {
+    console.error('❌ FAQ Speakable gate: SpeakableSpecification not found in dist/faq/index.html');
+    errors++;
+  } else {
+    console.log('✅ FAQ Speakable gate: SpeakableSpecification found in dist/faq/index.html');
+  }
+}
+
+// 6. HowTo schema gate — verifies HowTo present in dist/directions/index.html (AEO-14)
+const distDirectionsPath = path.join(ROOT_DIR, 'dist/directions/index.html');
+if (!fs.existsSync(distDirectionsPath)) {
+  console.warn(
+    '⚠️ HowTo gate: dist/directions/index.html not found — skipping (run npm run build first for full audit)'
+  );
+} else {
+  const distDirectionsHtml = fs.readFileSync(distDirectionsPath, 'utf-8');
+  if (!distDirectionsHtml.includes('"@type": "HowTo"')) {
+    console.error('❌ HowTo gate: HowTo schema not found in dist/directions/index.html');
+    errors++;
+  } else {
+    console.log('✅ HowTo gate: HowTo schema found in dist/directions/index.html');
+  }
 }
 
 console.log('\n---------------------------------------------------');

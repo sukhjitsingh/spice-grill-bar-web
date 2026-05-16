@@ -1,5 +1,18 @@
 # Spice Grill & Bar — Website
 
+## Current Milestone: v3.1 AEO Gap Fixes
+
+**Goal:** Close 7 AEO compliance and coverage gaps identified in the post-v3.0 audit — schema/DOM alignment, entity disambiguation, Speakable coverage, voice directions schema, and AI crawler discovery.
+
+**Target features:**
+- Fix home page FAQPage schema to match the 8 visible questions (not all 34 — schema/DOM mismatch)
+- Add Speakable schema to `/faq/` page (all 34 Q&As visible but zero voice annotation)
+- Add `@id` + `sameAs` to `RestaurantSchema.astro` for Knowledge Graph + AI entity disambiguation
+- Add `HowTo` schema to `/directions/` for 3 cities (Flagstaff, Williams, Las Vegas)
+- Extend Directions page Speakable to cover per-city direction sections
+- Expand FAQ page meta description to reflect all 34 topic categories
+- Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` for AI crawler discovery
+
 ## What This Is
 
 The production website for Spice Grill & Bar, an authentic Punjabi Indian restaurant at I-40 Exit 146 in Ash Fork, Arizona (Route 66). Built on Astro 5 with React islands, optimized for local SEO, AI answer engines (AEO), and Lighthouse performance. The site has 5 content pages with full structured data coverage, 34 voice-optimized FAQ entries, and CI-enforced AEO gates that prevent data drift before deploy.
@@ -43,12 +56,37 @@ AI engines and Google must surface Spice Grill & Bar as _the_ answer when anyone
 - ✓ FAQSchema on home page (/) + visible 8-Q section + SpeakableSpecification — v3.0
 - ✓ /near-williams/ GEO page targeting Williams tourists and Kaibab Estates West residents — v3.0
 - ✓ aeo-audit.mjs with CI-enforced gates: FAQ count ≥34, llms.txt sections, robots.txt AI-bot allowlist — v3.0
+- ✓ RestaurantSchema `@id: #restaurant` + 5-URL sameAs (canonical CID Maps URL) — v3.1 Phase 12
+- ✓ OrganizationSchema `@id: #organization` + canonical CID Maps URL in sameAs — v3.1 Phase 12
+- ✓ Layout.astro AI crawler discovery links: `rel=alternate type=text/plain` for /llms.txt and /llms-full.txt — v3.1 Phase 12
+- ✓ aeo-audit.mjs @id fragment gate: verifies #restaurant and #organization in dist/index.html — v3.1 Phase 12
+- ✓ Home page FAQPage schema narrowed to 8 questions (DOM-aligned), /faq/ retains full 34-question schema — v3.1 Phase 13
+- ✓ CID-verified geo coordinates (`35.222908/-112.4781558`) in RestaurantSchema and Layout.astro — v3.1 Phase 13
+- ✓ WebSiteSchema publisher wired to `#organization` entity — v3.1 Phase 13
+- ✓ aeo-audit.mjs FAQPage Question-count gate: verifies exactly 8 Question entries in dist/index.html — v3.1 Phase 13
+- ✓ /faq/ SpeakableSpecification JSON-LD targeting `.speakable-faq-intro` intro paragraph + id="faq-list" on FAQ container — v3.1 Phase 14
+- ✓ /directions/ Speakable cssSelector extended to 4 entries: .speakable-heading, .speakable-lead, .speakable-exit, .speakable-city-directions — v3.1 Phase 14
+- ✓ Flagstaff, Williams, Las Vegas primary direction paragraphs carry speakable-city-directions class — v3.1 Phase 14
+- ✓ aeo-audit.mjs FAQ Speakable gate (gate #5): verifies SpeakableSpecification in dist/faq/index.html — v3.1 Phase 14
+- ✓ HowTo @graph schema on /directions/ for Flagstaff (PT46M), Williams (PT18M), Las Vegas (PT3H) — v3.1 Phase 15
+- ✓ All 7 city direction paragraphs use "I-40 Exit 146" text for content uniformity — v3.1 Phase 15
+- ✓ FAQ meta description expanded to 227 chars covering all 34 topic clusters with "I-40 Exit 146, Ash Fork, AZ" anchor — v3.1 Phase 15
+- ✓ aeo-audit.mjs HowTo gate (gate #6): verifies HowTo schema in dist/directions/index.html — v3.1 Phase 15
 
 ### Active
 
+**v3.1 AEO Gap Fixes:**
+- [x] Fix home page FAQPage schema to match 8 visible questions — Phase 13
+- [x] Add Speakable schema to `/faq/` page — Phase 14
+- [x] Add `@id` + `sameAs` to `RestaurantSchema.astro` for entity disambiguation — Phase 12
+- [x] Add `HowTo` schema to `/directions/` for Flagstaff, Williams, Las Vegas — Phase 15
+- [x] Extend Directions page Speakable to cover per-city direction sections — Phase 14
+- [x] Expand FAQ page meta description — Phase 15
+- [x] Link `llms-full.txt` in `<head>` + fix `rel="help"` → `rel="alternate"` — `Layout.astro` — Phase 12
+
+**Future milestones:**
 - [ ] `/about/` page — full brand narrative with extractable AI passages, Punjabi cuisine context, Ash Fork location identity
 - [ ] `/route-66-dining/` page — Route 66 heritage content, road-tripper dining context
-- [ ] Fix `servesCuisine` in RestaurantSchema to remove beverage types (Beer, Wine, etc.)
 - [ ] Halal messaging revised across `llms.txt`, `llms-full.txt`, and `OurStorySection.astro` (wording TBD with owner)
 - [ ] Apple Maps Business Connect profile optimization (categories, imagery, Toast integration) — manual, off-site
 - [ ] Automated KPI tracker (AI citation frequency, GBP direction requests, review velocity)
@@ -126,4 +164,4 @@ This document evolves at phase transitions and milestone boundaries.
 
 ---
 
-*Last updated: 2026-05-14 — v3.0 milestone (AEO/GEO Refinement) complete*
+*Last updated: 2026-05-14 — Phase 13 complete (FAQPage schema compliance)*

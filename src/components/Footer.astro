@@ -9,8 +9,20 @@ const currentYear = new Date().getFullYear();
     <div class="col-span-1">
       <a
         href="/"
-        class="text-lg tracking-tighter font-semibold text-on-surface block mb-6 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline rounded-sm w-fit"
+        class="flex items-center gap-2 text-lg tracking-tighter font-semibold text-on-surface mb-6 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline rounded-sm w-fit"
       >
+        <img
+          src="/logo_light.svg"
+          class="dark:hidden w-10 h-10 object-contain shrink-0"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          src="/logo_dark.svg"
+          class="hidden dark:block w-10 h-10 object-contain shrink-0"
+          alt=""
+          aria-hidden="true"
+        />
         SPICE GRILL & BAR
       </a>
       <p class="text-body-md text-on-surface-variant max-w-xs">

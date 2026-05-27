@@ -8,6 +8,7 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "astro": "astro",
+    "optimize:logo": "node scripts/optimize_logo.mjs",
     "test:aeo": "node scripts/aeo-audit.mjs",
     "test:axe": "node scripts/axe-light.mjs",
     "test:audit": "node scripts/audit.mjs",

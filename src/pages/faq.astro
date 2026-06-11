@@ -1,6 +1,10 @@
 ---
+import type { FAQItem } from '../types/faq';
+
 import faqData from '../data/faq.json';
 import Layout from '../layouts/Layout.astro';
+
+const items = faqData as FAQItem[];
 ---
 
 <Layout
@@ -23,10 +27,18 @@ import Layout from '../layouts/Layout.astro';
 
       <div id="faq-list" class="space-y-4">
         {
-          faqData.map((item) => (
+          items.map((item) => (
             <div class="bg-surface-container p-8 rounded-2xl">
               <h2 class="text-heading-md text-on-surface mb-3">{item.question}</h2>
               <p class="speakable-faq-answer text-body-md text-on-surface-variant">{item.answer}</p>
+              {item.relatedLink && (
+                <a
+                  href={item.relatedLink.href}
+                  class="inline-block mt-3 text-sm text-primary-container underline underline-offset-2 hover:opacity-80 transition-opacity"
+                >
+                  → {item.relatedLink.text}
+                </a>
+              )}
             </div>
           ))
         }

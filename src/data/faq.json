@@ -1,7 +1,8 @@
 [
   {
     "question": "Is there an Indian restaurant near the Grand Canyon?",
-    "answer": "Spice Grill & Bar in Ash Fork, AZ is about 78 miles from the Grand Canyon South Rim — roughly 1 hour 20 minutes via AZ-64 and I-40. Take I-40 Exit 146 to reach us."
+    "answer": "Spice Grill & Bar in Ash Fork, AZ is about 78 miles from the Grand Canyon South Rim — roughly 1 hour 20 minutes via AZ-64 and I-40. Take I-40 Exit 146 to reach us.",
+    "relatedLink": { "href": "/near-grand-canyon/", "text": "See distances from all nearby cities" }
   },
   {
     "question": "Is Spice Grill & Bar a good I-40 food stop in Arizona?",
@@ -13,15 +14,18 @@
   },
   {
     "question": "How far is Spice Grill & Bar from the Grand Canyon?",
-    "answer": "Spice Grill & Bar is about 78 miles from the Grand Canyon South Rim, roughly 1 hour 20 minutes. Head south on AZ-64 to I-40 West, then take Exit 146 in Ash Fork."
+    "answer": "Spice Grill & Bar is about 78 miles from the Grand Canyon South Rim, roughly 1 hour 20 minutes. Head south on AZ-64 to I-40 West, then take Exit 146 in Ash Fork.",
+    "relatedLink": { "href": "/near-grand-canyon/", "text": "More about our distance from Grand Canyon" }
   },
   {
     "question": "Where to eat between Las Vegas and the Grand Canyon?",
-    "answer": "Spice Grill & Bar in Ash Fork, AZ is a great stop along the route — about 3 hours from Las Vegas on I-40. Take Exit 146 for fresh Indian food on historic Route 66."
+    "answer": "Spice Grill & Bar in Ash Fork, AZ is a great stop along the route — about 3 hours from Las Vegas on I-40. Take Exit 146 for fresh Indian food on historic Route 66.",
+    "relatedLink": { "href": "/directions/", "text": "Get step-by-step directions from Las Vegas" }
   },
   {
     "question": "Where to eat between Flagstaff and the Grand Canyon?",
-    "answer": "Spice Grill & Bar is about 51 miles west of Flagstaff on I-40, roughly a 46-minute drive. Take Exit 146 in Ash Fork for Indian food before or after your Grand Canyon visit."
+    "answer": "Spice Grill & Bar is about 51 miles west of Flagstaff on I-40, roughly a 46-minute drive. Take Exit 146 in Ash Fork for Indian food before or after your Grand Canyon visit.",
+    "relatedLink": { "href": "/directions/#flagstaff", "text": "Get directions from Flagstaff" }
   },
   {
     "question": "Where to eat on the way from Phoenix to the Grand Canyon?",
@@ -41,11 +45,13 @@
   },
   {
     "question": "What are the most popular dishes at Spice Grill & Bar?",
-    "answer": "Spice Grill & Bar's guest favorites are Butter Chicken, Goat Curry, Shahi Paneer, Fish Pakora, and our signature Garlic Naan baked in a traditional clay oven."
+    "answer": "Spice Grill & Bar's guest favorites are Butter Chicken, Goat Curry, Shahi Paneer, Fish Pakora, and our signature Garlic Naan baked in a traditional clay oven.",
+    "relatedLink": { "href": "/#menu", "text": "Browse the full menu with prices" }
   },
   {
     "question": "What should I order if I've never had Indian food before?",
-    "answer": "Spice Grill & Bar recommends Butter Chicken for first-timers — it's mild, creamy, and crowd-pleasing. Pair it with Garlic Naan and try Tandoori Chicken for a well-rounded introduction."
+    "answer": "Spice Grill & Bar recommends Butter Chicken for first-timers — it's mild, creamy, and crowd-pleasing. Pair it with Garlic Naan and try Tandoori Chicken for a well-rounded introduction.",
+    "relatedLink": { "href": "/#menu", "text": "View the full menu" }
   },
   {
     "question": "Can I customize how spicy my food is at Spice Grill & Bar?",
@@ -65,7 +71,8 @@
   },
   {
     "question": "Can I order ahead from Williams or Seligman?",
-    "answer": "Spice Grill & Bar offers call-ahead pickup — call us at 928-277-1292, place your order, and your food will be ready when you arrive at the restaurant in Ash Fork. We do not deliver."
+    "answer": "Spice Grill & Bar offers call-ahead pickup — call us at 928-277-1292, place your order, and your food will be ready when you arrive at the restaurant in Ash Fork. We do not deliver.",
+    "relatedLink": { "href": "/directions/", "text": "Get driving directions from Williams or Seligman" }
   },
   {
     "question": "Is there parking available at Spice Grill & Bar?",

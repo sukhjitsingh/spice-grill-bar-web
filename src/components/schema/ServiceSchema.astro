@@ -1,0 +1,44 @@
+---
+import type { Service, WithContext } from 'schema-dts';
+
+const schema: WithContext<Service> = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://spicegrillbar66.com/#dining-service',
+  name: 'Authentic Punjabi Indian Dining',
+  serviceType: 'Restaurant',
+  description:
+    'Authentic Punjabi Indian cuisine on historic Route 66 at I-40 Exit 146 in Ash Fork, AZ. Featuring tandoor cooking, freshly baked naan, curries, and full bar service. Dine-in, takeout, and curbside available.',
+  provider: {
+    '@type': 'Restaurant',
+    '@id': 'https://spicegrillbar66.com/#restaurant',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Ash Fork', '@id': 'https://en.wikipedia.org/wiki/Ash_Fork,_Arizona' },
+    { '@type': 'City', name: 'Williams', '@id': 'https://en.wikipedia.org/wiki/Williams,_Arizona' },
+    { '@type': 'Place', name: 'Kaibab Estates West' },
+    { '@type': 'City', name: 'Seligman', '@id': 'https://en.wikipedia.org/wiki/Seligman,_Arizona' },
+    { '@type': 'Place', name: 'Grand Canyon South Rim' },
+    { '@type': 'Place', name: 'I-40 Corridor, Arizona' },
+    { '@type': 'Place', name: 'Historic Route 66, Arizona' },
+  ],
+  availableChannel: {
+    '@type': 'ServiceChannel',
+    serviceUrl: 'https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave',
+    serviceSmsNumber: '+19282771292',
+  },
+  offers: {
+    '@type': 'Offer',
+    description: 'Dine-in, takeout, and curbside service',
+    priceCurrency: 'USD',
+    url: 'https://spicegrillbar66.com/#menu',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Spice Grill & Bar Menu',
+    url: 'https://spicegrillbar66.com/#menu',
+  },
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

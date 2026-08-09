@@ -6,6 +6,10 @@ on:
     - cron: '0 0 * * 0'
   workflow_dispatch: # Allow manual trigger
 
+env:
+  # Opts all GitHub action steps directly into the Node 24 runtime
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   update-reviews:
     runs-on: ubuntu-latest

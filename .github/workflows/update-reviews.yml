@@ -6,22 +6,18 @@ on:
     - cron: '0 0 * * 0'
   workflow_dispatch: # Allow manual trigger
 
-env:
-  # Opts all GitHub action steps directly into the Node 24 runtime
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-
 jobs:
   update-reviews:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Install Dependencies
@@ -36,7 +32,7 @@ jobs:
         run: node scripts/ingest-reviews.js
 
       - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: update reviews data [skip ci]'
           file_pattern: data/reviews.json

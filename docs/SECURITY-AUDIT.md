@@ -21,14 +21,14 @@ All changes stayed within semver ranges. Nothing was installed with `--force`.
 
 ### Package changes
 
-| Package              | From    | To        | Notes                                                 |
-| -------------------- | ------- | --------- | ----------------------------------------------------- |
-| `astro`              | ^5.18.2 | ^7.4.4    | Brings Vite 8 (Rolldown), zod 4.6.x, sharp 0.35.5     |
-| `@astrojs/react`     | ^4.4.2  | ^7.1.2    | `oxc-transform-react` peer is optional and not needed |
-| `@astrojs/partytown` | ^2.1.4  | ^2.1.9    |                                                       |
-| `astro-indexnow`     | ^2.1.0  | ^2.3.10   | Declares `astro ^7` support                           |
-| `@astrojs/check`     | ^0.9.6  | ^0.9.12   |                                                       |
-| `engines.node`       | (none)  | >=22.23.4 | Required by Astro 7. CI already uses Node 24.         |
+| Package              | From    | To            | Notes                                                                                                     |
+| -------------------- | ------- | ------------- | --------------------------------------------------------------------------------------------------------- |
+| `astro`              | ^5.18.2 | ^7.4.4        | Brings Vite 8 (Rolldown), zod 4.6.x, sharp 0.35.5                                                         |
+| `@astrojs/react`     | ^4.4.2  | ^7.1.2        | `oxc-transform-react` peer is optional and not needed                                                     |
+| `@astrojs/partytown` | ^2.1.4  | ^2.1.9        |                                                                                                           |
+| `astro-indexnow`     | ^2.1.0  | ^2.3.10       | Declares `astro ^7` support                                                                               |
+| `@astrojs/check`     | ^0.9.6  | ^0.9.12       |                                                                                                           |
+| `engines.node`       | (none)  | >=24.22.2 <25 | Astro 7 needs >=22.23.4. Pinned to Node 24.22.2 (latest 24 LTS) in `.nvmrc`; the workflow reads `.nvmrc`. |
 
 Advisories resolved by this: the astro critical (AVIF optimization RCE, GHSA-26w7-cxv4-gfx2) and its high/moderate XSS and SSRF advisories, sharp (libvips/libheif/librsvg), and zod 3 in the build chain.
 

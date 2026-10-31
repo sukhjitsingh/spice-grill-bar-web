@@ -10,6 +10,10 @@ export default defineConfig({
   site: 'https://spicegrillbar66.com',
   trailingSlash: 'always',
   build: { format: 'directory' },
+  // Astro 7 defaults to 'jsx' whitespace rules, which drop the spaces around
+  // inline links/spans that Prettier wraps onto new lines. Keep the lossless
+  // Astro 5 behavior.
+  compressHTML: true,
   vite: {
     plugins: [tailwindcss()],
   },

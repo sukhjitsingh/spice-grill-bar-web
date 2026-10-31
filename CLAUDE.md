@@ -33,12 +33,14 @@ The codebase deliberately splits between two component types:
 
 ### Routing & Pages
 
-File-based routing via `/src/pages/`. Four pages:
+File-based routing via `/src/pages/`. Pages:
 
 - `index.astro` — Home page (one-page site with multiple sections)
 - `faq.astro` — FAQ page for voice search / AEO
 - `near-grand-canyon.astro` — GEO page targeting Grand Canyon / proximity queries
 - `directions.astro` — GEO page with per-city driving directions and Maps embed
+- `near-williams.astro` — GEO page targeting Williams / Kaibab Estates queries
+- `events.astro` — Karaoke (biweekly, computed from `anchorDate`) and Paint & Sip (dated entries) from `src/data/events.json`; emits Event JSON-LD via `EventSchema.astro`
 
 ### Data Layer
 
@@ -46,6 +48,7 @@ Static JSON files in `/src/data/` are the source of truth:
 
 - `menu.json` — All menu categories and items with prices
 - `faq.json` — Q&A pairs for structured data and AEO
+- `events.json` — Recurring and dated events. To post a new Paint & Sip, add an entry to `events` (date, time, optional price/theme/signupUrl), then rebuild and deploy. Past dates hide automatically in the browser.
 - `reviews.json` — Customer reviews, auto-updated weekly via GitHub Actions (Gemini API scrapes and summarizes new reviews)
 
 ### Schema / SEO Components

@@ -7,6 +7,7 @@ import Footer from '@/components/Footer.astro';
 import { Header } from '@/components/Header';
 import MobileActionButtons from '@/components/MobileActionButtons.astro';
 import BreadcrumbSchema from '@/components/schema/BreadcrumbSchema.astro';
+import EventSchema from '@/components/schema/EventSchema.astro';
 import FAQSchema from '@/components/schema/FAQSchema.astro';
 import MenuSchema from '@/components/schema/MenuSchema.astro';
 import OrganizationSchema from '@/components/schema/OrganizationSchema.astro';
@@ -123,6 +124,7 @@ function slugToLabel(path: string): string {
     <RestaurantSchema />
     <ServiceSchema />
     {(currentPath === '/' || currentPath.startsWith('/faq')) && <FAQSchema />}
+    {currentPath.startsWith('/events') && <EventSchema />}
     <MenuSchema />
     <OrganizationSchema />
     <WebSiteSchema />

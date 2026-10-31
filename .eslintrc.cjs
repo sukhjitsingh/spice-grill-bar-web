@@ -36,6 +36,14 @@ module.exports = {
       },
     },
     {
+      // Virtual files for <script> blocks inside .astro; Prettier already formats the parent file
+      // and cannot parse these fragments on its own.
+      files: ['**/*.astro/*.js', '*.astro/*.js'],
+      rules: {
+        'prettier/prettier': 'off',
+      },
+    },
+    {
       files: ['*.ts', '*.tsx'],
       parser: '@typescript-eslint/parser',
       extends: ['airbnb-typescript/base', 'plugin:@typescript-eslint/recommended'],

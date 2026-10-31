@@ -25,7 +25,11 @@ const schema: WithContext<Service> = {
   availableChannel: {
     '@type': 'ServiceChannel',
     serviceUrl: 'https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave',
-    serviceSmsNumber: '+19282771292',
+    servicePhone: {
+      '@type': 'ContactPoint',
+      telephone: '+19282771292',
+      contactType: 'customer service',
+    },
   },
   offers: {
     '@type': 'Offer',

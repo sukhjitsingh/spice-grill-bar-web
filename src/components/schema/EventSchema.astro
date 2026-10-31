@@ -1,0 +1,61 @@
+---
+import type { EventsData } from '@/types/events';
+
+import eventsData from '../../data/events.json';
+import { eventUrl, todayInArizona, toIso, upcomingOccurrences } from '../../lib/events';
+
+const data = eventsData as EventsData;
+const SITE = 'https://spicegrillbar66.com';
+const images = new Map(data.events.map((e) => [e.id, e.image]));
+const signups = new Map(data.events.map((e) => [e.id, e.signupUrl]));
+
+// ~6 months of biweekly dates keeps the markup valid between manual deploys.
+const occurrences = upcomingOccurrences(data, todayInArizona(), 13);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': occurrences.map((o) => ({
+    '@type': 'Event',
+    '@id': `${SITE}/events/#${o.id}`,
+    name: `${o.title} at Spice Grill & Bar`,
+    description: o.description,
+    startDate: toIso(o.date, o.time),
+    ...(o.endTime ? { endDate: toIso(o.date, o.endTime) } : {}),
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    image: [images.get(o.id) || `${SITE}/opengraph-image.webp`],
+    url: eventUrl(o.anchor),
+    location: {
+      '@type': 'Place',
+      name: 'Spice Grill & Bar',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '33 Lewis Ave',
+        addressLocality: 'Ash Fork',
+        addressRegion: 'AZ',
+        postalCode: '86320',
+        addressCountry: 'US',
+      },
+    },
+    organizer: {
+      '@type': 'Organization',
+      '@id': `${SITE}/#organization`,
+      name: 'Spice Grill & Bar',
+      url: SITE,
+    },
+    ...(o.price !== undefined
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: String(o.price),
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            url: signups.get(o.id) || eventUrl(o.anchor),
+          },
+        }
+      : {}),
+  })),
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

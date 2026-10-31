@@ -1,0 +1,28 @@
+{
+  "recurring": [
+    {
+      "id": "karaoke-night",
+      "title": "Karaoke Night",
+      "category": "Karaoke",
+      "anchorDate": "2026-10-24",
+      "everyWeeks": 2,
+      "time": "19:00",
+      "endTime": "22:00",
+      "endLabel": "close",
+      "price": 0,
+      "description": "Grab the mic every other Saturday night on Route 66. Sing your favorites, cheer on friends, and enjoy drinks from the full bar and Punjabi bites from the kitchen. Everyone is welcome, from first-timers to regulars."
+    }
+  ],
+  "events": [
+    {
+      "id": "2026-11-15-paint-and-sip",
+      "title": "Paint & Sip",
+      "category": "Paint & Sip",
+      "date": "2026-11-15",
+      "time": "14:00",
+      "endTime": "16:30",
+      "description": "A relaxed Sunday afternoon of guided painting with a drink in hand. No experience needed: follow along step by step and take your canvas home. Seats are limited, so reserve ahead."
+    }
+  ],
+  "sportsScheduleUrl": "https://sukhjitsingh.github.io/bar-sports-board/"
+}

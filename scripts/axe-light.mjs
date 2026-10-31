@@ -8,7 +8,7 @@ import { chromium } from 'playwright';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const PAGES = ['/', '/near-grand-canyon/', '/directions/', '/faq/'];
+const PAGES = ['/', '/near-grand-canyon/', '/directions/', '/faq/', '/events/'];
 const BASE = 'http://localhost:4321';
 const AXE_PATH = resolve('./node_modules/axe-core/axe.min.js');
 
@@ -70,6 +70,6 @@ if (totalViolations > 0) {
   console.error(`\n${totalViolations} total contrast violation(s) found in light mode.`);
   process.exit(1);
 } else {
-  console.log('\nAll 4 pages pass light mode contrast audit.');
+  console.log(`\nAll ${PAGES.length} pages pass light mode contrast audit.`);
   process.exit(0);
 }

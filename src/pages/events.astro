@@ -1,0 +1,377 @@
+---
+import { ArrowRight, CalendarDays, Clock, Mic, Palette, Tv } from 'lucide-react';
+
+import AstroButton from '../components/ui/AstroButton.astro';
+import eventsData from '../data/events.json';
+import Layout from '../layouts/Layout.astro';
+import {
+  expandRecurring,
+  formatDate,
+  formatPrice,
+  formatTimeRange,
+  todayInArizona,
+  upcomingDated,
+  upcomingOccurrences,
+} from '../lib/events';
+import type { EventsData } from '../types/events';
+
+const data = eventsData as EventsData;
+const today = todayInArizona();
+
+// Render a year of recurring dates; the inline script below hides past ones, so the page
+// stays accurate between manual deploys.
+const RECURRING_DATES = 26;
+const VISIBLE_DATES = 4;
+
+const nextUp = upcomingOccurrences(data, today, RECURRING_DATES);
+const paintAndSip = upcomingDated(
+  data.events.filter((e) => e.category === 'Paint & Sip'),
+  today
+);
+const otherEvents = upcomingDated(
+  data.events.filter((e) => e.category !== 'Paint & Sip'),
+  today
+);
+
+const ICONS: Record<string, typeof Mic> = { Karaoke: Mic, 'Paint & Sip': Palette };
+const iconFor = (category: string) => ICONS[category] ?? CalendarDays;
+
+const chip =
+  'text-label-sm uppercase bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full';
+---
+
+<Layout
+  title="Events: Karaoke & Paint and Sip | Spice Grill & Bar, Ash Fork AZ"
+  description="Karaoke every other Saturday and a monthly Paint & Sip on Sunday at Spice Grill & Bar, 33 Lewis Ave on Route 66 in Ash Fork, AZ (I-40 Exit 146). See upcoming dates and reserve your seat."
+  ogTitle="Events at Spice Grill & Bar | Karaoke & Paint and Sip on Route 66"
+  ogDescription="Karaoke every other Saturday and a monthly Paint & Sip on Sunday at Spice Grill & Bar in Ash Fork, AZ."
+>
+  <main class="pt-32 pb-24 px-6 bg-surface-container-low min-h-screen">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="speakable-heading text-[1.875rem] md:text-display-md text-on-surface mb-6">
+        Events at <span class="text-primary-container">Spice Grill &amp; Bar</span>
+      </h1>
+      <p class="speakable-lead text-body-lg text-on-surface-variant mb-12">
+        Spice Grill &amp; Bar hosts Karaoke Night every other Saturday from 7 PM to close and a
+        Paint &amp; Sip once a month on a Sunday afternoon. Join us at 33 Lewis Ave on historic
+        Route 66 in Ash Fork, Arizona, at I-40 Exit 146.
+      </p>
+
+      {
+        nextUp.length > 0 && (
+          <section aria-labelledby="next-up-heading" class="mb-12" data-upcoming data-limit="1">
+            <h2 id="next-up-heading" class="sr-only">
+              Next event
+            </h2>
+            <div data-upcoming-list>
+              {nextUp.map((o, i) => {
+                const Icon = iconFor(o.category);
+                return (
+                  <a
+                    href={`#${o.anchor}`}
+                    data-date={o.date}
+                    hidden={i > 0}
+                    class="group block bg-surface-container-high p-6 sm:p-8 rounded-2xl hover:bg-surface-container-highest transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline"
+                  >
+                    <div class="flex items-center gap-2 mb-4">
+                      <span class="text-label-sm uppercase bg-primary-container text-on-primary-container px-3 py-1 rounded-full">
+                        Next up
+                      </span>
+                      <span
+                        data-today
+                        hidden={o.date !== today}
+                        class="text-label-sm uppercase bg-surface text-on-surface px-3 py-1 rounded-full"
+                      >
+                        Today
+                      </span>
+                    </div>
+                    <div class="flex items-start gap-4">
+                      <Icon className="w-8 h-8 text-on-surface shrink-0 mt-1" aria-hidden="true" />
+                      <div>
+                        <p class="text-heading-lg text-on-surface">{o.title}</p>
+                        <p class="text-body-lg text-on-surface-variant mt-1">
+                          <time datetime={o.date}>
+                            {formatDate(o.date, { weekday: 'long', month: 'long', day: 'numeric' })}
+                          </time>
+                          {' · '}
+                          {formatTimeRange(o.time, o.endTime, o.endLabel)}
+                        </p>
+                      </div>
+                      <ArrowRight
+                        className="w-5 h-5 text-on-surface-variant ml-auto self-center shrink-0 group-hover:translate-x-0.5 transition-transform"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        data.recurring.map((rule) => {
+          const Icon = iconFor(rule.category);
+          const dates = expandRecurring(rule, today, RECURRING_DATES);
+          const price = formatPrice(rule.price);
+          return (
+            <section id={rule.id} aria-labelledby={`${rule.id}-heading`} class="mb-12 scroll-mt-24">
+              <div class="bg-surface-container p-6 sm:p-8 rounded-2xl">
+                <div class="flex items-start gap-4 mb-4">
+                  <div class="bg-surface-container-high p-3 rounded-xl shrink-0">
+                    <Icon className="w-6 h-6 text-on-surface" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <h2 id={`${rule.id}-heading`} class="text-heading-lg text-on-surface">
+                      {rule.title}
+                    </h2>
+                    <p class="text-body-md text-on-surface-variant mt-1">
+                      Every {rule.everyWeeks === 2 ? 'other ' : ''}
+                      {formatDate(rule.anchorDate, { weekday: 'long' })}
+                      {' · '}
+                      {formatTimeRange(rule.time, rule.endTime, rule.endLabel)}
+                      {price && ` · ${price}`}
+                    </p>
+                  </div>
+                </div>
+                <p class="text-body-md text-on-surface-variant mb-6">{rule.description}</p>
+                <div data-upcoming data-limit={VISIBLE_DATES}>
+                  <h3 class="text-label-sm uppercase tracking-wider text-on-surface mb-3">
+                    Upcoming dates
+                  </h3>
+                  <ul data-upcoming-list class="flex flex-wrap gap-2">
+                    {dates.map((d, i) => (
+                      <li
+                        data-date={d}
+                        hidden={i >= VISIBLE_DATES}
+                        class="bg-surface-container-high text-on-surface text-body-md px-4 py-2 rounded-full"
+                      >
+                        <time datetime={d}>
+                          {formatDate(d, { weekday: 'short', month: 'short', day: 'numeric' })}
+                        </time>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </section>
+          );
+        })
+      }
+
+      <section aria-labelledby="paint-and-sip-heading" class="mb-12" data-upcoming>
+        <div class="flex items-center gap-3 mb-6">
+          <Palette className="w-6 h-6 text-on-surface" aria-hidden="true" />
+          <h2 id="paint-and-sip-heading" class="text-heading-lg text-on-surface">
+            Paint &amp; Sip
+          </h2>
+        </div>
+        <p class="text-body-md text-on-surface-variant mb-6">
+          Once a month on a Sunday. All skill levels welcome. Seats are limited, so reserve ahead.
+        </p>
+        <div data-upcoming-list class="space-y-4">
+          {
+            paintAndSip.map((e) => {
+              const price = formatPrice(e.price);
+              return (
+                <article
+                  id={e.id}
+                  data-date={e.date}
+                  class="bg-surface-container p-6 sm:p-8 rounded-2xl scroll-mt-24"
+                >
+                  <div class="flex items-center gap-4 sm:gap-6">
+                    <div class="bg-surface-container-high rounded-xl w-16 h-16 shrink-0 flex flex-col items-center justify-center">
+                      <span class="text-label-sm uppercase text-on-surface-variant">
+                        {formatDate(e.date, { month: 'short' })}
+                      </span>
+                      <span class="text-heading-md text-on-surface leading-none">
+                        {formatDate(e.date, { day: 'numeric' })}
+                      </span>
+                    </div>
+                    <div class="min-w-0">
+                      <h3 class="text-heading-md text-on-surface">
+                        {e.theme ? `${e.title}: ${e.theme}` : e.title}
+                      </h3>
+                      <p class="text-body-md text-on-surface-variant mt-1 flex flex-wrap items-center gap-x-2">
+                        <Clock className="w-4 h-4 shrink-0" aria-hidden="true" />
+                        <time datetime={e.date}>
+                          {formatDate(e.date, { weekday: 'long', month: 'long', day: 'numeric' })}
+                        </time>
+                        <span aria-hidden="true">·</span>
+                        <span>{formatTimeRange(e.time, e.endTime)}</span>
+                        {price && <span aria-hidden="true">·</span>}
+                        {price && <span>{price}</span>}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="sm:pl-22">
+                    <p class="text-body-md text-on-surface-variant mt-4">{e.description}</p>
+                    <div class="mt-5">
+                      {e.signupUrl ? (
+                        <AstroButton href={e.signupUrl} target="_blank" rel="noopener noreferrer">
+                          Reserve your seat <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                        </AstroButton>
+                      ) : (
+                        <AstroButton
+                          href="tel:+19282771292"
+                          variant="outline"
+                          aria-label="Call (928) 277-1292 to reserve a seat"
+                        >
+                          Call to reserve: (928) 277-1292
+                        </AstroButton>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+        <div
+          data-empty-state
+          hidden={paintAndSip.length > 0}
+          class="bg-surface-container p-6 sm:p-8 rounded-2xl text-body-md text-on-surface-variant"
+        >
+          The next Paint &amp; Sip date is coming soon. Follow us on{' '}
+          <a
+            href="https://www.instagram.com/panjabi_dhaba_sgb"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-on-surface underline underline-offset-2">Instagram</a
+          > or{' '}
+          <a
+            href="https://www.facebook.com/profile.php?id=61566349169122"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-on-surface underline underline-offset-2">Facebook</a
+          > for the announcement.
+        </div>
+      </section>
+
+      {
+        otherEvents.length > 0 && (
+          <section aria-labelledby="special-events-heading" class="mb-12" data-upcoming>
+            <h2 id="special-events-heading" class="text-heading-lg text-on-surface mb-6">
+              Special Events
+            </h2>
+            <div data-upcoming-list class="space-y-4">
+              {otherEvents.map((e) => (
+                <article
+                  id={e.id}
+                  data-date={e.date}
+                  class="bg-surface-container p-6 sm:p-8 rounded-2xl scroll-mt-24"
+                >
+                  <span class={chip}>{e.category}</span>
+                  <h3 class="text-heading-md text-on-surface mt-3">{e.title}</h3>
+                  <p class="text-body-md text-on-surface-variant mt-1">
+                    <time datetime={e.date}>
+                      {formatDate(e.date, { weekday: 'long', month: 'long', day: 'numeric' })}
+                    </time>
+                    {' · '}
+                    {formatTimeRange(e.time, e.endTime)}
+                    {formatPrice(e.price) && ` · ${formatPrice(e.price)}`}
+                  </p>
+                  <p class="text-body-md text-on-surface-variant mt-3">{e.description}</p>
+                </article>
+              ))}
+            </div>
+            <div data-empty-state hidden class="text-body-md text-on-surface-variant">
+              More events coming soon.
+            </div>
+          </section>
+        )
+      }
+
+      <section aria-labelledby="game-day-heading" class="mb-12">
+        <a
+          href={data.sportsScheduleUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-center gap-4 bg-surface-container p-6 rounded-2xl hover:bg-surface-container-high transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline"
+        >
+          <Tv className="w-6 h-6 text-on-surface shrink-0" aria-hidden="true" />
+          <div class="flex-1">
+            <h2 id="game-day-heading" class="text-heading-md text-on-surface">
+              Catching the game?
+            </h2>
+            <p class="text-body-md text-on-surface-variant">
+              See today's game schedule on our TVs.
+            </p>
+          </div>
+          <ArrowRight
+            className="w-5 h-5 text-on-surface-variant shrink-0 group-hover:translate-x-0.5 transition-transform"
+            aria-hidden="true"
+          />
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-heading-lg text-on-surface mb-6">Plan Your Visit</h2>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/directions/"
+            class="inline-block bg-primary-container text-on-primary-container font-semibold px-6 py-3 rounded-xl hover:bg-primary-container/90 transition-colors text-center"
+          >
+            Directions to Spice Grill &amp; Bar
+          </a>
+          <a
+            href="/#menu"
+            class="inline-block bg-surface-container text-on-surface font-semibold px-6 py-3 rounded-xl hover:bg-surface-container-high transition-colors text-center"
+          >
+            View the food &amp; drink menu
+          </a>
+          <a
+            href="/faq/"
+            class="inline-block bg-surface-container text-on-surface font-semibold px-6 py-3 rounded-xl hover:bg-surface-container-high transition-colors text-center"
+          >
+            Frequently asked questions
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Hides past dates in the visitor's browser (Arizona time) so the page never looks stale between deploys. -->
+  <script>
+    function hidePastEvents() {
+      const today = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Phoenix',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }).format(new Date());
+      document.querySelectorAll('[data-upcoming]').forEach((group) => {
+        const items = [...group.querySelectorAll('[data-upcoming-list] > [data-date]')];
+        const limit = Number(group.getAttribute('data-limit')) || Infinity;
+        const upcoming = items.filter((el) => (el.getAttribute('data-date') ?? '') >= today);
+        items.forEach((el) => {
+          const index = upcoming.indexOf(el);
+          el.toggleAttribute('hidden', index === -1 || index >= limit);
+          el.querySelector('[data-today]')?.toggleAttribute(
+            'hidden',
+            el.getAttribute('data-date') !== today
+          );
+        });
+        const empty = group.querySelector('[data-empty-state]');
+        if (empty) empty.toggleAttribute('hidden', upcoming.length > 0);
+        else group.toggleAttribute('hidden', upcoming.length === 0);
+      });
+    }
+    document.addEventListener('astro:page-load', hidePastEvents);
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "url": "https://spicegrillbar66.com/events/",
+      "name": "Events at Spice Grill & Bar",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".speakable-heading", ".speakable-lead"]
+      }
+    }
+  </script>
+</Layout>

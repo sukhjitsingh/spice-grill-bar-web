@@ -77,7 +77,9 @@ const LLMS_FULL_PATH = path.join(ROOT_DIR, 'public/llms-full.txt');
 if (fs.existsSync(LLMS_FULL_PATH)) {
   console.log('✅ llms-full.txt found (full AI content mirror enabled).');
 } else {
-  console.error('❌ llms-full.txt missing in public/. Required for AI crawlers (linked from <head>).');
+  console.error(
+    '❌ llms-full.txt missing in public/. Required for AI crawlers (linked from <head>).'
+  );
   errors++;
 }
 
@@ -88,10 +90,7 @@ if (fs.existsSync(ROBOTS_PATH)) {
   const requiredBots = ['GPTBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended', 'CCBot'];
   for (const bot of requiredBots) {
     // Match `User-agent: <bot>` followed by `Allow: /` (allow blank/comment lines between)
-    const re = new RegExp(
-      `User-agent:\\s*${bot}\\s*\\n(?:#[^\\n]*\\n|\\s*\\n)*Allow:\\s*/`,
-      'i'
-    );
+    const re = new RegExp(`User-agent:\\s*${bot}\\s*\\n(?:#[^\\n]*\\n|\\s*\\n)*Allow:\\s*/`, 'i');
     if (!re.test(robotsContent)) {
       console.error(`❌ robots.txt: ${bot} missing Allow: / directive`);
       errors++;
@@ -107,8 +106,12 @@ if (fs.existsSync(ROBOTS_PATH)) {
 // 4. @id fragment gate + FAQPage Question count gate — verifies build output (dist/index.html read once)
 const distIndexPath = path.join(ROOT_DIR, 'dist/index.html');
 if (!fs.existsSync(distIndexPath)) {
-  console.warn('⚠️ @id gate: dist/index.html not found — skipping (run npm run build first for full audit)');
-  console.warn('⚠️ FAQPage gate: dist/index.html not found — skipping (run npm run build first for full audit)');
+  console.warn(
+    '⚠️ @id gate: dist/index.html not found — skipping (run npm run build first for full audit)'
+  );
+  console.warn(
+    '⚠️ FAQPage gate: dist/index.html not found — skipping (run npm run build first for full audit)'
+  );
 } else {
   const distHtml = fs.readFileSync(distIndexPath, 'utf-8');
 
@@ -122,7 +125,9 @@ if (!fs.existsSync(distIndexPath)) {
     console.error(`❌ @id gate: dist/index.html missing @id fragment(s): ${missingIds.join(', ')}`);
     errors++;
   } else {
-    console.log('✅ @id gate: both #restaurant and #organization @id fragments found in dist/index.html');
+    console.log(
+      '✅ @id gate: both #restaurant and #organization @id fragments found in dist/index.html'
+    );
   }
 
   // FAQPage Question count gate — verifies ≥8 Question entries in dist/index.html
@@ -130,10 +135,14 @@ if (!fs.existsSync(distIndexPath)) {
   const MIN_HOME_FAQ_QUESTIONS = 8;
   const questionMatches = distHtml.match(/"@type":"Question"/g) || [];
   if (questionMatches.length < MIN_HOME_FAQ_QUESTIONS) {
-    console.error(`❌ FAQPage gate: dist/index.html has ${questionMatches.length} Question entries, expected ≥${MIN_HOME_FAQ_QUESTIONS} (matches homeFaqIndices in src/pages/index.astro)`);
+    console.error(
+      `❌ FAQPage gate: dist/index.html has ${questionMatches.length} Question entries, expected ≥${MIN_HOME_FAQ_QUESTIONS} (matches homeFaqIndices in src/pages/index.astro)`
+    );
     errors++;
   } else {
-    console.log(`✅ FAQPage gate: dist/index.html contains ${questionMatches.length} Question entries`);
+    console.log(
+      `✅ FAQPage gate: dist/index.html contains ${questionMatches.length} Question entries`
+    );
   }
 }
 
@@ -166,6 +175,46 @@ if (!fs.existsSync(distDirectionsPath)) {
     errors++;
   } else {
     console.log('✅ HowTo gate: HowTo schema found in dist/directions/index.html');
+  }
+}
+
+// 7. Events gate — verifies Speakable + complete Event nodes in dist/events/index.html
+const distEventsPath = path.join(ROOT_DIR, 'dist/events/index.html');
+if (!fs.existsSync(distEventsPath)) {
+  console.warn(
+    '⚠️ Events gate: dist/events/index.html not found — skipping (run npm run build first for full audit)'
+  );
+} else {
+  const distEventsHtml = fs.readFileSync(distEventsPath, 'utf-8');
+  if (!distEventsHtml.includes('SpeakableSpecification')) {
+    console.error('❌ Events gate: SpeakableSpecification not found in dist/events/index.html');
+    errors++;
+  }
+  const eventNodes = [];
+  for (const [, json] of distEventsHtml.matchAll(
+    /<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g
+  )) {
+    try {
+      const parsed = JSON.parse(json);
+      eventNodes.push(...(parsed['@graph'] || [parsed]).filter((n) => n['@type'] === 'Event'));
+    } catch {
+      console.error('❌ Events gate: unparseable JSON-LD block in dist/events/index.html');
+      errors++;
+    }
+  }
+  const incomplete = eventNodes.filter((n) => !n.name || !n.startDate || !n.location);
+  if (eventNodes.length === 0) {
+    console.error('❌ Events gate: no Event nodes found in dist/events/index.html');
+    errors++;
+  } else if (incomplete.length > 0) {
+    console.error(
+      `❌ Events gate: ${incomplete.length} Event node(s) missing name/startDate/location`
+    );
+    errors++;
+  } else {
+    console.log(
+      `✅ Events gate: ${eventNodes.length} complete Event nodes + Speakable in dist/events/index.html`
+    );
   }
 }
 

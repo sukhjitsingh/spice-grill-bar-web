@@ -15,7 +15,10 @@
   {
     "question": "How far is Spice Grill & Bar from the Grand Canyon?",
     "answer": "Spice Grill & Bar is about 78 miles from the Grand Canyon South Rim, roughly 1 hour 20 minutes. Head south on AZ-64 to I-40 West, then take Exit 146 in Ash Fork.",
-    "relatedLink": { "href": "/near-grand-canyon/", "text": "More about our distance from Grand Canyon" }
+    "relatedLink": {
+      "href": "/near-grand-canyon/",
+      "text": "More about our distance from Grand Canyon"
+    }
   },
   {
     "question": "Where to eat between Las Vegas and the Grand Canyon?",
@@ -72,7 +75,10 @@
   {
     "question": "Can I order ahead from Williams or Seligman?",
     "answer": "Spice Grill & Bar offers call-ahead pickup — call us at 928-277-1292, place your order, and your food will be ready when you arrive at the restaurant in Ash Fork. We do not deliver.",
-    "relatedLink": { "href": "/directions/", "text": "Get driving directions from Williams or Seligman" }
+    "relatedLink": {
+      "href": "/directions/",
+      "text": "Get driving directions from Williams or Seligman"
+    }
   },
   {
     "question": "Is there parking available at Spice Grill & Bar?",
@@ -141,5 +147,15 @@
   {
     "question": "Is Spice Grill & Bar a good place to stop while driving Route 66?",
     "answer": "Spice Grill & Bar sits directly on historic Route 66 in Ash Fork at I-40 Exit 146. RV and truck parking is across the road; bikers and road-trippers are welcome. A genuine roadside stop, not a chain."
+  },
+  {
+    "question": "Does Spice Grill & Bar have karaoke?",
+    "answer": "Yes. Spice Grill & Bar hosts Karaoke Night every other Saturday from 7 PM to close in Ash Fork, AZ. It is free to join. See upcoming karaoke dates on our events page.",
+    "relatedLink": { "href": "/events/", "text": "See upcoming karaoke dates" }
+  },
+  {
+    "question": "Does Spice Grill & Bar host Paint and Sip?",
+    "answer": "Yes. Spice Grill & Bar hosts a Paint & Sip once a month on a Sunday afternoon. No experience needed and seats are limited, so check the events page for the next date and reserve ahead.",
+    "relatedLink": { "href": "/events/", "text": "See the next Paint & Sip date" }
   }
 ]

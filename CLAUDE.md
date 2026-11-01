@@ -12,7 +12,7 @@ Requires **Node 24.22.2**, pinned in `.nvmrc` (run `nvm use`). `package.json` `e
 
 ```bash
 npm run dev           # Start dev server at http://localhost:4321
-npm run build         # Build to ./dist/ (also copies sitemap-index.xml → sitemap.xml)
+npm run build         # Build to ./dist/ (postbuild copies sitemap-index.xml → sitemap.xml and checks dist/.htaccess)
 npm run preview       # Preview production build locally
 npm run lint          # ESLint on .js/.ts/.astro files
 npm run lint:fix      # Auto-fix linting issues
@@ -92,7 +92,7 @@ Google Analytics runs via GTM with **Partytown** for off-main-thread execution. 
 
 ### Deployment
 
-The site is served from Apache. `.htaccess` forces HTTPS and rewrites all requests to serve from `dist/`. The production build must be committed or deployed to `dist/` on the server.
+The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `postbuild` fails the build if `dist/.htaccess` is missing.
 
 ## Git Conventions
 

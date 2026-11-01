@@ -96,48 +96,6 @@
     ]
   },
   {
-    "category": "Sides & Sauces",
-    "section": "Appetizers",
-    "items": [
-      {
-        "name": "Plain Yogurt",
-        "description": "",
-        "price": 2,
-        "veg": true
-      },
-      {
-        "name": "Raita (Yogurt)",
-        "description": "",
-        "price": 3,
-        "veg": true
-      },
-      {
-        "name": "Mint Chutney (Green Sauce)",
-        "description": "",
-        "price": 1,
-        "veg": true
-      },
-      {
-        "name": "Tamarind Chutney (Red Sauce)",
-        "description": "",
-        "price": 1,
-        "veg": true
-      },
-      {
-        "name": "Mixed Pickle",
-        "description": "",
-        "price": 1,
-        "veg": true
-      },
-      {
-        "name": "Korma Sauce",
-        "description": "",
-        "price": 10.99,
-        "veg": true
-      }
-    ]
-  },
-  {
     "category": "Vegetarian Curries",
     "section": "Vegetarian Curries",
     "tagline": "Garden-fresh vegetables and artisanal paneer simmered in rich, aromatic spice blends",
@@ -551,89 +509,8 @@
     ]
   },
   {
-    "category": "Small Bites",
-    "section": "Small Bites, Burgers & Desserts",
-    "tagline": "Small bites, burgers, sides, sweets, and hot or cold beverages",
-    "items": [
-      {
-        "name": "Chicken Wings (5 pcs)",
-        "description": "Buffalo, BBQ, or Sweet Chili.",
-        "price": 7.99,
-        "veg": false
-      },
-      {
-        "name": "Cheese Sticks",
-        "description": "",
-        "price": 9.99,
-        "veg": true
-      },
-      {
-        "name": "Onion Rings",
-        "description": "",
-        "price": 9.99,
-        "veg": true
-      },
-      {
-        "name": "Jalapeño Poppers",
-        "description": "",
-        "price": 9.99,
-        "veg": true
-      },
-      {
-        "name": "Fries",
-        "description": "",
-        "price": 4.99,
-        "veg": true
-      },
-      {
-        "name": "Chicken Strips & Fries",
-        "description": "",
-        "price": 12.99,
-        "veg": false
-      },
-      {
-        "name": "Fish & Chips",
-        "description": "",
-        "price": 13.99,
-        "veg": false,
-        "isNew": true
-      }
-    ]
-  },
-  {
-    "category": "Burgers",
-    "section": "Small Bites, Burgers & Desserts",
-    "note": "Upgrade your fries to cheese sticks or onion rings.",
-    "items": [
-      {
-        "name": "Hamburger",
-        "description": "Served with fries.",
-        "price": 10.99,
-        "veg": false
-      },
-      {
-        "name": "Cheeseburger",
-        "description": "Served with fries.",
-        "price": 10.99,
-        "veg": false
-      },
-      {
-        "name": "Chicken Sandwich",
-        "description": "Served with fries.",
-        "price": 9.99,
-        "veg": false
-      },
-      {
-        "name": "Fish Sandwich",
-        "description": "Served with fries.",
-        "price": 10.99,
-        "veg": false
-      }
-    ]
-  },
-  {
     "category": "Desserts",
-    "section": "Small Bites, Burgers & Desserts",
+    "section": "Desserts",
     "items": [
       {
         "name": "Gulab Jamun (2 pcs)",
@@ -668,28 +545,44 @@
     ]
   },
   {
-    "category": "Beverages",
-    "section": "Small Bites, Burgers & Desserts",
+    "category": "Sides & Sauces",
+    "section": "Sides & Sauces",
     "items": [
       {
-        "name": "Lassi",
-        "description": "Mango, Sweet or Salted.",
-        "price": 5.49
+        "name": "Plain Yogurt",
+        "description": "",
+        "price": 2,
+        "veg": true
       },
       {
-        "name": "Chai Tea (Hot)",
-        "description": "Masala chai.",
-        "price": 2.99
+        "name": "Raita (Yogurt)",
+        "description": "",
+        "price": 3,
+        "veg": true
       },
       {
-        "name": "Sodas",
-        "description": "Pepsi, Diet Pepsi, Mountain Dew, Root Beer, Unsweetened Iced Tea, Raspberry Iced Tea, Lemonade, Dr. Pepper, Diet Dr. Pepper, Starry Lemon Lime.",
-        "price": 2.99
+        "name": "Mint Chutney (Green Sauce)",
+        "description": "",
+        "price": 1,
+        "veg": true
       },
       {
-        "name": "Indian Sodas / Juices",
-        "description": "Limca, Thums Up, Masala Jeera Soda, Mango Juice, Guava Juice, Lychee Juice.",
-        "price": 2.99
+        "name": "Tamarind Chutney (Red Sauce)",
+        "description": "",
+        "price": 1,
+        "veg": true
+      },
+      {
+        "name": "Mixed Pickle",
+        "description": "",
+        "price": 1,
+        "veg": true
+      },
+      {
+        "name": "Korma Sauce",
+        "description": "",
+        "price": 10.99,
+        "veg": true
       }
     ]
   }

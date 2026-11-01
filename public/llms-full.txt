@@ -79,14 +79,6 @@ Vegetarian and vegan options available, including Shahi Paneer, Dal Tadka, Aloo 
 - **Papdi Chaat** ($8.99, vegetarian): Crispy flour chips, chickpeas, mint & tamarind sauce, yogurt, onion, cucumber & cilantro.
 - **Naan & Korma Dip** ($14.99, vegetarian): Korma sauce & butter naan. Garlic naan +$0.50.
 
-### Sides & Sauces
-- **Plain Yogurt** ($2.00, vegetarian)
-- **Raita (Yogurt)** ($3.00, vegetarian)
-- **Mint Chutney (Green Sauce)** ($1.00, vegetarian)
-- **Tamarind Chutney (Red Sauce)** ($1.00, vegetarian)
-- **Mixed Pickle** ($1.00, vegetarian)
-- **Korma Sauce** ($10.99, vegetarian)
-
 ### Vegetarian Curries
 - **Dal Tadka** ($14.99, vegetarian): Delicious yellow lentil.
 - **Dal Makhani** ($15.99, vegetarian): Creamy mixture of assorted lentils.
@@ -162,22 +154,6 @@ Vegetarian and vegan options available, including Shahi Paneer, Dal Tadka, Aloo 
 - **Aloo Paratha** ($6.99, vegetarian): Double-layered roti stuffed with potatoes and spices.
 - **Mix Paratha** ($7.99, vegetarian): Double-layered roti stuffed with potatoes, paneer & spices.
 
-### Small Bites
-- **Chicken Wings (5 pcs)** ($7.99): Buffalo, BBQ, or Sweet Chili.
-- **Cheese Sticks** ($9.99, vegetarian)
-- **Onion Rings** ($9.99, vegetarian)
-- **Jalapeño Poppers** ($9.99, vegetarian)
-- **Fries** ($4.99, vegetarian)
-- **Chicken Strips & Fries** ($12.99)
-- **Fish & Chips** ($13.99)
-
-### Burgers
-Upgrade your fries to cheese sticks or onion rings.
-- **Hamburger** ($10.99): Served with fries.
-- **Cheeseburger** ($10.99): Served with fries.
-- **Chicken Sandwich** ($9.99): Served with fries.
-- **Fish Sandwich** ($10.99): Served with fries.
-
 ### Desserts
 - **Gulab Jamun (2 pcs)** ($2.99, vegetarian): Deep-fried dough dipped in cardamom-flavored syrup.
 - **Kheer (Rice Pudding)** ($4.99, vegetarian): Basmati rice slowly cooked with milk and nuts.
@@ -185,8 +161,10 @@ Upgrade your fries to cheese sticks or onion rings.
 - **Pistachio Ice Cream** ($5.99, vegetarian): Creamy pistachio ice cream.
 - **Mango Kulfi** ($5.99, vegetarian): Creamy mango ice cream.
 
-### Beverages
-- **Lassi** ($5.49): Mango, Sweet or Salted.
-- **Chai Tea (Hot)** ($2.99): Masala chai.
-- **Sodas** ($2.99): Pepsi, Diet Pepsi, Mountain Dew, Root Beer, Unsweetened Iced Tea, Raspberry Iced Tea, Lemonade, Dr. Pepper, Diet Dr. Pepper, Starry Lemon Lime.
-- **Indian Sodas / Juices** ($2.99): Limca, Thums Up, Masala Jeera Soda, Mango Juice, Guava Juice, Lychee Juice.
+### Sides & Sauces
+- **Plain Yogurt** ($2.00, vegetarian)
+- **Raita (Yogurt)** ($3.00, vegetarian)
+- **Mint Chutney (Green Sauce)** ($1.00, vegetarian)
+- **Tamarind Chutney (Red Sauce)** ($1.00, vegetarian)
+- **Mixed Pickle** ($1.00, vegetarian)
+- **Korma Sauce** ($10.99, vegetarian)

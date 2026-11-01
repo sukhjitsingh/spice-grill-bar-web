@@ -83,6 +83,35 @@ if (fs.existsSync(LLMS_FULL_PATH)) {
   errors++;
 }
 
+// 2c. llms.txt format gate — llmstxt.org Markdown format, which Lighthouse's Agentic Browsing
+// "llms.txt does not follow recommendations" audit checks: an H1, a "> " summary, and links
+// written as Markdown links. Bare URLs count as no links at all.
+const MD_LINK_RE = /\[[^\]]+\]\((https?:\/\/[^)\s]+)\)/g;
+for (const [label, file, minLinks, needsSummary] of [
+  ['llms.txt', LLMS_TXT_PATH, 8, true],
+  ['llms-full.txt', LLMS_FULL_PATH, 8, false],
+]) {
+  if (!fs.existsSync(file)) continue;
+  const text = fs.readFileSync(file, 'utf-8');
+  const lines = text.split('\n');
+  const problems = [];
+  if (!lines[0].startsWith('# ')) problems.push('first line is not an H1');
+  if (needsSummary && !lines.slice(1, 5).some((line) => line.startsWith('> ')))
+    problems.push('no "> " summary within the first 5 lines');
+  const linkCount = (text.match(MD_LINK_RE) || []).length;
+  if (linkCount < minLinks) problems.push(`${linkCount} Markdown links (need ≥${minLinks})`);
+  const bare = text.replace(MD_LINK_RE, '').match(/https?:\/\/\S+/g) || [];
+  if (bare.length > 0) problems.push(`bare URLs not in Markdown links: ${bare.join(', ')}`);
+  if (label === 'llms.txt' && !text.includes('](https://spicegrillbar66.com/llms-full.txt)'))
+    problems.push('no link to llms-full.txt');
+  if (problems.length > 0) {
+    console.error(`❌ ${label} format: ${problems.join('; ')}`);
+    errors++;
+  } else {
+    console.log(`✅ ${label} format: H1, ${linkCount} Markdown links, no bare URLs`);
+  }
+}
+
 // 3. robots.txt AI-bot Allowlist Gate (forward-protection — current file already passes)
 const ROBOTS_PATH = path.join(ROOT_DIR, 'public/robots.txt');
 if (fs.existsSync(ROBOTS_PATH)) {

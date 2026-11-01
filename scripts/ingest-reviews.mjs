@@ -4,9 +4,12 @@
  *
  * Run: npm run ingest:reviews  (needs GEMINI_API_KEY in env, .env or .env.local)
  *
- * Fails soft: on a missing key, blocked scrape, or API error the existing
- * reviews are kept and the process exits 0, so the scheduled workflow never
- * wipes the data that RestaurantSchema's aggregateRating is computed from.
+ * Additive: existing reviews are never removed or edited. Only reviews not
+ * already in the file (same source + author, or same opening text) are added,
+ * at the front, with ids continuing each source's numbering.
+ *
+ * Fails soft: on a missing key, blocked scrape, or API error the file is left
+ * untouched and the process exits 0.
  */
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -199,17 +202,56 @@ function isValidReview(r) {
   );
 }
 
-function normalize(reviews, source) {
-  return reviews
-    .filter((r) => r.source === source)
-    .map((r, i) => ({
-      id: `${source.toLowerCase()}-${i + 1}`,
-      author: r.author.trim(),
-      rating: r.rating,
-      text: r.text.trim(),
-      source,
-      date: r.date.trim(),
-    }));
+// Lowercase, strip punctuation and collapse whitespace so trivial differences
+// in Gemini's transcription don't create duplicates.
+const fingerprint = (v) =>
+  v
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+const authorKey = (r) => `${r.source}|a|${fingerprint(r.author)}`;
+const textKey = (r) => `${r.source}|t|${fingerprint(r.text).slice(0, 60)}`;
+
+function nextIdNumbers(reviews) {
+  const next = {};
+  SOURCES.forEach((source) => {
+    const prefix = `${source.toLowerCase()}-`;
+    const nums = reviews
+      .map((r) =>
+        typeof r.id === 'string' && r.id.startsWith(prefix)
+          ? Number(r.id.slice(prefix.length))
+          : NaN
+      )
+      .filter(Number.isFinite);
+    next[source] = (nums.length ? Math.max(...nums) : 0) + 1;
+  });
+  return next;
+}
+
+// Returns only reviews not already present (same source and same author, or
+// same opening text), with fresh ids that continue each source's numbering.
+function findNewReviews(existing, extracted, scrapedSources) {
+  const seen = new Set(existing.flatMap((r) => [authorKey(r), textKey(r)]));
+  const nextId = nextIdNumbers(existing);
+  const added = [];
+  extracted.forEach((raw) => {
+    if (!scrapedSources.includes(raw.source)) return;
+    const r = {
+      author: raw.author.trim(),
+      rating: raw.rating,
+      text: raw.text.trim(),
+      source: raw.source,
+      date: raw.date.trim(),
+    };
+    if (seen.has(authorKey(r)) || seen.has(textKey(r))) return;
+    seen.add(authorKey(r));
+    seen.add(textKey(r));
+    const id = `${r.source.toLowerCase()}-${nextId[r.source]}`;
+    nextId[r.source] += 1;
+    added.push({ id, ...r });
+  });
+  return added;
 }
 
 async function main() {
@@ -224,7 +266,8 @@ async function main() {
   console.log(`Loaded ${existing.length} existing reviews.`);
 
   const scraped = await scrapeAll();
-  if (!SOURCES.some((s) => scraped[s])) {
+  const scrapedSources = SOURCES.filter((s) => scraped[s]);
+  if (scrapedSources.length === 0) {
     warn('Both sources failed to scrape; keeping existing reviews.');
     return;
   }
@@ -232,27 +275,18 @@ async function main() {
   const extracted = (await extractWithGemini(apiKey, scraped)).filter(isValidReview);
   console.log(`Gemini returned ${extracted.length} valid reviews.`);
 
-  // Fresh data for sources that scraped and yielded reviews; existing data otherwise.
-  const finalReviews = SOURCES.flatMap((source) => {
-    const fresh = scraped[source] ? normalize(extracted, source) : [];
-    if (fresh.length > 0) return fresh;
-    const kept = existing.filter((r) => r.source === source);
-    console.log(`${source}: no fresh reviews, preserving ${kept.length} existing.`);
-    return kept;
-  });
-
-  if (finalReviews.length === 0) {
-    warn('No reviews to write; leaving reviews.json untouched.');
+  // Existing reviews are never removed or changed; new ones go first (newest-first file).
+  const added = findNewReviews(existing, extracted, scrapedSources);
+  if (added.length === 0) {
+    console.log('No new reviews; reviews.json unchanged.');
     return;
   }
 
-  const output = `${JSON.stringify(finalReviews, null, 2)}\n`;
-  if (fs.existsSync(OUTPUT_PATH) && fs.readFileSync(OUTPUT_PATH, 'utf8') === output) {
-    console.log('Reviews unchanged.');
-    return;
-  }
-  fs.writeFileSync(OUTPUT_PATH, output);
-  console.log(`Saved ${finalReviews.length} reviews to ${OUTPUT_PATH}`);
+  const finalReviews = [...added, ...existing];
+  fs.writeFileSync(OUTPUT_PATH, `${JSON.stringify(finalReviews, null, 2)}\n`);
+  console.log(
+    `Added ${added.length} new reviews (${added.map((r) => r.id).join(', ')}); ${finalReviews.length} total.`
+  );
 }
 
 main().catch((e) => {

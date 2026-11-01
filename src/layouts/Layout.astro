@@ -123,7 +123,10 @@ function slugToLabel(path: string): string {
     <MobileActionButtons />
     <RestaurantSchema />
     <ServiceSchema />
-    {(currentPath === '/' || currentPath.startsWith('/faq')) && <FAQSchema />}
+    {
+      /* Full FAQPage only on /faq/. The home page emits its own 8-question FAQPage (index.astro). */
+    }
+    {currentPath.startsWith('/faq') && <FAQSchema />}
     {currentPath.startsWith('/events') && <EventSchema />}
     {currentPath.startsWith('/menu') && <MenuSchema />}
     <OrganizationSchema />

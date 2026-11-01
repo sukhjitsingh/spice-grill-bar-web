@@ -130,18 +130,26 @@ if (!fs.existsSync(distIndexPath)) {
     );
   }
 
-  // FAQPage Question count gate — verifies ≥8 Question entries in dist/index.html
+  // FAQPage gate — the home page must emit exactly ONE FAQPage holding exactly the
+  // visible home-FAQ questions. Google requires FAQ markup to match visible content;
+  // the full 36-question FAQSchema belongs on /faq/ only (see Layout.astro).
   // KEEP IN SYNC with homeFaqIndices.length in src/pages/index.astro (currently 8).
-  const MIN_HOME_FAQ_QUESTIONS = 8;
+  const HOME_FAQ_QUESTIONS = 8;
+  const faqPageCount = (distHtml.match(/"@type":"FAQPage"/g) || []).length;
   const questionMatches = distHtml.match(/"@type":"Question"/g) || [];
-  if (questionMatches.length < MIN_HOME_FAQ_QUESTIONS) {
+  if (faqPageCount !== 1) {
     console.error(
-      `❌ FAQPage gate: dist/index.html has ${questionMatches.length} Question entries, expected ≥${MIN_HOME_FAQ_QUESTIONS} (matches homeFaqIndices in src/pages/index.astro)`
+      `❌ FAQPage gate: dist/index.html has ${faqPageCount} FAQPage blocks, expected exactly 1 (FAQSchema must not be injected on /)`
+    );
+    errors++;
+  } else if (questionMatches.length !== HOME_FAQ_QUESTIONS) {
+    console.error(
+      `❌ FAQPage gate: dist/index.html has ${questionMatches.length} Question entries, expected exactly ${HOME_FAQ_QUESTIONS} (matches homeFaqIndices in src/pages/index.astro)`
     );
     errors++;
   } else {
     console.log(
-      `✅ FAQPage gate: dist/index.html contains ${questionMatches.length} Question entries`
+      `✅ FAQPage gate: dist/index.html has 1 FAQPage with ${questionMatches.length} Question entries`
     );
   }
 }

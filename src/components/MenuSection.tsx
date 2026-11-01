@@ -83,6 +83,10 @@ export function MenuSection() {
             current = section.getAttribute('id') || '';
           }
         });
+        // Short final sections can never reach the offset line, so treat page bottom as the last one.
+        const atBottom =
+          window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        if (atBottom) current = navTargets[navTargets.length - 1].id;
         if (current) setActiveCategory(current);
         ticking = false;
       });

@@ -1,0 +1,71 @@
+---
+import { Phone, ShoppingBag } from 'lucide-react';
+
+import { MenuSection } from '../components/MenuSection';
+import AstroButton from '../components/ui/AstroButton.astro';
+import Layout from '../layouts/Layout.astro';
+import { menu } from '../lib/menu';
+
+const itemCount = menu.reduce((n, c) => n + c.items.length, 0);
+---
+
+<Layout
+  title="Menu & Prices | Spice Grill & Bar — Indian Food in Ash Fork, AZ (Route 66)"
+  description={`Full Spice Grill & Bar menu with prices: ${itemCount} dishes including Butter Chicken, Tandoori Chicken, Shahi Paneer, biryani, fresh naan and desserts. Vegetarian options marked. I-40 Exit 146, Ash Fork, AZ.`}
+  ogTitle="Menu & Prices | Spice Grill & Bar — Route 66, Ash Fork AZ"
+  ogDescription="Authentic Punjabi Indian menu with prices: tandoori, curries, biryani, fresh naan and desserts."
+>
+  <main class="bg-surface-container-low min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 pt-32 pb-12">
+      <h1 class="speakable-heading text-[1.875rem] md:text-display-md text-on-surface mb-6">
+        Our <span class="text-primary-container">Menu</span>
+      </h1>
+      <p class="speakable-lead text-body-lg text-on-surface-variant max-w-3xl mb-8">
+        Spice Grill &amp; Bar serves authentic Punjabi Indian food at I-40 Exit 146 in Ash Fork,
+        Arizona: tandoori specialties, vegetarian and paneer curries, chicken, goat, lamb and fish
+        curries, biryani, fresh-baked naan and traditional desserts. Spice levels range from mild to
+        extra hot. Tell your server your preference.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <AstroButton
+          href="https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ShoppingBag className="w-4 h-4" aria-hidden="true" /> Order online
+        </AstroButton>
+        <AstroButton href="tel:+19282771292" variant="outline">
+          <Phone className="w-4 h-4" aria-hidden="true" /> Call (928) 277-1292
+        </AstroButton>
+      </div>
+    </div>
+
+    <MenuSection client:idle />
+
+    <p class="max-w-7xl mx-auto px-6 pb-24 text-sm text-on-surface-variant">
+      Please inform us of any food allergies or intolerances prior to ordering.
+    </p>
+  </main>
+
+  <script>
+    // Category deep links (e.g. /menu/#breads-roti) need an offset for the fixed header.
+    document.addEventListener('astro:page-load', () => {
+      if (!window.location.pathname.startsWith('/menu')) return;
+      const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
+      if (target) target.scrollIntoView();
+    });
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "url": "https://spicegrillbar66.com/menu/",
+      "name": "Menu & Prices | Spice Grill & Bar",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".speakable-heading", ".speakable-lead"]
+      }
+    }
+  </script>
+</Layout>

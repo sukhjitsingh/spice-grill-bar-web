@@ -12,7 +12,7 @@ Requires **Node 24.22.2**, pinned in `.nvmrc` (run `nvm use`). `package.json` `e
 
 ```bash
 npm run dev           # Start dev server at http://localhost:4321
-npm run build         # Build to ./dist/ (also copies sitemap-index.xml → sitemap.xml)
+npm run build         # Build to ./dist/ (postbuild copies sitemap-index.xml → sitemap.xml and checks dist/.htaccess)
 npm run preview       # Preview production build locally
 npm run lint          # ESLint on .js/.ts/.astro files
 npm run lint:fix      # Auto-fix linting issues
@@ -37,7 +37,8 @@ The codebase deliberately splits between two component types:
 
 File-based routing via `/src/pages/`. Pages:
 
-- `index.astro` — Home page (one-page site with multiple sections)
+- `index.astro` — Home page (hero, story, reviews, All-Time Favorites teaser, FAQ, order, location). Old `/#menu` links redirect to `/menu/`
+- `menu.astro` — Full menu with prices (`MenuSection.tsx` island, grouped by the print menu's sections); the only page that emits Menu JSON-LD
 - `faq.astro` — FAQ page for voice search / AEO
 - `near-grand-canyon.astro` — GEO page targeting Grand Canyon / proximity queries
 - `directions.astro` — GEO page with per-city driving directions and Maps embed
@@ -48,7 +49,7 @@ File-based routing via `/src/pages/`. Pages:
 
 Static JSON files in `/src/data/` are the source of truth:
 
-- `menu.json` — All menu categories and items with prices
+- `menu.json` — Menu categories (with `section` grouping matching the printed dine-in menu) and items with prices, `veg`, `favorite`, `isNew` and optional `note`. Source of truth for every price on the site, `MenuSchema` and the `llms-full.txt` menu section
 - `faq.json` — Q&A pairs for structured data and AEO
 - `events.json` — Recurring and dated events. To post a new Paint & Sip, add an entry to `events` (date, time, optional price/theme/signupUrl), then rebuild and deploy. Past dates hide automatically in the browser.
 - `reviews.json` — Customer reviews, newest first. Updated monthly by `.github/workflows/update-reviews.yml`, which runs `npm run ingest:reviews` (`scripts/ingest-reviews.mjs`: Puppeteer scrapes Google Maps + Yelp, Gemini extracts reviews; needs `GEMINI_API_KEY`). The script only appends new reviews (deduped by source + author or opening text) and never edits or removes existing ones; any failure leaves the file untouched. `ReviewsSection.astro` shows the 12 newest by date; `RestaurantSchema.astro` averages all of them for `aggregateRating`.
@@ -91,7 +92,7 @@ Google Analytics runs via GTM with **Partytown** for off-main-thread execution. 
 
 ### Deployment
 
-The site is served from Apache. `.htaccess` forces HTTPS and rewrites all requests to serve from `dist/`. The production build must be committed or deployed to `dist/` on the server.
+The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `postbuild` fails the build if `dist/.htaccess` is missing.
 
 ## Git Conventions
 

@@ -38,12 +38,13 @@ function generateMenuSection(menu) {
       throw new Error(`Malformed menu.json category: ${JSON.stringify(cat).slice(0, 80)}`);
     }
     out += `### ${cat.category}\n`;
+    if (cat.note) out += `${cat.note}\n`;
     for (const item of cat.items) {
       if (!item.name || typeof item.price !== 'number') {
         throw new Error(`Malformed menu.json item in "${cat.category}": ${JSON.stringify(item)}`);
       }
-      const priceStr = `$${item.price.toFixed(2)}`;
-      const desc = (item.description || '').trim();
+      const priceStr = `$${item.price.toFixed(2)}${item.veg ? ', vegetarian' : ''}`;
+      const desc = [item.description, item.note].filter(Boolean).join(' ').trim();
       if (desc) {
         const punct = /[.!?]$/.test(desc) ? '' : '.';
         out += `- **${item.name}** (${priceStr}): ${desc}${punct}\n`;

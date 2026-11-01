@@ -218,6 +218,38 @@ if (!fs.existsSync(distEventsPath)) {
   }
 }
 
+// 8. Menu gate — Menu JSON-LD lives on /menu/ only, with every item and a Speakable spec
+const distMenuPath = path.join(ROOT_DIR, 'dist/menu/index.html');
+if (!fs.existsSync(distMenuPath)) {
+  console.warn(
+    '⚠️ Menu gate: dist/menu/index.html not found — skipping (run npm run build first for full audit)'
+  );
+} else {
+  const distMenuHtml = fs.readFileSync(distMenuPath, 'utf-8');
+  const menuData = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'src/data/menu.json'), 'utf-8'));
+  const expectedItems = menuData.reduce((n, c) => n + c.items.length, 0);
+  const menuItemCount = (distMenuHtml.match(/"@type":"MenuItem"/g) || []).length;
+  const homeHtml = fs.existsSync(distIndexPath) ? fs.readFileSync(distIndexPath, 'utf-8') : '';
+  if (!distMenuHtml.includes('"@type":"Menu"') || menuItemCount !== expectedItems) {
+    console.error(
+      `❌ Menu gate: dist/menu/index.html has ${menuItemCount} MenuItem nodes, expected ${expectedItems}`
+    );
+    errors++;
+  } else if (!distMenuHtml.includes('SpeakableSpecification')) {
+    console.error('❌ Menu gate: SpeakableSpecification not found in dist/menu/index.html');
+    errors++;
+  } else if (homeHtml.includes('"@type":"Menu"')) {
+    console.error(
+      '❌ Menu gate: Menu JSON-LD should only render on /menu/, but dist/index.html contains it'
+    );
+    errors++;
+  } else {
+    console.log(
+      `✅ Menu gate: ${menuItemCount} MenuItem nodes + Speakable on /menu/; homepage carries no Menu JSON-LD`
+    );
+  }
+}
+
 console.log('\n---------------------------------------------------');
 if (errors > 0) {
   console.error(`❌ AEO Audit Failed with ${errors} errors.`);

@@ -69,6 +69,7 @@ These are critical for local SEO and AEO. Changes to menu, hours, or contact inf
 **AEO content rules** (enforced by `scripts/aeo-audit.mjs`):
 
 - No "closest / nearest / only" Indian or Punjabi restaurant claims about Williams, the Grand Canyon or I-40: Taj Mahal Indian Restaurant operates in Williams. "Closest Indian restaurant to Kaibab Estates West" is allowed.
+- Page titles 30–70 characters and meta descriptions 110–160, unique per page. Ahrefs flags titles over 60; the home, menu, events and directions titles are 61–69 by choice.
 - Every page needs at least two inline links in its `<main>` prose (class `text-primary-container underline underline-offset-2 …`), not just nav, footer and CTA buttons.
 - `public/llms.txt` and `public/llms-full.txt` follow the llmstxt.org Markdown format: H1 first, a `> ` summary, links as `[text](url)` (never bare URLs). The `## Full Menu` section of `llms-full.txt` is generated from `menu.json` by `prebuild`; don't edit it by hand.
 

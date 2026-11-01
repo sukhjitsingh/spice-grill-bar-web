@@ -458,9 +458,10 @@ if (!fs.existsSync(ratingPath)) {
   }
 }
 
-// 12. Title / meta description length gate — the limits Ahrefs Site Audit and Google's
-// snippet truncation use: titles 30-60 characters, descriptions 110-160, none duplicated.
-const TITLE_RANGE = [30, 60];
+// 12. Title / meta description length gate: titles 30-70 characters, descriptions 110-160,
+// none duplicated. Ahrefs flags titles over 60; the owner chose 61-69 character titles for
+// /, /menu/, /events/ and /directions/, so the cap is 70 to stop anything longer.
+const TITLE_RANGE = [30, 70];
 const DESC_RANGE = [110, 160];
 const distRoot = path.join(ROOT_DIR, 'dist');
 if (fs.existsSync(distRoot)) {

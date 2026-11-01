@@ -30,6 +30,7 @@ Spice Grill & Bar is the premier destination for authentic Punjabi cuisine in As
 
 ## Pages
 - **Home**: https://spicegrillbar66.com/
+- **Menu & Prices**: https://spicegrillbar66.com/menu/
 - **Near Grand Canyon**: https://spicegrillbar66.com/near-grand-canyon/
 - **Near Williams**: https://spicegrillbar66.com/near-williams/
 - **Directions**: https://spicegrillbar66.com/directions/
@@ -63,94 +64,129 @@ Vegetarian and vegan options available, including Shahi Paneer, Dal Tadka, Aloo 
 ## Full Menu
 
 ### Appetizers
-- **Chicken Tikka** ($17.99): Chicken marinated in ginger, yogurt & tandoor spices.
-- **Chicken Wings (5 pcs)** ($7.99): Buffalo, BBQ, Sweet & Sour.
-- **Tandoori Wings (6 pcs)** ($14.99): Made with our special Tandoori spices.
-- **Chicken Chilli** ($15.99): Crisp fried chicken with soy-tomato sauce.
-- **Chicken Pakora** ($10.99): Spiced & deep fried chicken in chickpea flour.
+- **Chicken Tikka** ($17.99): Chicken marinated in ginger, yogurt & tandoori spices.
+- **Tandoori Wings (6 pcs)** ($14.99): Made with our special tandoori spices.
+- **Tandoori Chicken (8 pcs)** ($22.99): Marinated in yogurt & spices, cooked in the tandoor.
+- **Chicken Chilli** ($15.99): Crispy fried chicken tossed in a sweet & tangy sauce.
+- **Chicken Pakora** ($10.99): Spiced & deep-fried chicken in chickpea batter.
 - **Fish Pakora** ($11.99): Marinated fish fried in our chickpea batter.
-- **Veggie Pakora** ($8.99): Mixed vegetable fried in our chickpea batter.
-- **Paneer Pakora** ($10.99): Marinated paneer fried in our chickpea batter.
-- **Chilli Paneer** ($15.99): Fried paneer cubes tossed in a sweet, spicy, hot, and tangy chili sauce.
-- **Samosa (2 pcs)** ($4.99): Indian pastry stuffed with potatoes & peas.
-- **Samosa Chaat** ($9.99): Crispy samosa, chickpeas, mint & tamarind sauce.
-- **Papdi Chaat** ($8.99): Lightly seasoned flour crisps topped with mint & tamarind chutney, yogurt, onions, and cilantro.
-- **Tandoori Chicken (8 pcs)** ($22.99): Chicken marinated in yogurt and spices, cooked in the tandoor.
-- **Paneer Tikka** ($17.99): Marinated paneer & veggies cooked in the tandoor.
+- **Veggie Pakora** ($8.99, vegetarian): Mixed vegetables fried in our chickpea batter.
+- **Samosa (2 pcs)** ($4.99, vegetarian): Indian pastry stuffed with potatoes & peas.
+- **Paneer Pakora** ($10.99, vegetarian): Marinated paneer fried in our chickpea batter.
+- **Chilli Paneer** ($15.99, vegetarian): Fried paneer tossed in a sweet, spicy & tangy chili sauce.
+- **Paneer Tikka** ($17.99, vegetarian): Marinated paneer & veggies cooked in the tandoor.
+- **Samosa Chaat** ($9.99, vegetarian): Crispy samosa, chickpeas, mint & tamarind sauce.
+- **Papdi Chaat** ($8.99, vegetarian): Crispy flour chips, chickpeas, mint & tamarind sauce, yogurt, onion, cucumber & cilantro.
+- **Naan & Korma Dip** ($14.99, vegetarian): Korma sauce & butter naan. Garlic naan +$0.50.
 
-### Veg Dishes
-- **Dal Tadka** ($14.99): Delicious yellow lentil.
-- **Dal Makhani** ($15.99): Creamy mixture of assorted lentils.
-- **Chana Masala** ($15.99): Chickpeas cooked with herbs and spices.
-- **Mix Veg** ($15.99): Mix veggies cooked in curry sauce.
-- **Aloo Gobhi** ($16.99): Potatoes & cauliflower in dry curry sauce.
-- **Paneer Masala** ($16.99): Cottage cheese & tomatoes in a special cream sauce.
-- **Shahi Paneer** ($16.99): Chunks of cottage cheese in a savory rich buttery cream sauce.
-- **Saag Paneer** ($16.99): Chunks of cottage cheese mixed in savory spinach sauce.
-- **Matar Paneer** ($16.99): Chunks of cottage cheese mixed with green peas.
-- **Paneer Bhurji** ($18.99): Scrambled cottage cheese mixed with onions, tomatoes, & herbs.
-- **Baingan Bharta** ($15.99): Roasted eggplant seasoned with herbs & spices.
-- **Rajma** ($15.99): Red kidney beans, spices, onions, tomatoes and herbs.
-- **Malai Kofta** ($18.99): Mixed vegetable balls cooked in fresh tomato, onion, and saffron curry sauce.
-- **Mushroom Korma** ($17.99): Mushroom in a cream-based curry sauce.
-- **Bhendi (Okra)** ($16.99): Okra in a dry curry sauce.
+### Sides & Sauces
+- **Plain Yogurt** ($2.00, vegetarian)
+- **Raita (Yogurt)** ($3.00, vegetarian)
+- **Mint Chutney (Green Sauce)** ($1.00, vegetarian)
+- **Tamarind Chutney (Red Sauce)** ($1.00, vegetarian)
+- **Mixed Pickle** ($1.00, vegetarian)
+- **Korma Sauce** ($10.99, vegetarian)
 
-### Non-Veg Dishes
+### Vegetarian Curries
+- **Dal Tadka** ($14.99, vegetarian): Delicious yellow lentil.
+- **Dal Makhani** ($15.99, vegetarian): Creamy mixture of assorted lentils.
+- **Chana Masala** ($15.99, vegetarian): Chickpeas cooked with herbs and spices.
+- **Mix Veg** ($15.99, vegetarian): Mix veggies cooked in curry sauce.
+- **Veg Korma** ($16.99, vegetarian): Mix veggies in a cream-based curry sauce.
+- **Aloo Gobhi** ($16.99, vegetarian): Potatoes & cauliflower in a dry curry sauce.
+- **Paneer Masala** ($16.99, vegetarian): Cottage cheese & tomatoes in a special cream sauce.
+- **Shahi Paneer** ($16.99, vegetarian): Chunks of cottage cheese in a savory rich buttery cream sauce.
+- **Matar Paneer** ($16.99, vegetarian): Chunks of cottage cheese mixed with green peas.
+- **Saag Paneer** ($16.99, vegetarian): Chunks of cottage cheese mixed in savory spinach sauce.
+- **Paneer Bhurji** ($18.99, vegetarian): Scrambled cottage cheese mixed with onions, tomatoes & herbs.
+- **Karahi Paneer** ($16.99, vegetarian): Paneer sautéed with bell pepper, onions & tomatoes.
+- **Baingan Bharta** ($15.99, vegetarian): Roasted eggplant seasoned with herbs & spices.
+- **Rajma** ($15.99, vegetarian): Red kidney beans, spices, onions, tomatoes & herbs.
+- **Malai Kofta** ($18.99, vegetarian): Mixed vegetable balls cooked in fresh tomato, onion & saffron curry sauce.
+- **Mushroom Korma** ($17.99, vegetarian): Mushroom in a cream-based curry sauce.
+- **Matar Mushroom** ($16.99, vegetarian): Green peas & mushrooms cooked in curry sauce.
+- **Bhendi (Okra)** ($16.99, vegetarian): Okra in a dry curry sauce.
+
+### Chicken
 - **Chicken Curry** ($16.99): Chicken cooked in our traditional curry sauce.
 - **Chicken Korma** ($16.99): Chicken in a cream-based curry sauce.
-- **Chicken Vindaloo** ($16.99): Chicken, and potatoes in a rich gravy sauce.
-- **Chicken Saag** ($16.99): Chicken, cooked with freshly chopped spinach.
-- **Butter Chicken** ($17.99): Rich butter-cream, tomatoes, onion sauce cooked with chicken thighs.
+- **Chicken Vindaloo** ($16.99): Chicken & potatoes in a rich gravy sauce.
+- **Chicken Saag** ($16.99): Chicken cooked with freshly chopped spinach.
 - **Chicken Tikka Masala** ($17.99): Cooked in a creamy spiced tomato sauce.
-- **Karahi Chicken** ($16.99): Chicken sauteed with bell pepper, onions & tomatoes.
+- **Karahi Chicken** ($16.99): Chicken sautéed with bell pepper, onions & tomatoes.
+- **Butter Chicken** ($17.99): Rich butter-cream, tomatoes, onion sauce cooked with chicken.
+
+### Goat
 - **Goat Curry** ($17.99): Goat cooked in our traditional curry sauce.
 - **Goat Korma** ($17.99): Goat in a cream-based curry sauce.
-- **Goat Vindaloo** ($17.99): Goat, and potatoes in a rich gravy sauce.
-- **Goat Saag** ($17.99): Goat, cooked with freshly chopped spinach.
+- **Goat Saag** ($17.99): Goat cooked with freshly chopped spinach.
+- **Goat Vindaloo** ($17.99): Goat & potatoes in a rich gravy sauce.
+
+### Lamb
 - **Lamb Curry** ($18.99): Lamb cooked in our traditional curry sauce.
 - **Lamb Korma** ($18.99): Lamb in a cream-based curry sauce.
-- **Lamb Vindaloo** ($18.99): Lamb and potatoes in a rich gravy sauce.
+- **Lamb Vindaloo** ($18.99): Lamb & potatoes in a rich gravy sauce.
 - **Lamb Saag** ($18.99): Lamb cooked with freshly chopped spinach.
 
-### Rice
-- **Plain Rice** ($2.99): Basmati rice with a dash of butter.
-- **Jeera Rice** ($7.99): Basmati rice lightly seasoned with cumin.
-- **Mushroom Rice** ($9.99): Basmati rice sauteed with Mushrooms.
-- **Matar Pulao** ($9.99): Basmati rice seasoned with cumin, peas, and onions.
-- **Veg Biryani** ($17.99): Basmati rice sauteed with veggies and spices.
-- **Chicken Biryani** ($18.99): Basmati rice sauteed with chicken and spices.
-- **Goat Biryani** ($19.99): Basmati rice sauteed with goat and spices.
-- **Lamb Biryani** ($19.99): Basmati rice sauteed with lamb and spices.
+### Fish
+- **Fish Curry** ($18.99): Fish cooked in our traditional curry sauce.
+- **Karahi Fish** ($18.99): Fish sautéed with bell pepper, onions & tomatoes.
 
-### Egg Dishes
-- **Egg Bhurji** ($15.99): Scrambled eggs with onions, green peppers, chilis and herbs.
-- **Egg Curry** ($14.99): Boiled eggs sauteed in onion sauce, green peppers, chilis and herbs.
-- **Egg Korma** ($16.99): Boiled eggs sauteed in buttery cream gravy.
+### Eggs
+- **Egg Bhurji** ($15.99): Scrambled eggs with onions, green peppers, chilis & herbs.
+- **Egg Curry** ($14.99): Boiled eggs sautéed in onion gravy sauce.
+- **Egg Korma** ($16.99): Boiled eggs sautéed in buttery cream gravy.
+
+### Rice & Biryani
+- **Plain Rice** ($2.99, vegetarian): Basmati rice with a dash of butter.
+- **Jeera Rice** ($7.99, vegetarian): Basmati rice lightly seasoned with cumin.
+- **Mushroom Rice** ($9.99, vegetarian): Basmati rice sautéed with mushrooms.
+- **Matar Pulao** ($9.99, vegetarian): Basmati rice seasoned with cumin, peas & onions.
+- **Veg Biryani** ($17.99, vegetarian): Basmati rice sautéed with veggies & spices.
+- **Chicken Biryani** ($18.99): Basmati rice sautéed with chicken & spices.
+- **Goat Biryani** ($19.99): Basmati rice sautéed with goat & spices.
+- **Lamb Biryani** ($19.99): Basmati rice sautéed with lamb & spices.
 
 ### Breads (Roti)
-- **Tava Roti** ($1.25)
-- **Tandoori Roti** ($1.99)
-- **Plain Naan** ($2.99): Leavened flatbread.
-- **Butter Naan** ($3.99): Leavened flatbread drizzled with butter on top.
-- **Garlic Naan** ($4.99): Drizzled with butter and garlic on top.
-- **Bullet Naan** ($4.99): Drizzled with green chili, butter and garlic on top.
-- **Cheese Naan** ($7.99): Stuffed with cheese and spices. Drizzled with butter on top.
-- **Onion Naan** ($5.99): Stuffed with onions and spices. Drizzled with butter on top.
-- **Chicken Naan** ($6.99): Stuffed with chicken and spices. Drizzled with butter on top.
-- **Methi Naan** ($4.99): Drizzled with butter and methi on top.
-- **Peshwari Naan** ($6.99): Filled with coconut, and raisins. Drizzled with butter on top.
-- **Paneer Naan** ($7.99): Stuffed with paneer and spices. Drizzled with butter on top.
+- **Tava Roti** ($1.25, vegetarian)
+- **Tandoori Roti** ($1.99, vegetarian)
+- **Plain Naan** ($2.99, vegetarian): Leavened flatbread.
+- **Butter Naan** ($3.99, vegetarian): Leavened flatbread drizzled with butter.
+- **Bullet Naan** ($4.99, vegetarian): Drizzled with green chili, butter and garlic.
+- **Cheese Naan** ($7.99, vegetarian): Stuffed with cheese and spices, drizzled with butter. Add garlic or chili +$0.50.
+- **Onion Naan** ($5.99, vegetarian): Stuffed with onions and spices, drizzled with butter.
+- **Chicken Naan** ($6.99): Stuffed with chicken and spices, drizzled with butter.
+- **Peshwari Naan (Sweet Naan)** ($6.99, vegetarian): Filled with dry fruits and raisins, drizzled with butter.
+- **Garlic Naan** ($4.99, vegetarian): Drizzled with butter and garlic.
+- **Paneer Paratha** ($7.99, vegetarian): Double-layered roti stuffed with paneer and spices.
+- **Aloo Paratha** ($6.99, vegetarian): Double-layered roti stuffed with potatoes and spices.
+- **Mix Paratha** ($7.99, vegetarian): Double-layered roti stuffed with potatoes, paneer & spices.
 
-### Sides
-- **Plain Yogurt** ($2.00)
-- **Raita (Yogurt)** ($3.00)
-- **Mint Chutney (Green Sauce)** ($1.00)
-- **Tamarind Chutney (Red Sauce)** ($1.00)
-- **Mixed Pickle** ($1.00)
+### Small Bites
+- **Chicken Wings (5 pcs)** ($7.99): Buffalo, BBQ, or Sweet Chili.
+- **Cheese Sticks** ($9.99, vegetarian)
+- **Onion Rings** ($9.99, vegetarian)
+- **Jalapeño Poppers** ($9.99, vegetarian)
+- **Fries** ($4.99, vegetarian)
+- **Chicken Strips & Fries** ($12.99)
+- **Fish & Chips** ($13.99)
+
+### Burgers
+Upgrade your fries to cheese sticks or onion rings.
+- **Hamburger** ($10.99): Served with fries.
+- **Cheeseburger** ($10.99): Served with fries.
+- **Chicken Sandwich** ($9.99): Served with fries.
+- **Fish Sandwich** ($10.99): Served with fries.
 
 ### Desserts
-- **Gulab Jamun (2Pcs)** ($2.99): Deep fried dough soaked in cardamom flavored sugar syrup.
-- **Kheer (Rice Pudding)** ($4.99): Basmati rice slowly cooked with milk and nuts.
-- **Mango Malai** ($7.99): Creamy mango ice cream with shredded mango.
-- **Pistachio Ice Cream** ($5.99): Creamy pistachio ice cream.
-- **Mango Kulfi** ($5.99): Creamy mango ice cream.
+- **Gulab Jamun (2 pcs)** ($2.99, vegetarian): Deep-fried dough dipped in cardamom-flavored syrup.
+- **Kheer (Rice Pudding)** ($4.99, vegetarian): Basmati rice slowly cooked with milk and nuts.
+- **Mango Malai** ($7.99, vegetarian): Creamy mango ice cream with shredded mango.
+- **Pistachio Ice Cream** ($5.99, vegetarian): Creamy pistachio ice cream.
+- **Mango Kulfi** ($5.99, vegetarian): Creamy mango ice cream.
+
+### Beverages
+- **Lassi** ($5.49): Mango, Sweet or Salted.
+- **Chai Tea (Hot)** ($2.99): Masala chai.
+- **Sodas** ($2.99): Pepsi, Diet Pepsi, Mountain Dew, Root Beer, Unsweetened Iced Tea, Raspberry Iced Tea, Lemonade, Dr. Pepper, Diet Dr. Pepper, Starry Lemon Lime.
+- **Indian Sodas / Juices** ($2.99): Limca, Thums Up, Masala Jeera Soda, Mango Juice, Guava Juice, Lychee Juice.

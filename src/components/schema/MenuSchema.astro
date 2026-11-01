@@ -1,34 +1,29 @@
 ---
 import type { Menu, MenuItem, WithContext } from 'schema-dts';
 
-import menuData from '../../data/menu.json';
+import { menu } from '../../lib/menu';
 
 const schema: WithContext<Menu> = {
   '@context': 'https://schema.org',
   '@type': 'Menu',
   name: 'Spice Grill & Bar Menu',
-  mainEntityOfPage: 'https://spicegrillbar66.com/#menu',
-  hasMenuSection: menuData.map((category) => ({
+  url: 'https://spicegrillbar66.com/menu/',
+  mainEntityOfPage: 'https://spicegrillbar66.com/menu/',
+  inLanguage: 'en-US',
+  hasMenuSection: menu.map((category) => ({
     '@type': 'MenuSection',
     name: category.category,
-    hasMenuItem: category.items.map((item) => {
-      const menuItem: MenuItem = {
-        '@type': 'MenuItem',
-        name: item.name,
-        description: item.description,
-        offers: {
-          '@type': 'Offer',
-          price: item.price.toString(),
-          priceCurrency: 'USD',
-        },
-      };
-
-      if (item.imageUrl) {
-        menuItem.image = item.imageUrl;
-      }
-
-      return menuItem;
-    }),
+    hasMenuItem: category.items.map((item): MenuItem => ({
+      '@type': 'MenuItem',
+      name: item.name,
+      ...(item.description ? { description: item.description } : {}),
+      ...(item.veg ? { suitableForDiet: 'https://schema.org/VegetarianDiet' } : {}),
+      offers: {
+        '@type': 'Offer',
+        price: item.price.toFixed(2),
+        priceCurrency: 'USD',
+      },
+    })),
   })),
 };
 ---

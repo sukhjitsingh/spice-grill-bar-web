@@ -87,7 +87,19 @@ if (fs.existsSync(LLMS_FULL_PATH)) {
 const ROBOTS_PATH = path.join(ROOT_DIR, 'public/robots.txt');
 if (fs.existsSync(ROBOTS_PATH)) {
   const robotsContent = fs.readFileSync(ROBOTS_PATH, 'utf-8');
-  const requiredBots = ['GPTBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended', 'CCBot'];
+  const requiredBots = [
+    'GPTBot',
+    'ClaudeBot',
+    'PerplexityBot',
+    'Google-Extended',
+    'CCBot',
+    'OAI-SearchBot',
+    'Claude-SearchBot',
+    'Claude-User',
+    'Perplexity-User',
+    'Applebot-Extended',
+    'bingbot',
+  ];
   for (const bot of requiredBots) {
     // Match `User-agent: <bot>` followed by `Allow: /` (allow blank/comment lines between)
     const re = new RegExp(`User-agent:\\s*${bot}\\s*\\n(?:#[^\\n]*\\n|\\s*\\n)*Allow:\\s*/`, 'i');

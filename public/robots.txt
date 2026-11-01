@@ -20,6 +20,25 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+# AI search and answer agents (fetch pages to answer a user's question)
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
 # Sitemap
 Sitemap: https://spicegrillbar66.com/sitemap-index.xml
 Sitemap: https://spicegrillbar66.com/sitemap.xml

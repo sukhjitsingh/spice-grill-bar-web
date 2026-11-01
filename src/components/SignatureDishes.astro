@@ -1,0 +1,52 @@
+---
+import { ArrowRight, Crown, Leaf } from 'lucide-react';
+
+import { favorites } from '../lib/menu';
+import AstroButton from './ui/AstroButton.astro';
+---
+
+<section id="menu" class="bg-surface-container-low py-24 px-6 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto">
+    <div class="max-w-2xl mb-12">
+      <h2 class="text-display-md text-on-surface mb-4">
+        All-Time <span class="text-primary-container">Favorites</span>
+      </h2>
+      <p class="text-body-lg text-on-surface-variant">
+        The dishes our guests order again and again, from the tandoor, the curry pot and the clay
+        oven.
+      </p>
+    </div>
+
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {
+        favorites.map((item) => (
+          <li class="bg-surface-container p-6 rounded-2xl flex flex-col">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <h3 class="text-heading-md text-on-surface">{item.name}</h3>
+              <Crown
+                className="w-4 h-4 text-primary-container shrink-0 mt-1.5"
+                aria-hidden="true"
+              />
+            </div>
+            <p class="text-body-md text-on-surface-variant flex-1">{item.description}</p>
+            <p class="mt-4 flex items-center justify-between">
+              <span class="text-heading-md text-primary-container">${item.price.toFixed(2)}</span>
+              {item.veg && (
+                <span class="flex items-center gap-1 text-sm text-on-surface-variant">
+                  <Leaf className="w-4 h-4" aria-hidden="true" /> Vegetarian
+                </span>
+              )}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-10">
+      <AstroButton href="/menu/" class="group">
+        View full menu &amp; prices
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+      </AstroButton>
+    </div>
+  </div>
+</section>

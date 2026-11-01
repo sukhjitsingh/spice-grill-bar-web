@@ -1,10 +1,10 @@
 ---
 import Hero from '../components/Hero.astro';
 import LocationSection from '../components/LocationSection.astro';
-import { MenuSection } from '../components/MenuSection';
 import OrderSection from '../components/OrderSection.astro';
 import OurStorySection from '../components/OurStorySection.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
+import SignatureDishes from '../components/SignatureDishes.astro';
 import faqData from '../data/faq.json';
 import Layout from '../layouts/Layout.astro';
 
@@ -43,7 +43,7 @@ const faqPageSchema = {
     <Hero />
     <OurStorySection />
     <ReviewsSection />
-    <MenuSection client:visible={{ rootMargin: '200px' }} />
+    <SignatureDishes />
     <section id="home-faq" class="py-20 px-6 bg-surface-container-low">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-display-md text-on-surface text-center mb-12">
@@ -64,6 +64,15 @@ const faqPageSchema = {
     <OrderSection />
     <LocationSection />
   </main>
+
+  <script>
+    // The full menu moved to /menu/; keep old /#menu links and bookmarks working.
+    document.addEventListener('astro:page-load', () => {
+      if (window.location.pathname === '/' && window.location.hash === '#menu') {
+        window.location.replace('/menu/');
+      }
+    });
+  </script>
 
   <!-- Speakable schema markup — anchors voice extraction to the visible FAQ DOM.
        Selectors use ID + tag (stable across Tailwind v4 utility renames). -->

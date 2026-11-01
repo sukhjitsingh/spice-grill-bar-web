@@ -125,7 +125,7 @@ function slugToLabel(path: string): string {
     <ServiceSchema />
     {(currentPath === '/' || currentPath.startsWith('/faq')) && <FAQSchema />}
     {currentPath.startsWith('/events') && <EventSchema />}
-    <MenuSchema />
+    {currentPath.startsWith('/menu') && <MenuSchema />}
     <OrganizationSchema />
     <WebSiteSchema />
     <BreadcrumbSchema

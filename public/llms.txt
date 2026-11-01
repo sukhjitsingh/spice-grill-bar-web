@@ -11,7 +11,8 @@ Spice Grill & Bar is a premier Indian restaurant located in Ash Fork, Arizona, s
 - **Dining Options**: Dine-in, Pickup, Curbside
 
 ## Operating Hours
-- **Mon - Thu**: 8:00 AM - 9:00 PM
+- **Mon, Tue & Thu**: 8:00 AM - 9:00 PM
+- **Wednesday**: Closed
 - **Fri - Sun**: 8:00 AM - 10:00 PM
 
 ## Location & Proximity
@@ -33,7 +34,7 @@ Our menu features a wide range of traditional dishes:
 
 ## Frequently Asked Questions
 Q: What are the operating hours?
-A: Monday-Thursday 8:00 AM - 9:00 PM, Friday-Sunday 8:00 AM - 10:00 PM.
+A: Monday, Tuesday and Thursday 8:00 AM - 9:00 PM, Friday-Sunday 8:00 AM - 10:00 PM. Closed Wednesdays.
 
 Q: What type of food do you serve?
 A: We specialize in authentic Punjabi Indian cuisine, featuring Tandoori specials, curries, and freshly baked naans.

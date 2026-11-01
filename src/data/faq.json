@@ -49,12 +49,12 @@
   {
     "question": "What are the most popular dishes at Spice Grill & Bar?",
     "answer": "Spice Grill & Bar's guest favorites are Butter Chicken, Goat Curry, Shahi Paneer, Fish Pakora, and our signature Garlic Naan baked in a traditional clay oven.",
-    "relatedLink": { "href": "/#menu", "text": "Browse the full menu with prices" }
+    "relatedLink": { "href": "/menu/", "text": "Browse the full menu with prices" }
   },
   {
     "question": "What should I order if I've never had Indian food before?",
     "answer": "Spice Grill & Bar recommends Butter Chicken for first-timers — it's mild, creamy, and crowd-pleasing. Pair it with Garlic Naan and try Tandoori Chicken for a well-rounded introduction.",
-    "relatedLink": { "href": "/#menu", "text": "View the full menu" }
+    "relatedLink": { "href": "/menu/", "text": "View the full menu" }
   },
   {
     "question": "Can I customize how spicy my food is at Spice Grill & Bar?",
@@ -66,7 +66,7 @@
   },
   {
     "question": "What are the operating hours for Spice Grill & Bar?",
-    "answer": "Spice Grill & Bar is open Monday through Thursday 8am–9pm, Friday through Sunday 8am–10pm."
+    "answer": "Spice Grill & Bar is open Monday, Tuesday and Thursday 8am–9pm, and Friday through Sunday 8am–10pm. We are closed on Wednesdays."
   },
   {
     "question": "Do you offer takeout or delivery services?",
@@ -110,7 +110,7 @@
   },
   {
     "question": "Do I need a reservation at Spice Grill & Bar?",
-    "answer": "Spice Grill & Bar is walk-in only — no reservations needed. Just stop by during our open hours: Monday through Thursday 8am to 9pm, Friday through Sunday 8am to 10pm."
+    "answer": "Spice Grill & Bar is walk-in only — no reservations needed. Just stop by during our open hours: Monday, Tuesday and Thursday 8am to 9pm, Friday through Sunday 8am to 10pm. Closed Wednesdays."
   },
   {
     "question": "Is Spice Grill & Bar budget-friendly?",

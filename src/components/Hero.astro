@@ -55,7 +55,10 @@ import AstroButton from './ui/AstroButton.astro';
     </p>
 
     <div class="text-body-md text-on-surface-variant mb-1">
-      <p>Open Mon&ndash;Thu 8AM&ndash;9PM &middot; Fri&ndash;Sun 8AM&ndash;10PM</p>
+      <p>
+        Open Mon, Tue &amp; Thu 8AM&ndash;9PM &middot; Fri&ndash;Sun 8AM&ndash;10PM &middot; Closed
+        Wed
+      </p>
     </div>
 
     <a href="tel:+19282771292" class="text-body-md text-primary-container hover:underline mb-4">
@@ -63,14 +66,14 @@ import AstroButton from './ui/AstroButton.astro';
     </a>
 
     <div class="flex items-center gap-2 mb-8">
-      <div class="flex" aria-label="4.8 out of 5 stars">
+      <div class="flex" aria-label="4.7 out of 5 stars">
         <Star className="w-4 h-4 fill-primary-container text-primary-container" />
         <Star className="w-4 h-4 fill-primary-container text-primary-container" />
         <Star className="w-4 h-4 fill-primary-container text-primary-container" />
         <Star className="w-4 h-4 fill-primary-container text-primary-container" />
         <Star className="w-4 h-4 fill-primary-container text-primary-container" />
       </div>
-      <span class="text-label-sm text-on-surface-variant">4.7 &middot; 300+ Reviews</span>
+      <span class="text-label-sm text-on-surface-variant">4.7 &middot; 500+ Reviews</span>
     </div>
 
     <div class="flex flex-col sm:flex-row items-center gap-4">
@@ -81,7 +84,7 @@ import AstroButton from './ui/AstroButton.astro';
       >
         ORDER NOW
       </AstroButton>
-      <AstroButton href="#menu" variant="outline" class="group">
+      <AstroButton href="/menu/" variant="outline" class="group">
         VIEW MENU{' '}
         <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
       </AstroButton>

@@ -37,7 +37,8 @@ The codebase deliberately splits between two component types:
 
 File-based routing via `/src/pages/`. Pages:
 
-- `index.astro` — Home page (one-page site with multiple sections)
+- `index.astro` — Home page (hero, story, reviews, All-Time Favorites teaser, FAQ, order, location). Old `/#menu` links redirect to `/menu/`
+- `menu.astro` — Full menu with prices (`MenuSection.tsx` island, grouped by the print menu's sections); the only page that emits Menu JSON-LD
 - `faq.astro` — FAQ page for voice search / AEO
 - `near-grand-canyon.astro` — GEO page targeting Grand Canyon / proximity queries
 - `directions.astro` — GEO page with per-city driving directions and Maps embed
@@ -48,7 +49,7 @@ File-based routing via `/src/pages/`. Pages:
 
 Static JSON files in `/src/data/` are the source of truth:
 
-- `menu.json` — All menu categories and items with prices
+- `menu.json` — Menu categories (with `section` grouping matching the printed dine-in menu) and items with prices, `veg`, `favorite`, `isNew` and optional `note`. Source of truth for every price on the site, `MenuSchema` and the `llms-full.txt` menu section
 - `faq.json` — Q&A pairs for structured data and AEO
 - `events.json` — Recurring and dated events. To post a new Paint & Sip, add an entry to `events` (date, time, optional price/theme/signupUrl), then rebuild and deploy. Past dates hide automatically in the browser.
 - `reviews.json` — Customer reviews, auto-updated weekly via GitHub Actions (Gemini API scrapes and summarizes new reviews)

@@ -258,6 +258,36 @@ if (!fs.existsSync(distMenuPath)) {
   }
 }
 
+// 8b. Menu link gate — any link whose text mentions the menu must go to /menu/, not home.
+// Guards against the GEO-page "View the full … menu" buttons regressing to href="/".
+const distDir = path.join(ROOT_DIR, 'dist');
+if (fs.existsSync(distDir)) {
+  const htmlFiles = [];
+  const collect = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) collect(full);
+      else if (entry.name === 'index.html') htmlFiles.push(full);
+    }
+  };
+  collect(distDir);
+  const badMenuLinks = [];
+  for (const file of htmlFiles) {
+    const html = fs.readFileSync(file, 'utf-8');
+    for (const m of html.matchAll(/<a\b[^>]*\bhref="\/"[^>]*>([\s\S]*?)<\/a>/gi)) {
+      const text = m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      if (/menu/i.test(text)) badMenuLinks.push(`${path.relative(distDir, file)}: "${text}"`);
+    }
+  }
+  if (badMenuLinks.length > 0) {
+    console.error(`❌ Menu link gate: ${badMenuLinks.length} menu link(s) point to / instead of /menu/:`);
+    badMenuLinks.forEach((hit) => console.error(`   ${hit}`));
+    errors++;
+  } else {
+    console.log(`✅ Menu link gate: no menu links point to / across ${htmlFiles.length} pages`);
+  }
+}
+
 // 9. Claims gate — no distance/uniqueness superlatives that a competitor contradicts.
 // Taj Mahal Indian Restaurant operates in Williams, AZ, so "closest Indian restaurant to
 // Williams / the Grand Canyon" and "only Punjabi restaurant between Flagstaff and Kingman"

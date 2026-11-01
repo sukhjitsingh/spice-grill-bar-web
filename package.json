@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "prebuild": "node scripts/generate-llms-full.mjs",
-    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && cp dist/sitemap-index.xml dist/sitemap.xml",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "astro": "astro",
     "optimize:logo": "node scripts/optimize_logo.mjs",
@@ -29,7 +29,7 @@
     "typecheck": "ASTRO_TELEMETRY_DISABLED=1 astro check && tsc --noEmit",
     "knip": "knip",
     "test:quality": "npm run lint && npm run knip && npm run typecheck && npm run test:aeo",
-    "postbuild": "cp dist/sitemap-index.xml dist/sitemap.xml",
+    "postbuild": "cp dist/sitemap-index.xml dist/sitemap.xml && node scripts/check-build-output.mjs",
     "qa": "npm run build && npm run test:quality && npm run test:lhci"
   },
   "dependencies": {

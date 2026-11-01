@@ -340,7 +340,8 @@
         "veg": false,
         "isNew": true
       }
-    ]
+    ],
+    "isNew": true
   },
   {
     "category": "Eggs",
@@ -582,7 +583,8 @@
         "name": "Korma Sauce",
         "description": "",
         "price": 10.99,
-        "veg": true
+        "veg": true,
+        "isNew": true
       }
     ]
   }

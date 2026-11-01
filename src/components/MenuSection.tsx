@@ -236,11 +236,16 @@ export function MenuSection() {
                       {group.showCategoryHeadings && (
                         <h3
                           className={cn(
-                            'text-label-sm uppercase tracking-wider text-on-surface',
+                            'text-label-sm uppercase tracking-wider text-on-surface flex items-center gap-2',
                             cat.category === group.section && 'sr-only'
                           )}
                         >
                           {cat.category}
+                          {cat.isNew && (
+                            <span className="bg-surface-container-high px-2 py-0.5 rounded-full">
+                              New
+                            </span>
+                          )}
                         </h3>
                       )}
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 gap-y-8">

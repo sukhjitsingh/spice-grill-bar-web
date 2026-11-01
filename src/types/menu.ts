@@ -15,5 +15,6 @@ export interface MenuCategory {
   section: string;
   tagline?: string;
   note?: string;
+  isNew?: boolean;
   items: MenuItem[];
 }

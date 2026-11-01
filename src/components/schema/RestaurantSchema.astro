@@ -1,19 +1,7 @@
 ---
 import type { Restaurant, WithContext } from 'schema-dts';
 
-import reviewsData from '../../data/reviews.json';
-
-const ratedReviews = reviewsData.filter((r: { rating?: number }) => typeof r.rating === 'number');
-const ratingValue =
-  ratedReviews.length > 0
-    ? parseFloat(
-        (
-          ratedReviews.reduce((sum: number, r: { rating: number }) => sum + r.rating, 0) /
-          ratedReviews.length
-        ).toFixed(1)
-      )
-    : 0;
-const reviewCount = ratedReviews.length;
+import { rating } from '@/lib/rating';
 
 const schema: WithContext<Restaurant> = {
   '@context': 'https://schema.org',
@@ -103,12 +91,12 @@ const schema: WithContext<Restaurant> = {
     { '@type': 'Place', name: 'I-40 Corridor, Arizona' },
     { '@type': 'Place', name: 'Historic Route 66, Arizona' },
   ],
-  ...(reviewCount > 0
+  ...(rating.reviewCount > 0
     ? {
         aggregateRating: {
           '@type': 'AggregateRating',
-          ratingValue,
-          reviewCount,
+          ratingValue: rating.ratingValue,
+          reviewCount: rating.reviewCount,
           bestRating: 5,
           worstRating: 1,
         },

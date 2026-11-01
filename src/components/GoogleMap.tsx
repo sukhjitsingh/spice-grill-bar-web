@@ -47,7 +47,7 @@ export function GoogleMap({ apiKey }: { apiKey: string }) {
       }}
       role="button"
       tabIndex={0}
-      aria-label="Load Google Maps"
+      aria-label="Loading Map... Press Enter to load Google Maps now"
     >
       <img
         src="/location-preview.webp"

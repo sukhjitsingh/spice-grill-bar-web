@@ -37,5 +37,5 @@ jobs:
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: 'chore: update reviews data [skip ci]'
-          file_pattern: src/data/reviews.json
+          commit_message: 'chore: update reviews and rating data [skip ci]'
+          file_pattern: src/data/reviews.json src/data/rating.json

@@ -10,8 +10,8 @@ const itemCount = menu.reduce((n, c) => n + c.items.length, 0);
 ---
 
 <Layout
-  title="Menu & Prices | Spice Grill & Bar — Indian Food in Ash Fork, AZ (Route 66)"
-  description={`Full Spice Grill & Bar menu with prices: ${itemCount} dishes including Butter Chicken, Tandoori Chicken, Shahi Paneer, biryani, fresh naan and desserts. Vegetarian options marked. I-40 Exit 146, Ash Fork, AZ.`}
+  title="Menu & Prices | Spice Grill & Bar — Indian Food in Ash Fork, AZ"
+  description={`Full menu with prices: ${itemCount} dishes incl. Butter Chicken, Tandoori Chicken, Shahi Paneer, biryani and fresh naan. Vegetarian marked. I-40 Exit 146, Ash Fork.`}
   ogTitle="Menu & Prices | Spice Grill & Bar — Route 66, Ash Fork AZ"
   ogDescription="Authentic Punjabi Indian menu with prices: tandoori, curries, biryani, fresh naan and desserts."
 >
@@ -20,11 +20,28 @@ const itemCount = menu.reduce((n, c) => n + c.items.length, 0);
       <h1 class="speakable-heading text-[1.875rem] md:text-display-md text-on-surface mb-6">
         Our <span class="text-primary-container">Menu</span>
       </h1>
-      <p class="speakable-lead text-body-lg text-on-surface-variant max-w-3xl mb-8">
+      <p class="speakable-lead text-body-lg text-on-surface-variant max-w-3xl mb-4">
         Spice Grill &amp; Bar serves authentic Punjabi Indian food at I-40 Exit 146 in Ash Fork,
         Arizona: tandoori specialties, vegetarian and paneer curries, chicken, goat, lamb and fish
-        curries, biryani, fresh-baked naan and traditional desserts. Spice levels range from mild to
-        extra hot. Tell your server your preference.
+        curries, biryani, fresh-baked naan and traditional desserts.
+        <a
+          href="/faq/"
+          class="text-primary-container underline underline-offset-2 hover:opacity-80 transition-opacity"
+          >Spice levels range from mild to extra hot</a
+        >. Tell your server your preference.
+      </p>
+      <p class="text-body-md text-on-surface-variant max-w-3xl mb-8">
+        Stopping on the way to the
+        <a
+          href="/near-grand-canyon/"
+          class="text-primary-container underline underline-offset-2 hover:opacity-80 transition-opacity"
+          >Grand Canyon</a
+        >? See
+        <a
+          href="/directions/"
+          class="text-primary-container underline underline-offset-2 hover:opacity-80 transition-opacity"
+          >driving directions to I-40 Exit 146</a
+        >.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
         <AstroButton
@@ -43,7 +60,12 @@ const itemCount = menu.reduce((n, c) => n + c.items.length, 0);
     <MenuSection client:idle />
 
     <p class="max-w-7xl mx-auto px-6 pb-24 text-sm text-on-surface-variant">
-      Please inform us of any food allergies or intolerances prior to ordering.
+      Please inform us of any food allergies or intolerances prior to ordering. Questions about
+      ingredients or vegetarian dishes? See our <a
+        href="/faq/"
+        class="text-primary-container underline underline-offset-2 hover:opacity-80 transition-opacity"
+        >FAQ</a
+      >.
     </p>
   </main>
 

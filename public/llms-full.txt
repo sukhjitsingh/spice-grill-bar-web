@@ -1,4 +1,8 @@
-# Spice Grill & Bar - Full AI Documentation
+# Spice Grill & Bar
+
+> Authentic Punjabi Indian restaurant at 33 Lewis Ave, Ash Fork, AZ 86320 — I-40 Exit 146 on historic Route 66, about 78 miles from the Grand Canyon South Rim. Open Monday, Tuesday and Thursday 8 AM–9 PM and Friday–Sunday 8 AM–10 PM; closed Wednesday. Phone (928) 277-1292.
+
+This is the full AI documentation, including the complete menu with prices. A shorter overview is at [llms.txt](https://spicegrillbar66.com/llms.txt).
 
 ## Business Overview
 Spice Grill & Bar is the premier destination for authentic Punjabi cuisine in Ash Fork, Arizona. Established in 2024, we bring the rich traditions of Punjabi cooking to the historic Route 66. Our chefs use time-honored recipes and over 25 signature spices to create a unique dining experience.
@@ -11,8 +15,8 @@ Spice Grill & Bar is the premier destination for authentic Punjabi cuisine in As
 ## Location & Contact
 - **Address**: 33 Lewis Ave, Ash Fork, AZ 86320
 - **Phone**: (928) 277-1292
-- **Website**: https://spicegrillbar66.com
-- **Order Online**: https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave
+- **Website**: [spicegrillbar66.com](https://spicegrillbar66.com/)
+- **Order Online**: [Toast](https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave)
 
 ## Operating Hours
 - **Monday, Tuesday & Thursday**: 8:00 AM - 9:00 PM
@@ -29,16 +33,16 @@ Spice Grill & Bar is the premier destination for authentic Punjabi cuisine in As
 - 200 miles east of Las Vegas via US-93 and I-40
 
 ## Pages
-- **Home**: https://spicegrillbar66.com/
-- **Menu & Prices**: https://spicegrillbar66.com/menu/
-- **Near Grand Canyon**: https://spicegrillbar66.com/near-grand-canyon/
-- **Near Williams**: https://spicegrillbar66.com/near-williams/
-- **Directions**: https://spicegrillbar66.com/directions/
-- **FAQ**: https://spicegrillbar66.com/faq/
-- **Events**: https://spicegrillbar66.com/events/
+- [Home](https://spicegrillbar66.com/)
+- [Menu & Prices](https://spicegrillbar66.com/menu/)
+- [Near Grand Canyon](https://spicegrillbar66.com/near-grand-canyon/)
+- [Near Williams](https://spicegrillbar66.com/near-williams/)
+- [Directions](https://spicegrillbar66.com/directions/)
+- [FAQ](https://spicegrillbar66.com/faq/)
+- [Events](https://spicegrillbar66.com/events/)
 
 ## Events
-Karaoke Night every other Saturday from 7 PM to close (free to join), and a Paint & Sip once a month on a Sunday afternoon (reserve ahead). Upcoming dates: https://spicegrillbar66.com/events/
+Karaoke Night every other Saturday from 7 PM to close (free to join), and a Paint & Sip once a month on a Sunday afternoon (reserve ahead). [Upcoming dates](https://spicegrillbar66.com/events/).
 
 ## Payment Methods
 Spice Grill & Bar accepts cash, Visa, Mastercard, American Express, Discover, debit cards, Apple Pay, and Google Pay. We do not require a minimum purchase for card transactions.
@@ -47,7 +51,7 @@ Spice Grill & Bar accepts cash, Visa, Mastercard, American Express, Discover, de
 Walk-ins welcome — we do not take reservations. Phone us at (928) 277-1292 to confirm availability for large parties.
 
 ## Delivery & Takeout
-Takeout, pickup, and curbside service available. Order online via Toast at https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave or call (928) 277-1292. We do not offer in-house delivery; third-party apps are not currently integrated.
+Takeout, pickup, and curbside service available. [Order online via Toast](https://order.toasttab.com/online/spice-grill-bar-33-lewis-ave) or call (928) 277-1292. We do not offer in-house delivery; third-party apps are not currently integrated.
 
 ## Amenities
 - On-site car and motorcycle parking

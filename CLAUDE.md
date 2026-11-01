@@ -18,7 +18,9 @@ npm run lint          # ESLint on .js/.ts/.astro files
 npm run lint:fix      # Auto-fix linting issues
 npm run format        # Format all files with Prettier
 npm run typecheck     # TypeScript + Astro type checking
-npm run test:aeo      # Voice/answer engine optimization audit
+npm run test:aeo      # AEO audit (FAQ, llms.txt format, robots.txt, schema, claims, links, rating); run after build
+npm run test:axe      # Contrast + WCAG 2.1 A/AA axe audit, light mode (needs `npm run dev` on :4321)
+npm run test:axe:dark # Same audit in dark mode
 npm run test:lhci     # Lighthouse CI (performance, accessibility, SEO)
 npm run test:quality  # lint + knip + typecheck + AEO audit combined
 npm run qa            # Full QA: build + test:quality + test:lhci (runs on pre-push hook)
@@ -52,15 +54,24 @@ Static JSON files in `/src/data/` are the source of truth:
 - `menu.json` — Menu categories (with `section` grouping matching the printed dine-in menu) and items with prices, `veg`, `favorite`, `isNew` and optional `note`. Source of truth for every price on the site, `MenuSchema` and the `llms-full.txt` menu section
 - `faq.json` — Q&A pairs for structured data and AEO
 - `events.json` — Recurring and dated events. To post a new Paint & Sip, add an entry to `events` (date, time, optional price/theme/signupUrl), then rebuild and deploy. Past dates hide automatically in the browser.
-- `reviews.json` — Customer reviews, newest first. Updated monthly by `.github/workflows/update-reviews.yml`, which runs `npm run ingest:reviews` (`scripts/ingest-reviews.mjs`: Puppeteer scrapes Google Maps + Yelp, Gemini extracts reviews; needs `GEMINI_API_KEY`). The script only appends new reviews (deduped by source + author or opening text) and never edits or removes existing ones; any failure leaves the file untouched. `ReviewsSection.astro` shows the 12 newest by date; `RestaurantSchema.astro` averages all of them for `aggregateRating`.
+- `reviews.json` — Customer reviews, newest first. Updated monthly by `.github/workflows/update-reviews.yml`, which runs `npm run ingest:reviews` (`scripts/ingest-reviews.mjs`: Puppeteer scrapes Google Maps + Yelp, Gemini extracts reviews; needs `GEMINI_API_KEY`). The script only appends new reviews (deduped by source + author or opening text) and never edits or removes existing ones; any failure leaves the file untouched. `ReviewsSection.astro` shows the 12 newest by date.
+- `rating.json` — Google's overall rating and total review count (`ratingValue`, `reviewCount`, `source`, `asOf`). Single source for the hero badge and `RestaurantSchema`'s `aggregateRating`, read through `src/lib/rating.ts`. The same monthly workflow refreshes it from the scraped Google listing, but only when the new values are plausible (rating 1–5, count within 0.9×–3× of the stored count). Never compute the rating from `reviews.json`; that file is a sample.
 
 ### Schema / SEO Components
 
-Six JSON-LD schema components in `/src/components/schema/` are injected via `Layout.astro`:
+Eight JSON-LD schema components in `/src/components/schema/` are injected via `Layout.astro`:
 
-- `RestaurantSchema.astro`, `FAQSchema.astro`, `MenuSchema.astro`, `OrganizationSchema.astro`, `WebSiteSchema.astro`, `BreadcrumbSchema.astro`
+- `RestaurantSchema.astro`, `ServiceSchema.astro`, `OrganizationSchema.astro`, `WebSiteSchema.astro`, `BreadcrumbSchema.astro` on every page
+- `FAQSchema.astro` on `/faq/` only (the home page emits its own 8-question FAQPage matching its visible FAQ section), `MenuSchema.astro` on `/menu/` only, `EventSchema.astro` on `/events/` only
 
 These are critical for local SEO and AEO. Changes to menu, hours, or contact info must be reflected in both the data files and schema components.
+
+**AEO content rules** (enforced by `scripts/aeo-audit.mjs`):
+
+- No "closest / nearest / only" Indian or Punjabi restaurant claims about Williams, the Grand Canyon or I-40: Taj Mahal Indian Restaurant operates in Williams. "Closest Indian restaurant to Kaibab Estates West" is allowed.
+- Page titles 30–70 characters and meta descriptions 110–160, unique per page. Ahrefs flags titles over 60; the home, menu, events and directions titles are 61–69 by choice.
+- Every page needs at least two inline links in its `<main>` prose (class `text-primary-container underline underline-offset-2 …`), not just nav, footer and CTA buttons.
+- `public/llms.txt` and `public/llms-full.txt` follow the llmstxt.org Markdown format: H1 first, a `> ` summary, links as `[text](url)` (never bare URLs). The `## Full Menu` section of `llms-full.txt` is generated from `menu.json` by `prebuild`; don't edit it by hand.
 
 ### Styling — "The Radiant Sommelier" Design System
 
@@ -92,7 +103,9 @@ Google Analytics runs via GTM with **Partytown** for off-main-thread execution. 
 
 ### Deployment
 
-The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `postbuild` fails the build if `dist/.htaccess` is missing.
+The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `postbuild` fails the build if `dist/.htaccess` is missing or if any sitemap URL lacks `<lastmod>` (set from each page's last git commit in `astro.config.mjs`).
+
+`astro-indexnow` pings IndexNow **during `npm run build`**, before the upload. Bing may therefore fetch the old pages; after uploading a content change, re-submit the changed URLs (Bing Webmaster Tools → URL Submission, or IndexNow).
 
 ## Git Conventions
 

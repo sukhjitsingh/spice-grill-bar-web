@@ -1,6 +1,9 @@
 /**
  * Review ingestion: scrapes Google Maps and Yelp with headless Chrome, asks
  * Gemini to extract structured reviews, and writes src/data/reviews.json.
+ * It also refreshes src/data/rating.json with Google's overall rating and total
+ * review count (the figures the hero badge and Restaurant schema show), but only
+ * when the new values pass a sanity check against the stored ones.
  *
  * Run: npm run ingest:reviews  (needs GEMINI_API_KEY in env, .env or .env.local)
  *
@@ -21,6 +24,7 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 puppeteer.use(StealthPlugin());
 
 const OUTPUT_PATH = fileURLToPath(new URL('../src/data/reviews.json', import.meta.url));
+const RATING_PATH = fileURLToPath(new URL('../src/data/rating.json', import.meta.url));
 const GOOGLE_MAPS_URL = 'https://www.google.com/maps/search/Spice+Grill+%26+Bar+Ash+Fork';
 const YELP_URL =
   'https://www.yelp.com/biz/spice-grill-and-bar-ash-fork?osq=spice+grill+and+bar#reviews';
@@ -155,6 +159,11 @@ Extract reviews with these fields:
 - text: the review text
 - source: "Google" or "Yelp"
 - date: formatted date string like "November 28, 2025"
+
+Also report googleSummary: the business's OVERALL Google rating and TOTAL Google
+review count as shown on the Google Maps listing (for example "4.7" and "(512)").
+These are the listing totals, not figures computed from the reviews you extracted.
+Omit googleSummary if the Google data does not show them.
 `,
     config: {
       systemInstruction: SYSTEM_INSTRUCTION,
@@ -177,6 +186,14 @@ Extract reviews with these fields:
               required: ['id', 'author', 'rating', 'text', 'source', 'date'],
             },
           },
+          googleSummary: {
+            type: 'object',
+            properties: {
+              ratingValue: { type: 'number' },
+              reviewCount: { type: 'integer' },
+            },
+            required: ['ratingValue', 'reviewCount'],
+          },
         },
         required: ['reviews'],
       },
@@ -184,7 +201,53 @@ Extract reviews with these fields:
   });
 
   const parsed = JSON.parse(response.text);
-  return Array.isArray(parsed) ? parsed : parsed.reviews || [];
+  if (Array.isArray(parsed)) return { reviews: parsed, googleSummary: null };
+  return { reviews: parsed.reviews || [], googleSummary: parsed.googleSummary || null };
+}
+
+function readRating() {
+  try {
+    return JSON.parse(fs.readFileSync(RATING_PATH, 'utf8'));
+  } catch (e) {
+    warn(`Could not read ${RATING_PATH}: ${e.message}`);
+    return null;
+  }
+}
+
+// Accepts Gemini's Google totals only when they are plausible next to the stored
+// values; anything else keeps rating.json as is. Counts can dip slightly when Google
+// removes reviews, but never collapse or jump more than threefold in a month.
+function isPlausibleSummary(summary, stored) {
+  if (!summary) return false;
+  const { ratingValue, reviewCount } = summary;
+  if (typeof ratingValue !== 'number' || ratingValue < 1 || ratingValue > 5) return false;
+  if (!Number.isInteger(reviewCount) || reviewCount < 1) return false;
+  if (stored && Number.isInteger(stored.reviewCount)) {
+    if (reviewCount < stored.reviewCount * 0.9 || reviewCount > stored.reviewCount * 3) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function updateRating(summary) {
+  const stored = readRating();
+  if (!isPlausibleSummary(summary, stored)) {
+    warn(
+      `Google summary missing or implausible (${JSON.stringify(summary)}); keeping rating.json.`
+    );
+    return;
+  }
+  const next = {
+    ratingValue: Math.round(summary.ratingValue * 10) / 10,
+    reviewCount: summary.reviewCount,
+    source: 'Google',
+    asOf: new Date().toISOString().slice(0, 10),
+  };
+  fs.writeFileSync(RATING_PATH, `${JSON.stringify(next, null, 2)}\n`);
+  console.log(
+    `rating.json: ${next.ratingValue} from ${next.reviewCount} Google reviews (was ${stored?.ratingValue} from ${stored?.reviewCount}).`
+  );
 }
 
 const nonEmpty = (v) => typeof v === 'string' && v.trim().length > 0;
@@ -272,7 +335,10 @@ async function main() {
     return;
   }
 
-  const extracted = (await extractWithGemini(apiKey, scraped)).filter(isValidReview);
+  const { reviews: rawReviews, googleSummary } = await extractWithGemini(apiKey, scraped);
+  if (scrapedSources.includes('Google')) updateRating(googleSummary);
+
+  const extracted = rawReviews.filter(isValidReview);
   console.log(`Gemini returned ${extracted.length} valid reviews.`);
 
   // Existing reviews are never removed or changed; new ones go first (newest-first file).

@@ -275,12 +275,17 @@ if (fs.existsSync(distDir)) {
   for (const file of htmlFiles) {
     const html = fs.readFileSync(file, 'utf-8');
     for (const m of html.matchAll(/<a\b[^>]*\bhref="\/"[^>]*>([\s\S]*?)<\/a>/gi)) {
-      const text = m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      const text = m[1]
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
       if (/menu/i.test(text)) badMenuLinks.push(`${path.relative(distDir, file)}: "${text}"`);
     }
   }
   if (badMenuLinks.length > 0) {
-    console.error(`❌ Menu link gate: ${badMenuLinks.length} menu link(s) point to / instead of /menu/:`);
+    console.error(
+      `❌ Menu link gate: ${badMenuLinks.length} menu link(s) point to / instead of /menu/:`
+    );
     badMenuLinks.forEach((hit) => console.error(`   ${hit}`));
     errors++;
   } else {
@@ -326,6 +331,50 @@ if (claimHits.length > 0) {
   errors++;
 } else {
   console.log(`✅ Claims gate: no closest/only claims about Williams, Grand Canyon or I-40`);
+}
+
+// 11. Rating consistency gate — the hero badge and the Restaurant aggregateRating must both
+// show Google's overall figures from src/data/rating.json (refreshed by ingest-reviews.mjs).
+const ratingPath = path.join(ROOT_DIR, 'src/data/rating.json');
+if (!fs.existsSync(ratingPath)) {
+  console.error('❌ Rating gate: src/data/rating.json is missing');
+  errors++;
+} else if (fs.existsSync(distIndexPath)) {
+  const ratingData = JSON.parse(fs.readFileSync(ratingPath, 'utf-8'));
+  const homeHtml = fs.readFileSync(distIndexPath, 'utf-8');
+  const schemaRating = homeHtml.match(
+    /"aggregateRating":\{[^}]*"ratingValue":([\d.]+)[^}]*"reviewCount":(\d+)/
+  );
+  const heroRating = homeHtml.match(/aria-label="([\d.]+) out of 5 stars"/);
+  const problems = [];
+  if (!schemaRating) problems.push('no aggregateRating in dist/index.html');
+  else {
+    if (Number(schemaRating[1]) !== ratingData.ratingValue)
+      problems.push(
+        `schema ratingValue ${schemaRating[1]} ≠ rating.json ${ratingData.ratingValue}`
+      );
+    if (Number(schemaRating[2]) !== ratingData.reviewCount)
+      problems.push(
+        `schema reviewCount ${schemaRating[2]} ≠ rating.json ${ratingData.reviewCount}`
+      );
+  }
+  if (!heroRating) problems.push('hero star rating aria-label not found');
+  else if (Number(heroRating[1]) !== ratingData.ratingValue)
+    problems.push(`hero rating ${heroRating[1]} ≠ rating.json ${ratingData.ratingValue}`);
+  if (problems.length > 0) {
+    console.error(`❌ Rating gate: ${problems.join('; ')}`);
+    errors++;
+  } else {
+    console.log(
+      `✅ Rating gate: hero and aggregateRating both show ${ratingData.ratingValue} from ${ratingData.reviewCount} ${ratingData.source} reviews`
+    );
+  }
+  const ageDays = (Date.now() - Date.parse(ratingData.asOf)) / 86_400_000;
+  if (!(ageDays <= 90)) {
+    console.warn(
+      `⚠️ Rating gate: rating.json asOf ${ratingData.asOf} is over 90 days old — check the monthly Update Reviews workflow`
+    );
+  }
 }
 
 console.log('\n---------------------------------------------------');

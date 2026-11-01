@@ -49,12 +49,12 @@
   {
     "question": "What are the most popular dishes at Spice Grill & Bar?",
     "answer": "Spice Grill & Bar's guest favorites are Butter Chicken, Goat Curry, Shahi Paneer, Fish Pakora, and our signature Garlic Naan baked in a traditional clay oven.",
-    "relatedLink": { "href": "/#menu", "text": "Browse the full menu with prices" }
+    "relatedLink": { "href": "/menu/", "text": "Browse the full menu with prices" }
   },
   {
     "question": "What should I order if I've never had Indian food before?",
     "answer": "Spice Grill & Bar recommends Butter Chicken for first-timers — it's mild, creamy, and crowd-pleasing. Pair it with Garlic Naan and try Tandoori Chicken for a well-rounded introduction.",
-    "relatedLink": { "href": "/#menu", "text": "View the full menu" }
+    "relatedLink": { "href": "/menu/", "text": "View the full menu" }
   },
   {
     "question": "Can I customize how spicy my food is at Spice Grill & Bar?",

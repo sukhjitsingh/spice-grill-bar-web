@@ -458,6 +458,57 @@ if (!fs.existsSync(ratingPath)) {
   }
 }
 
+// 12. Title / meta description length gate — the limits Ahrefs Site Audit and Google's
+// snippet truncation use: titles 30-60 characters, descriptions 110-160, none duplicated.
+const TITLE_RANGE = [30, 60];
+const DESC_RANGE = [110, 160];
+const distRoot = path.join(ROOT_DIR, 'dist');
+if (fs.existsSync(distRoot)) {
+  const decode = (v) =>
+    v
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
+  const pages = [];
+  const walkDist = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) walkDist(full);
+      else if (entry.name === 'index.html') pages.push(full);
+    }
+  };
+  walkDist(distRoot);
+  const metaProblems = [];
+  const seen = { title: new Map(), description: new Map() };
+  for (const file of pages) {
+    const html = fs.readFileSync(file, 'utf-8');
+    const page = `/${path.relative(distRoot, path.dirname(file))}`.replace(/\/?$/, '/');
+    const title = decode(html.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? '');
+    const desc = decode(html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '');
+    for (const [kind, value, [min, max]] of [
+      ['title', title, TITLE_RANGE],
+      ['description', desc, DESC_RANGE],
+    ]) {
+      if (value.length < min || value.length > max)
+        metaProblems.push(`${page} ${kind} is ${value.length} chars (want ${min}-${max})`);
+      if (seen[kind].has(value))
+        metaProblems.push(`${page} ${kind} duplicates ${seen[kind].get(value)}`);
+      else seen[kind].set(value, page);
+    }
+  }
+  if (metaProblems.length > 0) {
+    console.error(`❌ Meta length gate: ${metaProblems.length} problem(s):`);
+    metaProblems.forEach((m) => console.error(`   ${m}`));
+    errors++;
+  } else {
+    console.log(
+      `✅ Meta length gate: ${pages.length} pages have titles ≤${TITLE_RANGE[1]} and descriptions ≤${DESC_RANGE[1]} characters, no duplicates`
+    );
+  }
+}
+
 console.log('\n---------------------------------------------------');
 if (errors > 0) {
   console.error(`❌ AEO Audit Failed with ${errors} errors.`);

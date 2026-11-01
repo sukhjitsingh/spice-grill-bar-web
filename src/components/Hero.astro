@@ -68,12 +68,27 @@ import AstroButton from './ui/AstroButton.astro';
     </a>
 
     <div class="flex items-center gap-2 mb-8">
-      <div class="flex" aria-label={`${rating.ratingValue} out of 5 stars`}>
-        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
-        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
-        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
-        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
-        <Star className="w-4 h-4 fill-primary-container text-primary-container" />
+      <div class="flex" role="img" aria-label={`${rating.ratingValue} out of 5 stars`}>
+        <Star
+          className="w-4 h-4 fill-primary-container text-primary-container"
+          aria-hidden="true"
+        />
+        <Star
+          className="w-4 h-4 fill-primary-container text-primary-container"
+          aria-hidden="true"
+        />
+        <Star
+          className="w-4 h-4 fill-primary-container text-primary-container"
+          aria-hidden="true"
+        />
+        <Star
+          className="w-4 h-4 fill-primary-container text-primary-container"
+          aria-hidden="true"
+        />
+        <Star
+          className="w-4 h-4 fill-primary-container text-primary-container"
+          aria-hidden="true"
+        />
       </div>
       <span class="text-label-sm text-on-surface-variant"
         >{rating.ratingValue} &middot; {reviewCountLabel(rating.reviewCount)} Reviews</span

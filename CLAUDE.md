@@ -4,9 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the website for **Spice Grill & Bar**, a restaurant in Ash Fork, Arizona on Route 66/I-40 Exit 146. The project is an **Astro 5** static site. The primary technical goals are local SEO (GEO), AI/Answer Engine Optimization (AEO), and Lighthouse performance scores.
+This is the website for **Spice Grill & Bar**, a restaurant in Ash Fork, Arizona on Route 66/I-40 Exit 146. The project is an **Astro 7** static site. The primary technical goals are local SEO (GEO), AI/Answer Engine Optimization (AEO), and Lighthouse performance scores.
 
 ## Common Commands
+
+Requires **Node 24.22.2**, pinned in `.nvmrc` (run `nvm use`). `package.json` `engines` and the GitHub workflow use the same version.
 
 ```bash
 npm run dev           # Start dev server at http://localhost:4321

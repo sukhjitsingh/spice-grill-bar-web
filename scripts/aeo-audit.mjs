@@ -258,6 +258,46 @@ if (!fs.existsSync(distMenuPath)) {
   }
 }
 
+// 9. Claims gate — no distance/uniqueness superlatives that a competitor contradicts.
+// Taj Mahal Indian Restaurant operates in Williams, AZ, so "closest Indian restaurant to
+// Williams / the Grand Canyon" and "only Punjabi restaurant between Flagstaff and Kingman"
+// are false. AI answer engines cross-check claims and stop citing pages that contradict
+// the wider web. Kaibab Estates West (≈5 miles from Ash Fork) is the one true "closest".
+const CLAIM_RE =
+  /\b(closest|nearest|only)\b[^.]{0,40}\b(Indian|Punjabi)\b[^.]{0,60}\b(Williams|Grand Canyon|Flagstaff|Kingman|I-40)\b/gi;
+// Allowed only when the claim is about Kaibab Estates West itself ("…restaurant to Kaibab…").
+const CLAIM_ALLOW = /restaurant to Kaibab Estates/i;
+function walk(dir, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walk(full, out);
+    else if (/\.(astro|json)$/.test(entry.name) && entry.name !== 'reviews.json') out.push(full);
+  }
+  return out;
+}
+const claimFiles = [
+  ...walk(path.join(ROOT_DIR, 'src')),
+  path.join(ROOT_DIR, 'public/llms.txt'),
+  path.join(ROOT_DIR, 'public/llms-full.txt'),
+].filter((f) => fs.existsSync(f));
+const claimHits = [];
+for (const file of claimFiles) {
+  // Collapse whitespace so claims wrapped across lines are still caught.
+  const text = fs.readFileSync(file, 'utf-8').replace(/\s+/g, ' ');
+  for (const match of text.matchAll(CLAIM_RE)) {
+    if (!CLAIM_ALLOW.test(match[0])) {
+      claimHits.push(`${path.relative(ROOT_DIR, file)}: "${match[0]}"`);
+    }
+  }
+}
+if (claimHits.length > 0) {
+  console.error(`❌ Claims gate: ${claimHits.length} contradicted superlative claim(s):`);
+  claimHits.forEach((hit) => console.error(`   ${hit}`));
+  errors++;
+} else {
+  console.log(`✅ Claims gate: no closest/only claims about Williams, Grand Canyon or I-40`);
+}
+
 console.log('\n---------------------------------------------------');
 if (errors > 0) {
   console.error(`❌ AEO Audit Failed with ${errors} errors.`);

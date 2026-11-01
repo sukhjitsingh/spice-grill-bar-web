@@ -8,7 +8,7 @@ import { chromium } from 'playwright';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const PAGES = ['/', '/near-grand-canyon/', '/directions/', '/faq/', '/events/'];
+const PAGES = ['/', '/near-grand-canyon/', '/directions/', '/faq/', '/events/', '/menu/'];
 const BASE = 'http://localhost:4321';
 const AXE_PATH = resolve('./node_modules/axe-core/axe.min.js');
 

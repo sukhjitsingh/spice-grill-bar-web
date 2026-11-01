@@ -14,8 +14,18 @@ interface Review {
   avatar?: string;
 }
 
+// reviews.json only grows, so show just the newest few to keep the page light.
+const MAX_DISPLAYED_REVIEWS = 12;
+const timeOf = (r: Review) => {
+  const t = Date.parse(r.date);
+  return Number.isNaN(t) ? -Infinity : t;
+};
+const latest = [...(reviewsData as Review[])]
+  .sort((a, b) => timeOf(b) - timeOf(a))
+  .slice(0, MAX_DISPLAYED_REVIEWS);
+
 // Duplicate reviews for seamless marquee
-const reviews: Review[] = [...reviewsData, ...reviewsData, ...reviewsData] as Review[];
+const reviews: Review[] = [...latest, ...latest, ...latest];
 ---
 
 <section class="py-24 bg-surface-dim relative overflow-hidden">

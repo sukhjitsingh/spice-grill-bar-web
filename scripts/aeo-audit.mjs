@@ -333,6 +333,46 @@ if (claimHits.length > 0) {
   console.log(`✅ Claims gate: no closest/only claims about Williams, Grand Canyon or I-40`);
 }
 
+// 10. Inline-link gate — every page needs contextual links inside its <main> prose, not
+// just nav, footer and CTA buttons. AI answer engines read the sentence around a link to
+// understand how pages relate. Inline links share the `underline-offset-2` text-link style.
+const INLINE_LINK_PAGES = [
+  'index.html',
+  'menu/index.html',
+  'faq/index.html',
+  'events/index.html',
+  'directions/index.html',
+  'near-grand-canyon/index.html',
+  'near-williams/index.html',
+];
+const MIN_INLINE_LINKS = 2;
+if (fs.existsSync(path.join(ROOT_DIR, 'dist'))) {
+  const thin = [];
+  for (const page of INLINE_LINK_PAGES) {
+    const file = path.join(ROOT_DIR, 'dist', page);
+    if (!fs.existsSync(file)) {
+      thin.push(`${page} (missing)`);
+      continue;
+    }
+    const html = fs.readFileSync(file, 'utf-8');
+    const main = html.slice(html.indexOf('<main'), html.indexOf('</main>'));
+    const links = [...main.matchAll(/<a\b[^>]*>/gi)].filter(
+      ([tag]) => /\bhref="\/[^"]*"/.test(tag) && /underline-offset-2/.test(tag)
+    ).length;
+    if (links < MIN_INLINE_LINKS) thin.push(`${page} (${links})`);
+  }
+  if (thin.length > 0) {
+    console.error(
+      `❌ Inline-link gate: fewer than ${MIN_INLINE_LINKS} inline internal links in <main>: ${thin.join(', ')}`
+    );
+    errors++;
+  } else {
+    console.log(
+      `✅ Inline-link gate: all ${INLINE_LINK_PAGES.length} pages have ≥${MIN_INLINE_LINKS} inline internal links`
+    );
+  }
+}
+
 // 11. Rating consistency gate — the hero badge and the Restaurant aggregateRating must both
 // show Google's overall figures from src/data/rating.json (refreshed by ingest-reviews.mjs).
 const ratingPath = path.join(ROOT_DIR, 'src/data/rating.json');

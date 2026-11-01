@@ -52,7 +52,7 @@ Static JSON files in `/src/data/` are the source of truth:
 - `menu.json` — Menu categories (with `section` grouping matching the printed dine-in menu) and items with prices, `veg`, `favorite`, `isNew` and optional `note`. Source of truth for every price on the site, `MenuSchema` and the `llms-full.txt` menu section
 - `faq.json` — Q&A pairs for structured data and AEO
 - `events.json` — Recurring and dated events. To post a new Paint & Sip, add an entry to `events` (date, time, optional price/theme/signupUrl), then rebuild and deploy. Past dates hide automatically in the browser.
-- `reviews.json` — Customer reviews, auto-updated weekly via GitHub Actions (Gemini API scrapes and summarizes new reviews)
+- `reviews.json` — Customer reviews, newest first. Updated monthly by `.github/workflows/update-reviews.yml`, which runs `npm run ingest:reviews` (`scripts/ingest-reviews.mjs`: Puppeteer scrapes Google Maps + Yelp, Gemini extracts reviews; needs `GEMINI_API_KEY`). The script only appends new reviews (deduped by source + author or opening text) and never edits or removes existing ones; any failure leaves the file untouched. `ReviewsSection.astro` shows the 12 newest by date; `RestaurantSchema.astro` averages all of them for `aggregateRating`.
 
 ### Schema / SEO Components
 

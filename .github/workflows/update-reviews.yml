@@ -2,9 +2,12 @@ name: Update Reviews
 
 on:
   schedule:
-    # Run every Sunday at midnight
-    - cron: '0 0 * * 0'
+    # Run at midnight UTC on the 1st of every month
+    - cron: '0 0 1 * *'
   workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
 
 jobs:
   update-reviews:
@@ -29,10 +32,10 @@ jobs:
       - name: Run Ingestion Script
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node scripts/ingest-reviews.js
+        run: npm run ingest:reviews
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'chore: update reviews data [skip ci]'
-          file_pattern: data/reviews.json
+          file_pattern: src/data/reviews.json

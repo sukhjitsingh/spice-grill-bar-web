@@ -42,24 +42,24 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
       <nav className="container mx-auto px-6 h-14 flex items-center justify-between">
         <a
           href="/"
-          className="flex items-center gap-2 text-label-sm uppercase tracking-tighter font-semibold text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
+          className="flex items-center gap-2.5 shrink-0 whitespace-nowrap text-base sm:text-lg font-display font-bold uppercase tracking-tight text-on-surface hover:text-primary-container transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 rounded-sm"
         >
           <img
             src="/logo_light.svg"
-            className="dark:hidden w-8 h-8 object-contain shrink-0"
+            className="dark:hidden w-11 h-11 object-contain shrink-0"
             alt=""
             aria-hidden="true"
           />
           <img
             src="/logo_dark.svg"
-            className="hidden dark:block w-8 h-8 object-contain shrink-0"
+            className="hidden dark:block w-11 h-11 object-contain shrink-0"
             alt=""
             aria-hidden="true"
           />
           SPICE GRILL & BAR
         </a>
 
-        <div className="hidden md:flex items-center space-x-8 text-body-md text-on-surface-variant">
+        <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-body-md text-on-surface-variant">
           {navigation.map((link) => (
             <a
               key={link.name}
@@ -76,7 +76,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
               variant="ghost"
               size="sm"
               asChild
-              className="text-on-surface-variant hover:text-primary-container hover:bg-surface-container font-display hidden lg:flex"
+              className="text-on-surface-variant hover:text-primary-container hover:bg-surface-container font-display hidden xl:flex"
             >
               <a href="tel:+19282771292" aria-label="Call us">
                 <Phone className="w-4 h-4 mr-2" />
@@ -103,7 +103,7 @@ export function Header({ currentPath = '/' }: { currentPath?: string }) {
           <ModeToggle />
         </div>
 
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-4 lg:hidden">
           <ModeToggle />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>

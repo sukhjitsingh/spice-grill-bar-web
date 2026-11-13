@@ -20,6 +20,8 @@
         "name": "Tandoori Chicken (8 pcs)",
         "description": "Marinated in yogurt & spices, cooked in the tandoor.",
         "price": 22.99,
+        "image": "tandoori-chicken.jpg",
+        "imageAlt": "Tandoori chicken on a sizzling platter with grilled peppers and onions",
         "veg": false,
         "favorite": true
       },
@@ -27,6 +29,8 @@
         "name": "Chicken Chilli",
         "description": "Crispy fried chicken tossed in a sweet & tangy sauce.",
         "price": 15.99,
+        "image": "chicken-chilli.jpg",
+        "imageAlt": "Chicken chilli: crispy fried chicken tossed with bell peppers and onions in a glossy sweet and tangy sauce",
         "veg": false,
         "favorite": true
       },
@@ -40,6 +44,8 @@
         "name": "Fish Pakora",
         "description": "Marinated fish fried in our chickpea batter.",
         "price": 11.99,
+        "image": "fish-pakora.jpg",
+        "imageAlt": "Fish pakora: golden chickpea-battered fried fish topped with sliced red onion",
         "veg": false
       },
       {
@@ -71,18 +77,24 @@
         "name": "Paneer Tikka",
         "description": "Marinated paneer & veggies cooked in the tandoor.",
         "price": 17.99,
+        "image": "paneer-tikka.jpg",
+        "imageAlt": "Paneer tikka: tandoor-grilled paneer cubes with peppers on a sizzling platter",
         "veg": true
       },
       {
         "name": "Samosa Chaat",
         "description": "Crispy samosa, chickpeas, mint & tamarind sauce.",
         "price": 9.99,
+        "image": "samosa-chaat.jpg",
+        "imageAlt": "Samosa chaat: crushed samosa with chickpeas, yogurt, mint and tamarind chutneys",
         "veg": true
       },
       {
         "name": "Papdi Chaat",
         "description": "Crispy flour chips, chickpeas, mint & tamarind sauce, yogurt, onion, cucumber & cilantro.",
         "price": 8.99,
+        "image": "papdi-chaat.jpg",
+        "imageAlt": "Papdi chaat topped with yogurt, mint chutney, onion and cilantro",
         "veg": true
       },
       {
@@ -117,6 +129,8 @@
         "name": "Chana Masala",
         "description": "Chickpeas cooked with herbs and spices.",
         "price": 15.99,
+        "image": "chana-masala.jpg",
+        "imageAlt": "Chana masala: chickpea curry garnished with fresh cilantro",
         "veg": true
       },
       {
@@ -154,6 +168,8 @@
         "name": "Matar Paneer",
         "description": "Chunks of cottage cheese mixed with green peas.",
         "price": 16.99,
+        "image": "matar-paneer.jpg",
+        "imageAlt": "Matar paneer: green peas and paneer in a spiced gravy",
         "veg": true
       },
       {
@@ -257,6 +273,8 @@
         "name": "Butter Chicken",
         "description": "Rich butter-cream, tomatoes, onion sauce cooked with chicken.",
         "price": 17.99,
+        "image": "butter-chicken.jpg",
+        "imageAlt": "Butter chicken in a creamy tomato sauce garnished with cilantro",
         "veg": false,
         "favorite": true
       }
@@ -288,6 +306,8 @@
         "name": "Goat Vindaloo",
         "description": "Goat & potatoes in a rich gravy sauce.",
         "price": 17.99,
+        "image": "goat-vindaloo.jpg",
+        "imageAlt": "Goat vindaloo: goat and potatoes in a rich gravy",
         "veg": false
       }
     ]
@@ -382,6 +402,8 @@
         "name": "Jeera Rice",
         "description": "Basmati rice lightly seasoned with cumin.",
         "price": 7.99,
+        "image": "jeera-rice.jpg",
+        "imageAlt": "Jeera rice: basmati rice seasoned with cumin",
         "veg": true
       },
       {
@@ -394,6 +416,8 @@
         "name": "Matar Pulao",
         "description": "Basmati rice seasoned with cumin, peas & onions.",
         "price": 9.99,
+        "image": "matar-pulao.jpg",
+        "imageAlt": "Matar pulao: basmati rice with peas, served alongside garlic naan",
         "veg": true
       },
       {
@@ -406,6 +430,8 @@
         "name": "Chicken Biryani",
         "description": "Basmati rice sautéed with chicken & spices.",
         "price": 18.99,
+        "image": "chicken-biryani.jpg",
+        "imageAlt": "Chicken biryani topped with cucumber slices and cilantro",
         "veg": false
       },
       {
@@ -442,6 +468,8 @@
         "name": "Plain Naan",
         "description": "Leavened flatbread.",
         "price": 2.99,
+        "image": "plain-naan.jpg",
+        "imageAlt": "Plain naan, sliced, fresh from the tandoor",
         "veg": true
       },
       {
@@ -486,6 +514,8 @@
         "name": "Garlic Naan",
         "description": "Drizzled with butter and garlic.",
         "price": 4.99,
+        "image": "garlic-naan.jpg",
+        "imageAlt": "Garlic naan topped with garlic and herbs, served in a basket",
         "veg": true,
         "favorite": true
       },
@@ -529,6 +559,8 @@
         "name": "Mango Malai",
         "description": "Creamy mango ice cream with shredded mango.",
         "price": 7.99,
+        "image": "mango-malai.jpg",
+        "imageAlt": "Mango malai dessert cut into wedges",
         "veg": true
       },
       {

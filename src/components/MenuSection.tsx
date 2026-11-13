@@ -1,9 +1,10 @@
-import { Crown, Leaf } from 'lucide-react';
+import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { Crown, Leaf, X } from 'lucide-react';
 import * as React from 'react';
 
 import { menuSections, toAnchor } from '@/lib/menu';
 import { cn } from '@/lib/utils';
-import type { MenuItem } from '@/types/menu';
+import type { MenuImageMap, MenuItem, MenuItemImage } from '@/types/menu';
 
 // Sections whose single category shares the section's name don't need a second heading level.
 const groups = menuSections.map((group) => {
@@ -28,45 +29,86 @@ const navTargets = groups.flatMap((group) =>
   }))
 );
 
-function ItemRow({ item, level }: { item: MenuItem; level: 'h3' | 'h4' }) {
+function ItemRow({
+  item,
+  level,
+  photo,
+  onOpenPhoto,
+}: {
+  item: MenuItem;
+  level: 'h3' | 'h4';
+  photo?: MenuItemImage;
+  onOpenPhoto: (item: MenuItem, trigger: HTMLButtonElement) => void;
+}) {
   const Heading = level;
   return (
-    <div className="group">
-      <div className="flex justify-between items-baseline gap-4 mb-1">
-        <Heading className="text-heading-md text-on-surface group-hover:text-primary-container transition-colors flex flex-wrap items-center gap-x-2">
-          <span>{item.name}</span>
-          {item.veg && (
-            <span title="Vegetarian" className="inline-flex">
-              <Leaf className="w-4 h-4 text-on-surface-variant" aria-hidden="true" />
-              <span className="sr-only">(vegetarian)</span>
-            </span>
-          )}
-          {item.favorite && (
-            <span title="All-time favorite" className="inline-flex">
-              <Crown className="w-4 h-4 text-primary-container" aria-hidden="true" />
-              <span className="sr-only">(all-time favorite)</span>
-            </span>
-          )}
-          {item.isNew && (
-            <span className="text-label-sm uppercase bg-surface-container-high text-on-surface px-2 py-0.5 rounded-full">
-              New
-            </span>
-          )}
-        </Heading>
-        <span className="text-heading-md text-primary-container shrink-0">
-          ${item.price.toFixed(2)}
-        </span>
+    <div className={cn('group', photo && 'flex items-start gap-4')}>
+      <div className={cn(photo && 'min-w-0 flex-1')}>
+        <div className="flex justify-between items-baseline gap-4 mb-1">
+          <Heading className="text-heading-md text-on-surface group-hover:text-primary-container transition-colors flex flex-wrap items-center gap-x-2">
+            <span>{item.name}</span>
+            {item.veg && (
+              <span title="Vegetarian" className="inline-flex">
+                <Leaf className="w-4 h-4 text-on-surface-variant" aria-hidden="true" />
+                <span className="sr-only">(vegetarian)</span>
+              </span>
+            )}
+            {item.favorite && (
+              <span title="All-time favorite" className="inline-flex">
+                <Crown className="w-4 h-4 text-primary-container" aria-hidden="true" />
+                <span className="sr-only">(all-time favorite)</span>
+              </span>
+            )}
+            {item.isNew && (
+              <span className="text-label-sm uppercase bg-surface-container-high text-on-surface px-2 py-0.5 rounded-full">
+                New
+              </span>
+            )}
+          </Heading>
+          <span className="text-heading-md text-primary-container shrink-0">
+            ${item.price.toFixed(2)}
+          </span>
+        </div>
+        {item.description && (
+          <p className="text-body-md text-on-surface-variant">{item.description}</p>
+        )}
+        {item.note && <p className="text-sm text-on-surface-variant mt-1 italic">{item.note}</p>}
       </div>
-      {item.description && (
-        <p className="text-body-md text-on-surface-variant">{item.description}</p>
+      {photo && (
+        <button
+          type="button"
+          aria-label={`View larger photo of ${item.name}`}
+          onClick={(e) => onOpenPhoto(item, e.currentTarget)}
+          className="shrink-0 size-24 sm:size-28 rounded-xl overflow-hidden bg-surface-container-high focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline focus-visible:ring-offset-2 focus-visible:ring-offset-surface-container-low"
+        >
+          <img
+            src={photo.thumb.src}
+            srcSet={photo.thumb.srcSet}
+            sizes="(min-width: 640px) 112px, 96px"
+            width={photo.thumb.width}
+            height={photo.thumb.height}
+            alt={photo.alt}
+            loading="lazy"
+            decoding="async"
+            className="size-full object-cover transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          />
+        </button>
       )}
-      {item.note && <p className="text-sm text-on-surface-variant mt-1 italic">{item.note}</p>}
     </div>
   );
 }
 
-export function MenuSection() {
+const noImages: MenuImageMap = {};
+
+export function MenuSection({ images = noImages }: { images?: MenuImageMap }) {
   const [activeCategory, setActiveCategory] = React.useState(navTargets[0].id);
+  const [openItem, setOpenItem] = React.useState<MenuItem | null>(null);
+  const photoTrigger = React.useRef<HTMLButtonElement | null>(null);
+  const openPhoto = React.useCallback((item: MenuItem, trigger: HTMLButtonElement) => {
+    photoTrigger.current = trigger;
+    setOpenItem(item);
+  }, []);
+  const openPhotoData = openItem?.image ? images[openItem.image] : undefined;
 
   React.useEffect(() => {
     let ticking = false;
@@ -254,6 +296,8 @@ export function MenuSection() {
                             key={item.name}
                             item={item}
                             level={group.showCategoryHeadings ? 'h4' : 'h3'}
+                            photo={item.image ? images[item.image] : undefined}
+                            onOpenPhoto={openPhoto}
                           />
                         ))}
                       </div>
@@ -268,6 +312,51 @@ export function MenuSection() {
           </div>
         </div>
       </div>
+
+      <DialogPrimitive.Root
+        open={openItem !== null}
+        onOpenChange={(open) => {
+          if (!open) setOpenItem(null);
+        }}
+      >
+        <DialogPrimitive.Portal>
+          <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+          <DialogPrimitive.Content
+            onCloseAutoFocus={(e) => {
+              e.preventDefault();
+              photoTrigger.current?.focus();
+            }}
+            className="fixed left-1/2 top-1/2 z-50 flex max-h-[96vh] w-[min(92vw,56rem)] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 focus-visible:outline-hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
+          >
+            {openItem && openPhotoData && (
+              <>
+                <img
+                  src={openPhotoData.full.src}
+                  width={openPhotoData.full.width}
+                  height={openPhotoData.full.height}
+                  alt={openPhotoData.alt}
+                  decoding="async"
+                  className="max-h-[80vh] w-auto max-w-full object-contain rounded-2xl"
+                />
+                <div className="max-w-full rounded-2xl bg-surface-container-high px-5 py-3 text-center">
+                  <DialogPrimitive.Title className="text-heading-md text-on-surface">
+                    {openItem.name}
+                  </DialogPrimitive.Title>
+                  <DialogPrimitive.Description className="text-body-md text-on-surface-variant">
+                    {openItem.description}
+                  </DialogPrimitive.Description>
+                </div>
+              </>
+            )}
+            <DialogPrimitive.Close
+              aria-label="Close photo"
+              className="absolute right-2 top-2 inline-flex size-11 items-center justify-center rounded-full bg-surface-container-high text-on-surface transition-colors hover:bg-surface-container focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-outline"
+            >
+              <X className="size-5" aria-hidden="true" />
+            </DialogPrimitive.Close>
+          </DialogPrimitive.Content>
+        </DialogPrimitive.Portal>
+      </DialogPrimitive.Root>
     </section>
   );
 }

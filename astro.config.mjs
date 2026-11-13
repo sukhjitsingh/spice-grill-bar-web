@@ -53,7 +53,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
-    indexnow({ key: '5a973t3xfryc2gchkn1q6chy26ss2au9' }),
+    // INDEXNOW_DRY_RUN=1 builds without pinging IndexNow (local test builds of
+    // changes that are not deployed yet).
+    indexnow({
+      key: '5a973t3xfryc2gchkn1q6chy26ss2au9',
+      dryRun: process.env.INDEXNOW_DRY_RUN === '1',
+    }),
     react(),
     sitemap({
       serialize(item) {

@@ -38,6 +38,8 @@ Allow: /
 
 User-agent: bingbot
 Allow: /
+Disallow: /~partytown/
+Disallow: /partytown/$
 
 # Sitemap
 Sitemap: https://spicegrillbar66.com/sitemap-index.xml
@@ -46,6 +48,10 @@ Sitemap: https://spicegrillbar66.com/sitemap.xml
 # Allow all
 User-agent: *
 Allow: /
+# Partytown worker files: /~partytown/ is the retired path (the host answers 403 for it);
+# /partytown/ itself is a bare directory with no page. The scripts inside stay fetchable.
+Disallow: /~partytown/
+Disallow: /partytown/$
 Allow: /*.webp$
 Allow: /*.jpg$
 Allow: /*.png$

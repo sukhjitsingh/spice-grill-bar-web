@@ -8,6 +8,12 @@
 
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # One URL per page: /index.html and /dir/index.html → the directory URL.
+  # THE_REQUEST only matches what the visitor asked for, so the internal
+  # DirectoryIndex lookup of index.html does not loop.
+  RewriteCond %{THE_REQUEST} \s/+(?:[^?\s]*/)?index\.html[?\s] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301]
 </IfModule>
 
 <IfModule mod_headers.c>

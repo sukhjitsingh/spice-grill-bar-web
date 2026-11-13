@@ -5,7 +5,9 @@ import { MenuSection } from '../components/MenuSection';
 import AstroButton from '../components/ui/AstroButton.astro';
 import Layout from '../layouts/Layout.astro';
 import { menu } from '../lib/menu';
+import { getMenuImages } from '../lib/menu-images';
 
+const images = await getMenuImages();
 const itemCount = menu.reduce((n, c) => n + c.items.length, 0);
 ---
 
@@ -57,7 +59,7 @@ const itemCount = menu.reduce((n, c) => n + c.items.length, 0);
       </div>
     </div>
 
-    <MenuSection client:idle />
+    <MenuSection client:idle images={images} />
 
     <p class="max-w-7xl mx-auto px-6 pb-24 text-sm text-on-surface-variant">
       Please inform us of any food allergies or intolerances prior to ordering. Questions about

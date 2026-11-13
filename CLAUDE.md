@@ -33,7 +33,7 @@ npm run qa            # Full QA: build + test:quality + test:lhci (runs on pre-p
 The codebase deliberately splits between two component types:
 
 - **Astro components** (`.astro`) — Server-rendered, zero JS by default. Used for all layout, content sections, schema markup, and static page structure.
-- **React components** (`.tsx`) — Used only for interactive UI. Hydrated with `client:visible` (MenuSection) or `client:load` (Header). React components live alongside Astro components in `/src/components/`.
+- **React components** (`.tsx`) — Used only for interactive UI. Hydrated with `client:idle` (MenuSection) or `client:load` (Header). React components live alongside Astro components in `/src/components/`.
 
 ### Routing & Pages
 
@@ -51,11 +51,15 @@ File-based routing via `/src/pages/`. Pages:
 
 Static JSON files in `/src/data/` are the source of truth:
 
-- `menu.json` — Menu categories (with `section` grouping matching the printed dine-in menu) and items with prices, `veg`, `favorite`, `isNew` and optional `note`. Source of truth for every price on the site, `MenuSchema` and the `llms-full.txt` menu section
+- `menu.json` — Menu categories (with `section` grouping matching the printed dine-in menu) and items with prices, `veg`, `favorite`, `isNew` and optional `note`, `image` and `imageAlt` (see Menu photos). Source of truth for every price on the site, `MenuSchema` and the `llms-full.txt` menu section
 - `faq.json` — Q&A pairs for structured data and AEO
 - `events.json` — Recurring and dated events. To post a new Paint & Sip, add an entry to `events` (date, time, optional price/theme/signupUrl), then rebuild and deploy. Past dates hide automatically in the browser.
 - `reviews.json` — Customer reviews, newest first. Updated monthly by `.github/workflows/update-reviews.yml`, which runs `npm run ingest:reviews` (`scripts/ingest-reviews.mjs`: Puppeteer scrapes Google Maps + Yelp, Gemini extracts reviews; needs `GEMINI_API_KEY`). The script only appends new reviews (deduped by source + author or opening text) and never edits or removes existing ones; any failure leaves the file untouched. `ReviewsSection.astro` shows the 12 newest by date.
 - `rating.json` — Google's overall rating and total review count (`ratingValue`, `reviewCount`, `source`, `asOf`). Single source for the hero badge and `RestaurantSchema`'s `aggregateRating`, read through `src/lib/rating.ts`. The same monthly workflow refreshes it from the scraped Google listing, but only when the new values are plausible (rating 1–5, count within 0.9×–3× of the stored count). Never compute the rating from `reviews.json`; that file is a sample.
+
+### Menu photos
+
+Dish photos live in `src/assets/menu/` (JPEG, longest side ≤ 1600px, EXIF stripped). To add one, drop the file there and set `image` (the filename) and `imageAlt` (what the photo shows) on the item in `menu.json`; the build fails if the file or the alt text is missing. `src/lib/menu-images.ts` turns each photo into square WebP thumbnails plus one larger WebP with `astro:assets`. It is server-only: import it from `.astro` files, never from `MenuSection.tsx` or `src/lib/menu.ts`, which ship to the browser. `menu.astro` passes the result to the `MenuSection` island (thumbnail beside the item, tap to enlarge) and `MenuSchema.astro` adds it as each MenuItem's `image`. Items without a photo render as text only.
 
 ### Schema / SEO Components
 
@@ -69,7 +73,7 @@ These are critical for local SEO and AEO. Changes to menu, hours, or contact inf
 **AEO content rules** (enforced by `scripts/aeo-audit.mjs`):
 
 - No "closest / nearest / only" Indian or Punjabi restaurant claims about Williams, the Grand Canyon or I-40: Taj Mahal Indian Restaurant operates in Williams. "Closest Indian restaurant to Kaibab Estates West" is allowed.
-- Page titles 30–70 characters and meta descriptions 110–160, unique per page. Ahrefs flags titles over 60; the home, menu, events and directions titles are 61–69 by choice.
+- Page titles 30–70 characters and meta descriptions 110–160, unique per page. Ahrefs flags titles over 60; the menu, events and directions titles are 61–63 by choice. Keep the home title at 60 or under: Google cut the earlier 69-character one off in results (Ahrefs "Page and SERP titles do not match").
 - Every page needs at least two inline links in its `<main>` prose (class `text-primary-container underline underline-offset-2 …`), not just nav, footer and CTA buttons.
 - `public/llms.txt` and `public/llms-full.txt` follow the llmstxt.org Markdown format: H1 first, a `> ` summary, links as `[text](url)` (never bare URLs). The `## Full Menu` section of `llms-full.txt` is generated from `menu.json` by `prebuild`; don't edit it by hand.
 
@@ -101,11 +105,13 @@ Import alias `@/*` resolves to `src/*`.
 
 Google Analytics runs via GTM with **Partytown** for off-main-thread execution. The GTM script is in `/public/scripts/gtm.js`. Never block the main thread with analytics — keep Partytown configuration in `astro.config.mjs`.
 
+Partytown's worker files are served from **`/partytown/`**, not the default `/~partytown/`: Hostinger answers 403 for any path that starts with `~`, which silently stops GTM/GA4 from loading. `Layout.astro` has a small inline `astro:before-swap` script that carries Partytown's sandbox iframe across view transitions for this path (the integration only does that for its default path). `robots.txt` disallows the retired `/~partytown/` and the bare `/partytown/` directory.
+
 ### Deployment
 
-The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `postbuild` fails the build if `dist/.htaccess` is missing or if any sitemap URL lacks `<lastmod>` (set from each page's last git commit in `astro.config.mjs`).
+The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301, and 301s `/index.html` and `/dir/index.html` to the directory URL so each page has one address. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `postbuild` fails the build if `dist/.htaccess` is missing or if any sitemap URL lacks `<lastmod>` (set from each page's last git commit in `astro.config.mjs`).
 
-`astro-indexnow` pings IndexNow **during `npm run build`**, before the upload. Bing may therefore fetch the old pages; after uploading a content change, re-submit the changed URLs (Bing Webmaster Tools → URL Submission, or IndexNow).
+`astro-indexnow` pings IndexNow **during `npm run build`**, before the upload. Bing may therefore fetch the old pages; after uploading a content change, re-submit the changed URLs (Bing Webmaster Tools → URL Submission, or IndexNow). For local test builds of work that is not deployed yet, run `INDEXNOW_DRY_RUN=1 npm run build` so nothing is submitted.
 
 ## Git Conventions
 

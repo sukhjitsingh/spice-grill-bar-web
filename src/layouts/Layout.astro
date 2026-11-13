@@ -16,7 +16,7 @@ import ServiceSchema from '@/components/schema/ServiceSchema.astro';
 import WebSiteSchema from '@/components/schema/WebSiteSchema.astro';
 
 const {
-  title = 'Spice Grill & Bar | Best Indian & Punjabi Food in Ash Fork, AZ (I-40)',
+  title = 'Spice Grill & Bar | Best Indian Food in Ash Fork, AZ (I-40)',
   description = 'Authentic Punjabi Indian food on historic Route 66 in Ash Fork, AZ, right off I-40 Exit 146. Fresh naan, curries and tandoori for Grand Canyon travelers.',
   ogTitle,
   ogDescription,
@@ -109,6 +109,17 @@ function slugToLabel(path: string): string {
     <meta name="geo.region" content="US-AZ" />
 
     <ClientRouter />
+    <!-- Keep Partytown's sandbox iframe across view transitions. @astrojs/partytown only
+         does this for its default /~partytown/ path; ours is /partytown/ (astro.config.mjs). -->
+    <script is:inline>
+      if (!window.ptKeepFrame) {
+        window.ptKeepFrame = true;
+        document.addEventListener('astro:before-swap', (e) => {
+          const frame = document.body.querySelector("iframe[src*='/partytown/']");
+          if (frame) e.newDocument.body.append(frame);
+        });
+      }
+    </script>
     <script is:inline src="/scripts/theme.js"></script>
     <script
       is:inline

@@ -12,7 +12,13 @@ import { execFileSync } from 'node:child_process';
 // the build date when git history isn't available.
 const PAGE_SOURCES = {
   '/': ['src/pages/index.astro', 'src/components', 'src/lib', 'src/data'],
-  '/menu/': ['src/pages/menu.astro', 'src/components/MenuSection.tsx', 'src/data/menu.json'],
+  '/menu/': [
+    'src/pages/menu.astro',
+    'src/components/MenuSection.tsx',
+    'src/data/menu.json',
+    'src/assets/menu',
+    'src/lib/menu-images.ts',
+  ],
   '/faq/': ['src/pages/faq.astro', 'src/data/faq.json'],
   '/events/': ['src/pages/events.astro', 'src/lib/events.ts', 'src/data/events.json'],
   '/directions/': ['src/pages/directions.astro'],
@@ -47,7 +53,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
-    indexnow({ key: '5a973t3xfryc2gchkn1q6chy26ss2au9' }),
+    // INDEXNOW_DRY_RUN=1 builds without pinging IndexNow (local test builds of
+    // changes that are not deployed yet).
+    indexnow({
+      key: '5a973t3xfryc2gchkn1q6chy26ss2au9',
+      dryRun: process.env.INDEXNOW_DRY_RUN === '1',
+    }),
     react(),
     sitemap({
       serialize(item) {
@@ -55,7 +66,10 @@ export default defineConfig({
         return item;
       },
     }),
-    partytown({ config: { forward: ['dataLayer.push'] } }),
+    // The host answers 403 for any path starting with "~", so Partytown's default
+    // /~partytown/ never loads in production. Serve its files from /partytown/.
+    // Layout.astro carries the matching view-transition hook for this path.
+    partytown({ config: { lib: '/partytown/', forward: ['dataLayer.push'] } }),
   ],
   devToolbar: { enabled: false },
 });

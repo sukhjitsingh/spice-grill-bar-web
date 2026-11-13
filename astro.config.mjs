@@ -61,7 +61,10 @@ export default defineConfig({
         return item;
       },
     }),
-    partytown({ config: { forward: ['dataLayer.push'] } }),
+    // The host answers 403 for any path starting with "~", so Partytown's default
+    // /~partytown/ never loads in production. Serve its files from /partytown/.
+    // Layout.astro carries the matching view-transition hook for this path.
+    partytown({ config: { lib: '/partytown/', forward: ['dataLayer.push'] } }),
   ],
   devToolbar: { enabled: false },
 });

@@ -120,6 +120,10 @@ The site is served from Apache on Hostinger. `public/.htaccess` (copied into `di
 
 Conventional commits are enforced via commitlint (`feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, etc.). The pre-push hook runs `npm run qa` (full build + quality checks). Do not skip hooks with `--no-verify`.
 
+## Dependency Overrides
+
+`package.json` `overrides` pin three transitive packages past known vulnerabilities; all are dev-only test tooling. `get-uri` to 8.0.2, the release that moved to a fixed `basic-ftp` (`chromedriver` in `@axe-core/cli` pins the older 8.0.1 through `pac-proxy-agent`); `puppeteer-core` to match `puppeteer`, so `puppeteer-extra`'s peer dependency does not pull a second, older copy with old `zod` and `extract-zip`; and `minimatch` under `@typescript-eslint/typescript-estree` v7, which `eslint-config-airbnb-typescript` holds at v7. Drop each one once its parent package ships the fixed version. `picomatch` (ReDoS, used by Astro, Vite and the glob tools) has no fixed release yet, so `npm audit` still reports it.
+
 ## Lighthouse CI Thresholds
 
 Code changes must not degrade:

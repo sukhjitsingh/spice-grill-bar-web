@@ -2,7 +2,7 @@
 // Guards files the Apache deploy depends on; dotfiles are easy to lose in a build pipeline change.
 import fs from 'node:fs';
 
-const required = ['dist/.htaccess', 'dist/sitemap.xml', 'dist/sitemap-0.xml', 'dist/index.html'];
+const required = ['dist/.htaccess', 'dist/sitemap.xml', 'dist/sitemap-0.xml', 'dist/index.html', 'dist/index.md'];
 const missing = required.filter((file) => !fs.existsSync(file));
 
 if (missing.length > 0) {
@@ -20,4 +20,4 @@ if (urls === 0 || lastmods !== urls) {
   console.error(`❌ dist/sitemap-0.xml has ${lastmods} <lastmod> for ${urls} URLs`);
   process.exit(1);
 }
-console.log('✅ Build output includes .htaccess, sitemap.xml (with lastmod) and index.html');
+console.log('✅ Build output includes .htaccess, sitemap.xml (with lastmod), index.html and index.md');

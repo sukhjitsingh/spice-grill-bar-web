@@ -12,7 +12,7 @@ Requires **Node 24.22.2**, pinned in `.nvmrc` (run `nvm use`). `package.json` `e
 
 ```bash
 npm run dev           # Start dev server at http://localhost:4321
-npm run build         # Build to ./dist/ (postbuild copies sitemap-index.xml → sitemap.xml and checks dist/.htaccess)
+npm run build         # Build to ./dist/: build:prepare (llms-full.txt menu), astro build, build:finish (sitemap.xml copy, each page's index.md, dist/ checks)
 npm run preview       # Preview production build locally
 npm run lint          # ESLint on .js/.ts/.astro files
 npm run lint:fix      # Auto-fix linting issues
@@ -75,7 +75,8 @@ These are critical for local SEO and AEO. Changes to menu, hours, or contact inf
 - No "closest / nearest / only" Indian or Punjabi restaurant claims about Williams, the Grand Canyon or I-40: Taj Mahal Indian Restaurant operates in Williams. "Closest Indian restaurant to Kaibab Estates West" is allowed.
 - Page titles 30–70 characters and meta descriptions 110–160, unique per page. Ahrefs flags titles over 60; the menu, events and directions titles are 61–63 by choice. Keep the home title at 60 or under: Google cut the earlier 69-character one off in results (Ahrefs "Page and SERP titles do not match").
 - Every page needs at least two inline links in its `<main>` prose (class `text-primary-container underline underline-offset-2 …`), not just nav, footer and CTA buttons.
-- `public/llms.txt` and `public/llms-full.txt` follow the llmstxt.org Markdown format: H1 first, a `> ` summary, links as `[text](url)` (never bare URLs). The `## Full Menu` section of `llms-full.txt` is generated from `menu.json` by `prebuild`; don't edit it by hand.
+- `public/robots.txt` declares `Content-Signal: search=yes, ai-input=yes, ai-train=no` (owner's choice: appear in search and AI answers, no AI training). Repeat it in every `User-agent` group, including new ones: a crawler reads only the group that names it.
+- `public/llms.txt` and `public/llms-full.txt` follow the llmstxt.org Markdown format: H1 first, a `> ` summary, links as `[text](url)` (never bare URLs). The `## Full Menu` section of `llms-full.txt` is generated from `menu.json` by `build:prepare`; don't edit it by hand.
 
 ### Styling — "The Radiant Sommelier" Design System
 
@@ -109,7 +110,9 @@ Partytown's worker files are served from **`/partytown/`**, not the default `/~p
 
 ### Deployment
 
-The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301, and 301s `/index.html` and `/dir/index.html` to the directory URL so each page has one address. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `postbuild` fails the build if `dist/.htaccess` is missing or if any sitemap URL lacks `<lastmod>` (set from each page's last git commit in `astro.config.mjs`).
+The site is served from Apache on Hostinger. `public/.htaccess` (copied into `dist/` by the build) strips `www` and forces HTTPS in a single 301, and 301s `/index.html` and `/dir/index.html` to the directory URL so each page has one address. Deploy by uploading the **contents** of `dist/`, including the hidden `.htaccess`, into `public_html/`. `build` runs its steps itself rather than through npm's `prebuild`/`postbuild` hooks, because `~/.npmrc` sets `ignore-scripts=true`, which silently skips those hooks. `build:finish` fails the build if `dist/.htaccess` is missing or if any sitemap URL lacks `<lastmod>` (set from each page's last git commit in `astro.config.mjs`).
+
+**Markdown for AI agents.** `build:finish` runs `scripts/generate-markdown.mjs`, which writes `index.md` beside every built `index.html` (front matter with title, description and canonical URL, then the page's `<main>` and the footer; nav, images, buttons and anything `aria-hidden` are left out, so hide decorative or duplicated markup with `aria-hidden="true"`). `.htaccess` serves that file instead of the HTML when a request's `Accept` header asks for `text/markdown`, and every page sends a `Link` header pointing at its `index.md` and `/llms.txt`, plus `Vary: Accept`. Check it after a deploy with `curl -sI -H 'Accept: text/markdown' https://spicegrillbar66.com/` (expect `content-type: text/markdown`).
 
 `astro-indexnow` pings IndexNow **during `npm run build`**, before the upload. Bing may therefore fetch the old pages; after uploading a content change, re-submit the changed URLs (Bing Webmaster Tools → URL Submission, or IndexNow). For local test builds of work that is not deployed yet, run `INDEXNOW_DRY_RUN=1 npm run build` so nothing is submitted.
 

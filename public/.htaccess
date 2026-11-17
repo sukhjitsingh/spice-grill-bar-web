@@ -2,7 +2,6 @@
 
 # Markdown versions of each page (dist/<page>/index.md, written by scripts/generate-markdown.mjs).
 AddType text/markdown .md
-AddCharset utf-8 .md
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -37,13 +36,17 @@ AddCharset utf-8 .md
   # Every page advertises its Markdown version and llms.txt (RFC 8288). index.md is relative,
   # so it resolves to the page's own folder (/menu/ → /menu/index.md).
   # Vary: Accept stops a cache from handing the Markdown to a browser, or the HTML to an agent.
+  # Write Link values with no spaces and no surrounding quotes: Hostinger's server sends \" through
+  # as a literal backslash (Apache does not), which breaks the header. Unquoted, both send it as is.
   <Files "index.html">
-    Header set Link "<index.md>; rel=\"alternate\"; type=\"text/markdown\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\""
+    Header set Link <index.md>;rel=alternate;type="text/markdown",</llms.txt>;rel=describedby;type="text/plain"
     Header merge Vary Accept
   </Files>
-  # The Markdown points search engines back to the HTML page as the one to index.
+  # The Markdown points search engines back to the HTML page as the one to index. Hostinger's
+  # server ignores AddCharset, so the charset is set here.
   <FilesMatch "\.md$">
-    Header set Link "<./>; rel=\"canonical\""
+    Header set Content-Type "text/markdown; charset=utf-8"
+    Header set Link <./>;rel=canonical
     Header merge Vary Accept
   </FilesMatch>
 </IfModule>

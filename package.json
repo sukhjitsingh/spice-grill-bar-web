@@ -46,7 +46,7 @@
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
-    "astro": "^7.4.4",
+    "astro": "^7.4.12",
     "astro-indexnow": "^2.3.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -62,7 +62,7 @@
     "@commitlint/cli": "^20.4.1",
     "@commitlint/config-conventional": "^20.4.1",
     "@google/genai": "^2.32.0",
-    "@lhci/cli": "^0.15.1",
+    "@lhci/cli": "^0.16.1",
     "@playwright/test": "^1.58.2",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
@@ -78,7 +78,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "glob": "^13.0.6",
+    "glob": "^14.0.6",
     "jsdom": "^27.4.0",
     "knip": "^5.83.0",
     "lint-staged": "^16.2.7",
@@ -107,5 +107,12 @@
     "*.{json,md,yml}": [
       "prettier --write"
     ]
+  },
+  "overrides": {
+    "get-uri": "^8.0.2",
+    "puppeteer-core": "^25.16.0",
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.9"
+    }
   }
 }

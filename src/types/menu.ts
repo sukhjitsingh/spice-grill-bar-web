@@ -7,7 +7,19 @@ export interface MenuItem {
   favorite?: boolean;
   isNew?: boolean;
   note?: string;
+  /** Filename of a photo in `src/assets/menu/`; requires `imageAlt`. */
+  image?: string;
+  imageAlt?: string;
 }
+
+export interface MenuItemImage {
+  alt: string;
+  thumb: { src: string; srcSet: string; width: number; height: number };
+  full: { src: string; width: number; height: number };
+}
+
+/** Keyed by the item's `image` filename. */
+export type MenuImageMap = Record<string, MenuItemImage>;
 
 export interface MenuCategory {
   category: string;

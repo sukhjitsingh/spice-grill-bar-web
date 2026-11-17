@@ -2,6 +2,9 @@
 import type { Menu, MenuItem, WithContext } from 'schema-dts';
 
 import { menu } from '../../lib/menu';
+import { getMenuImages } from '../../lib/menu-images';
+
+const images = await getMenuImages();
 
 const schema: WithContext<Menu> = {
   '@context': 'https://schema.org',
@@ -17,6 +20,7 @@ const schema: WithContext<Menu> = {
       '@type': 'MenuItem',
       name: item.name,
       ...(item.description ? { description: item.description } : {}),
+      ...(item.image ? { image: new URL(images[item.image].full.src, Astro.site).href } : {}),
       ...(item.veg ? { suitableForDiet: 'https://schema.org/VegetarianDiet' } : {}),
       offers: {
         '@type': 'Offer',

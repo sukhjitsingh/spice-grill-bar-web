@@ -24,7 +24,8 @@ const latest = [...(reviewsData as Review[])]
   .sort((a, b) => timeOf(b) - timeOf(a))
   .slice(0, MAX_DISPLAYED_REVIEWS);
 
-// Duplicate reviews for seamless marquee
+// Duplicate reviews for seamless marquee. The copies are aria-hidden so screen readers (and the
+// Markdown version made by scripts/generate-markdown.mjs) get each review once.
 const reviews: Review[] = [...latest, ...latest, ...latest];
 ---
 
@@ -52,8 +53,11 @@ const reviews: Review[] = [...latest, ...latest, ...latest];
 
     <div class="flex animate-marquee">
       {
-        reviews.map((review) => (
-          <div class="w-[340px] md:w-[380px] h-[280px] flex-shrink-0 mx-3 relative group">
+        reviews.map((review, index) => (
+          <div
+            class="w-[340px] md:w-[380px] h-[280px] flex-shrink-0 mx-3 relative group"
+            aria-hidden={index >= latest.length ? 'true' : undefined}
+          >
             <div class="h-full p-6 rounded-2xl relative overflow-hidden flex flex-col bg-surface-container transition-all duration-300">
               <Quote
                 className="absolute top-5 right-5 w-12 h-12 text-primary-container/15 group-hover:text-primary-container/25 transition-colors duration-300 rotate-180"
@@ -65,7 +69,10 @@ const reviews: Review[] = [...latest, ...latest, ...latest];
               <div class="flex justify-between items-start mb-4 relative z-10">
                 <div class="flex items-center gap-3">
                   <div class="flex-shrink-0">
-                    <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface font-bold text-lg">
+                    <div
+                      class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface font-bold text-lg"
+                      aria-hidden="true"
+                    >
                       {review.author.charAt(0).toUpperCase()}
                     </div>
                   </div>

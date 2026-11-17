@@ -6,7 +6,7 @@
  * in lockstep with the canonical menu data in src/data/menu.json. Manual edits drift —
  * this script is the source of truth for that section.
  *
- * Hook: runs as `prebuild` so every `npm run build` produces a fresh menu section.
+ * Hook: runs as `build:prepare` (part of `npm run build`) so every `npm run build` produces a fresh menu section.
  *
  * Behavior:
  * - Reads src/data/menu.json (authoritative source)

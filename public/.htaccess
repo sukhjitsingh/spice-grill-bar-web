@@ -1,4 +1,8 @@
 # Deployed as part of the build: upload the contents of dist/ (including this file) to public_html/.
+
+# Markdown versions of each page (dist/<page>/index.md, written by scripts/generate-markdown.mjs).
+AddType text/markdown .md
+AddCharset utf-8 .md
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
@@ -8,9 +12,38 @@
 
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # One URL per page: /index.html and /dir/index.html → the directory URL.
+  # THE_REQUEST only matches what the visitor asked for, so the internal
+  # DirectoryIndex lookup of index.html does not loop.
+  RewriteCond %{THE_REQUEST} \s/+(?:[^?\s]*/)?index\.html[?\s] [NC]
+  RewriteRule ^(.*/)?index\.html$ /$1 [L,R=301]
+
+  # AI agents that send "Accept: text/markdown" get the page's index.md instead of its HTML.
+  # Skipped when text/markdown has q=0, or when it has a lower q than a plain text/html.
+  # Browsers never ask for text/markdown, so visitors always get the HTML.
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteCond %{HTTP_ACCEPT} !text/markdown\s*;\s*q=0(\.0*)?\s*(,|$) [NC]
+  RewriteCond %{HTTP_ACCEPT} !text/markdown\s*;\s*q=0?\.\d [NC,OR]
+  RewriteCond %{HTTP_ACCEPT} !(^|,)\s*text/html\s*(,|$) [NC]
+  RewriteCond %{DOCUMENT_ROOT}/$1index.md -f
+  RewriteRule ^(.*/)?$ $1index.md [L]
 </IfModule>
 
 <IfModule mod_headers.c>
   # Disable deprecated APIs to prevent PageSpeed warnings from third-party scripts (like GTM/Partytown)
   Header always set Permissions-Policy "attribution-reporting=(), shared-storage=()"
+
+  # Every page advertises its Markdown version and llms.txt (RFC 8288). index.md is relative,
+  # so it resolves to the page's own folder (/menu/ → /menu/index.md).
+  # Vary: Accept stops a cache from handing the Markdown to a browser, or the HTML to an agent.
+  <Files "index.html">
+    Header set Link "<index.md>; rel=\"alternate\"; type=\"text/markdown\", </llms.txt>; rel=\"describedby\"; type=\"text/plain\""
+    Header merge Vary Accept
+  </Files>
+  # The Markdown points search engines back to the HTML page as the one to index.
+  <FilesMatch "\.md$">
+    Header set Link "<./>; rel=\"canonical\""
+    Header merge Vary Accept
+  </FilesMatch>
 </IfModule>

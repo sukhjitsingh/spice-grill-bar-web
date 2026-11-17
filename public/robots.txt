@@ -1,43 +1,59 @@
 # Robots.txt for Spice Grill & Bar
 # https://spicegrillbar66.com
+# Content-Signal (https://contentsignals.org): show the site in search results and AI answers,
+# but do not use it to train AI models. Each group repeats it, since a crawler reads only its own group.
 
 # AI & GPT Bots - Maximum Visibility
 User-agent: GPTBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: ChatGPT-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: Google-Extended
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: CCBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: PerplexityBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: ClaudeBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 # AI search and answer agents (fetch pages to answer a user's question)
 User-agent: OAI-SearchBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: Claude-SearchBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: Claude-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: Perplexity-User
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: Applebot-Extended
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: bingbot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Disallow: /~partytown/
+Disallow: /partytown/$
 
 # Sitemap
 Sitemap: https://spicegrillbar66.com/sitemap-index.xml
@@ -46,6 +62,11 @@ Sitemap: https://spicegrillbar66.com/sitemap.xml
 # Allow all
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+# Partytown worker files: /~partytown/ is the retired path (the host answers 403 for it);
+# /partytown/ itself is a bare directory with no page. The scripts inside stay fetchable.
+Disallow: /~partytown/
+Disallow: /partytown/$
 Allow: /*.webp$
 Allow: /*.jpg$
 Allow: /*.png$
